@@ -3,10 +3,10 @@
 {
     'name' : 'Fasi',
     'version' : '0.1',
-    'summary': 'Invoices & Payments',
+    'summary': 'Arbeitsablaeufe Pruefen',
     'author': "Digital Engineering AEJ",
     'sequence': 10,
-    'description': """""",
+    'description': "",
     'category': 'Accounting/Accounting',
     'images': [],
     'depends': ['base_setup'],
@@ -15,6 +15,5 @@
     'qweb': [],
     'installable': True,
     'application': True,
-    'auto_install': False,
-    'post_init_hook': '_account_post_init',
+    'auto_install': False
 }
