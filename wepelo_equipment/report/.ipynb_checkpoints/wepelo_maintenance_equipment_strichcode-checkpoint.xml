@@ -25,15 +25,15 @@
     
 </template>
 
-<report
-    id="equipment_strichcode"
-    model="maintenance.equipment"
-    string="Strichcode"
-    report_type="qweb-pdf"
-    name="wepelo_equipment.wepelo_maintenance_equipment_strichcode"
-    file="wepelo_equipment.wepelo_maintenance_equipment_strichcode"
-    groups="base.group_system,base.group_user"
-    print_report_name="((object.name or '').replace('/','')+'.pdf')"
-/>
+<record id="equipment_strichcode" model="ir.actions.report">
+            <field name="name">Strichcode</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.wepelo_maintenance_equipment_strichcode</field>
+            <field name="report_file">wepelo_equipment.wepelo_maintenance_equipment_strichcode</field>
+            <field name="print_report_name">((object.name or '').replace('/','')+'.pdf')</field>
+            <field name="binding_model_id" ref="model_maintenance_equipment"/>
+            <field name="binding_type">report</field>
+        </record>
 
 </odoo>

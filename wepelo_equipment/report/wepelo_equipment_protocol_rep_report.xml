@@ -149,14 +149,14 @@
 
     </template>
 
-    <report
-        id="wepelo_equipment_protocol_rep"
-        model="maintenance.request"
-        string="Equipment Protocol Repair"
-        report_type="qweb-pdf"
-        name="wepelo_equipment.report_equipment_protocol_rep"
-        file="wepelo_equipment.report_equipment_protocol_rep"
-        groups="base.group_system,base.group_user"
-        print_report_name="((object.name or '').replace('/','')+'.pdf')"
-    />
+    <record id="wepelo_equipment_protocol_rep" model="ir.actions.report">
+            <field name="name">Equipment Protocol Repair</field>
+            <field name="model">equipment.protocol</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.report_equipment_protocol_rep</field>
+            <field name="report_file">wepelo_equipment.report_equipment_protocol_rep</field>
+            <field name="print_report_name">((object.name or '').replace('/','')+'.pdf')</field>
+            <field name="binding_model_id" ref="model_equipment_protocol"/>
+            <field name="binding_type">report</field>
+        </record>
 </odoo>
