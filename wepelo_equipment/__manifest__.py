@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Wepelo Maintenance',
+    'name': 'Safety Master',
     'version': '1.3',
     'category': 'Operations/Maintenance',
     'description': """
