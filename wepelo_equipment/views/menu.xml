@@ -3,7 +3,7 @@
     
      <menuitem
         id="maintenance.menu_maintenance_title"
-        name="Equipment Master"
+        name="Safty Master"
         web_icon="wepelo_equipment,static/description/icon.png"
         />
 

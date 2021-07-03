@@ -103,10 +103,10 @@
                                         </t>
                                     </div>
                                 </td>
-                                <td colspan="2"></td>
+                                <td colspan="2"/>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
+                                <td colspan="2"/>
                                 <td colspan="2">
                                     <div class="custom-control custom-checkbox checkbox-xl">
 
@@ -161,9 +161,9 @@
                                    <td colspan="2" style="text-align:center;border-top: 1px solid black;">
                                       <p style="text-align:center;padding:10px;padding-top:15px;">
                                           Funktions- u. Sichtprüfung
-                                          <br></br>
+                                          <br/>
                                             nach BGG <b>950</b>
-                                           <br></br>
+                                          <br/>
                                             mit / ohne Wartung
                                       </p>
                                    </td>
@@ -227,13 +227,13 @@
                             </div>
                             Sicherheitsprüfung durchgeführt am:
                             <span t-field="o.mail_activity_id.schedule_date" t-options='{"format": "dd.MM.yyyy"}'/>
-                            <br></br>
+                            <br/>
                             Durchgeführt durch Firma:
                             <span t-field="o.create_uid.company_id"/>
-                            <br></br>
+                            <br/>
                             Anschrift: <t t-if="o.create_uid.company_id.street"><span t-field="o.create_uid.company_id.street"/></t><t t-if="o.create_uid.company_id.zip">, <span t-field="o.create_uid.company_id.zip"/></t><t t-if="o.customer_id.city">, <span t-field="o.customer_id.city"/>
                                 </t>
-                            <br></br>
+                            <br/>
                             Name Sachkundiger:
                             <t t-esc="o.equipment_id.technician_user_id.name"/>
                         </p>
@@ -315,7 +315,7 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <div t-if="o.signature" style="min-height:70px;"></div>
+                                        <div t-if="o.signature" style="min-height:70px;"/>
                                         <div class="ml32 mt16">
                                             <p style="border-top:1px solid grey; width:300px;"/>
                                         </div>
@@ -335,16 +335,15 @@
         </t>
     </template>
 
-    <report
-            id="wepelo_equipment_tore_protocol"
-            model="equipment.protocol"
-            string="Tore"
-            report_type="qweb-pdf"
-            name="wepelo_equipment.report_equipment_protocol_tore"
-            file="wepelo_equipment.report_equipment_protocol_tore"
-            groups="base.group_system,base.group_user"
-            print_report_name="(object._get_report_filename())"
-            menu="False"
-    />
+    <record id="wepelo_equipment_tore_protocol" model="ir.actions.report">
+            <field name="name">Tore</field>
+            <field name="model">equipment.protocol</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.report_equipment_protocol_tore</field>
+            <field name="report_file">wepelo_equipment.report_equipment_protocol_tore</field>
+            <field name="print_report_name">(object._get_report_filename())</field>
+            <field name="binding_model_id" ref="model_equipment_protocol"/>
+            <field name="binding_type">report</field>
+        </record>
 
 </odoo>
