@@ -345,7 +345,7 @@
         </field>
     </record>
 
-    <record id="wepelo_res_partner_search_view" model="ir.ui.view">
+   <!-- <record id="wepelo_res_partner_search_view" model="ir.ui.view">
         <field name="name">wepelo.res.partner.search</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
@@ -353,9 +353,9 @@
                 <filter name="manufacturer" string="Manufacturer" domain="[('type', '=', 'manufacturer')]"/>
             </search>
         </field>
-    </record>
+    </record>-->
 
-    <!-- Neue Search View für Lieferanten --> 
+    <!-- Neue Search View für Lieferanten
     <record id="wepelo_res_vendor_search_view" model="ir.ui.view">
         <field name="name">wepelo.res.partner.search</field>
         <field name="model">res.partner</field>
@@ -364,7 +364,7 @@
                 <filter name="vendor" string="Vendor" domain="[('type', '=', 'vendor')]"/>
             </search>
         </field>
-    </record>
+    </record>-->
     
 <!-- Neue Search View Customer --> 
      <record id="wepelo_res_customer_search_view" model="ir.ui.view">
