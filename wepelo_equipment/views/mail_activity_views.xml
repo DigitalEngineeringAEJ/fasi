@@ -653,7 +653,7 @@
         <field name="name">wepelo.mail.activity.map</field>
         <field name="model">mail.activity</field>
         <field name="arch" type="xml">
-        <map res_partner="customer_id" default_order="schedule_date" routing="false"/>
+        <map res_partner="customer_id" default_order="schedule_date" routing="false">
            <!-- <marker-popup>-->
                 <field name="customer_id" string="Customer"/>
                 <field name="customer_street" string="Street"/>

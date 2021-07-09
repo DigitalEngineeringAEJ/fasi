@@ -592,7 +592,8 @@
         name="Repairs"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="4"/>
+        sequence="4"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_master_data"
