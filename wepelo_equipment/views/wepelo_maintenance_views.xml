@@ -571,8 +571,7 @@
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
         action="wepelo_wepelo_historie_action"
-        sequence="9"
-        active="False"/>
+        sequence="9"/>
 
     <menuitem
         id="maintenance.menu_m_dashboard"
@@ -586,16 +585,14 @@
         name="Reporting"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="5"
-        active="False"/>
+        sequence="5"/>
     
     <menuitem
         id="maintenance.menu_m_request"
         name="Repairs"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="4"
-        active="False"/>
+        sequence="4"/>
 
     <menuitem
         id="menu_wepelo_master_data"
