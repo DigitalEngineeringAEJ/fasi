@@ -3,19 +3,19 @@
     <data noupdate="1">
         <!--Service strain Data-->
        <record id="equipment_test_data_calibration_ei" model="equipment.test">
-            <field name="display_name">Begehung</field>
+            <field name="display_name">Gefährdungsbeurteilungen</field>
             <field name="equipment_test_type">calibration_ei</field>
             <field name="cycle_duration">360</field>
         </record>
 
-      <!--  <record id="equipment_test_data_routine_test" model="equipment.test">
-            <field name="display_name">Schulung/Unterweisung</field>
+        <record id="equipment_test_data_routine_test" model="equipment.test">
+            <field name="display_name">Begehung</field>
             <field name="equipment_test_type">routine_test</field>
             <field name="cycle_duration">720</field>
         </record>
 
-        <record id="equipment_test_data_uvv" model="equipment.test">
-            <field name="display_name">Gefährdungsbeurteilungen</field>
+      <!--  <record id="equipment_test_data_uvv" model="equipment.test">
+            <field name="display_name">Schulung/Unterweisung</field>
             <field name="equipment_test_type">uvv</field>
             <field name="cycle_duration">360</field>
         </record>
@@ -58,14 +58,14 @@
             <field name="sequence">9</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_calibration_ei"/>
         </record>
-       <!-- <record id="mail_activity_data_routine_test" model="mail.activity.type">
+        <record id="mail_activity_data_routine_test" model="mail.activity.type">
             <field name="name">Begehung</field>
             <field name="delay_count">720</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_routine_test"/>
         </record>
-        <record id="mail_activity_data_uvv" model="mail.activity.type">
+       <!-- <record id="mail_activity_data_uvv" model="mail.activity.type">
             <field name="name">Betriebssicherheitsprüfung</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
