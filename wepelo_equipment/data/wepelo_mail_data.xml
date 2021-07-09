@@ -43,7 +43,7 @@
         </record>-->
 
         <!-- Mail Activity Data-->
-      <!--  <record id="mail_activity_data_calibration" model="mail.activity.type">
+        <record id="mail_activity_data_calibration" model="mail.activity.type">
             <field name="name">Schulung/Unterweisung</field>
             <field name="delay_count">720</field>
             <field name="delay_unit">days</field>
@@ -51,7 +51,7 @@
             <field name="sequence">8</field>
             <field name="category">upload_file</field>
         </record>
-        <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
+       <!-- <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
             <field name="name">Gefährdungsbeurteilungen</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
