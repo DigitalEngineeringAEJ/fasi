@@ -8,13 +8,13 @@
             <field name="cycle_duration">360</field>
         </record>
 
-        <record id="equipment_test_data_routine_test" model="equipment.test">
+        <record id="activity_begehung" model="equipment.test">
             <field name="display_name">Begehung</field>
             <field name="equipment_test_type">routine_test</field>
             <field name="cycle_duration">720</field>
         </record>
 
-        <record id="equipment_test_data_uvv" model="equipment.test">
+        <record id="activity_schulung_unterweisung" model="equipment.test">
             <field name="display_name">Schulung/Unterweisung</field>
             <field name="equipment_test_type">uvv</field>
             <field name="cycle_duration">360</field>
@@ -63,14 +63,14 @@
             <field name="delay_count">720</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
-            <field name="equipment_test_type_id" ref="equipment_test_data_routine_test"/>
+            <field name="equipment_test_type_id" ref="activity_begehung"/>
         </record>
         <record id="mail_activity_data_uvv" model="mail.activity.type">
             <field name="name">Schulung/Unterweisung</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">11</field>
-            <field name="equipment_test_type_id" ref="equipment_test_data_uvv"/>
+            <field name="equipment_test_type_id" ref="activity_schulung_unterweisung"/>
             <field name="category">upload_file</field>
         </record>
        <!-- <record id="mail_activity_data_el_test" model="mail.activity.type">
