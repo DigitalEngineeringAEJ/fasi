@@ -43,22 +43,22 @@
         </record>-->
 
         <!-- Mail Activity Data-->
-        <record id="mail_activity_data_calibration" model="mail.activity.type">
+      <!--  <record id="mail_activity_data_calibration" model="mail.activity.type">
             <field name="name">Schulung/Unterweisung</field>
             <field name="delay_count">720</field>
             <field name="delay_unit">days</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_calibration"/>
             <field name="sequence">8</field>
             <field name="category">upload_file</field>
-        </record>
-       <!--  <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
+        </record>-->
+         <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
             <field name="name">Gefährdungsbeurteilungen</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">9</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_calibration_ei"/>
         </record>
-        <record id="mail_activity_data_routine_test" model="mail.activity.type">
+       <!-- <record id="mail_activity_data_routine_test" model="mail.activity.type">
             <field name="name">Begehung</field>
             <field name="delay_count">720</field>
             <field name="delay_unit">days</field>
