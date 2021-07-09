@@ -51,7 +51,7 @@
             <field name="sequence">8</field>
             <field name="category">upload_file</field>
         </record>
-        <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
+       <!-- <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
             <field name="name">Gefährdungsbeurteilungen</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
@@ -65,7 +65,7 @@
             <field name="sequence">10</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_routine_test"/>
         </record>
-       <!-- <record id="mail_activity_data_uvv" model="mail.activity.type">
+        <record id="mail_activity_data_uvv" model="mail.activity.type">
             <field name="name">Betriebssicherheitsprüfung</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
