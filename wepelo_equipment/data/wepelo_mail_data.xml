@@ -2,13 +2,13 @@
 <odoo>
     <data noupdate="1">
         <!--Service strain Data-->
-      <!--  <record id="equipment_test_data_calibration_ei" model="equipment.test">
+       <record id="equipment_test_data_calibration_ei" model="equipment.test">
             <field name="display_name">Begehung</field>
             <field name="equipment_test_type">calibration_ei</field>
             <field name="cycle_duration">360</field>
         </record>
 
-        <record id="equipment_test_data_routine_test" model="equipment.test">
+      <!--  <record id="equipment_test_data_routine_test" model="equipment.test">
             <field name="display_name">Schulung/Unterweisung</field>
             <field name="equipment_test_type">routine_test</field>
             <field name="cycle_duration">720</field>
@@ -43,7 +43,7 @@
         </record>-->
 
         <!-- Mail Activity Data-->
-        <record id="mail_activity_data_calibration" model="mail.activity.type">
+      <!--  <record id="mail_activity_data_calibration" model="mail.activity.type">
             <field name="name">Schulung/Unterweisung</field>
             <field name="delay_count">720</field>
             <field name="delay_unit">days</field>
@@ -51,7 +51,7 @@
             <field name="sequence">8</field>
             <field name="category">upload_file</field>
         </record>
-       <!-- <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
+        <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
             <field name="name">Gefährdungsbeurteilungen</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
