@@ -20,7 +20,7 @@
             <field name="cycle_duration">360</field>
         </record>
 
-       <!-- <record id="equipment_test_data_el_test" model="equipment.test">
+        <record id="equipment_test_data_el_test" model="equipment.test">
             <field name="display_name">DGUV V3</field>
             <field name="equipment_test_type">el_test</field>
             <field name="cycle_duration">360</field>
