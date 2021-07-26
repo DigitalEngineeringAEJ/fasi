@@ -2,13 +2,13 @@
 
 {
     'name': 'Safety Master',
-    'version': '1.3',
-    'category': 'Operations/Maintenance',
-    'description': """
-        Track equipments requests""",
+    'version': '0.1',
+    'category': 'Services',
+    'author': "JADESi",
+    'description': """Anwendung zu Organisation von Tätigkeiten für den Arbeitsschutz""",
     'depends': ['maintenance', 'portal'],
-    'summary': 'Track and manage equipment requests',
-    'website': '',
+    'summary': 'Application for organizing activities for occupational safety',
+    'website': 'JADESi',
     'data': [
         'security/ir.model.access.csv',
         'data/wepelo_mail_data.xml',
@@ -36,4 +36,6 @@
     ],
     'demo': [],
     'installable': True,
+    'application': True,
+    'auto_install': False
 }

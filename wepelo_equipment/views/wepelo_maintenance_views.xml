@@ -571,7 +571,8 @@
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
         action="wepelo_wepelo_historie_action"
-        sequence="9"/>
+        sequence="9"
+        active="False"/>
 
     <menuitem
         id="maintenance.menu_m_dashboard"
@@ -585,7 +586,8 @@
         name="Reporting"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="5"/>
+        sequence="5"
+        active="False"/>
     
     <menuitem
         id="maintenance.menu_m_request"
@@ -624,7 +626,8 @@
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_test_action"
         groups="base.group_system,base.group_user"
-        sequence="3"/>
+        sequence="3"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_equipment_types"
@@ -632,7 +635,8 @@
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_types_action"
         groups="base.group_system,base.group_user"
-        sequence="4"/>
+        sequence="4"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_test_equipment_device"
@@ -640,7 +644,8 @@
         parent="menu_wepelo_master_data"
         action="wepelo_test_equipment_device_action"
         groups="base.group_system,base.group_user"
-        sequence="5"/>
+        sequence="5"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_equipment_manufacturer"
@@ -648,7 +653,8 @@
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_manufacturer_action"
         groups="base.group_system,base.group_user"
-        sequence="6"/>
+        sequence="6"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_equipment_vendor"
@@ -656,6 +662,7 @@
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_vendor_action"
         groups="base.group_system,base.group_user"
-        sequence="6"/>
+        sequence="6"
+        active="False"/>
 
 </odoo>

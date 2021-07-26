@@ -110,15 +110,18 @@
     </record>
 
     <record id="equipment_hebebuhne" model="maintenance.equipment.category">
-        <field name="name">Hebebühne</field>
+        <field name="name">Arbeitsplatz</field>
     </record>
 
     <record id="equipment_tore" model="maintenance.equipment.category">
-        <field name="name">Tore</field>
+        <field name="name">Arbeitsmittel</field>
     </record>
 
     <record id="equipment_bremsprufstand" model="maintenance.equipment.category">
-        <field name="name">Bremsprüfstand</field>
+        <field name="name">Tätigkeit</field>
     </record>
 
+    <record id="equipment_personal" model="maintenance.equipment.category">
+        <field name="name">Personal</field>
+    </record>
 </odoo>
