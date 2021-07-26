@@ -2,7 +2,7 @@
 
 {
     'name': 'Safety Master',
-    'version': '0.1',
+    'version': '0.12',
     'category': 'Services',
     'author': "JADESi",
     'description': """Anwendung zu Organisation von Tätigkeiten für den Arbeitsschutz""",
