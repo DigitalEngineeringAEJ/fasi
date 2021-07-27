@@ -684,7 +684,7 @@
 
     <menuitem
         id="menu_wepelo_activity_form"
-        name="Planning"
+        name="Planung"
         parent="maintenance.menu_maintenance_title"
         action="wepelo_mail_activity_action"
         groups="base.group_system,base.group_user"

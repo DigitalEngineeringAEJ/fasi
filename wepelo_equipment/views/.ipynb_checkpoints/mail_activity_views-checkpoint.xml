@@ -648,33 +648,33 @@
             </graph>
         </field>
     </record>
-
+<!--
     <record id="wepelo_mail_activity_view_map" model="ir.ui.view">
         <field name="name">wepelo.mail.activity.map</field>
         <field name="model">mail.activity</field>
         <field name="arch" type="xml">
         <map res_partner="customer_id" default_order="schedule_date" routing="false">
-            <!--<marker-popup>-->
+            <marker-popup>
                 <field name="customer_id" string="Customer"/>
                 <field name="customer_street" string="Street"/>
                 <field name="customer_zip" string="ZIP"/>
                 <field name="customer_city" string="City"/>
                 <field name="category_id" string="Category"/>
                 <field name="equipment_test_type_id" string="Type"/>
-            <!--</marker-popup>-->
+            </marker-popup>
             </map>
         </field>
     </record>
+-->
 
     <record id="wepelo_mail_activity_action" model="ir.actions.act_window">
         <field name="name">Activities</field>
         <field name="res_model">mail.activity</field>
-        <field name="view_mode">tree,form,calendar,graph,map</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
         <field name="view_ids"
             eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('mail.mail_activity_view_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('wepelo_mail_activity_view_form')}),
-            (0, 0, {'view_mode': 'map', 'view_id': ref('wepelo_mail_activity_view_map')}),
             (0, 0, {'view_mode': 'calendar', 'view_id': ref('mail_activity_view_calendar_wepelo')}),
             (0, 0, {'view_mode': 'graph', 'view_id': ref('wepelo_mail_activity_view_graph')})]"/>
         <field name="search_view_id" ref="wepelo_mail_activity_search_view"/>
@@ -684,7 +684,7 @@
 
     <menuitem
         id="menu_wepelo_activity_form"
-        name="Planning"
+        name="Planung"
         parent="maintenance.menu_maintenance_title"
         action="wepelo_mail_activity_action"
         groups="base.group_system,base.group_user"

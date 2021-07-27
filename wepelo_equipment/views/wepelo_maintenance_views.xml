@@ -566,47 +566,22 @@
     </record>
     
     <menuitem
-        id="menu_wepelo_historie"
-        name="History"
-        parent="maintenance.menu_maintenance_title"
-        groups="maintenance.group_equipment_manager,base.group_user"
-        action="wepelo_wepelo_historie_action"
-        sequence="9"
-        active="False"/>
-
-    <menuitem
         id="maintenance.menu_m_dashboard"
         name="Dashboard"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
         sequence="99"/> 
-       
-    <menuitem
-        id="maintenance.maintenance_reporting"
-        name="Reporting"
-        parent="maintenance.menu_maintenance_title"
-        groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="5"
-        active="False"/>
-    
-    <menuitem
-        id="maintenance.menu_m_request"
-        name="Repairs"
-        parent="maintenance.menu_maintenance_title"
-        groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="4"
-        active="False"/>
 
     <menuitem
         id="menu_wepelo_master_data"
-        name="Master Data"
+        name="Stammdaten"
         parent="maintenance.menu_maintenance_title"
         groups="base.group_system,base.group_user"
         sequence="3"/>
 
     <menuitem
         id="menu_wepelo_equipment_customer"
-        name="Customers"
+        name="Kunden"
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_customer_action"
         groups="base.group_system,base.group_user"
@@ -619,8 +594,26 @@
         action="wepelo_equipment_service_action"
         groups="base.group_system,base.group_user"
         sequence="2"/>
-
+    
     <menuitem
+        id="maintenance.maintenance_menu_config_activity_type"
+        name="Service"
+        action="maintenance.mail_activity_type_action_config_maintenance"
+        parent="menu_wepelo_master_data"
+        sequence="20"
+        groups="base.group_no_one"/>
+    
+    <menuitem
+        id="maintenance.menu_equipment_form"
+        name="Inventar"
+        parent="maintenance.menu_maintenance_title"
+        action="maintenance.hr_equipment_action"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="2"/>
+
+<!-- Inaktive Menüitems -->
+    
+     <menuitem
         id="menu_wepelo_equipment_test"
         name="Test Equipment"
         parent="menu_wepelo_master_data"
@@ -684,8 +677,8 @@
 
     <menuitem
         id="maintenance.menu_maintenance_cat"
-        name="Equipment Categories"
-        parent="maintenance.menu_maintenance_configuration"
+        name="Objekt"
+        parent="menu_wepelo_master_data"
         action="maintenance.hr_equipment_category_action"
         sequence="2"
         active="False"/>
@@ -699,11 +692,29 @@
         sequence="3"
         active="False"/>
     
+     <menuitem
+        id="maintenance.maintenance_reporting"
+        name="Reporting"
+        parent="maintenance.menu_maintenance_title"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="5"
+        active="False"/>
+    
     <menuitem
-        id="maintenance.maintenance_menu_config_activity_type"
-        action="maintenance.mail_activity_type_action_config_maintenance"
-        parent="menu_wepelo_master_data"
-        sequence="20"
-        groups="base.group_no_one"/>
+        id="maintenance.menu_m_request"
+        name="Repairs"
+        parent="maintenance.menu_maintenance_title"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="4"
+        active="False"/>
+    
+    <menuitem
+        id="menu_wepelo_historie"
+        name="History"
+        parent="maintenance.menu_maintenance_title"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        action="wepelo_wepelo_historie_action"
+        sequence="9"
+        active="False"/>
 
 </odoo>
