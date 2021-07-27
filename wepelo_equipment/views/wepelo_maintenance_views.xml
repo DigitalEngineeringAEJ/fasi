@@ -664,5 +664,46 @@
         groups="base.group_system,base.group_user"
         sequence="6"
         active="False"/>
+    
+     <menuitem
+        id="maintenance.menu_maintenance_configuration"
+        name="Configuration"
+        parent="maintenance.menu_maintenance_title"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="100"
+        active="False"/>
+
+    <menuitem
+        id="maintenance.menu_maintenance_teams"
+        name="Maintenance Teams"
+        parent="maintenance.menu_maintenance_configuration"
+        action="maintenance.maintenance_team_action_settings"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="1"
+        active="False"/>
+
+    <menuitem
+        id="maintenance.menu_maintenance_cat"
+        name="Equipment Categories"
+        parent="maintenance.menu_maintenance_configuration"
+        action="maintenance.hr_equipment_category_action"
+        sequence="2"
+        active="False"/>
+
+    <menuitem
+        id="maintenance.menu_maintenance_stage_configuration"
+        name="Maintenance Stages"
+        parent="maintenance.menu_maintenance_configuration"
+        action="maintenance.hr_equipment_stage_action"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="3"
+        active="False"/>
+    
+    <menuitem
+        id="maintenance.maintenance_menu_config_activity_type"
+        action="maintenance.mail_activity_type_action_config_maintenance"
+        parent="menu_wepelo_master_data"
+        sequence="20"
+        groups="base.group_no_one"/>
 
 </odoo>
