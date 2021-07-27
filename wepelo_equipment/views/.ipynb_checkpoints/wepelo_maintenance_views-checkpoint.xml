@@ -566,6 +566,12 @@
     </record>
     
     <menuitem
+        id="maintenance.menu_maintenance_title"
+        name="Safety Master"
+        web_icon="wepelo_equipment/static/src/img/icon.png"
+        sequence="110"/>
+    
+    <menuitem
         id="maintenance.menu_m_dashboard"
         name="Dashboard"
         parent="maintenance.menu_maintenance_title"

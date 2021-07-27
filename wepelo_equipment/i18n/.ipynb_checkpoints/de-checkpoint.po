@@ -949,7 +949,7 @@ msgstr "Kunde:"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__customer_ids
 #: model:ir.ui.menu,name:wepelo_equipment.menu_wepelo_equipment_customer
 msgid "Customers"
-msgstr "Kundenstamm"
+msgstr "Kunden"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_test__cycle_duration
@@ -1312,7 +1312,7 @@ msgstr "Reparaturprotokoll"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_service_view_form
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_service_view_tree
 msgid "Service strain"
-msgstr "Servicestamm"
+msgstr "Objekt"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
@@ -3110,7 +3110,7 @@ msgstr "Reparaturanfragen"
 #. module: maintenance
 #: model:ir.ui.menu,name:maintenance.menu_maintenance_title
 msgid "Maintenance"
-msgstr "Equipment Master"
+msgstr "Safety Master"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner__ref
