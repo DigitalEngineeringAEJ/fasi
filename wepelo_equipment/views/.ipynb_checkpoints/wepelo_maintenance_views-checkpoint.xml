@@ -44,13 +44,20 @@
                 <field name="partner_id" position="after" context="{'default_type': 'vendor'}"/>
                 <field name="qr_code" widget='image' class="oe_avatar"/>
             </field>
+            <field name="owner_user_id" position="attributes">
+                <attribute name="domain">[('id', 'in', owner_user_ids)]</attribute>
+            </field>
+            <field name="owner_user_id" position="before">
+                <field name="customer_id"/>
+            </field>
             <field name="effective_date" position="after">
                 <field name="warranty_date"/>
-                <field name="customer_id"/>
                 <field name="inventory_number"/>
                 <field name="equipment_service_id"/>
                 <field name="test_equipment_device_id"/>
                 <field name="equipment_type_id"/>
+                <field name="show_user_tab_eichung" invisible="1"/>
+                <field name="owner_user_ids" invisible="1"/>
             </field>
             <xpath expr="//notebook//page[last()]" position="after">
                 <page name="contact_details" string="Address/Contact Details">
@@ -71,7 +78,7 @@
                 </page>
             </xpath>
             <xpath expr="//notebook//page[3]" position="after">
-                <page name="calibration" string="Eichung">
+                <page name="calibration" string="Eichung" attrs="{'invisible':[('show_user_tab_eichung', '=', False)]}">
                     <group>
                         <group>
                             <field name="rechnungsnr_eichung"/>
@@ -79,7 +86,7 @@
                         </group>
                         <group>
                             <field name="letzte_eichung"/>
-                            <field name="gueltigkeit_eichung"/>
+                            <field name="gueltigkeit_eichung" invisible="1"/>
                             <field name="naechste_eichung"/>
                         </group>
                     </group>
@@ -348,7 +355,7 @@
         </field>
     </record>
 
-    <!-- Neue Search View für Lieferanten --> 
+    <!-- Neue Search View für Lieferanten-->
     <record id="wepelo_res_vendor_search_view" model="ir.ui.view">
         <field name="name">wepelo.res.partner.search</field>
         <field name="model">res.partner</field>
@@ -419,7 +426,7 @@
 
    <!--Master Data Customer Action -->
     <record id="wepelo_equipment_customer_action" model="ir.actions.act_window">
-        <field name="name">Customer</field>
+        <field name="name">Customers</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="wepelo_equipment_customer_view_tree"/>
@@ -434,7 +441,7 @@
 
     <!--Master Data Vendor Action -->
     <record id="wepelo_equipment_vendor_action" model="ir.actions.act_window">
-        <field name="name">Vendor</field>
+        <field name="name">Vendors</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="wepelo_equipment_customer_view_tree"/>
@@ -450,7 +457,7 @@
 
     <!--Master Data Manufacturer Action -->
     <record id="wepelo_equipment_manufacturer_action" model="ir.actions.act_window">
-        <field name="name">Manufacturer</field>
+        <field name="name">Manufacturers</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="wepelo_equipment_customer_view_tree"/>
@@ -564,7 +571,8 @@
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
         action="wepelo_wepelo_historie_action"
-        sequence="9"/>
+        sequence="9"
+        active="False"/>
 
     <menuitem
         id="maintenance.menu_m_dashboard"
@@ -578,14 +586,16 @@
         name="Reporting"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="5"/>
+        sequence="5"
+        active="False"/>
     
     <menuitem
         id="maintenance.menu_m_request"
         name="Repairs"
         parent="maintenance.menu_maintenance_title"
         groups="maintenance.group_equipment_manager,base.group_user"
-        sequence="4"/>
+        sequence="4"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_master_data"
@@ -596,7 +606,7 @@
 
     <menuitem
         id="menu_wepelo_equipment_customer"
-        name="Customer"
+        name="Customers"
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_customer_action"
         groups="base.group_system,base.group_user"
@@ -616,7 +626,8 @@
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_test_action"
         groups="base.group_system,base.group_user"
-        sequence="3"/>
+        sequence="3"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_equipment_types"
@@ -624,7 +635,8 @@
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_types_action"
         groups="base.group_system,base.group_user"
-        sequence="4"/>
+        sequence="4"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_test_equipment_device"
@@ -632,22 +644,25 @@
         parent="menu_wepelo_master_data"
         action="wepelo_test_equipment_device_action"
         groups="base.group_system,base.group_user"
-        sequence="5"/>
+        sequence="5"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_equipment_manufacturer"
-        name="Manufacturer"
+        name="Manufacturers"
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_manufacturer_action"
         groups="base.group_system,base.group_user"
-        sequence="6"/>
+        sequence="6"
+        active="False"/>
 
     <menuitem
         id="menu_wepelo_equipment_vendor"
-        name="Vendor"
+        name="Vendors"
         parent="menu_wepelo_master_data"
         action="wepelo_equipment_vendor_action"
         groups="base.group_system,base.group_user"
-        sequence="6"/>
+        sequence="6"
+        active="False"/>
 
 </odoo>
