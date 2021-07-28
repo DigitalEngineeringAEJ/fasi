@@ -606,7 +606,7 @@ msgstr "Aktivitätstyp: <span style=\"color:red;\">*</span>"
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__schedule_activity_type_ids
 msgid "Activity Types"
-msgstr ""
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0
@@ -1241,12 +1241,12 @@ msgstr "Inventar Aktivität"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__category_id
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 msgid "Equipment Category"
-msgstr "Inventarkategorie"
+msgstr "Objekte"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "Equipment Category:"
-msgstr "Inventarkategorie:"
+msgstr "Objekte:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__customer

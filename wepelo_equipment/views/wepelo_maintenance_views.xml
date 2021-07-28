@@ -616,7 +616,7 @@
         groups="maintenance.group_equipment_manager,base.group_user"
         sequence="2"/>
 
-<!-- Inaktive Menüitems fff -->
+<!--Inaktive Menüitems-->
     
      <menuitem
         id="menu_wepelo_equipment_test"
@@ -680,14 +680,7 @@
         sequence="1"
         active="False"/>
 
-    <menuitem
-        id="maintenance.menu_maintenance_cat"
-        name="Objekt"
-        parent="menu_wepelo_master_data"
-        action="maintenance.hr_equipment_category_action"
-        sequence="2"/>
-
-    <menuitem
+     <menuitem
         id="maintenance.menu_maintenance_stage_configuration"
         name="Maintenance Stages"
         parent="maintenance.menu_maintenance_configuration"
