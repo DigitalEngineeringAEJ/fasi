@@ -372,7 +372,7 @@
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
         <search string="Partner">
-                <filter name="customer" string="Customer" domain="[('type', '!=', 'manufacturer'),('type', '!=', 'vendor'),('is_company','=',True)]"/>
+                <filter name="customer" string="Customer" domain="[('type', '!=', 'manufacturer'),('type', '!=', 'vendor')]"/>
                 <field string="Customer" name="name" filter_domain="[
                     ('name', 'ilike', self)]"/>
                 <field string="Kundennummer" name="ref" filter_domain="[
@@ -594,11 +594,10 @@
         sequence="1"/>
 
     <menuitem
-        id="menu_wepelo_equipment_service"
-        name="Service strain"
+        id="maintenance.menu_maintenance_cat"
+        name="Objekt"
         parent="menu_wepelo_master_data"
-        action="wepelo_equipment_service_action"
-        groups="base.group_system,base.group_user"
+        action="maintenance.hr_equipment_category_action"
         sequence="2"/>
     
     <menuitem
@@ -686,8 +685,7 @@
         name="Objekt"
         parent="menu_wepelo_master_data"
         action="maintenance.hr_equipment_category_action"
-        sequence="2"
-        active="False"/>
+        sequence="2"/>
 
     <menuitem
         id="maintenance.menu_maintenance_stage_configuration"
@@ -721,6 +719,15 @@
         groups="maintenance.group_equipment_manager,base.group_user"
         action="wepelo_wepelo_historie_action"
         sequence="9"
+        active="False"/>
+    
+    <menuitem
+        id="menu_wepelo_equipment_service"
+        name="Service strain"
+        parent="menu_wepelo_master_data"
+        action="wepelo_equipment_service_action"
+        groups="base.group_system,base.group_user"
+        sequence="2"
         active="False"/>
 
 </odoo>
