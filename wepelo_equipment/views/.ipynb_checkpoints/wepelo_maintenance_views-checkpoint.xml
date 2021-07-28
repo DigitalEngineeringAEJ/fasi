@@ -616,7 +616,7 @@
         groups="maintenance.group_equipment_manager,base.group_user"
         sequence="2"/>
 
-<!-- Inaktive Menüitems f -->
+<!-- Inaktive Menüitems ff -->
     
      <menuitem
         id="menu_wepelo_equipment_test"
