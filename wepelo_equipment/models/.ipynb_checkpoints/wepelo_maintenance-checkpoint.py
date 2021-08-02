@@ -117,21 +117,21 @@ class MaintenanceEquipment(models.Model):
             record.protocol_number = self.env['equipment.protocol'].search_count([('equipment_id', '=', record.id)])
 
         
-    @api.onchange('category_id', 'serial_no')
-    def onchange_category_id(self):
-        if self.category_id and not self.serial_no:
-            self.name = self.category_id.name
-        elif self.category_id and self.serial_no:
-            self.name = self.category_id.name + '/' + self.serial_no
-        elif not self.category_id and self.serial_no:
-            self.name = self.serial_no
-        else:
-            self.name = ''
+#     @api.onchange('category_id', 'serial_no')
+#     def onchange_category_id(self):
+#         if self.category_id and not self.serial_no:
+#             self.name = self.category_id.name
+#         elif self.category_id and self.serial_no:
+#             self.name = self.category_id.name + '/' + self.serial_no
+#         elif not self.category_id and self.serial_no:
+#             self.name = self.serial_no
+#         else:
+#             self.name = ''
 
-    @api.constrains('serial_no')
-    def _check_dates(self):
-        if not self.serial_no:
-            raise exceptions.ValidationError(_("Leider wurde keine Seriennummer angegeben")) 
+#     @api.constrains('serial_no')
+#     def _check_dates(self):
+#         if not self.serial_no:
+#             raise exceptions.ValidationError(_("Leider wurde keine Seriennummer angegeben")) 
            
     @api.onchange('serial_no')
     def onchange_equipment_type_id(self):

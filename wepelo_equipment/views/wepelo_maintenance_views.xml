@@ -16,7 +16,7 @@
         </field>
     </record>
 <!-- Test --> 
-   <!-- Anpassung der Ansicht Zeile 18 bis 70 </record>s --> 
+   <!-- Anpassung der Ansicht Zeile 18 bis 70 </record> --> 
     <record id="hr_equipment_view_form_inherit_wepelo" model="ir.ui.view">
         <field name="name">equipment.form.inherit.wepelo</field>
         <field name="model">maintenance.equipment</field>
@@ -25,10 +25,22 @@
             <xpath expr="//label[@for='name']" position="attributes">
                 <attribute name='string'>Customer Internal Designation</attribute>
             </xpath>
+            <field name="assign_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="scrap_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="effective_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
             <field name="partner_ref" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
             <field name="partner_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+             <field name="serial_no" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
             <field name="warranty_date" position="attributes">
@@ -37,20 +49,33 @@
             <field name="cost" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="location" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
             <field name="model" position="before">
                 <field name="manufacturer_id"  context="{'default_type': 'manufacturer'}"/>
             </field>
-            <field name="serial_no" position="after">
-                <field name="partner_id" position="after" context="{'default_type': 'vendor'}"/>
-                <field name="qr_code" widget='image' class="oe_avatar"/>
+            <field name="category_id" position="after">
+                <field name="serial_no" string="ID"/>
             </field>
+            <field name="technician_user_id" position="after">
+                <field name="customer_id"/>
+                <field name="partner_id" position="after" context="{'default_type': 'vendor'}"/>
+            </field>
+            <field name="serial_no" position="before">
+            </field>
+                
             <field name="owner_user_id" position="attributes">
                 <attribute name="domain">[('id', 'in', owner_user_ids)]</attribute>
             </field>
             <field name="owner_user_id" position="before">
-                <field name="customer_id"/>
+                <field name="note" string="Kommentar"/>
             </field>
-            <field name="effective_date" position="after" invisible="True">
+            <field name="effective_date" position="after">
+                <field name="qr_code" widget='image' class="oe_avatar"/>
                 <field name="warranty_date" invisible="True"/>
                 <field name="inventory_number" invisible="True"/>
                 <field name="equipment_service_id" invisible="True"/>
@@ -408,15 +433,15 @@
         }</field>
     </record>
     
-   <!-- <record id="hr_equipment_view_custom_form" model="ir.ui.view">
+   <!-- <record id=".hr_equipment_view_form_inherit" model="ir.ui.view">
         <field name="name">equipment.form.custom</field>
         <field name="model">maintenance.equipment</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <form string="Equipments">
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
+                    <div class="oe_button_box" name="button_box" invinsible="True">
                         <button name="%(hr_equipment_request_action_from_equipment)d"
                             type="action"
                             class="oe_stat_button"

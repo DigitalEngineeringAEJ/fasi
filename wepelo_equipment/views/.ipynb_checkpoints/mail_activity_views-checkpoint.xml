@@ -648,24 +648,24 @@
             </graph>
         </field>
     </record>
-<!--
+
     <record id="wepelo_mail_activity_view_map" model="ir.ui.view">
         <field name="name">wepelo.mail.activity.map</field>
         <field name="model">mail.activity</field>
         <field name="arch" type="xml">
         <map res_partner="customer_id" default_order="schedule_date" routing="false">
-            <marker-popup>
+<!--             <marker-popup> -->
                 <field name="customer_id" string="Customer"/>
                 <field name="customer_street" string="Street"/>
                 <field name="customer_zip" string="ZIP"/>
                 <field name="customer_city" string="City"/>
                 <field name="category_id" string="Category"/>
                 <field name="equipment_test_type_id" string="Type"/>
-            </marker-popup>
+<!--             </marker-popup> -->
             </map>
         </field>
     </record>
--->
+
 
     <record id="wepelo_mail_activity_action" model="ir.actions.act_window">
         <field name="name">Activities</field>
