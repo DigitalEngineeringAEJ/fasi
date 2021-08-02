@@ -408,7 +408,7 @@
         }</field>
     </record>
     
-    <record id="hr_equipment_view_custom_form" model="ir.ui.view">
+   <!-- <record id="hr_equipment_view_custom_form" model="ir.ui.view">
         <field name="name">equipment.form.custom</field>
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
@@ -428,7 +428,7 @@
                  </sheet>
             </form>
         </field>
-    </record>
+    </record>-->
 
     <record id="res_partner_view_equipment_buttons" model="ir.ui.view">
         <field name="name">res.partner.view.equipment.buttons</field>
