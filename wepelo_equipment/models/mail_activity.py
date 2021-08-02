@@ -837,7 +837,7 @@ class ScheduleActivityType(models.Model):
         'ir.model', string='Document Model',
         index=True, related='mail_activity_id.res_model_id', compute_sudo=True, store=True, readonly=True)
     date_deadline = fields.Date('Due Date', index=True, required=True, default=fields.Date.context_today)
-    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type', ondelete='restrict', required=1)
+    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type', required=1)
     mail_activity_id = fields.Many2one('mail.activity', string="Mail Activity")
     equipment_service_id = fields.Many2one(related='mail_activity_id.equipment_id.equipment_service_id', string='Service strain')
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Mail Activity Types", compute="_compute_mail_activity_types")

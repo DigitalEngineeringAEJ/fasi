@@ -156,3 +156,4 @@ class MaintenanceEquipmentCategory(models.Model):
     _inherit = 'maintenance.equipment.category'
 
     show_user_tab_eichung = fields.Boolean('Show User Tab Eichung')
+    serial_no = fields.Many2one('maintenance.equipment', string='ID')

@@ -50,12 +50,12 @@
             <field name="owner_user_id" position="before">
                 <field name="customer_id"/>
             </field>
-            <field name="effective_date" position="after">
-                <field name="warranty_date"/>
-                <field name="inventory_number"/>
-                <field name="equipment_service_id"/>
-                <field name="test_equipment_device_id"/>
-                <field name="equipment_type_id"/>
+            <field name="effective_date" position="after" invisible="True">
+                <field name="warranty_date" invisible="True"/>
+                <field name="inventory_number" invisible="True"/>
+                <field name="equipment_service_id" invisible="True"/>
+                <field name="test_equipment_device_id" invisible="True"/>
+                <field name="equipment_type_id" invisible="True"/>
                 <field name="show_user_tab_eichung" invisible="1"/>
                 <field name="owner_user_ids" invisible="1"/>
             </field>
@@ -406,6 +406,28 @@
             'search_default_customer_id': [active_id],
             'default_customer_id': active_id,
         }</field>
+    </record>
+    
+    <record id="hr_equipment_view_custom_form" model="ir.ui.view">
+        <field name="name">equipment.form.custom</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Equipments">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(hr_equipment_request_action_from_equipment)d"
+                            type="action"
+                            class="oe_stat_button"
+                            context="{'default_company_id': company_id}"
+                            icon="fa-wrench">
+                            <field string="Maintenance" name="maintenance_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                 </sheet>
+            </form>
+        </field>
     </record>
 
     <record id="res_partner_view_equipment_buttons" model="ir.ui.view">
