@@ -64,15 +64,15 @@
             <field name="technician_user_id" position="after">
                 <field name="customer_id"/>
                 <field name="partner_id" position="after" context="{'default_type': 'vendor'}"/>
+                 <field name="owner_user_id"/>
             </field>
             <field name="serial_no" position="before">
             </field>
-                
             <field name="owner_user_id" position="attributes">
                 <attribute name="domain">[('id', 'in', owner_user_ids)]</attribute>
             </field>
-            <field name="owner_user_id" position="before">
-                <field name="note" string="Kommentar"/>
+            <field name="owner_user_id" position="replace">
+                 <field name="note" string="Kommentar"/>
             </field>
             <field name="effective_date" position="after">
                 <field name="qr_code" widget='image' class="oe_avatar"/>
