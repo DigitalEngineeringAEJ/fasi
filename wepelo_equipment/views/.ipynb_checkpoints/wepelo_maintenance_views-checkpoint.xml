@@ -59,6 +59,7 @@
                 <field name="manufacturer_id"  context="{'default_type': 'manufacturer'}"/>
             </field>
             <field name="category_id" position="after">
+                <field name="equipment_type_id"/>
                 <field name="serial_no" string="ID"/>
             </field>
             <field name="technician_user_id" position="after">
@@ -657,7 +658,7 @@
     
     <menuitem
         id="maintenance.menu_equipment_form"
-        name="Inventar"
+        name="Gefahrenquelle"
         parent="maintenance.menu_maintenance_title"
         action="maintenance.hr_equipment_action"
         groups="maintenance.group_equipment_manager,base.group_user"

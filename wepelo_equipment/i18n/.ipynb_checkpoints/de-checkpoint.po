@@ -1216,7 +1216,7 @@ msgstr "Equipment Master -"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_mail_activity_search_view
 #, python-format
 msgid "Equipment"
-msgstr "Inventarbezeichnung"
+msgstr "Gefahrenquelle"
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0
@@ -1269,8 +1269,8 @@ msgstr "Inventar Mail-Aktivität"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocols
 #, python-format
-msgid "Equipment Name"
-msgstr "Inventarbezeichnung"
+msgid "Gefahrenquelle"
+msgstr "Gefahrenquelle"
 
 #. module: wepelo_equipment
 #: model:ir.actions.act_window,name:wepelo_equipment.wepelo_equipment_protocol_action
@@ -2393,7 +2393,7 @@ msgstr "Suchen"
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #, python-format
-msgid "Search <span class=\"nolabel\"> (in Equipment Name)</span>"
+msgid "Search <span class=\"nolabel\"> (in Gefahrenquellen)</span>"
 msgstr "Suche <span class=\"nolabel\"> (im Inventarbezeichnung)</span>"
 
 #. module: wepelo_equipment
