@@ -5,8 +5,11 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
         <field name="arch" type="xml">
+             <field name="name" position="replace">
+                <field name="name" string="Gefahrenquelle"/>
+            </field>
             <field name="serial_no" position="before">
-                <field name="inventory_number"/>
+                <field name="inventory_number" />
             </field>
             <field name="serial_no" position="after">
                 <field name="equipment_service_id" optional="hide"/>
