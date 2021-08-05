@@ -156,7 +156,7 @@ class MailActivity(models.Model):
     gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'), ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),('status_a_3', 'schwere Verletzungen oder Erkrankungen'), ('status_a_4', 'möglicher Tod, Katastrophe')], string='Gefahrenbeurteilung Ausmaß')
     gef_beurteilung_e = fields.Char(string='Gefahrenbeurteilung Wahrscheinlichkeit', compute='onchange__berechnung_mas')
     
-    @api.onchange('gef_beurteilung_w', 'gef_beurteilung_a')
+    @api.onchange('gef_beurteilung_w', 'gef_beurteilung_a') 
     def onchange__berechnung_mas(self):
         if self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_1':
             self.gef_beurteilung_e = '1'
@@ -196,7 +196,7 @@ class MailActivity(models.Model):
     
     @api.depends('gefahrenquellen_typ_id')
     def _dann_aktiv(self):
-        if self.gefahrenquellen_typ_id.name == "Mechanische Gefährdungen":
+        if self.gefahrenquellen_typ_id.id == "1" or "2" or "3" or "4" or "5" or "7" or "9" or "11" or "10":
             self.check = True
         else:
                 self.check = False

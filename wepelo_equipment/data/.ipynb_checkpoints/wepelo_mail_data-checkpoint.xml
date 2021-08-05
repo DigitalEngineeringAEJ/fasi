@@ -160,9 +160,9 @@
         <field name="padding">6</field>
     </record>
 
-    <!--<record id="equipment_hebebuhne" model="maintenance.equipment.category">
+    <record id="equipment_hebebuhne" model="maintenance.equipment.category">
         <field name="name">Arbeitsplatz</field>
-    </record>-->
+    </record>
 
     <record id="equipment_tore" model="maintenance.equipment.category">
         <field name="name">Arbeitsmittel</field>
@@ -174,5 +174,21 @@
 
     <record id="equipment_personal" model="maintenance.equipment.category">
         <field name="name">Personal</field>
+    </record>
+    
+    <record id="equipment_wege" model="maintenance.equipment.category">
+        <field name="name">Wege</field>
+    </record>
+
+    <record id="equipment_umwelteinwirkung" model="maintenance.equipment.category">
+        <field name="name">Umwelteinwirkung</field>
+    </record>
+    
+    <record id="equipment_arbeitsstoffe" model="maintenance.equipment.category">
+        <field name="name">Arbeitsstoffe</field>
+    </record>
+    
+    <record id="equipment_psa" model="maintenance.equipment.category">
+        <field name="name">PSA</field>
     </record>
 </odoo>
