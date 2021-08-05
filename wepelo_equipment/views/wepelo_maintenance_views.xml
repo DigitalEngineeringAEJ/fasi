@@ -5,8 +5,11 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
         <field name="arch" type="xml">
+             <field name="name" position="replace">
+                <field name="name" string="Gefahrenquelle"/>
+            </field>
             <field name="serial_no" position="before">
-                <field name="inventory_number"/>
+                <field name="inventory_number" />
             </field>
             <field name="serial_no" position="after">
                 <field name="equipment_service_id" optional="hide"/>
@@ -25,10 +28,22 @@
             <xpath expr="//label[@for='name']" position="attributes">
                 <attribute name='string'>Customer Internal Designation</attribute>
             </xpath>
+            <field name="assign_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="scrap_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="effective_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
             <field name="partner_ref" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
             <field name="partner_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+             <field name="serial_no" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
             <field name="warranty_date" position="attributes">
@@ -37,25 +52,39 @@
             <field name="cost" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="location" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
             <field name="model" position="before">
                 <field name="manufacturer_id"  context="{'default_type': 'manufacturer'}"/>
             </field>
-            <field name="serial_no" position="after">
+            <field name="category_id" position="after">
+                <field name="equipment_type_id"/>
+                <field name="serial_no" string="ID"/>
+            </field>
+            <field name="technician_user_id" position="after">
+                <field name="customer_id"/>
                 <field name="partner_id" position="after" context="{'default_type': 'vendor'}"/>
-                <field name="qr_code" widget='image' class="oe_avatar"/>
+                 <field name="owner_user_id"/>
+            </field>
+            <field name="serial_no" position="before">
             </field>
             <field name="owner_user_id" position="attributes">
                 <attribute name="domain">[('id', 'in', owner_user_ids)]</attribute>
             </field>
-            <field name="owner_user_id" position="before">
-                <field name="customer_id"/>
+            <field name="owner_user_id" position="replace">
+                 <field name="note" string="Kommentar"/>
             </field>
             <field name="effective_date" position="after">
-                <field name="warranty_date"/>
-                <field name="inventory_number"/>
-                <field name="equipment_service_id"/>
-                <field name="test_equipment_device_id"/>
-                <field name="equipment_type_id"/>
+                <field name="qr_code" widget='image' class="oe_avatar"/>
+                <field name="warranty_date" invisible="True"/>
+                <field name="inventory_number" invisible="True"/>
+                <field name="equipment_service_id" invisible="True"/>
+                <field name="test_equipment_device_id" invisible="True"/>
+                <field name="equipment_type_id" invisible="True"/>
                 <field name="show_user_tab_eichung" invisible="1"/>
                 <field name="owner_user_ids" invisible="1"/>
             </field>
@@ -407,6 +436,28 @@
             'default_customer_id': active_id,
         }</field>
     </record>
+    
+   <!-- <record id=".hr_equipment_view_form_inherit" model="ir.ui.view">
+        <field name="name">equipment.form.custom</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Equipments">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" invinsible="True">
+                        <button name="%(hr_equipment_request_action_from_equipment)d"
+                            type="action"
+                            class="oe_stat_button"
+                            context="{'default_company_id': company_id}"
+                            icon="fa-wrench">
+                            <field string="Maintenance" name="maintenance_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                 </sheet>
+            </form>
+        </field>
+    </record>-->
 
     <record id="res_partner_view_equipment_buttons" model="ir.ui.view">
         <field name="name">res.partner.view.equipment.buttons</field>
@@ -610,13 +661,13 @@
     
     <menuitem
         id="maintenance.menu_equipment_form"
-        name="Inventar"
+        name="Gefahrenquelle"
         parent="maintenance.menu_maintenance_title"
         action="maintenance.hr_equipment_action"
         groups="maintenance.group_equipment_manager,base.group_user"
         sequence="2"/>
 
-<!-- Inaktive Menüitems fff -->
+<!--Inaktive Menüitems-->
     
      <menuitem
         id="menu_wepelo_equipment_test"
@@ -680,14 +731,7 @@
         sequence="1"
         active="False"/>
 
-    <menuitem
-        id="maintenance.menu_maintenance_cat"
-        name="Objekt"
-        parent="menu_wepelo_master_data"
-        action="maintenance.hr_equipment_category_action"
-        sequence="2"/>
-
-    <menuitem
+     <menuitem
         id="maintenance.menu_maintenance_stage_configuration"
         name="Maintenance Stages"
         parent="maintenance.menu_maintenance_configuration"

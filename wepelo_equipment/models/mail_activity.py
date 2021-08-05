@@ -149,6 +149,57 @@ class MailActivity(models.Model):
     is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
+    gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefahrenquellen Typ")
+    gefahrenquellen_typ_beschreibung = fields.Text(string="Beschreibung")
+    check = fields.Boolean(compute='_dann_aktiv')
+    gef_beurteilung_w = fields.Selection([('status_w_1', 'sehr gering'), ('status_w_2', 'gering'),('status_w_3', 'mittel'), ('status_w_4', 'hoch')], string='Gefahrenbeurteilungs Wahrscheinlichkeit')
+    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'), ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),('status_a_3', 'schwere Verletzungen oder Erkrankungen'), ('status_a_4', 'möglicher Tod, Katastrophe')], string='Gefahrenbeurteilung Ausmaß')
+    gef_beurteilung_e = fields.Char(string='Gefahrenbeurteilung Wahrscheinlichkeit', compute='onchange__berechnung_mas')
+    
+    @api.onchange('gef_beurteilung_w', 'gef_beurteilung_a') 
+    def onchange__berechnung_mas(self):
+        if self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_1':
+            self.gef_beurteilung_e = '1'
+        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_2':
+            self.gef_beurteilung_e = '2'
+        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_3':
+            self.gef_beurteilung_e = '3'
+        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_4':
+            self.gef_beurteilung_e = '4'
+        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_1':
+            self.gef_beurteilung_e = '2'
+        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_2':
+            self.gef_beurteilung_e = '3'
+        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_3':
+            self.gef_beurteilung_e = '4'
+        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_4':
+            self.gef_beurteilung_e = '5'
+        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_1':
+            self.gef_beurteilung_e = '3'
+        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_2':
+            self.gef_beurteilung_e = '4'
+        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_3':
+            self.gef_beurteilung_e = '5'
+        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_4':
+            self.gef_beurteilung_e = '6'
+        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_1':
+            self.gef_beurteilung_e = '4'
+        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_2':
+            self.gef_beurteilung_e = '5'
+        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_3':
+            self.gef_beurteilung_e = '6'
+        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_4':
+            self.gef_beurteilung_e = '7'
+        else:
+            self.gef_beurteilung_e = ''
+            
+    
+    @api.depends('gefahrenquellen_typ_id')
+    def _dann_aktiv(self):
+        if self.gefahrenquellen_typ_id.id == "1" or "2" or "3" or "4" or "5" or "7" or "9" or "11" or "10":
+            self.check = True
+        else:
+                self.check = False
 
     @api.onchange('operation_no_defects')
     def _onchange_operation_no_defects(self):
@@ -837,7 +888,7 @@ class ScheduleActivityType(models.Model):
         'ir.model', string='Document Model',
         index=True, related='mail_activity_id.res_model_id', compute_sudo=True, store=True, readonly=True)
     date_deadline = fields.Date('Due Date', index=True, required=True, default=fields.Date.context_today)
-    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type', ondelete='restrict', required=1)
+    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type', required=1)
     mail_activity_id = fields.Many2one('mail.activity', string="Mail Activity")
     equipment_service_id = fields.Many2one(related='mail_activity_id.equipment_id.equipment_service_id', string='Service strain')
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Mail Activity Types", compute="_compute_mail_activity_types")
