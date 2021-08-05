@@ -131,4 +131,18 @@
     <record id="equipment_personal" model="maintenance.equipment.category">
         <field name="name">Personal</field>
     </record>
+
+    <record id="equipment_wege" model="maintenance.equipment.category">
+        <field name="name">Wege</field>
+    </record>
+
+    <record id="equipment_umwelteinwirkung" model="maintenance.equipment.category">
+        <field name="name">Umwelteinwirkung</field>
+    </record>
+    <record id="equipment_arbeitsstoffe" model="maintenance.equipment.category">
+        <field name="name">Arbeitsstoffe</field>
+    </record>
+    <record id="equipment_psa" model="maintenance.equipment.category">
+        <field name="name">PSA</field>
+    </record>
 </odoo>
