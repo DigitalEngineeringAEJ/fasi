@@ -133,23 +133,23 @@ class MaintenanceEquipment(models.Model):
 #         if not self.serial_no:
 #             raise exceptions.ValidationError(_("Leider wurde keine Seriennummer angegeben")) 
            
-    @api.onchange('serial_no')
-    def onchange_equipment_type_id(self):
-        substring = str("AU")
-        if self.serial_no and search(substring, self.category_id.name):
-            self.equipment_type_id = self.env['equipment.types'].search([('name', '=',"Benning ST 710")]).id  
+#     @api.onchange('serial_no')
+#     def onchange_equipment_type_id(self):
+#         substring = str("AU")
+#         if self.serial_no and search(substring, self.category_id.name):
+#             self.equipment_type_id = self.env['equipment.types'].search([('name', '=',"Benning ST 710")]).id  
     
-    @api.onchange('serial_no')
-    def onchance_benzin_equipment_service_id(self): 
-        substring = str("Benzin")
-        if self.serial_no and search(substring, self.category_id.name):
-            self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Benzin")]).id           
+#     @api.onchange('serial_no')
+#     def onchance_benzin_equipment_service_id(self): 
+#         substring = str("Benzin")
+#         if self.serial_no and search(substring, self.category_id.name):
+#             self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Benzin")]).id           
     
-    @api.onchange('serial_no')
-    def onchance_diesel_equipment_service_id(self): 
-        substring = str("Diesel")
-        if self.serial_no and search(substring, self.category_id.name):
-            self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Diesel")]).id
+#     @api.onchange('serial_no')
+#     def onchance_diesel_equipment_service_id(self): 
+#         substring = str("Diesel")
+#         if self.serial_no and search(substring, self.category_id.name):
+#             self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Diesel")]).id
 
 
 class MaintenanceEquipmentCategory(models.Model):

@@ -391,6 +391,7 @@
         <field name="arch" type="xml">
             <search string="Partner">
                 <filter name="vendor" string="Vendor" domain="[('type', '=', 'vendor')]"/>
+                <field string="Name" name="name" filter_domain="[('name', 'ilike', self)]"/>
             </search>
         </field>
     </record>

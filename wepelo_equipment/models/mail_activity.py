@@ -149,49 +149,67 @@ class MailActivity(models.Model):
     is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
-    gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefahrenquellen Typ")
+    gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefährdungsfaktor Gruppe")
     gefahrenquellen_typ_beschreibung = fields.Text(string="Beschreibung")
+    gefahrenquellen_typ_risiko = fields.Text(string="Risiko")
+    gefahrenquellen_typ_beschreibung_risikominderung = fields.Text(string="Beschreibung/Risikominderung")
     check = fields.Boolean(compute='_dann_aktiv')
-    gef_beurteilung_w = fields.Selection([('status_w_1', 'sehr gering'), ('status_w_2', 'gering'),('status_w_3', 'mittel'), ('status_w_4', 'hoch')], string='Gefahrenbeurteilungs Wahrscheinlichkeit')
-    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'), ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),('status_a_3', 'schwere Verletzungen oder Erkrankungen'), ('status_a_4', 'möglicher Tod, Katastrophe')], string='Gefahrenbeurteilung Ausmaß')
-    gef_beurteilung_e = fields.Char(string='Gefahrenbeurteilung Wahrscheinlichkeit', compute='onchange__berechnung_mas')
+    gef_beurteilung_w = fields.Selection([('status_w_1', 'sehr gering'), 
+                                          ('status_w_2', 'gering'),
+                                          ('status_w_3', 'mittel'),
+                                          ('status_w_4', 'hoch')], 
+                                         string='Eintrittswahrscheinlichkeit ')
+    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'),
+                                          ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),
+                                          ('status_a_3', 'schwere Verletzungen oder Erkrankungen'),
+                                          ('status_a_4', 'möglicher Tod, Katastrophe')], 
+                                         string='Ausmaß')
+    gef_beurteilung_e = fields.Selection([('status_e_1', '1'),
+                                          ('status_e_2', '2'),
+                                          ('status_e_3', '3'),
+                                          ('status_e_4', '4'),
+                                          ('status_e_5', '5'),
+                                          ('status_e_6', '6'),
+                                          ('status_e_7', '7')], 
+                                         string='Maßzahl', compute='onchange__berechnung_mas')
     
     @api.onchange('gef_beurteilung_w', 'gef_beurteilung_a') 
     def onchange__berechnung_mas(self):
-        if self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '1'
-        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '2'
-        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '3'
-        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '2'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '3'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '5'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '3'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '5'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '6'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '5'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '6'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '7'
-        else:
-            self.gef_beurteilung_e = ''
+        for gef_beurteilung_e in self:
+            if self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_1':
+                self.gef_beurteilung_e = 'status_e_1'
+            elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_2':
+                self.gef_beurteilung_e = 'status_e_2'
+            elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_3':
+                self.gef_beurteilung_e = 'status_e_3'
+            elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_4':
+                self.gef_beurteilung_e = 'status_e_4'
+            elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_1':
+                self.gef_beurteilung_e = 'status_e_2'
+            elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_2':
+                self.gef_beurteilung_e = 'status_e_3'
+            elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_3':
+                self.gef_beurteilung_e = 'status_e_4'
+            elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_4':
+                self.gef_beurteilung_e = 'status_e_5'
+            elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_1':
+                self.gef_beurteilung_e = 'status_e_3'
+            elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_2':
+                self.gef_beurteilung_e = 'status_e_4'
+            elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_3':
+                self.gef_beurteilung_e = 'status_e_5'
+            elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_4':
+                self.gef_beurteilung_e = 'status_e_6'
+            elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_1':
+                self.gef_beurteilung_e = 'status_e_4'
+            elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_2':
+                self.gef_beurteilung_e = 'status_e_5'
+            elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_3':
+                self.gef_beurteilung_e = 'status_e_6'
+            elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_4':
+                self.gef_beurteilung_e = 'status_e_7'
+            else:
+                self.gef_beurteilung_e = ''
             
     
     @api.depends('gefahrenquellen_typ_id')
