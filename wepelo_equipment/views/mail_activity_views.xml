@@ -152,6 +152,7 @@
                             <field name="gef_beurteilung_e" attrs="{'invisible':[('gef_beurteilung_a', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung" attrs="{'invisible': [('gefahrenquellen_typ_risiko', '=', False)]}"/>
+                            <field name="beurteilung_abg"/>
                         </group>
                         <group>
                             <field name="date_deadline"/>

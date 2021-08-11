@@ -172,6 +172,7 @@ class MailActivity(models.Model):
                                           ('status_e_6', '6'),
                                           ('status_e_7', '7')], 
                                          string='Maßzahl', compute='onchange__berechnung_mas')
+    beurteilung_abg = fields.Boolean(string='Beurteilung abgeschlossen')
     
     @api.onchange('gef_beurteilung_w', 'gef_beurteilung_a') 
     def onchange__berechnung_mas(self):
