@@ -35,8 +35,4 @@ class ResPartner(models.Model):
         vals.update({"ref": self.env["ir.sequence"].next_by_code("res.partner.ref.seq")})
         return super(ResPartner, self).create(vals)
             
-class EquipmentTypes(models.Model):
-    _name = 'equipment.types'
-    _description = 'Equipment Types'
 
-    name = fields.Char(string='Name')

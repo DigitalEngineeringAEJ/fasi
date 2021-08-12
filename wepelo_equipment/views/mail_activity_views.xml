@@ -142,18 +142,7 @@
                             <field name="planning"/>
                             <field name="customer_id"/>
                             <field name="res_name"/>
-                            <field name="gefahrenquellen_typ_id" attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}"/>
-                            <!-- <field name="visual_inspection" attrs="{'invisible': ['|', '&amp;', ('equipment_test_type', '=', 'routine_test'), ('category_id', '=', %(equipment_bremsprufstand)d), '|', ('equipment_test_type', '=', 'calibration_ei'), '&amp;', ('equipment_test_type', '=', 'uvv'), '|', ('category_id', '=', %(equipment_hebebuhne)d), ('category_id', '=', %(equipment_tore)d)]}"/>
-                            <field name="functional_test" attrs="{'invisible': ['|', '&amp;', ('equipment_test_type', '=', 'routine_test'), ('category_id', '=', %(equipment_bremsprufstand)d),'|', ('equipment_test_type', '=', 'calibration_ei'), '&amp;', ('equipment_test_type', '=', 'uvv'), '|', ('category_id', '=', %(equipment_hebebuhne)d), ('category_id', '=', %(equipment_tore)d)]}"/>-->
-                            <field name="check" invisible="1"/>
-                           <field name="gefahrenquellen_typ_beschreibung" attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}"/>
-                            <field name="gef_beurteilung_w" attrs="{'invisible':[('gefahrenquellen_typ_beschreibung', '=', False)]}"/>
-                            <field name="gef_beurteilung_a" attrs="{'invisible':[('gef_beurteilung_w', '=', False)]}"/>
-                            <field name="gef_beurteilung_e" attrs="{'invisible':[('gef_beurteilung_a', '=', False)]}"/>
-                            <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
-                            <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung" attrs="{'invisible': [('gefahrenquellen_typ_risiko', '=', False)]}"/>
-                            <field name="beurteilung_abg"/>
-                        </group>
+                        </group>                      
                         <group>
                             <field name="date_deadline"/>
                             <field name="user_id"/>
@@ -168,6 +157,23 @@
                             <field name="equipment_service_id" invisible="1"/>
                         </group>
                     </group>
+                    <notebook>
+                            <page string="Test">
+                            <field name= 'gefahrenquellen_typ_id_feld'>
+                            <tree editable="bottom">
+                            <field name = "sequence_g" widget="handle"/>
+                            <field name="gefahrenquellen_typ_id"/>
+                           <field name="gefahrenquellen_typ_beschreibung"/>
+                            <field name="gef_beurteilung_w" attrs="{'invisible':[('gefahrenquellen_typ_beschreibung', '=', False)]}"/>
+                            <field name="gef_beurteilung_a" attrs="{'invisible':[('gef_beurteilung_w', '=', False)]}"/>
+                            <field name="gef_beurteilung_e" attrs="{'invisible':[('gef_beurteilung_a', '=', False)]}"/>
+                            <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
+                            <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung" attrs="{'invisible': [('gefahrenquellen_typ_risiko', '=', False)]}"/>
+                            </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    
                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
                         <group>
                             <field name="voltage_u_in_volts_v"/>

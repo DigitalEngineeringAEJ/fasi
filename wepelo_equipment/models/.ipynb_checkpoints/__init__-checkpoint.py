@@ -10,3 +10,7 @@ from . import wepelo_repair
 from . import qr_code
 from . import wepelo_customer
 from . import wepelo_history
+from . import res_users
+from . import ir_attachment
+from . import gefährdungsfaktor_gruppen
+
