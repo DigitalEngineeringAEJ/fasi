@@ -150,6 +150,7 @@ class MailActivity(models.Model):
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
     gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe")
+    gefährdungsfaktor = fields.One2many('equipment.types', 'gefährdungsf', string="Gefährdungsfaktor")
                      
 #     @api.depends('gefahrenquellen_typ_id')
 #     def _dann_aktiv(self):

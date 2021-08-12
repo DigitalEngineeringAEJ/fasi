@@ -151,6 +151,205 @@
             <field name="name">Menschen, Tiere, Pflanzen, Menschen</field>
             <field name="types_sn">-----</field>
         </record>
+        
+                                    <!-- Mechanische Gefährdungen -->
+<!--          <record id="gefährdungsf_kontrolliert_bewegte_ungeschützte_teile" model="equipment.types">
+            <field name="gefährdungsf">Kontrolliert bewegte ungeschützte Teile</field>
+        </record>
+        <record id="gefährdungsf_gefährliche_oberflächen" model="equipment.types">
+            <field name="gefährdungsf">Gefährliche Oberflächen</field>
+        </record>
+        <record id="gefährdungsf_unkontrolliert_bewegte_herabfallende_umstürzende_teile " model="equipment.types">
+            <field name="gefährdungsf">Unkontrolliert bewegte, herabfallende, umstürzende Teile </field>
+        </record>
+        <record id="gefährdungsf_transport_oder_mobile_arbeitsmittel" model="equipment.types">
+            <field name="gefährdungsf">Transport oder mobile Arbeitsmittel</field>
+        </record>
+        <record id="gefährdungsf_sturz" model="equipment.types">
+            <field name="gefährdungsf">Sturz</field>
+        </record>
+        <record id="gefährdungsf_absturz" model="equipment.types">
+            <field name="gefährdungsf">Absturz</field>
+        </record> -->
+        
+                                <!-- Elektrische Gefährdungen -->
+<!--         <record id="gefährdungsf_elektrischer_schlag" model="equipment.types">
+            <field name="gefährdungsf">Elektrischer Schlag</field>
+        </record>
+        <record id="gefährdungsf_lichtbögen" model="equipment.types">
+            <field name="gefährdungsf">Lichtbögen</field>
+        </record>
+        <record id="gefährdungsf_statische_elektrische" model="equipment.types">
+            <field name="gefährdungsf">Statische Elektrische</field>
+        </record>
+        <record id="gefährdungsf_elektromagnetische_felder" model="equipment.types">
+            <field name="gefährdungsf">Elektromagnetische Felder</field>
+        </record> -->
+        
+                                        <!-- Gefahrstoffe -->
+        
+<!--         <record id="gefährdungsf_hautkontakt_feststoffe," model="equipment.types">
+            <field name="gefährdungsf">Hautkontakt (Feststoffe,</field>
+        </record>
+        <record id="gefährdungsf_einatmen" model="equipment.types">
+            <field name="gefährdungsf">Einatmen (Gase, Dämpfe, Nebel, Stäube, Rauche)</field>
+        </record>
+        <record id="gefährdungsf_verschlucken" model="equipment.types">
+            <field name="gefährdungsf">Verschlucken</field>
+        </record>
+        <record id="gefährdungsf_physikal_chemische_gefährdungen" model="equipment.types">
+            <field name="gefährdungsf">physikal.- chemische Gefährdungen (unkontrollierte chem. Reaktionen)</field>
+        </record>
+        <record id="gefährdungsf_nanomaterialien" model="equipment.types">
+            <field name="gefährdungsf">Nanomaterialien</field>
+        </record> -->
+        
+                                <!-- Biologische Arbeitsstoffe -->
+        
+<!--         <record id="gefährdungsf_infektionsgefährdung_durch_pathogene_migroorganismen" model="equipment.types">
+            <field name="gefährdungsf">Infektionsgefährdung durch pathogene Migroorganismen</field>
+        </record>
+        <record id="gefährdungsf_toxische_wirkung_von_mikroorganismen" model="equipment.types">
+            <field name="gefährdungsf">Toxische Wirkung von Mikroorganismen</field>
+        </record>
+        <record id="gefährdungsf_sensibilisierende_wirkung_von_mikroorganismen" model="equipment.types">
+            <field name="gefährdungsf">Sensibilisierende Wirkung von Mikroorganismen</field>
+        </record>
+        <record id="gefährdungsf_gentechnisch_veränderte_organismen" model="equipment.types">
+            <field name="gefährdungsf">Gentechnisch veränderte Organismen</field>
+        </record>  -->
+        
+                                <!-- Brand und Explosion -->
+        
+<!--         <record id="gefährdungsf_brandgefährdung_durch_feststoffe_flüssigkeiten_gase" model="equipment.types">
+            <field name="gefährdungsf">Brandgefährdung durch Feststoffe, Flüssigkeiten, Gase </field>
+        </record>
+        <record id="gefährdungsf_explosionsgefährdung" model="equipment.types">
+            <field name="gefährdungsf">Explosionsgefährdung</field>
+        </record>
+        <record id="gefährdungsf_zündquellen_bei_brand_bzw_explosionsgefahr" model="equipment.types">
+            <field name="gefährdungsf">Zündquellen bei Brand- bzw. Explosionsgefahr</field>
+        </record>
+        <record id="gefährdungsf_explosivstoffe" model="equipment.types">
+            <field name="gefährdungsf">Explosivstoffe (explosionsfähige Stoffe / Sprengstoffe)</field>
+        </record>
+        <record id="gefährdungsf_physikalische_explosionen" model="equipment.types">
+            <field name="gefährdungsf">Physikalische Explosionen (Druckgasbehälter)</field>
+        </record>
+         -->
+                                <!-- Thermische Faktoren -->
+        
+<!--         <record id="gefährdungsf_kontakt_mit_heißen_oberflächen" model="equipment.types">
+            <field name="gefährdungsf">Kontakt mit heißen Oberflächen</field>
+        </record>
+        <record id="gefährdungsf_kontakt_mit_kalten_oberflächen" model="equipment.types">
+            <field name="gefährdungsf">Kontakt mit kalten Oberflächen</field>
+        </record>
+        <record id="gefährdungsf_kontakt_mit_heißen_medien" model="equipment.types">
+            <field name="gefährdungsf">Kontakt mit heißen Medien</field>
+        </record>
+        <record id="gefährdungsf_kontakt_mit_kalten_medien" model="equipment.types">
+            <field name="gefährdungsf">Kontakt mit kalten Medien</field>
+        </record> -->
+        
+                                <!-- Spezielle Physikalische Belastungen -->
+        
+        
+         <record id="gefährdungsf_ultraschall_infraschall" model="equipment.types">
+            <field name="gefährdungsf">Ultraschall, Infraschall</field>
+        </record>
+        <record id="gefährdungsf_vibrationen" model="equipment.types">
+            <field name="gefährdungsf">Vibrationen (Ganzkörper- oder Hand-Arm-Vibrationen)</field>
+        </record>
+        <record id="gefährdungsf_lärm" model="equipment.types">
+            <field name="gefährdungsf">Lärm</field>
+        </record>
+        <record id="gefährdungsf_optische_strahlung" model="equipment.types">
+            <field name="gefährdungsf">Optische Strahlung (UV-, IR-, sichtbare und Laserstrahlung)</field>
+        </record>
+        <record id="gefährdungsf_unter_oder_überdruck" model="equipment.types">
+            <field name="gefährdungsf">Unter- oder Überdruck</field>
+        </record>
+        
+                                <!-- Arbeitsumgebungsbedingungen -->
+        
+        
+         
+        <record id="gefährdungsf_klima" model="equipment.types">
+            <field name="gefährdungsf">Klima (Temperatur, Feuchte, Luftgeschwindigkeit, Wärmestrahlung) </field>
+        </record>
+        <record id="gefährdungsf_beleuchtung" model="equipment.types">
+            <field name="gefährdungsf">Beleuchtung (Beleuchtungsstärke, Blendung, Reflexion)</field>
+        </record>
+        <record id="gefährdungsf_unzureichende_atematmosphäre" model="equipment.types">
+            <field name="gefährdungsf">Unzureichende Atematmosphäre (Luftwechsel)</field>
+        </record>
+        <record id="gefährdungsf_unzureichende_flucht" model="equipment.types">
+            <field name="gefährdungsf">Unzureichende Flucht- und Verkehrswege, Böden, Treppen</field>
+        </record>
+        <record id="gefährdungsf_unzureichende_kennzeichnung" model="equipment.types">
+            <field name="gefährdungsf">Unzureichende Kennzeichnung</field>
+        </record>
+        <record id="gefährdungsf_unzureichende_bewegungsfläche" model="equipment.types">
+            <field name="gefährdungsf">Unzureichende Bewegungsfläche, ungünstige Anordnungen</field>
+        </record>
+        
+                                <!-- Physische Belastung -->
+        
+        
+         
+        
+        <record id="gefährdungsf_schwere_dynamische_arbeit" model="equipment.types">
+            <field name="gefährdungsf">Schwere dynamische Arbeit (Handhaben schwerer Lasten)</field>
+        </record>
+        <record id="gefährdungsf_einseitige_dynamische_arbeit" model="equipment.types">
+            <field name="gefährdungsf">Einseitige dynamische Arbeit (wiederkehrende Bewegungen)</field>
+        </record>
+        <record id="gefährdungsf_haltungsarbeit" model="equipment.types">
+            <field name="gefährdungsf">Haltungsarbeit (Zwangshaltung), Haltearbeit</field>
+        </record>
+        <record id="gefährdungsf_kombination_aus_statischer_und_dynamischer_arbeit" model="equipment.types">
+            <field name="gefährdungsf">Kombination aus statischer und dynamischer Arbeit</field>
+        </record>
+        
+                                
+                                        <!-- Psychische Belastungen -->
+        
+         
+        
+        
+        <record id="gefährdungsf_ungenügend_gestaltete_arbeitsaufgabe" model="equipment.types">
+            <field name="gefährdungsf">Ungenügend gestaltete Arbeitsaufgabe</field>
+        </record>
+        <record id="gefährdungsf_ungenügend_gestaltete_arbeitsorganisation" model="equipment.types">
+            <field name="gefährdungsf">Ungenügend gestaltete Arbeitsorganisation</field>
+        </record>
+        <record id="gefährdungsf_ungenügend_gestaltete_soziale_bedingungen" model="equipment.types">
+            <field name="gefährdungsf">Ungenügend gestaltete soziale Bedingungen</field>
+        </record>
+        <record id="gefährdungsf_ungenügend_arbeitsplatz_und_arbeitsumgebungsbedingungen" model="equipment.types">
+            <field name="gefährdungsf">Ungenügende Arbeitsplatz- und Arbeitsumgebungsbedingungen</field>
+        </record>
+        
+        
+                                <!-- Menschen, Tiere, Pflanzen, Menschen -->
+        
+        
+         <record id="gefährdungsf_umgang_mit_tieren" model="equipment.types">
+            <field name="gefährdungsf">Umgang mit Tieren (z.B. beißen, stechen) </field>
+        </record>
+        <record id="gefährdungsf_durch_menschen" model="equipment.types">
+            <field name="gefährdungsf">Durch Menschen (z. B. Straftaten / Raubüberfall)</field>
+        </record>
+        <record id="gefährdungsf_gefahr_des_ertrinkens" model="equipment.types">
+            <field name="gefährdungsf">Gefahr des Ertrinkens</field>
+        </record>
+        <record id="gefährdungsf_alleinarbeit" model="equipment.types">
+            <field name="gefährdungsf">Alleinarbeit</field>
+        </record>
+        <record id="gefährdungsf_informationsaufnahme" model="equipment.types">
+            <field name="gefährdungsf">Informationsaufnahme, Handhabung von Stellteilen</field>
+        </record>  
     </data>
 
     <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">

@@ -62,7 +62,6 @@
                 <field name="manufacturer_id"  context="{'default_type': 'manufacturer'}"/>
             </field>
             <field name="category_id" position="after">
-                <field name="equipment_type_id"/>
                 <field name="serial_no" string="ID"/>
             </field>
             <field name="technician_user_id" position="after">
