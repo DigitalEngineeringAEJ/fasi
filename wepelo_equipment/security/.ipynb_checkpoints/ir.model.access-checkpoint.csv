@@ -28,3 +28,4 @@ access_mail_activity_test_user,mail_activity_test,model_mail_activity_test,base.
 access_mail_activity_measuring_user,mail_activity_measuring,model_mail_activity_measuring,base.group_user,1,1,1,1
 access_mail_activity_max_difference_user,mail_activity_max_difference,model_mail_activity_max_difference,base.group_user,1,1,1,1
 access_mail_activity_edit_wizard,access_mail_activity_edit_wizard,model_mail_activity_edit_wizard,base.group_user,1,1,1,1
+access_gefahren_faktor,access_gefahren_faktor,model_gefahren_faktor,base.group_user,1,1,1,1

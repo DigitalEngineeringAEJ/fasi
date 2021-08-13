@@ -16,7 +16,7 @@ class EquipmentTypes(models.Model):
     
     types_sn = fields.Char(string="S/N")
     
-    gefährdungsf = fields.Char(string="Gefährdungsfaktor")
+    gefaehrdungsff = fields.Many2one('gefahren.faktor', string="Gefährdungsfaktor")
     
     sequence_g = fields.Integer(string='Sequenz')
     
@@ -93,3 +93,11 @@ class EquipmentTypes(models.Model):
                 record.gef_beurteilung_e == 'status_e_7'
             else:
                 record.gef_beurteilung_e == 'status_e_0'
+                
+                
+class EquipmentTypes(models.Model):
+    _name = 'gefahren.faktor'
+    _description = 'Gefährdungsfaktor'
+    
+    
+    gefaehrdungsf = fields.Char(string='Test')

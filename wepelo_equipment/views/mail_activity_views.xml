@@ -160,11 +160,10 @@
                     <notebook>
                             <page string="Test">
                             <field name= 'gefahrenquellen_typ_id_feld'>
-                            <field name="gefährdungsfaktor"/>
                             <tree editable="bottom">
                             <field name = "sequence_g" widget="handle"/>
                             <field name="gefahrenquellen_typ_id"/>
-                            <field name="gefährdungsf"/>
+                            <field name="gefaehrdungsff"/>
                            <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w" attrs="{'invisible':[('gefahrenquellen_typ_beschreibung', '=', False)]}"/>
                             <field name="gef_beurteilung_a" attrs="{'invisible':[('gef_beurteilung_w', '=', False)]}"/>
