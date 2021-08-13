@@ -16,7 +16,7 @@ class EquipmentTypes(models.Model):
     
     types_sn = fields.Char(string="S/N")
     
-    gefaehrdungsff = fields.Many2one('gefahren.faktor', string="Gefährdungsfaktor")
+    gefaehrdungsf_name = fields.Many2one('gefahren.faktor', string="Gefährdungsfaktor")
     
     sequence_g = fields.Integer(string='Sequenz')
     
@@ -98,6 +98,6 @@ class EquipmentTypes(models.Model):
 class EquipmentTypes(models.Model):
     _name = 'gefahren.faktor'
     _description = 'Gefährdungsfaktor'
+    _rec_name = 'gefaehrdungsf'
     
-    
-    gefaehrdungsf = fields.Char(string='Test')
+    gefaehrdungsf = fields.Char(string='Gefährdungsfaktoren')

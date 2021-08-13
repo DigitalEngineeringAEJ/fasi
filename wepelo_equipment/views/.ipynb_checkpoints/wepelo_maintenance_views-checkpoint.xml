@@ -284,6 +284,7 @@
             <tree string="Types">
                 <field name="name"/>
                 <field name="types_sn"/>
+                <field name="gefaehrdungsf_name"/>
             </tree>
         </field>
     </record>
@@ -298,6 +299,34 @@
                         <group>
                             <field name="name" required="1"/>
                             <field name="types_sn" required="1"/>
+                            <field name="gefaehrdungsf_name" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!--Gefährdungsfaktor Views-->
+    <record id="gefaehrdungsfaktor_view_tree" model="ir.ui.view">
+        <field name="name">gefaehrdungsfaktor.tree</field>
+        <field name="model">gefahren.faktor</field>
+        <field name="arch" type="xml">
+            <tree string="Gefährdungsfaktor">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gefaehrdungsfaktor_view_form" model="ir.ui.view">
+        <field name="name">gefaehrdungsfaktor.form</field>
+        <field name="model">gefahren.faktor</field>
+        <field name="arch" type="xml">
+            <form string="Gefährdungsfaktoren">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
                         </group>
                     </group>
                 </sheet>
