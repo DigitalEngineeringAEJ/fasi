@@ -142,7 +142,12 @@
                             <field name="planning"/>
                             <field name="customer_id"/>
                             <field name="res_name"/>
-                        </group>                      
+                        </group>
+                        
+                        
+                         <!-- Basis Ansicht  -->
+                        
+                        
                         <group>
                             <field name="date_deadline"/>
                             <field name="user_id"/>
@@ -157,6 +162,9 @@
                             <field name="equipment_service_id" invisible="1"/>
                         </group>
                     </group>
+                    
+                    <!-- Ansicht für Gefährdungsbeurteilung -->
+                    
                     <notebook>
                             <page string="Test">
                             <field name= 'gefahrenquellen_typ_id_feld'>
@@ -165,15 +173,17 @@
                             <field name="gefahrenquellen_typ_id"/>
                             <field name="gefaehrdungsf_name"/>
                            <field name="gefahrenquellen_typ_beschreibung"/>
-                            <field name="gef_beurteilung_w" attrs="{'invisible':[('gefahrenquellen_typ_beschreibung', '=', False)]}"/>
-                            <field name="gef_beurteilung_a" attrs="{'invisible':[('gef_beurteilung_w', '=', False)]}"/>
-                            <field name="gef_beurteilung_e" attrs="{'invisible':[('gef_beurteilung_a', '=', False)]}"/>
+                            <field name="gef_beurteilung_w"/>
+                            <field name="gef_beurteilung_a" />
+                            <field name="gef_beurteilung_e" />
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung" attrs="{'invisible': [('gefahrenquellen_typ_risiko', '=', False)]}"/>
                             </tree>
                         </field>
                         </page>
                         </notebook>
+                    
+                    <!-- noch nicht definierte Ansicht-->
                     
                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
                         <group>
@@ -253,6 +263,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- noch nicht defnierte View -->
                     <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
                         <group>
                             <field name="test_gas_concentration_co"/>
@@ -342,6 +354,14 @@
                                 </tree>
                             </field>
                     </group>
+                    
+                    
+                    
+                    
+                    <!-- Ansicht für Begehung -->
+                    
+                    
+                    
                     <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
                         <field name="max_difference_ids" nolabel="1" >
                                 <tree editable="1" create="0" delete="false">
@@ -352,124 +372,10 @@
                                 </tree>
                             </field>
                     </group>
-                    <div attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}" colspan="4">
-                        <field
-                            name="is_test_speed"
-                            style="width:1% !important;padding-top: 3px;"
-                            nolabel="1"
-                        />
-                           <label for="is_test_speed"  style="display: inline-block;font-weight:normal; width: 90%; vertical-align: top;line-height: 2em;"/>
-                              <br></br>
-                             <field
-                            name="is_key_switch"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                           <label for="is_key_switch"  style="display: inline-block;font-weight:normal;"/>
-                              <br></br>
-                          <field
-                            name="is_error_limit"
-                            style="width:1% !important;padding-top: 3px;"
-                            nolabel="1"
-                        />
-                        <label for="is_error_limit"  style="display: inline-block;font-weight:normal; width: 90%; vertical-align: top;line-height: 1.9em;"/>
-                         <br></br>
-                           <field
-                            name="is_less_nominal_diameter"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                           <label for="is_less_nominal_diameter"  style="display: inline-block;font-weight:normal;padding-top: 6px;"/>
-                              <br></br>
-                           <field
-                            name="is_surface_quality"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                           <label for="is_surface_quality"  style="display: inline-block;font-weight:normal;"/>
-                              <br></br>
-                    </div>
-                      <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}" >
-                        <label for="is_no_concerns" string="Ergebnis der Prüfung:"/>
-                        <div>
-                          <field
-                            name="is_no_concerns"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                           <label for="is_no_concerns"  style="display: inline-block;font-weight:normal;"/>
-                          <br></br>
-                           <field
-                            name="is_concerns"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                             <label for="is_concerns"  style="display: inline-block;font-weight:normal;vertical-align: top;width:90%;"/>
+                    
+                    
+                    <!-- Noch nicht definierte View -->
 
-                          <br></br>
-                           <field
-                            name="is_next_routine_test"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-
-                            <label for="is_next_routine_test"  style="display: inline-block;font-weight:normal;vertical-align: top;width:133px;"/>
-                           <label for="month" style="margin-right: 2px;"/> <field name="month" style="width:20px;"/>Jahr: <field name="year" style="width:35px;"/><span>Dieser Termin wurde am Prüfstand mit einer Plakette kenntlich gemacht</span>
-                        </div>
-                      </group>
-                    <br></br>
-                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
-                          <label for="is_manufacturer"  string="Die Stückprüfung wurde durchgeführt von einem Sachkundigen:"/>
-                        <div>
-                        <field
-                            name="is_manufacturer"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                           <label for="is_manufacturer"  style="display: inline-block;font-weight:normal;"/>
-                          <br></br>
-                           <field
-                            name="is_responsible_calibration_authority"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        />
-                          <span style="display: inline-block;">
-                             der zuständigen Eichbehörde
-                          </span>
-                          <br></br>
-                           <field
-                            name="is_state_side"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        /><span style="display: inline-block;">
-                             von staatlicher Seite
-                          </span>
-                          <br></br>
-                           <field
-                            name="is_technical_test"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        /><span style="display: inline-block;">
-                             einer Technischen Prüfstelle
-                          </span>
-                          <br></br>
-                           <field
-                            name="is_officially_organizations"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        /><span style="display: inline-block;">
-                             der amtlich anerkannten Überwachungsorgnisationen
-                          </span>
-                          <br></br>
-                          <field
-                            name="is_vehicle"
-                            style="width:1% !important;"
-                            nolabel="1"
-                        /><span style="display: inline-block;">
-                            der KFZ-Innung oder des KFZ-Landesverbandes
-                          </span>
-                    </div>
-                    </group>
                     <field name="test_specification_ids" nolabel="1" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}">
                         <tree editable="1" create="0" delete="false">
                             <field name="mail_activity_id" invisible="1"/>

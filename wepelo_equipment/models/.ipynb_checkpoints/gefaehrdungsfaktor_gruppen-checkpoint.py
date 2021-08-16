@@ -50,14 +50,14 @@ class EquipmentTypes(models.Model):
                                           ('status_e_5', '5'),
                                           ('status_e_6', '6'),
                                           ('status_e_7', '7')], 
-                                         string='Maßzahl', compute='onchange__berechnung_mas')
+                                         string='Maßzahl', compute="_compute_gef_beurteilung_e", store=True)
     
 #     gef_beurteilung_t = ('1', '2', '3', '4', '5', '6', '7', 'onchange__berechnung_mas' )
     
     sequence_g = fields.Integer(string='Sequenz')
     
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a', 'gef_beurteilung_e') 
-    def onchange__berechnung_mas(self):
+    def _compute_gef_beurteilung_e(self):
         for record in self:
             if record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a == 'status_a_1':
                 record.gef_beurteilung_e == 'status_e_1'
@@ -98,6 +98,6 @@ class EquipmentTypes(models.Model):
 class EquipmentTypes(models.Model):
     _name = 'gefahren.faktor'
     _description = 'Gefährdungsfaktor'
-    _rec_name = 'name'
+    _rec_name = 'gefaehrdungsf'
     
-    name = fields.Char(string='Gefährdungsfaktoren')
+    gefaehrdungsf = fields.Char(string='Gefährdungsfaktoren')
