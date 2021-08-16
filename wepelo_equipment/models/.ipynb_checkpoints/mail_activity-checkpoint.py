@@ -149,7 +149,13 @@ class MailActivity(models.Model):
     is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
-    gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe")
+    gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
+    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung")
+    begehung_id_feld_zwei = fields.One2many('begehung', 'name_drei', string="Begehung")
+    folg_erf_m =fields.Selection([('ja', 'Ja'),
+                               ('nein', 'Nein')],
+                              string='Folgebegehung erforderlich?')
+    
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
                      
 #     @api.depends('gefahrenquellen_typ_id')

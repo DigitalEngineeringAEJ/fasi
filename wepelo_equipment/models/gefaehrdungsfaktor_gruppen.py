@@ -51,48 +51,49 @@ class EquipmentTypes(models.Model):
                                           ('status_e_6', '6'),
                                           ('status_e_7', '7')], 
                                          string='Maßzahl', compute="_compute_gef_beurteilung_e", store=True)
+    mail_activity_id =  fields.Many2one('mail.activity', string="Mail Activity")
     
 #     gef_beurteilung_t = ('1', '2', '3', '4', '5', '6', '7', 'onchange__berechnung_mas' )
     
     sequence_g = fields.Integer(string='Sequenz')
     
-    @api.depends('gef_beurteilung_w', 'gef_beurteilung_a', 'gef_beurteilung_e') 
+    @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
     def _compute_gef_beurteilung_e(self):
         for record in self:
             if record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a == 'status_a_1':
-                record.gef_beurteilung_e == 'status_e_1'
+                record.gef_beurteilung_e = 'status_e_1'
             elif record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a == 'status_a_2':
-                record.gef_beurteilung_e == 'status_e_2'
-            elif record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a =='status_a_3':
-                record.gef_beurteilung_e == 'status_e_3'
-            elif record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a =='status_a_4':
-                record.gef_beurteilung_e == 'status_e_4'
-            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a =='status_a_1':
-                record.gef_beurteilung_e == 'status_e_2'
-            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a =='status_a_2':
-                record.gef_beurteilung_e == 'status_e_3'
-            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a =='status_a_3':
-                record.gef_beurteilung_e == 'status_e_4'
-            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a =='status_a_4':
-                record.gef_beurteilung_e == 'status_e_5'
-            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a =='status_a_1':
-                record.gef_beurteilung_e == 'status_e_3'
-            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a =='status_a_2':
-                record.gef_beurteilung_e == 'status_e_4'
-            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a =='status_a_3':
-                record.gef_beurteilung_e == 'status_e_5'
-            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a =='status_a_4':
-                record.gef_beurteilung_e == 'status_e_6'
-            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a =='status_a_1':
-                record.gef_beurteilung_e == 'status_e_4'
-            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a =='status_a_2':
-                record.gef_beurteilung_e == 'status_e_5'
-            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a =='status_a_3':
-                record.gef_beurteilung_e == 'status_e_6'
-            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a =='status_a_4':
-                record.gef_beurteilung_e == 'status_e_7'
+                record.gef_beurteilung_e = 'status_e_2'
+            elif record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a == 'status_a_3':
+                record.gef_beurteilung_e = 'status_e_3'
+            elif record.gef_beurteilung_w == 'status_w_1' and record.gef_beurteilung_a == 'status_a_4':
+                record.gef_beurteilung_e = 'status_e_4'
+            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a == 'status_a_1':
+                record.gef_beurteilung_e = 'status_e_2'
+            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a == 'status_a_2':
+                record.gef_beurteilung_e = 'status_e_3'
+            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a == 'status_a_3':
+                record.gef_beurteilung_e = 'status_e_4'
+            elif record.gef_beurteilung_w == 'status_w_2' and record.gef_beurteilung_a == 'status_a_4':
+                record.gef_beurteilung_e = 'status_e_5'
+            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a == 'status_a_1':
+                record.gef_beurteilung_e = 'status_e_3'
+            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a == 'status_a_2':
+                record.gef_beurteilung_e = 'status_e_4'
+            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a == 'status_a_3':
+                record.gef_beurteilung_e = 'status_e_5'
+            elif record.gef_beurteilung_w == 'status_w_3' and record.gef_beurteilung_a == 'status_a_4':
+                record.gef_beurteilung_e = 'status_e_6'
+            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a == 'status_a_1':
+                record.gef_beurteilung_e = 'status_e_4'
+            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a == 'status_a_2':
+                record.gef_beurteilung_e = 'status_e_5'
+            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a == 'status_a_3':
+                record.gef_beurteilung_e = 'status_e_6'
+            elif record.gef_beurteilung_w == 'status_w_4' and record.gef_beurteilung_a == 'status_a_4':
+                record.gef_beurteilung_e = 'status_e_7'
             else:
-                record.gef_beurteilung_e == 'status_e_0'
+                record.gef_beurteilung_e = 'status_e_0'
                 
                 
 class EquipmentTypes(models.Model):

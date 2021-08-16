@@ -13,4 +13,5 @@ from . import wepelo_history
 from . import res_users
 from . import ir_attachment
 from . import gefaehrdungsfaktor_gruppen
+from . import begehung
 

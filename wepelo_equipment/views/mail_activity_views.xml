@@ -165,7 +165,7 @@
                     
                     <!-- Ansicht für Gefährdungsbeurteilung -->
                     
-                    <notebook>
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
                             <page string="Test">
                             <field name= 'gefahrenquellen_typ_id_feld'>
                             <tree editable="bottom">
@@ -175,7 +175,7 @@
                            <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w"/>
                             <field name="gef_beurteilung_a" />
-                            <field name="gef_beurteilung_e" />
+                            <field name="gef_beurteilung_e" force_save="1"/>
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung" attrs="{'invisible': [('gefahrenquellen_typ_risiko', '=', False)]}"/>
                             </tree>
@@ -185,7 +185,7 @@
                     
                     <!-- noch nicht definierte Ansicht-->
                     
-                    <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+<!--                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
                         <group>
                             <field name="voltage_u_in_volts_v"/>
                             <field name="protection_class"/>
@@ -200,7 +200,7 @@
                             <div>
                                 <strong>IEA [mA] <field name="operator_iea" style="width: 20px;" nolabel="1"/></strong>
                             </div>
-                            <field name="iea_ma" nolabel="1"/>
+                            <field name="iea_ma" nolabel="1"/> 
                         </group>
                         <group>
                             <field name="frequency_f_in_heart_hz"/>
@@ -262,10 +262,10 @@
                                 </span>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     
                     <!-- noch nicht defnierte View -->
-                    <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
+<!--                     <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
                         <group>
                             <field name="test_gas_concentration_co"/>
                             <field name="test_gas_concentration_co2"/>
@@ -353,7 +353,7 @@
                                     <field name="max_error_large" string="groß"/>
                                 </tree>
                             </field>
-                    </group>
+                    </group> -->
                     
                     
                     
@@ -362,17 +362,42 @@
                     
                     
                     
-                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
-                        <field name="max_difference_ids" nolabel="1" >
-                                <tree editable="1" create="0" delete="false">
-                                    <field name="mail_activity_id" invisible="1"/>
-                                    <field name="name" style="width:50%;" readonly="1" force_save="1"/>
-                                    <field name="kn" style="width:25%;"/>
-                                    <field name="percentage" style="width:25%;"/>
-                                </tree>
-                            </field>
-                    </group>
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
+                            <page string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
+                            <field name= 'begehung_id_feld'>
+                            <tree editable="bottom">
+                            <field name = "sequence_b" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="nummer_zwei"/>
+                            <field name="name_zwei"/>
+                            <field name="klasse"/>
+                            <field name="abstellmassnahme"/>
+                            <field name="abstellmassnahme_k"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
                     
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
+                            <page string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                            <field name= 'begehung_id_feld_zwei'>
+                            <tree editable="bottom">
+                            <field name = "sequence_b_zwei" widget="handle"/>
+                            <field name="id_zwei" invisible="1"/>
+                            <field name="nummer_drei"/>
+                            <field name="name"/>
+                            <field name="klasse_zwei"/>
+                            <field name="abstellmassnahme_zwei"/>
+                            <field name="abstellmassnahme_k_zwei"/>
+                            <field name="deadline_abs"/>
+                            <field name="verantwortlich"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    <group>
+                    <field name="folg_erf_m"/>
+                    </group>
                     
                     <!-- Noch nicht definierte View -->
 
