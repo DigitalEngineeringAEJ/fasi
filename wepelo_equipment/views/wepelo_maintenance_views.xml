@@ -285,6 +285,7 @@
                 <field name="name"/>
                 <field name="types_sn"/>
                 <field name="gefaehrdungsf_name"/>
+                <field name="id"/>
             </tree>
         </field>
     </record>
@@ -300,6 +301,7 @@
                             <field name="name" required="1"/>
                             <field name="types_sn" required="1"/>
                             <field name="gefaehrdungsf_name" required="1"/>
+                            <field name="id" required="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -333,6 +335,105 @@
             </form>
         </field>
     </record>
+    
+    <!-- View für Begehung-->
+    
+    <record id="begehung_view_tree" model="ir.ui.view">
+        <field name="name">begehung.tree</field>
+        <field name="model">begehung</field>
+        <field name="arch" type="xml">
+            <tree string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
+                <field name="id" invisible="1"/>
+                <field name="nummer_eins"/>
+                <field name="name"/>
+                <field name="klasse"/>
+                <field name="abstellmassnahme"/>
+                <field name="abstellmassnahme_k"/>
+                
+<!--                 <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="begehung_view_form" model="ir.ui.view">
+        <field name="name">begehung.form</field>
+        <field name="model">begehung</field>
+        <field name="arch" type="xml">
+            <form string="begehung2">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id" invisible="1"/>
+                <field name="nummer_eins"/>
+                <field name="name"/>
+                <field name="klasse"/>
+                <field name="abstellmassnahme"/>
+                <field name="abstellmassnahme_k"/>
+                
+<!--                 <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/> -->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- View für Begehung zwei-->
+    
+    <record id="begehung_zwei_view_tree" model="ir.ui.view">
+        <field name="name">begehung_zwei.tree</field>
+        <field name="model">begehung_zwei</field>
+        <field name="arch" type="xml">
+            <tree string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name_zwei"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="begehung_zwei_view_form" model="ir.ui.view">
+        <field name="name">begehung_zwei.form</field>
+        <field name="model">begehung_zwei</field>
+        <field name="arch" type="xml">
+            <form string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name_zwei"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
     
     <!--Test Equipment History-->
     <record id="wepelo_equipment_history_view_tree" model="ir.ui.view">

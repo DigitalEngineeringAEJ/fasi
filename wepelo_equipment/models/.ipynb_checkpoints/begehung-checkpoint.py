@@ -35,6 +35,11 @@ class Begehung(models.Model):
                                            ('massnahme_k_4', 'Nutzung PSA (BBB)'),
                                            ('massnahme_k_5', 'Verhaltensbezogene Maßnahmen (BB)')], 
                                             string='Abs Klassifizierung')
+    
+class BegehungZwei(models.Model):
+    _name = 'begehung_zwei'
+    _description = 'Aktivität Begehung zwei'
+
     id_zwei = fields.Char(string='Identifikation')
     sequence_b_zwei = fields.Integer(string='Sequenz z')
     nummer_zwei = fields.Float(string="Nr.")

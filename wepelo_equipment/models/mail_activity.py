@@ -150,8 +150,8 @@ class MailActivity(models.Model):
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
     gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
-    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung")
-    begehung_id_feld_zwei = fields.One2many('begehung', 'name_drei', string="Begehung")
+    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
+    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
     folg_erf_m =fields.Selection([('ja', 'Ja'),
                                ('nein', 'Nein')],
                               string='Folgebegehung erforderlich?')

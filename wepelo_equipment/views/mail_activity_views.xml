@@ -166,22 +166,63 @@
                     <!-- Ansicht für Gefährdungsbeurteilung -->
                     
                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
-                            <page string="Test">
+                            <page string="Gefahrenquelle">
                             <field name= 'gefahrenquellen_typ_id_feld'>
                             <tree editable="bottom">
                             <field name = "sequence_g" widget="handle"/>
                             <field name="gefahrenquellen_typ_id"/>
-                            <field name="gefaehrdungsf_name"/>
+                            <field name="gefaehrdungsf_name" attrs="{'invisible': [('gefahrenquellen_typ_id','=','Mechanische Gefährdungen'),'!',('id','=','1'),'|',('gefahrenquellen_typ_id','=','Mechanische Gefährdungen'),('id','=','1')]}"/>
                            <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w"/>
                             <field name="gef_beurteilung_a" />
                             <field name="gef_beurteilung_e" force_save="1"/>
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
-                            <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung" attrs="{'invisible': [('gefahrenquellen_typ_risiko', '=', False)]}"/>
+                            <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung"/>
                             </tree>
                         </field>
                         </page>
                         </notebook>
+                    
+                    
+                    <!-- Ansicht für Begehung -->                 
+                    
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
+                        <page string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
+                            <field name= 'begehung_id_feld'>
+                                <tree editable="bottom">
+                                <field name = "sequence_b" widget="handle"/>
+                                <field name="id" invisible="1"/>
+                                <field name="nummer_eins"/>
+                                <field name="name"/>
+                                <field name="klasse"/>
+                                <field name="abstellmassnahme"/>
+                                <field name="abstellmassnahme_k"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
+                            <page string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                            <field name= 'begehung_id_feld_zwei'>
+                            <tree editable="bottom">
+                            <field name = "sequence_b_zwei" widget="handle"/>
+                            <field name="id_zwei" invisible="1"/>
+                            <field name="nummer_drei"/>
+                            <field name="name_zwei"/>
+                            <field name="klasse_zwei"/>
+                            <field name="abstellmassnahme_zwei"/>
+                            <field name="abstellmassnahme_k_zwei"/>
+                            <field name="deadline_abs"/>
+                            <field name="verantwortlich"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    <group>
+                    <field name="folg_erf_m" attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}"/>
+                    </group>
+                    
                     
                     <!-- noch nicht definierte Ansicht-->
                     
@@ -354,50 +395,6 @@
                                 </tree>
                             </field>
                     </group> -->
-                    
-                    
-                    
-                    
-                    <!-- Ansicht für Begehung -->
-                    
-                    
-                    
-                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
-                            <page string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
-                            <field name= 'begehung_id_feld'>
-                            <tree editable="bottom">
-                            <field name = "sequence_b" widget="handle"/>
-                            <field name="id" invisible="1"/>
-                            <field name="nummer_zwei"/>
-                            <field name="name_zwei"/>
-                            <field name="klasse"/>
-                            <field name="abstellmassnahme"/>
-                            <field name="abstellmassnahme_k"/>
-                        </tree>
-                        </field>
-                        </page>
-                        </notebook>
-                    
-                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
-                            <page string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
-                            <field name= 'begehung_id_feld_zwei'>
-                            <tree editable="bottom">
-                            <field name = "sequence_b_zwei" widget="handle"/>
-                            <field name="id_zwei" invisible="1"/>
-                            <field name="nummer_drei"/>
-                            <field name="name"/>
-                            <field name="klasse_zwei"/>
-                            <field name="abstellmassnahme_zwei"/>
-                            <field name="abstellmassnahme_k_zwei"/>
-                            <field name="deadline_abs"/>
-                            <field name="verantwortlich"/>
-                        </tree>
-                        </field>
-                        </page>
-                        </notebook>
-                    <group>
-                    <field name="folg_erf_m"/>
-                    </group>
                     
                     <!-- Noch nicht definierte View -->
 

@@ -14,6 +14,8 @@ class EquipmentTypes(models.Model):
 
     name = fields.Char(string='Name')
     
+    id = fields.Integer(string='ID')
+    
     types_sn = fields.Char(string="S/N")
     
     gefaehrdungsf_name = fields.Many2one('gefahren.faktor', string="Gefährdungsfaktor")
@@ -53,7 +55,6 @@ class EquipmentTypes(models.Model):
                                          string='Maßzahl', compute="_compute_gef_beurteilung_e", store=True)
     mail_activity_id =  fields.Many2one('mail.activity', string="Mail Activity")
     
-#     gef_beurteilung_t = ('1', '2', '3', '4', '5', '6', '7', 'onchange__berechnung_mas' )
     
     sequence_g = fields.Integer(string='Sequenz')
     

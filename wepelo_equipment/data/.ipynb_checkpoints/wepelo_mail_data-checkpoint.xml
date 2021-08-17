@@ -102,11 +102,6 @@
             <field name="category">upload_file</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/>
         </record>-->
-         <!-- Anlage Benning ST 710 als Standard Prügerät 
-        <record id="equipment_types_data_benning" model="equipment.types">
-            <field name="name">Benning ST 710</field>
-            <field name="types_sn">24L-0737</field>
-        </record>-->
         <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
             <field name="name">Mechanische Gefährdungen</field>
             <field name="types_sn">-----</field>
@@ -156,18 +151,23 @@
           <record id="gefaehrdungsf_kontrolliert_bewegte_ungeschuetzte_teile" model="gefahren.faktor">
             <field name="gefaehrdungsf">Kontrolliert bewegte ungeschützte Teile</field>
         </record>
+        
         <record id="gefaehrdungsf_gefährliche_oberflächen" model="gefahren.faktor">
             <field name="gefaehrdungsf">Gefährliche Oberflächen</field>
         </record>
+        
         <record id="gefaehrdungsf_unkontrolliert_bewegte_herabfallende_umstuerzende_teile" model="gefahren.faktor">
             <field name="gefaehrdungsf">Unkontrolliert bewegte, herabfallende, umstürzende Teile</field>
         </record>
+        
         <record id="gefaehrdungsf_transport_oder_mobile_arbeitsmittel" model="gefahren.faktor">
             <field name="gefaehrdungsf">Transport oder mobile Arbeitsmittel</field>
         </record>
+        
         <record id="gefaehrdungsf_sturz" model="gefahren.faktor">
             <field name="gefaehrdungsf">Sturz</field>
         </record>
+        
         <record id="gefaehrdungsf_absturz" model="gefahren.faktor">
             <field name="gefaehrdungsf">Absturz</field>
         </record> 
