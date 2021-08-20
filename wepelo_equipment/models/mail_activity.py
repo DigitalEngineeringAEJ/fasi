@@ -152,8 +152,8 @@ class MailActivity(models.Model):
     gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
     begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
     begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
-    folg_erf_m =fields.Selection([('ja', 'Ja'),
-                               ('nein', 'Nein')],
+    folg_erf_m =fields.Selection([('1', 'Ja'),
+                               ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
@@ -482,7 +482,9 @@ class MailActivity(models.Model):
             #Neue Felder per 26.12.2020 
             'equipment_id':self.equipment_id.id,
             'ref':self.ref,
-            'eichamt':self.eichamt
+            'begehung_id_feld':self.begehung_id_feld,
+            'begehung_id_feld_zwei':self.begehung_id_feld_zwei,
+            'folg_erf_m':self.folg_erf_m or False,
         }
         if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
             el_test_vals = {

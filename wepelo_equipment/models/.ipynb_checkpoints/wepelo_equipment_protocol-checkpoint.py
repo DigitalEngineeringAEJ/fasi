@@ -2,7 +2,6 @@
 
 from odoo import api, fields, models, _
 
-
 class EquipmentProtocol(models.Model):
     _name = 'equipment.protocol'
     _inherit = ['mail.thread', 'equipment.mail.activity']
@@ -52,9 +51,12 @@ class EquipmentProtocol(models.Model):
     eichamt = fields.Char(string="Eichamt")
     is_downloaded = fields.Boolean(string="Downloaded", compute="_compute_downloaded_protocol")
     downloaded_user_ids = fields.Many2many('res.users', string="Downloaded users")
-    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
+    begehung_id_feld = fields.Many2many('begehung', string="Begehung", store=True)
     begehungs_id = fields.Many2one('begehung', string="Test", store=True)
-    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_zwei', string="Begehung zwei", store=True)
+    begehungs_id_test = fields.Many2one('begehung_zwei', store=True)
+    begehung_id_feld_zwei = fields.Many2many('begehung_zwei',  string="Begehung zwei", store=True)
+    folg_erf_m =fields.Selection(related='mail_activity_id.folg_erf_m',string='Folgebegehung erforderlich?') 
+    note_rel =fields.Html(related='mail_activity_id.note',string='Bemerkung')
 
     @api.depends('downloaded_user_ids')
     def _compute_downloaded_protocol(self):

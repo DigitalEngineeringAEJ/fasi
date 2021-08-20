@@ -186,7 +186,7 @@
                                 <field name = "sequence_b" widget="handle"/>
                                 <field name="id" invisible="1"/>
                                 <field name="nummer_eins"/>
-                                <field name="name"/>
+                                <field name="name_eins"/>
                                 <field name="klasse"/>
                                 <field name="abstellmassnahme"/>
                                 <field name="abstellmassnahme_k"/>
@@ -209,13 +209,15 @@
                             <field name="abstellmassnahme_k_zwei"/>
                             <field name="deadline_abs"/>
                             <field name="verantwortlich"/>
+                            <field name="folg_erf_m"/>
                         </tree>
                         </field>
                         </page>
                         </notebook>
                     </group>
                     <group>
-                           <field name="signature" widget="signature"/>       
+                           <field name="signature" widget="signature"/>
+                            <field name="note_rel"/>
                      </group>
                     <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                         <group>

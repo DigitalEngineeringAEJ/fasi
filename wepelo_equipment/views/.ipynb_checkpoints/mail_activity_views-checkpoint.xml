@@ -87,6 +87,9 @@
                     </field>
                 </group>
             </group>
+            <field name="summary" position="before">
+                <field name="activity_type_id"/>
+            </field>
             <field name="summary" position="after">
                 <field name="customer_id"/>
             </field>
@@ -170,8 +173,8 @@
                             <field name= 'gefahrenquellen_typ_id_feld'>
                             <tree editable="bottom">
                             <field name = "sequence_g" widget="handle"/>
-                            <field name="gefahrenquellen_typ_id"/>
-                            <field name="gefaehrdungsf_name" attrs="{'invisible': [('gefahrenquellen_typ_id','=','Mechanische Gefährdungen'),'!',('id','=','1'),'|',('gefahrenquellen_typ_id','=','Mechanische Gefährdungen'),('id','=','1')]}"/>
+                            <field name="gefahrenquellen_typ_id" /> 
+                            <field name="gefaehrdungsf_name" domain="[('gefahrenquellen_typ_id', '=', gefahrenquellen_typ_id)]"/>
                            <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w"/>
                             <field name="gef_beurteilung_a" />
@@ -193,7 +196,7 @@
                                 <field name = "sequence_b" widget="handle"/>
                                 <field name="id" invisible="1"/>
                                 <field name="nummer_eins"/>
-                                <field name="name"/>
+                                <field name="name_eins"/>
                                 <field name="klasse"/>
                                 <field name="abstellmassnahme"/>
                                 <field name="abstellmassnahme_k"/>
@@ -215,13 +218,12 @@
                             <field name="abstellmassnahme_k_zwei"/>
                             <field name="deadline_abs"/>
                             <field name="verantwortlich"/>
+                            <field name="folg_erf_m"/>
                         </tree>
                         </field>
                         </page>
                         </notebook>
-                    <group>
-                    <field name="folg_erf_m" attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}"/>
-                    </group>
+
                     
                     
                     <!-- noch nicht definierte Ansicht-->

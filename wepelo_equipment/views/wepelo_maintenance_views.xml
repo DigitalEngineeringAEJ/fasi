@@ -18,7 +18,7 @@
             </field>
         </field>
     </record>
-<!-- Test --> 
+
    <!-- Anpassung der Ansicht Zeile 18 bis 70 </record> --> 
     <record id="hr_equipment_view_form_inherit_wepelo" model="ir.ui.view">
         <field name="name">equipment.form.inherit.wepelo</field>
