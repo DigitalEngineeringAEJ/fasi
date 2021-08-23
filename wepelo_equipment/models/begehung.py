@@ -85,27 +85,46 @@ class BegehungZwei(models.Model):
     
     name_drei = fields.Text(string="Name")
     
-    klasse_drei = fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
-                               ('Beleuchtung, Lüftungs-, Heizeinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
-                               ('Lagerung', 'Lagerung'),
-                               ('Gefahrenhinweise', 'Gefahrenhinweise'),
-                               ('Arbeitsplatzgestaltung', 'Arbeitsplatzgestaltung'),
-                               ('Maschinen, Geräte, Betriebsmittel, Anlagen, Transportmittel, Bildschirm etc.', 'Maschinen, Geräte, Betriebsmittel, Anlagen, Transportmittel, Bildschirm etc.'),
-                               ('Aufbewahrung von chemischen Stoffen', 'Aufbewahrung von chemischen Stoffen'),
-                               ('Persönliche Schutzausrüstungen', 'Persönliche Schutzausrüstungen'),
-                               ('Sicherheitseinrichtungen', 'Sicherheitseinrichtungen'),
-                               ('Betriebsanweisungen', 'Betriebsanweisungen'),
-                               ('Erste-Hilfe- und Feuerlöscheinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
-                                string='Klassifizierung')
-    
-    abstellmassnahme_drei = fields.Text(string="Abstellmaßnahme", compute="")
-    
-    abstellmassnahme_k_drei = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
-                                           ('Sicherheitstechnische Maßnahmen (AA)', 'Sicherheitstechnische Maßnahmen (AA)'),
-                                           ('Organisatorische Maßnahmen (A)', 'Organisatorische Maßnahmen (A)'),
-                                           ('Nutzung PSA (BBB)', 'Nutzung PSA (BBB)'),
-                                           ('Verhaltensbezogene Maßnahmen (BB)', 'Verhaltensbezogene Maßnahmen (BB)')], 
-                                            string='Abs Klassifizierung')
-    
     relation_m = fields.Many2one('mail.activity')
     relation_e = fields.Many2one('equipment.protocol')
+    relation_f = fields.Many2one('folgebegehung')
+    
+class Folgebegehung(models.Model):
+    _name = 'folgebegehung'
+    _description = 'Aktivität Folgebegehung'
+    
+    mail_id = fields.Many2one('mail.activity')
+    protocol_id = fields.Many2one('equipment.protocol')
+    begehungs_id = fields.Many2one('begehung')
+    begehungs_id_zwei = fields.Many2one('begehung_zwei')
+    
+    id_ref = fields.Char(related='begehungs_id_zwei.id_zwei', string='Identifikation')
+    
+    sequence_ref= fields.Integer(related='begehungs_id_zwei.sequence_b_zwei', string='Sequenz z')
+    
+    nummer_vier = fields.Float(related='begehungs_id_zwei.nummer_drei', string='Nr')
+    
+    name_vier = fields.Text(related='begehungs_id_zwei.name_zwei', string='Name')
+    
+    klasse_drei = fields.Selection(related='begehungs_id_zwei.klasse_zwei', string='Klassifizierung')
+    
+    abstellmassnahme_drei = fields.Text(related='begehungs_id_zwei.abstellmassnahme_zwei', string="Abstellmaßnahme",)
+    
+    abstellmassnahme_k_drei = fields.Selection(related='begehungs_id_zwei.abstellmassnahme_k_zwei', string='Abs Klassifizierung')
+    
+    deadline_abs_ref = fields.Date(related='begehungs_id_zwei.deadline_abs', string='Deadline Abstellmaßnahme')
+    
+    verantwortlich_ref = fields.Many2one(related='begehungs_id_zwei.verantwortlich', string='Verantwortlich')
+    
+    folg_erf_m_ref =fields.Selection(related='begehungs_id_zwei.folg_erf_m', string='Folgebegehung erforderlich?')
+    
+    wirksam =fields.Selection([('Ja', 'Ja'),
+                               ('Nein', 'Nein')],
+                              string='Maßnahmen wirksam?')
+    
+    w_folg_erf_m =fields.Selection([('Ja', 'Ja'),
+                               ('Nein', 'Nein')],
+                              string='Folgebegehung erforderlich?')
+    
+    
+    

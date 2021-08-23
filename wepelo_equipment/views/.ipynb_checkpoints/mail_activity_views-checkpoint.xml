@@ -226,32 +226,35 @@
 
                     
                     
-                    <!-- noch nicht definierte Ansicht-->
+                                                                <!-- Ansicht für Folgebegehung -->
                     
-<!--                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
-                        <group>
-                            <field name="voltage_u_in_volts_v"/>
-                            <field name="protection_class"/>
-                            <div>
-                                <strong>RPE [Ω] <field name="operator_rpe" style="width: 20px;" nolabel="1"/></strong>
-                            </div>
-                            <field name="rpe" nolabel="1"/>
-                            <div>
-                                <strong>RISO [MΩ] <field name="operator_riso" style="width: 20px;" nolabel="1"/></strong>
-                            </div>
-                            <field name="riso_m" nolabel="1"/>
-                            <div>
-                                <strong>IEA [mA] <field name="operator_iea" style="width: 20px;" nolabel="1"/></strong>
-                            </div>
-                            <field name="iea_ma" nolabel="1"/> 
-                        </group>
-                        <group>
-                            <field name="frequency_f_in_heart_hz"/>
-                            <field name="tested_din_vde_0701_0702"/>
-                            <field name="evaluation"/>
-                        </group>
+                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+                        <notebook>
+                            <page string="3. Kontrolle der Wirksamkeit">
+                            <field name= 'folg_beg_'>
+                            <tree editable="bottom">
+                            <field name = "sequence_ref" widget="handle"/>
+                            <field name="id_ref" invisible="1"/>
+                            <field name="nummer_vier"/>
+                            <field name="name_vier"/>
+                            <field name="klasse_drei"/>
+                            <field name="abstellmassnahme_drei"/>
+                            <field name="abstellmassnahme_k_drei"/>
+                            <field name="deadline_abs_ref"/>
+                            <field name="verantwortlich_ref"/>
+                            <field name="folg_erf_m_ref"/>
+                            <field name="wirksam"/>
+                            <field name="w_folg_erf_m"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
                     </group>
-                    <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
+
+                                                            <!-- noch nicht definierte Ansicht-->
+                    
+                    
+                    <!--<group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                         <group>
                             <field name="exhaust_hose_probe" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}"/>
                           <field name="cables_hose_connections" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}"/>  

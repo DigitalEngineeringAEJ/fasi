@@ -155,6 +155,7 @@ class MailActivity(models.Model):
     folg_erf_m =fields.Selection([('1', 'Ja'),
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
+    folg_beg_ = fields.One2many('folgebegehung', 'name_vier', string="Folgebegehung", store=True)
     
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
                      
@@ -585,10 +586,22 @@ class MailActivity(models.Model):
         else:
             self.equipment_id.message_post(body=_('%s Completed (originally assigned to %s)') % (self.activity_type_id.name, self.user_id.name,))
 
-        if self.equipment_test_type != 'repairs':
+        if self.equipment_test_type != 'repairs' and self.begehung_id_feld_zwei_id.folg_erf_m != 'Ja':
             next_activity = self.copy()
             activity_after_days = self.equipment_test_type_id.cycle_duration
-            next_activity.write({'date_deadline': (next_activity.date_deadline + relativedelta(days=activity_after_days)), 'equipment_protocol_id': False, 'test_completed': False, 'schedule_date': False, 'duration': 0, 'planning': 'basic_plan'})
+            next_activity.write(
+                {'date_deadline': (next_activity.date_deadline + relativedelta(days=activity_after_days)),
+                 'equipment_protocol_id': False, 'test_completed': False, 'schedule_date': False, 'duration': 0,
+                 'planning': 'basic_plan'})
+
+#         elif self.equipment_test_type != 'repairs' and self.begehung_id_feld_zwei_id.folg_erf_m != 'Nein':
+#             next_activity = 'el_test'
+#             activity_after_days = self.equipment_test_type_id.cycle_duration
+#             next_activity.write(
+#                 {'date_deadline': (next_activity.date_deadline + relativedelta(days=activity_after_days)),
+#                  'equipment_protocol_id': False, 'test_completed': False, 'schedule_date': False,
+#                  'duration': 0, 'planning': 'basic_plan'})
+            
         if protocol:
             return {
                 "type": "ir.actions.act_window",
