@@ -149,57 +149,22 @@ class MailActivity(models.Model):
     is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
-    gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefahrenquellen Typ")
-    gefahrenquellen_typ_beschreibung = fields.Text(string="Beschreibung")
-    check = fields.Boolean(compute='_dann_aktiv')
-    gef_beurteilung_w = fields.Selection([('status_w_1', 'sehr gering'), ('status_w_2', 'gering'),('status_w_3', 'mittel'), ('status_w_4', 'hoch')], string='Gefahrenbeurteilungs Wahrscheinlichkeit')
-    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'), ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),('status_a_3', 'schwere Verletzungen oder Erkrankungen'), ('status_a_4', 'möglicher Tod, Katastrophe')], string='Gefahrenbeurteilung Ausmaß')
-    gef_beurteilung_e = fields.Char(string='Gefahrenbeurteilung Wahrscheinlichkeit', compute='onchange__berechnung_mas')
+    gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
+    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
+    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
+    folg_erf_m =fields.Selection([('1', 'Ja'),
+                               ('0', 'Nein')],
+                              string='Folgebegehung erforderlich?')
     
-    @api.onchange('gef_beurteilung_w', 'gef_beurteilung_a') 
-    def onchange__berechnung_mas(self):
-        if self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '1'
-        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '2'
-        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '3'
-        elif self.gef_beurteilung_w == 'status_w_1' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '2'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '3'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_2' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '5'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '3'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '5'
-        elif self.gef_beurteilung_w == 'status_w_3' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '6'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_1':
-            self.gef_beurteilung_e = '4'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_2':
-            self.gef_beurteilung_e = '5'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_3':
-            self.gef_beurteilung_e = '6'
-        elif self.gef_beurteilung_w == 'status_w_4' and self.gef_beurteilung_a =='status_a_4':
-            self.gef_beurteilung_e = '7'
-        else:
-            self.gef_beurteilung_e = ''
-            
-    
-    @api.depends('gefahrenquellen_typ_id')
-    def _dann_aktiv(self):
-        if self.gefahrenquellen_typ_id.id == "1" or "2" or "3" or "4" or "5" or "7" or "9" or "11" or "10":
-            self.check = True
-        else:
-                self.check = False
+#     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
+                     
+#     @api.depends('gefahrenquellen_typ_id')
+#     def _dann_aktiv(self):
+#         for gefahrenquellen_typ_id in self:
+#             if self.gefahrenquellen_typ_id.id == '1':
+#                 self.check = True
+#             else:
+#                 self.check = False
 
     @api.onchange('operation_no_defects')
     def _onchange_operation_no_defects(self):
@@ -517,7 +482,9 @@ class MailActivity(models.Model):
             #Neue Felder per 26.12.2020 
             'equipment_id':self.equipment_id.id,
             'ref':self.ref,
-            'eichamt':self.eichamt
+            'begehung_id_feld':self.begehung_id_feld,
+            'begehung_id_feld_zwei':self.begehung_id_feld_zwei,
+            'folg_erf_m':self.folg_erf_m or False,
         }
         if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
             el_test_vals = {
@@ -872,12 +839,6 @@ class MailActivityType(models.Model):
         if self.equipment_test_type_id:
             self.name = self.equipment_test_type_id.display_name
             
-# Klasse für die Test-Geräte Bennin + S/N 
-class EquipmentTypes(models.Model):
-    _inherit = 'equipment.types'
-    
-    types_sn = fields.Char(string="S/N")
-
 
 class ScheduleActivityType(models.Model):
     _name = 'schedule.activity.type'

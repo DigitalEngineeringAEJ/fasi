@@ -936,7 +936,7 @@ msgstr "Kunde"
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.hr_equipment_view_form_inherit_wepelo
 msgid "Customer Internal Designation"
-msgstr "Kunde Interne Bezeichnung"
+msgstr "Gefahrenquellen Bezeichnung"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
@@ -2590,8 +2590,8 @@ msgstr "Prüfung abgeschlossen"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_protocol__equipment_test_type
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_test__equipment_test_type
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__equipment_test_type
-msgid "Test strain"
-msgstr "Teststamm"
+msgid "Service"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model:ir.actions.act_window,name:wepelo_equipment.wepelo_equipment_test_action
@@ -2612,8 +2612,8 @@ msgstr "Testgerätestamm"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
-msgid "Test strain:"
-msgstr "Teststamm:"
+msgid "Service:"
+msgstr "Service:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__test_equipment_ids

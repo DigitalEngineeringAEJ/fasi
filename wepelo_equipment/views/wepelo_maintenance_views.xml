@@ -18,7 +18,7 @@
             </field>
         </field>
     </record>
-<!-- Test --> 
+
    <!-- Anpassung der Ansicht Zeile 18 bis 70 </record> --> 
     <record id="hr_equipment_view_form_inherit_wepelo" model="ir.ui.view">
         <field name="name">equipment.form.inherit.wepelo</field>
@@ -62,7 +62,6 @@
                 <field name="manufacturer_id"  context="{'default_type': 'manufacturer'}"/>
             </field>
             <field name="category_id" position="after">
-                <field name="equipment_type_id"/>
                 <field name="serial_no" string="ID"/>
             </field>
             <field name="technician_user_id" position="after">
@@ -285,6 +284,8 @@
             <tree string="Types">
                 <field name="name"/>
                 <field name="types_sn"/>
+                <field name="gefaehrdungsf_name"/>
+                <field name="id"/>
             </tree>
         </field>
     </record>
@@ -299,12 +300,140 @@
                         <group>
                             <field name="name" required="1"/>
                             <field name="types_sn" required="1"/>
+                            <field name="gefaehrdungsf_name" required="1"/>
+                            <field name="id" required="1"/>
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+    
+    <!--Gefährdungsfaktor Views-->
+    <record id="gefaehrdungsfaktor_view_tree" model="ir.ui.view">
+        <field name="name">gefaehrdungsfaktor.tree</field>
+        <field name="model">gefahren.faktor</field>
+        <field name="arch" type="xml">
+            <tree string="Gefährdungsfaktor">
+                <field name="gefaehrdungsf"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gefaehrdungsfaktor_view_form" model="ir.ui.view">
+        <field name="name">gefaehrdungsfaktor.form</field>
+        <field name="model">gefahren.faktor</field>
+        <field name="arch" type="xml">
+            <form string="Gefährdungsfaktoren">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="gefaehrdungsf" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- View für Begehung-->
+    
+    <record id="begehung_view_tree" model="ir.ui.view">
+        <field name="name">begehung.tree</field>
+        <field name="model">begehung</field>
+        <field name="arch" type="xml">
+            <tree string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
+                <field name="id" invisible="1"/>
+                <field name="nummer_eins"/>
+                <field name="name"/>
+                <field name="klasse"/>
+                <field name="abstellmassnahme"/>
+                <field name="abstellmassnahme_k"/>
+                
+<!--                 <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="begehung_view_form" model="ir.ui.view">
+        <field name="name">begehung.form</field>
+        <field name="model">begehung</field>
+        <field name="arch" type="xml">
+            <form string="begehung2">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id" invisible="1"/>
+                <field name="nummer_eins"/>
+                <field name="name"/>
+                <field name="klasse"/>
+                <field name="abstellmassnahme"/>
+                <field name="abstellmassnahme_k"/>
+                
+<!--                 <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/> -->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- View für Begehung zwei-->
+    
+    <record id="begehung_zwei_view_tree" model="ir.ui.view">
+        <field name="name">begehung_zwei.tree</field>
+        <field name="model">begehung_zwei</field>
+        <field name="arch" type="xml">
+            <tree string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name_zwei"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="begehung_zwei_view_form" model="ir.ui.view">
+        <field name="name">begehung_zwei.form</field>
+        <field name="model">begehung_zwei</field>
+        <field name="arch" type="xml">
+            <form string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name_zwei"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
     
     <!--Test Equipment History-->
     <record id="wepelo_equipment_history_view_tree" model="ir.ui.view">
@@ -391,6 +520,7 @@
         <field name="arch" type="xml">
             <search string="Partner">
                 <filter name="vendor" string="Vendor" domain="[('type', '=', 'vendor')]"/>
+                <field string="Name" name="name" filter_domain="[('name', 'ilike', self)]"/>
             </search>
         </field>
     </record>
