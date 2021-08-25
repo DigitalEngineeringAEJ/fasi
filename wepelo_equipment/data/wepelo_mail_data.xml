@@ -11,7 +11,7 @@
         <record id="activity_begehung" model="equipment.test">
             <field name="display_name">Begehung</field>
             <field name="equipment_test_type">routine_test</field>
-            <field name="cycle_duration">720</field>
+            <field name="cycle_duration">360</field>
         </record>
 
         <record id="activity_schulung_unterweisung" model="equipment.test">
