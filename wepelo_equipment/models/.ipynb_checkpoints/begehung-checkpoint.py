@@ -16,7 +16,7 @@ class Begehung(models.Model):
     sequence_b = fields.Integer(string='Sequenz')
     nummer_eins = fields.Float(string="Nummer.")
     name = fields.Char(string="Name")
-    name_eins = fields.Char(string="Gegenstand")
+    name_eins = fields.Char(string="Name")
     klasse = fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
                                ('Beleuchtung, Lüftungs-, Heizeinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
                                ('Lagerung', 'Lagerung'),

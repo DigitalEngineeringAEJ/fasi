@@ -60,7 +60,7 @@
         </record>
         <record id="mail_activity_data_routine_test" model="mail.activity.type">
             <field name="name">Begehung</field>
-            <field name="delay_count">720</field>
+            <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
             <field name="equipment_test_type_id" ref="activity_begehung"/>
