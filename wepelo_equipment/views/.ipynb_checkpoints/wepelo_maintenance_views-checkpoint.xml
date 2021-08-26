@@ -6,16 +6,29 @@
         <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
         <field name="arch" type="xml">
              <field name="name" position="replace">
-                <field name="name" string="Gefahrenquelle"/>
-            </field>
-            <field name="serial_no" position="before">
-                <field name="inventory_number" />
-            </field>
-            <field name="serial_no" position="after">
-                <field name="equipment_service_id" optional="hide"/>
-                <field name="test_equipment_device_id" optional="hide"/>
-                <field name="manufacturer_id" optional="hide"/>
-            </field>
+			<field name="name" string="Gefahrenquelle"/>
+		</field>
+        <field name="owner_user_id" position="replace">
+			<field name="category_id" string="Kategorie"/>
+		</field>
+            <field name="assign_date" position="replace">
+			<field name="customer_id" string="Kunde"/>
+		</field>
+            <field name="serial_no" position="replace">
+			<field name="technician_user_id" string="Techniker"/>
+		</field>
+            <field name="technician_user_id" position="replace">
+			<field name="owner_user_id" string="Besitzer" optional="hide"/>
+		</field>
+            <field name="category_id" position="replace">
+			<field name="category_id" string="Kategorie" invisible="True"/>
+		</field>
+            <field name="partner_id"  position="replace">
+			<field name="name"  invisible="True"/>
+		</field>
+            <field name="company_id" groups="base.group_multi_company" position="replace">
+			<field name="name" string="Gefahrenquelle" invisible="True"/>
+		</field>
         </field>
     </record>
 
