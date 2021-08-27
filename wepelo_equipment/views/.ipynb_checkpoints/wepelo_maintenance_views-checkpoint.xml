@@ -76,6 +76,7 @@
             </field>
             <field name="category_id" position="after">
                 <field name="serial_no" string="ID"/>
+                <field name="name_seq" string='Seriennummer' invisible='True'/>
             </field>
             <field name="technician_user_id" position="after">
                 <field name="customer_id"/>
