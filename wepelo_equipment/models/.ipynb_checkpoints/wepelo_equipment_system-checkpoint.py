@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 
 class TestEquipmentService(models.Model):
     _name = 'equipment.service'
-    _description = 'service strain"'
+    _description = 'Service strain'
 
     name = fields.Char(string='Name')
     test_equipment_ids = fields.Many2many('equipment.test', 'equipment_service_equipment_test_rel', 'equipment_service_id', 'equipment_test_id', string='Test Equipment')
@@ -28,13 +28,13 @@ class EquipmentTest(models.Model):
 
     display_name = fields.Char(compute='_get_display_name', string='Name', readonly=False, store=True)
     equipment_test_type = fields.Selection(selection='_get_equipment_test_type', string='Test strain')
-    cycle_duration = fields.Integer(string='Cycle Duration')
+    cycle_duration = fields.Integer(string='Cycle Duration', default=0)
 
     def _get_equipment_test_type(self):
         return [
-            ('calibration_ei', _('Eichung')),
-            ('el_test', _('DGUV V3')),
-            ('routine_test', _('Stückprüfung')),
+            ('calibration_ei', _('Gefährdungsbeurteilung')),
+            ('el_test', _('Folgebegehung')),
+            ('routine_test', _('Begehung')),
             ('calibration', _('Kalibrierung')),
             ('uvv', _('Betriebssicherheitsprüfung')),
             ('maintenance', _('Wartung')),
@@ -42,19 +42,19 @@ class EquipmentTest(models.Model):
         ]
 
     equipment_test_types = {
-        'calibration_ei': _('Eichung'),
-        'el_test': _('DGUV V3'),
-        'routine_test': _('Stückprüfung'),
+        'calibration_ei': _('Gefährdungsbeurteilung'),
+        'el_test': _('Folgebegehung'),
+        'routine_test': _('Begehung'),
         'calibration': _('Kalibrierung'),
         'uvv': _('Betriebssicherheitsprüfung'),
         'maintenance': _('Wartung'),
         'repairs': _('Reparaturen'),
     }
-
-    @api.depends('equipment_test_type', 'cycle_duration')
-    def _get_display_name(self):
-        if self.equipment_test_type:
-            self.display_name = self.equipment_test_types.get(self.equipment_test_type) + ' (' + str(self.cycle_duration) + ')'
+# 
+#     @api.depends('equipment_test_type', 'cycle_duration')
+#     def _get_display_name(self):
+#         if self.equipment_test_type:
+#             self.display_name = self.equipment_test_types.get(self.equipment_test_type) + ' (' + str(self.cycle_duration) + ')'
 
 
 class TestEquipment(models.Model):
