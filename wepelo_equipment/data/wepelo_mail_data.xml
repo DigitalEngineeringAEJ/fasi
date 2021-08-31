@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <!--Service strain Data-->
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
@@ -11,7 +11,7 @@
         <record id="activity_begehung" model="equipment.test">
             <field name="display_name">Begehung</field>
             <field name="equipment_test_type">routine_test</field>
-            <field name="cycle_duration">720</field>
+            <field name="cycle_duration">360</field>
         </record>
 
         <record id="activity_schulung_unterweisung" model="equipment.test">
@@ -60,7 +60,7 @@
         </record>
         <record id="mail_activity_data_routine_test" model="mail.activity.type">
             <field name="name">Begehung</field>
-            <field name="delay_count">720</field>
+            <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
             <field name="equipment_test_type_id" ref="activity_begehung"/>
@@ -350,7 +350,18 @@
         </record>
         <record id="gefaehrdungsf_informationsaufnahme" model="gefahren.faktor">
             <field name="gefaehrdungsf">Informationsaufnahme, Handhabung von Stellteilen</field>
-        </record>  
+        </record>
+        
+        <record id="seq_fortlaufende_seriennummer" model="ir.sequence">
+            <field name="name">Seriennummer</field>
+            <field name="code">fortlaufende.seriennummer</field>
+            <field name="prefix">0</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
     </data>
 
     <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">

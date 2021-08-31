@@ -3123,7 +3123,7 @@ msgstr "Kundennummer"
 #: model_terms:ir.ui.view,arch_db:maintenance.hr_equipment_request_view_search
 #: model_terms:ir.ui.view,arch_db:maintenance.hr_equipment_view_search
 msgid "Category"
-msgstr "Inventarkategorie"
+msgstr "Kategorie"
 
 #. module: web_map
 #. openerp-web
