@@ -57,7 +57,7 @@ class EquipmentProtocol(models.Model):
     begehung_id_feld_zwei = fields.Many2many('begehung_zwei',  string="Begehung zwei", store=True)
     folg_erf_m =fields.Selection(related='mail_activity_id.folg_erf_m',string='Folgebegehung erforderlich?') 
     note_rel =fields.Html(related='mail_activity_id.note',string='Bemerkung')
-    folg_beg = fields.One2many(related='mail_activity_id.begehung_id_feld_zwei', string='Folgebegehung') 
+    folg_beg = fields.Many2many(related='begehung_id_feld_zwei', string='Folgebegehung') 
 
     @api.depends('downloaded_user_ids')
     def _compute_downloaded_protocol(self):

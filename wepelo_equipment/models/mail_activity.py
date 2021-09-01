@@ -156,6 +156,7 @@ class MailActivity(models.Model):
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     folg_beg_ = fields.One2many('folgebegehung', 'name_vier', string="Folgebegehung", store=True)
+    beg_beg_ = fields.Many2many('folgebegehung', string="Folgebegehung", store=True)
     
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
                      
@@ -586,7 +587,7 @@ class MailActivity(models.Model):
         else:
             self.equipment_id.message_post(body=_('%s Completed (originally assigned to %s)') % (self.activity_type_id.name, self.user_id.name,))
 
-        if self.equipment_test_type != 'repairs' and self.begehung_id_feld_zwei.folg_erf_m != 'Ja':
+        if self.equipment_test_type != 'repairs':
             next_activity = self.copy()
             activity_after_days = self.equipment_test_type_id.cycle_duration
             next_activity.write(
@@ -602,13 +603,13 @@ class MailActivity(models.Model):
 #                  'equipment_protocol_id': False, 'test_completed': False, 'schedule_date': False,
 #                  'duration': 0, 'planning': 'basic_plan', 'equipment_test_type': 'el_test'})
             
-        if  self.begehung_id_feld_zwei.folg_erf_m != 'Nein':
-            next_activity = self.equipment_test_type
-            activity_after_days = self.equipment_test_type_id.cycle_duration
-            next_activity.write(
-                {'date_deadline': (next_activity.date_deadline + relativedelta(days=activity_after_days)),
-                 'equipment_protocol_id': False, 'test_completed': False, 'schedule_date': False,
-                 'duration': 0, 'planning': 'basic_plan', 'equipment_test_type': 'el_test'})
+#         if  self.begehung_id_feld_zwei.folg_erf_m != 'Nein':
+#             next_activity = self.equipment_test_type
+#             activity_after_days = self.equipment_test_type_id.cycle_duration
+#             next_activity.write(
+#                 {'date_deadline': (next_activity.date_deadline + relativedelta(days=activity_after_days)),
+#                  'equipment_protocol_id': False, 'test_completed': False, 'schedule_date': False,
+#                  'duration': 0, 'planning': 'basic_plan', 'equipment_test_type': 'el_test'})
             
         
                         
@@ -848,6 +849,10 @@ class MailActivity(models.Model):
                 messages |= activity_message
         next_activities = self.env['mail.activity'].create(next_activities_values)
         self.unlink()  # will unlink activity, dont access `self` after that
+        sequence = self.env['ir.sequence'].search([('code', '=', 'begehung.eins')])
+        sequence.number_next_actual = 1
+        sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
+        sequence_zwei.number_next_actual = 1
         return messages, next_activities
 
 

@@ -230,7 +230,7 @@
                     
                                                                 <!-- Ansicht für Folgebegehung -->
                     
-                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+                     <group string="Folgebegehung" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
                         <notebook>
                             <page string="3. Kontrolle der Wirksamkeit">
                             <field name= 'folg_beg_'>
