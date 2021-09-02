@@ -120,23 +120,21 @@ class Folgebegehung(models.Model):
     
     name_vier = fields.Text( string='Name')
     
-    klasse_drei = fields.Selection(related='begehungs_id_zwei.klasse_zwei', string='Klassifizierung')
+    klasse_drei = fields.Char( string='Klassifizierung')
     
-    abstellmassnahme_drei = fields.Text(related='begehungs_id_zwei.abstellmassnahme_zwei', string="Abstellmaßnahme",)
+    abstellmassnahme_drei = fields.Text(string="Abstellmaßnahme",)
     
-    abstellmassnahme_k_drei = fields.Selection(related='begehungs_id_zwei.abstellmassnahme_k_zwei', string='Abs Klassifizierung')
+    abstellmassnahme_k_drei = fields.Char( string='Abs Klassifizierung')
     
-    deadline_abs_ref = fields.Date(related='begehungs_id_zwei.deadline_abs', string='Deadline Abstellmaßnahme')
+    deadline_abs_ref = fields.Date(string='Deadline Abstellmaßnahme')
     
-    verantwortlich_ref = fields.Many2one(related='begehungs_id_zwei.verantwortlich', string='Verantwortlich')
-    
-    folg_erf_m_ref =fields.Selection(related='begehungs_id_zwei.folg_erf_m', string='Folgebegehung erforderlich?')
+    verantwortlich_ref = fields.Many2one('res.partner', string='Verantwortlich')
     
     wirksam =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
                               string='Maßnahmen wirksam?')
     
-    w_folg_erf_m =fields.Selection([('Ja', 'Ja'),
+    w_folg_erf =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
                               string='Folgebegehung erforderlich?')
     

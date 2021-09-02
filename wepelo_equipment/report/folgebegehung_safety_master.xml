@@ -61,7 +61,7 @@
                             <th scope="col">Maßnahme wirksam?</th>
                             <th scope="col">Folgebegehung erforderlich</th>
                           </tr>
-                          <tr t-foreach="o.begehung_id_feld" t-as="line">
+                          <tr t-foreach="o.folg_beg_ids" t-as="line">
                                  <td><span t-esc="line.nummer_vier"/></td>
                                   <td><span t-esc="line.name_vier"/></td>
                                  <td><span t-esc="line.klasse_drei"/></td>
@@ -69,10 +69,8 @@
                                  <td><span t-esc="line.abstellmassnahme_k_drei"/></td>
                                  <td><span t-esc="line.deadline_abs_ref"/></td>
                                  <td><span t-esc="line.verantwortlich_ref"/></td>
-                                 <td><span t-esc="line.abstellmassnahme_drei"/></td>
-                                 <td><span t-esc="line.folg_erf_m_ref"/></td>
-                                 <td><span t-esc="wirksam"/></td>
-                                 <td><span t-esc="w_folg_erf_m"/></td>
+                                 <td><span t-esc="line.wirksam"/></td>
+                                 <td><span t-esc="line.w_folg_erf"/></td>
                             </tr>
                         </table>
                             <tr>

@@ -445,9 +445,8 @@
                 <field name="abstellmassnahme_k_drei"/>
                 <field name="deadline_abs_ref"/>
                 <field name="verantwortlich_ref"/>
-                <field name="folg_erf_m_ref"/>
                 <field name="wirksam"/>
-                <field name="w_folg_erf_m"/>
+                <field name="w_folg_erf"/>
             </tree>
         </field>
     </record>
@@ -468,9 +467,8 @@
                 <field name="abstellmassnahme_k_drei"/>
                 <field name="deadline_abs_ref"/>
                 <field name="verantwortlich_ref"/>
-                <field name="folg_erf_m_ref"/>
                 <field name="wirksam"/>
-                <field name="w_folg_erf_m"/>
+                <field name="w_folg_erf"/>
                         </group>
                     </group>
                 </sheet>
