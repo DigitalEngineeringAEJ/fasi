@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <!--Service strain Data-->
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
@@ -20,13 +20,13 @@
             <field name="cycle_duration">360</field>
         </record>
 
-        <!--<record id="equipment_test_data_el_test" model="equipment.test">
-            <field name="display_name">DGUV V3</field>
+        <record id="equipment_test_data_el_test" model="equipment.test">
+            <field name="display_name">Folgebegehung</field>
             <field name="equipment_test_type">el_test</field>
-            <field name="cycle_duration">360</field>
+<!--             <field name="cycle_duration">360</field> -->
         </record>
 
-        <record id="equipment_test_data_calibration" model="equipment.test">
+     <!--   <record id="equipment_test_data_calibration" model="equipment.test">
             <field name="display_name">Kalibrierung</field>
             <field name="equipment_test_type">calibration</field>
             <field name="cycle_duration">720</field>
@@ -80,15 +80,15 @@
         <field name="res_model_id" ref="maintenance.model_maintenance_request"/> -->
         <!--active="false"/>-->
 <!--     </record> -->
-       <!-- <record id="mail_activity_data_el_test" model="mail.activity.type">
-            <field name="name">DGUV V3</field>
-            <field name="delay_count">360</field>
+      <record id="mail_activity_data_el_test" model="mail.activity.type">
+            <field name="name">Folgebegehung</field>
+<!--             <field name="delay_count">360</field> -->
             <field name="delay_unit">days</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
             <field name="sequence">12</field>
-            <field name="category">upload_file</field>
+<!--             <field name="category">upload_file</field> -->
         </record>
-        <record id="mail_activity_data_maintenance" model="mail.activity.type">
+        <!-- <record id="mail_activity_data_maintenance" model="mail.activity.type">
             <field name="name">Wartung</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
@@ -361,6 +361,27 @@
             <field name="number_increment">1</field>
             <field name="company_id" eval="False"/>
         </record>
+        
+        <record id="seq_begehung_eins" model="ir.sequence">
+            <field name="name">Begehung</field>
+            <field name="code">begehung.eins</field>
+            <field name="prefix">1.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_begehung_zwei" model="ir.sequence">
+            <field name="name">Begehung Zwei</field>
+            <field name="code">begehung.zwei</field>
+            <field name="prefix">2.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+              
         
     </data>
 

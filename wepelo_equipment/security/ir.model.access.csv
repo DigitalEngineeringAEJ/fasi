@@ -31,3 +31,4 @@ access_mail_activity_edit_wizard,access_mail_activity_edit_wizard,model_mail_act
 access_gefahren_faktor,access_gefahren_faktor,model_gefahren_faktor,base.group_user,1,1,1,1
 access_begehung,access_begehung,model_begehung,base.group_user,1,1,1,1
 access_begehung_zwei,access_begehung_zwei,model_begehung_zwei,base.group_user,1,1,1,1
+access_folgebegehung,access_folgebegehung,model_folgebegehung,base.group_user,1,1,1,1

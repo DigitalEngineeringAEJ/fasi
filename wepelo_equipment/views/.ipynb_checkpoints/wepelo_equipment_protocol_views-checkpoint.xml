@@ -219,6 +219,27 @@
                            <field name="signature" widget="signature"/>
                             <field name="note_rel"/>
                      </group>
+                    <group attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+                        <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+                        <page string="3. Kontrolle der Wirksamkeit">
+                            <field name= 'folg_beg_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence_ref" widget="handle"/>
+                            <field name="id_ref" invisible="1"/>
+                            <field name="nummer_vier"/>
+                            <field name="name_vier"/>
+                            <field name="klasse_drei"/>
+                            <field name="abstellmassnahme_drei"/>
+                            <field name="abstellmassnahme_k_drei"/>
+                            <field name="deadline_abs_ref"/>
+                            <field name="verantwortlich_ref"/>
+                            <field name="wirksam"/>
+                            <field name="w_folg_erf"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </group>
                     <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                         <group>
                             <field name="exhaust_hose_probe" class="ml16"/>
