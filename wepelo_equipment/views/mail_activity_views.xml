@@ -95,7 +95,6 @@
                 <field name="customer_id"/>
             </field>
             <field name="user_id" position="after">
-                <field name="date_deadline"/>
                 <field name="res_name"/>
                 <field name="equipment_id" invisible="1"/>
             </field>
@@ -228,86 +227,29 @@
 
                     
                     
-                    <!-- noch nicht definierte Ansicht-->
+                    <!-- Ansicht für Folgebegehung -->
                     
-<!--                     <group string="EL. Test" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
-                        <group>
-                            <field name="voltage_u_in_volts_v"/>
-                            <field name="protection_class"/>
-                            <div>
-                                <strong>RPE [Ω] <field name="operator_rpe" style="width: 20px;" nolabel="1"/></strong>
-                            </div>
-                            <field name="rpe" nolabel="1"/>
-                            <div>
-                                <strong>RISO [MΩ] <field name="operator_riso" style="width: 20px;" nolabel="1"/></strong>
-                            </div>
-                            <field name="riso_m" nolabel="1"/>
-                            <div>
-                                <strong>IEA [mA] <field name="operator_iea" style="width: 20px;" nolabel="1"/></strong>
-                            </div>
-                            <field name="iea_ma" nolabel="1"/> 
-                        </group>
-                        <group>
-                            <field name="frequency_f_in_heart_hz"/>
-                            <field name="tested_din_vde_0701_0702"/>
-                            <field name="evaluation"/>
-                        </group>
+                     <group string="Folgebegehung" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+                        <notebook>
+                            <page string="3. Kontrolle der Wirksamkeit">
+                            <field name= 'folg_beg_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence_ref" widget="handle"/>
+                            <field name="id_ref" invisible="1"/>
+                            <field name="nummer_vier"/>
+                            <field name="name_vier"/>
+                            <field name="klasse_drei"/>
+                            <field name="abstellmassnahme_drei"/>
+                            <field name="abstellmassnahme_k_drei"/>
+                            <field name="deadline_abs_ref"/>
+                            <field name="verantwortlich_ref"/>
+                            <field name="wirksam"/>
+                            <field name="w_folg_erf"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
                     </group>
-                    <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
-                        <group>
-                            <field name="exhaust_hose_probe" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}"/>
-                          <field name="cables_hose_connections" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}"/>  
-                        </group>
-                    </group>
-                    <group string="Exhaust Measuring Device Diesel" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'diesel')]}">
-                        <group>
-                            <field name="measuring_optics"/>
-                            <field name="measuring_cell"/>
-                        </group>
-                        <group>
-                            <field name="manual_calibration"/>
-                            <field name="functional_control"/>
-                            <field name="test_filter"/>
-                            <field name="test_calibration_filter"/>
-                        </group>
-                    </group>
-                    <group string="Exhaust Measuring Device Petrol" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
-                        <group>
-                            <field name="pre_filter"/>
-                            <field name="coarse_filter"/>
-                            <field name="test_o2_sensor"/>
-                        </group>
-                        <group>
-                            <field name="leak_test_performed"/>
-                            <field name="fine_filter"/>
-                            <field name="leak_test_seal"/>
-                            <field name="test_gas"/>
-                        </group>
-                    </group>
-                    <table class="table table-borderless table-sm" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
-                        <tbody>
-                            <tr>
-                                <span attrs="{'invisible': [('test_o2_sensor', '=', False)]}">
-                                    <td style="width:50px;"><strong>Type: </strong></td>
-                                    <td style="width:200px;"><field name="sensor_type"/></td>
-                                    <td style="width:80px;"><strong>Serial No: </strong></td>
-                                    <td style="width:200px;"><field name="sensor_serial"/></td>
-                                </span>
-                                <span attrs="{'invisible': [('test_o2_sensor', '=', True)]}">
-                                    <td style="width:50px;"></td>
-                                    <td style="width:110px;"></td>
-                                    <td style="width:180px;"></td>
-                                    <td style="width:190px;"></td>
-                                </span>
-                                <span attrs="{'invisible': [('test_gas', '=', False)]}">
-                                    <td style="width:105px;"><strong>Certificate No: </strong></td>
-                                    <td style="width:175px;"><field name="gas_certificate_no"/></td>
-                                    <td style="width:85px;"><strong>Bottle No: </strong></td>
-                                    <td style="width:179px;"><field name="gas_bottle_no"/></td>
-                                </span>
-                            </tr>
-                        </tbody>
-                    </table> -->
                     
                     <!-- noch nicht defnierte View -->
 <!--                     <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
