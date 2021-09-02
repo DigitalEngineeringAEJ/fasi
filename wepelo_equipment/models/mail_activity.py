@@ -825,6 +825,10 @@ class MailActivity(models.Model):
                 messages |= activity_message
         next_activities = self.env['mail.activity'].create(next_activities_values)
         self.unlink()  # will unlink activity, dont access `self` after that
+        sequence = self.env['ir.sequence'].search([('code', '=', 'begehung.eins')])
+        sequence.number_next_actual = 1
+        sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
+        sequence_zwei.number_next_actual = 1
         return messages, next_activities
 
 
