@@ -51,6 +51,8 @@ class MaintenanceEquipment(models.Model):
     attachment_count = fields.Integer(
         string="Attachments Number", compute="_compute_attachment_count"
     )
+    name_seq = fields.Char(string="Nummer", default=lambda self: self._get_next_serial_no_name(),  store=True, readonly=True)
+    ir_sequence_id = fields.Many2one('ir.sequence')
 
     def attachment_tree_view(self):
         """Get attachments for this object."""
@@ -117,42 +119,67 @@ class MaintenanceEquipment(models.Model):
             record.protocol_number = self.env['equipment.protocol'].search_count([('equipment_id', '=', record.id)])
 
         
-    @api.onchange('category_id', 'serial_no')
-    def onchange_category_id(self):
-        if self.category_id and not self.serial_no:
-            self.name = self.category_id.name
-        elif self.category_id and self.serial_no:
-            self.name = self.category_id.name + '/' + self.serial_no
-        elif not self.category_id and self.serial_no:
-            self.name = self.serial_no
+#     @api.onchange('category_id', 'serial_no')
+#     def onchange_category_id(self):
+#         if self.category_id and not self.serial_no:
+#             self.name = self.category_id.name 
+#         elif self.category_id and self.serial_no:
+#             self.name = self.category_id.name + '/' + self.serial_no
+#         elif not self.category_id and self.serial_no:
+#             self.name = self.serial_no
+#         else:
+#             self.name = ''
+            
+    @api.model
+    def _get_next_serial_no_name(self):
+        sequence = self.env['ir.sequence'].search([('code','=','fortlaufende.seriennummer')])
+        next= sequence.get_next_char(sequence.number_next_actual)
+        return next
+            
+    @api.model
+    def create(self, vals):
+        if vals.get('name_seq', 'New') == 'New':
+            vals['name_seq'] = self.env['ir.sequence'].next_by_code('fortlaufende.seriennummer') or 'New'
+        result = super(MaintenanceEquipment, self).create(vals)
+        return result
+    
+    @api.onchange('category_id', 'name_seq')
+    def _onchange_serial_no(self):
+        if self.category_id and not self.name_seq:
+            self.serial_no = self.category_id.name
+        elif self.category_id and self.name_seq:
+            self.serial_no = self.category_id.name + '/' + self.name_seq
+        elif not self.category_id and self.name_seq:
+            self.serial_no = self.name_seq
         else:
-            self.name = ''
+            self.serial_no = ''
 
-    @api.constrains('serial_no')
-    def _check_dates(self):
-        if not self.serial_no:
-            raise exceptions.ValidationError(_("Leider wurde keine Seriennummer angegeben")) 
+#     @api.constrains('serial_no')
+#     def _check_dates(self):
+#         if not self.serial_no:
+#             raise exceptions.ValidationError(_("Leider wurde keine Seriennummer angegeben")) 
            
-    @api.onchange('serial_no')
-    def onchange_equipment_type_id(self):
-        substring = str("AU")
-        if self.serial_no and search(substring, self.category_id.name):
-            self.equipment_type_id = self.env['equipment.types'].search([('name', '=',"Benning ST 710")]).id  
+#     @api.onchange('serial_no')
+#     def onchange_equipment_type_id(self):
+#         substring = str("AU")
+#         if self.serial_no and search(substring, self.category_id.name):
+#             self.equipment_type_id = self.env['equipment.types'].search([('name', '=',"Benning ST 710")]).id  
     
-    @api.onchange('serial_no')
-    def onchance_benzin_equipment_service_id(self): 
-        substring = str("Benzin")
-        if self.serial_no and search(substring, self.category_id.name):
-            self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Benzin")]).id           
+#     @api.onchange('serial_no')
+#     def onchance_benzin_equipment_service_id(self): 
+#         substring = str("Benzin")
+#         if self.serial_no and search(substring, self.category_id.name):
+#             self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Benzin")]).id           
     
-    @api.onchange('serial_no')
-    def onchance_diesel_equipment_service_id(self): 
-        substring = str("Diesel")
-        if self.serial_no and search(substring, self.category_id.name):
-            self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Diesel")]).id
+#     @api.onchange('serial_no')
+#     def onchance_diesel_equipment_service_id(self): 
+#         substring = str("Diesel")
+#         if self.serial_no and search(substring, self.category_id.name):
+#             self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Diesel")]).id
 
 
 class MaintenanceEquipmentCategory(models.Model):
     _inherit = 'maintenance.equipment.category'
 
     show_user_tab_eichung = fields.Boolean('Show User Tab Eichung')
+    serial_no = fields.Many2one('maintenance.equipment', string='ID')

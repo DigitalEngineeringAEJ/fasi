@@ -30,6 +30,14 @@
                                 <h3>Proof of Maintenance For Infralyt Devices</h3>
                             </div>
                         </t>
+                         <tr>
+                                <td style="width:200px;">
+                                    <strong>2. Festgestelte Mängel: </strong>
+                                </td>
+                                <td>
+                                    <h5><span t-field="o.begehung_id_feld_zwei"/></h5>
+                                </td>
+                            </tr>
 
                         <div class="row col-12 mt30">
                         	<div class="col-2">

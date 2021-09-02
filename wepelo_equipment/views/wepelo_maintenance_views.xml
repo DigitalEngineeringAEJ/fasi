@@ -5,17 +5,33 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
         <field name="arch" type="xml">
-            <field name="serial_no" position="before">
-                <field name="inventory_number"/>
-            </field>
-            <field name="serial_no" position="after">
-                <field name="equipment_service_id" optional="hide"/>
-                <field name="test_equipment_device_id" optional="hide"/>
-                <field name="manufacturer_id" optional="hide"/>
-            </field>
+             <field name="name" position="replace">
+			<field name="name" string="Gefahrenquelle"/>
+		</field>
+        <field name="owner_user_id" position="replace">
+			<field name="category_id" string="Kategorie"/>
+		</field>
+            <field name="assign_date" position="replace">
+			<field name="customer_id" string="Kunde"/>
+		</field>
+            <field name="serial_no" position="replace">
+			<field name="technician_user_id" string="Techniker"/>
+		</field>
+            <field name="technician_user_id" position="replace">
+			<field name="owner_user_id" string="Besitzer" optional="hide"/>
+		</field>
+            <field name="category_id" position="replace">
+			<field name="category_id" string="Kategorie" invisible="True"/>
+		</field>
+            <field name="partner_id"  position="replace">
+			<field name="name"  invisible="True"/>
+		</field>
+            <field name="company_id" groups="base.group_multi_company" position="replace">
+			<field name="name" string="Gefahrenquelle" invisible="True"/>
+		</field>
         </field>
     </record>
-<!-- Test --> 
+
    <!-- Anpassung der Ansicht Zeile 18 bis 70 </record> --> 
     <record id="hr_equipment_view_form_inherit_wepelo" model="ir.ui.view">
         <field name="name">equipment.form.inherit.wepelo</field>
@@ -25,10 +41,22 @@
             <xpath expr="//label[@for='name']" position="attributes">
                 <attribute name='string'>Customer Internal Designation</attribute>
             </xpath>
+            <field name="assign_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="scrap_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="effective_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
             <field name="partner_ref" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
             <field name="partner_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+             <field name="serial_no" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
             <field name="warranty_date" position="attributes">
@@ -37,25 +65,39 @@
             <field name="cost" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="location" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
             <field name="model" position="before">
                 <field name="manufacturer_id"  context="{'default_type': 'manufacturer'}"/>
             </field>
-            <field name="serial_no" position="after">
+            <field name="category_id" position="after">
+                <field name="serial_no" string="ID"/>
+                <field name="name_seq" string='Seriennummer' invisible='True'/>
+            </field>
+            <field name="technician_user_id" position="after">
+                <field name="customer_id"/>
                 <field name="partner_id" position="after" context="{'default_type': 'vendor'}"/>
-                <field name="qr_code" widget='image' class="oe_avatar"/>
+                 <field name="owner_user_id"/>
+            </field>
+            <field name="serial_no" position="before">
             </field>
             <field name="owner_user_id" position="attributes">
                 <attribute name="domain">[('id', 'in', owner_user_ids)]</attribute>
             </field>
-            <field name="owner_user_id" position="before">
-                <field name="customer_id"/>
+            <field name="owner_user_id" position="replace">
+                 <field name="note" string="Kommentar"/>
             </field>
             <field name="effective_date" position="after">
-                <field name="warranty_date"/>
-                <field name="inventory_number"/>
-                <field name="equipment_service_id"/>
-                <field name="test_equipment_device_id"/>
-                <field name="equipment_type_id"/>
+                <field name="qr_code" widget='image' class="oe_avatar"/>
+                <field name="warranty_date" invisible="True"/>
+                <field name="inventory_number" invisible="True"/>
+                <field name="equipment_service_id" invisible="True"/>
+                <field name="test_equipment_device_id" invisible="True"/>
+                <field name="equipment_type_id" invisible="True"/>
                 <field name="show_user_tab_eichung" invisible="1"/>
                 <field name="owner_user_ids" invisible="1"/>
             </field>
@@ -256,6 +298,8 @@
             <tree string="Types">
                 <field name="name"/>
                 <field name="types_sn"/>
+                <field name="gefaehrdungsf_name"/>
+                <field name="id"/>
             </tree>
         </field>
     </record>
@@ -270,12 +314,140 @@
                         <group>
                             <field name="name" required="1"/>
                             <field name="types_sn" required="1"/>
+                            <field name="gefaehrdungsf_name" required="1"/>
+                            <field name="id" required="1"/>
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+    
+    <!--Gefährdungsfaktor Views-->
+    <record id="gefaehrdungsfaktor_view_tree" model="ir.ui.view">
+        <field name="name">gefaehrdungsfaktor.tree</field>
+        <field name="model">gefahren.faktor</field>
+        <field name="arch" type="xml">
+            <tree string="Gefährdungsfaktor">
+                <field name="gefaehrdungsf"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gefaehrdungsfaktor_view_form" model="ir.ui.view">
+        <field name="name">gefaehrdungsfaktor.form</field>
+        <field name="model">gefahren.faktor</field>
+        <field name="arch" type="xml">
+            <form string="Gefährdungsfaktoren">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="gefaehrdungsf" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- View für Begehung-->
+    
+    <record id="begehung_view_tree" model="ir.ui.view">
+        <field name="name">begehung.tree</field>
+        <field name="model">begehung</field>
+        <field name="arch" type="xml">
+            <tree string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
+                <field name="id" invisible="1"/>
+                <field name="nummer_eins"/>
+                <field name="name"/>
+                <field name="klasse"/>
+                <field name="abstellmassnahme"/>
+                <field name="abstellmassnahme_k"/>
+                
+<!--                 <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="begehung_view_form" model="ir.ui.view">
+        <field name="name">begehung.form</field>
+        <field name="model">begehung</field>
+        <field name="arch" type="xml">
+            <form string="begehung2">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id" invisible="1"/>
+                <field name="nummer_eins"/>
+                <field name="name"/>
+                <field name="klasse"/>
+                <field name="abstellmassnahme"/>
+                <field name="abstellmassnahme_k"/>
+                
+<!--                 <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/> -->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- View für Begehung zwei-->
+    
+    <record id="begehung_zwei_view_tree" model="ir.ui.view">
+        <field name="name">begehung_zwei.tree</field>
+        <field name="model">begehung_zwei</field>
+        <field name="arch" type="xml">
+            <tree string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name_zwei"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="begehung_zwei_view_form" model="ir.ui.view">
+        <field name="name">begehung_zwei.form</field>
+        <field name="model">begehung_zwei</field>
+        <field name="arch" type="xml">
+            <form string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id_zwei" invisible="1"/>
+                <field name="nummer_drei"/>
+                <field name="name_zwei"/>
+                <field name="klasse_zwei"/>
+                <field name="abstellmassnahme_zwei"/>
+                <field name="abstellmassnahme_k_zwei"/>
+                <field name="deadline_abs"/>
+                <field name="verantwortlich"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
     
     <!--Test Equipment History-->
     <record id="wepelo_equipment_history_view_tree" model="ir.ui.view">
@@ -362,6 +534,7 @@
         <field name="arch" type="xml">
             <search string="Partner">
                 <filter name="vendor" string="Vendor" domain="[('type', '=', 'vendor')]"/>
+                <field string="Name" name="name" filter_domain="[('name', 'ilike', self)]"/>
             </search>
         </field>
     </record>
@@ -407,6 +580,28 @@
             'default_customer_id': active_id,
         }</field>
     </record>
+    
+   <!-- <record id=".hr_equipment_view_form_inherit" model="ir.ui.view">
+        <field name="name">equipment.form.custom</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Equipments">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" invinsible="True">
+                        <button name="%(hr_equipment_request_action_from_equipment)d"
+                            type="action"
+                            class="oe_stat_button"
+                            context="{'default_company_id': company_id}"
+                            icon="fa-wrench">
+                            <field string="Maintenance" name="maintenance_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                 </sheet>
+            </form>
+        </field>
+    </record>-->
 
     <record id="res_partner_view_equipment_buttons" model="ir.ui.view">
         <field name="name">res.partner.view.equipment.buttons</field>
@@ -610,13 +805,13 @@
     
     <menuitem
         id="maintenance.menu_equipment_form"
-        name="Inventar"
+        name="Gefahrenquelle"
         parent="maintenance.menu_maintenance_title"
         action="maintenance.hr_equipment_action"
         groups="maintenance.group_equipment_manager,base.group_user"
         sequence="2"/>
 
-<!-- Inaktive Menüitems fff -->
+<!--Inaktive Menüitems-->
     
      <menuitem
         id="menu_wepelo_equipment_test"
@@ -680,14 +875,7 @@
         sequence="1"
         active="False"/>
 
-    <menuitem
-        id="maintenance.menu_maintenance_cat"
-        name="Objekt"
-        parent="menu_wepelo_master_data"
-        action="maintenance.hr_equipment_category_action"
-        sequence="2"/>
-
-    <menuitem
+     <menuitem
         id="maintenance.menu_maintenance_stage_configuration"
         name="Maintenance Stages"
         parent="maintenance.menu_maintenance_configuration"

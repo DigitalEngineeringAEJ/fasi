@@ -34,9 +34,10 @@ class ResPartner(models.Model):
         """Add sequence."""
         vals.update({"ref": self.env["ir.sequence"].next_by_code("res.partner.ref.seq")})
         return super(ResPartner, self).create(vals)
+                    
+    @api.constrains('zip')
+    def _check_zip(self):
+            if not self.zip:
+                raise exceptions.ValidationError(_("Leider wurde keine Postleitzahl angegeben")) 
             
-class EquipmentTypes(models.Model):
-    _name = 'equipment.types'
-    _description = 'Equipment Types'
 
-    name = fields.Char(string='Name')

@@ -149,6 +149,22 @@ class MailActivity(models.Model):
     is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
+    gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
+    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
+    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
+    folg_erf_m =fields.Selection([('1', 'Ja'),
+                               ('0', 'Nein')],
+                              string='Folgebegehung erforderlich?')
+    
+#     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
+                     
+#     @api.depends('gefahrenquellen_typ_id')
+#     def _dann_aktiv(self):
+#         for gefahrenquellen_typ_id in self:
+#             if self.gefahrenquellen_typ_id.id == '1':
+#                 self.check = True
+#             else:
+#                 self.check = False
 
     @api.onchange('operation_no_defects')
     def _onchange_operation_no_defects(self):
@@ -466,7 +482,9 @@ class MailActivity(models.Model):
             #Neue Felder per 26.12.2020 
             'equipment_id':self.equipment_id.id,
             'ref':self.ref,
-            'eichamt':self.eichamt
+            'begehung_id_feld':self.begehung_id_feld,
+            'begehung_id_feld_zwei':self.begehung_id_feld_zwei,
+            'folg_erf_m':self.folg_erf_m or False,
         }
         if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
             el_test_vals = {
@@ -821,12 +839,6 @@ class MailActivityType(models.Model):
         if self.equipment_test_type_id:
             self.name = self.equipment_test_type_id.display_name
             
-# Klasse für die Test-Geräte Bennin + S/N 
-class EquipmentTypes(models.Model):
-    _inherit = 'equipment.types'
-    
-    types_sn = fields.Char(string="S/N")
-
 
 class ScheduleActivityType(models.Model):
     _name = 'schedule.activity.type'
@@ -837,7 +849,7 @@ class ScheduleActivityType(models.Model):
         'ir.model', string='Document Model',
         index=True, related='mail_activity_id.res_model_id', compute_sudo=True, store=True, readonly=True)
     date_deadline = fields.Date('Due Date', index=True, required=True, default=fields.Date.context_today)
-    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type', ondelete='restrict', required=1)
+    activity_type_id = fields.Many2one('mail.activity.type', string='Activity Type', required=1)
     mail_activity_id = fields.Many2one('mail.activity', string="Mail Activity")
     equipment_service_id = fields.Many2one(related='mail_activity_id.equipment_id.equipment_service_id', string='Service strain')
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Mail Activity Types", compute="_compute_mail_activity_types")

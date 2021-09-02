@@ -2,7 +2,6 @@
 
 from odoo import api, fields, models, _
 
-
 class EquipmentProtocol(models.Model):
     _name = 'equipment.protocol'
     _inherit = ['mail.thread', 'equipment.mail.activity']
@@ -21,20 +20,20 @@ class EquipmentProtocol(models.Model):
     testing_device = fields.Char(string='Testing Device')
     testing_device_sn = fields.Char(string="S/N")
     manufacturer_id = fields.Many2one('res.partner', string='Manufacturer')
-    equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
+    equipment_id = fields.Many2one('maintenance.equipment', string='Gefahrenquelle')
     equipment_service_id = fields.Many2one('equipment.service', string='Equipment System')
     exhaust_measuring_device = fields.Selection(related='equipment_service_id.exhaust_measuring_device', store=True, readonly=True)
     mail_activity_id = fields.Many2one('mail.activity', string='Mail Activity')
     equipment_test_type_id = fields.Many2one(related='mail_activity_id.equipment_test_type_id', store=True, readonly=True)
     equipment_test_type = fields.Selection([
-        ('calibration_ei', _('Eichung')),
+        ('calibration_ei', _('Gefähdungsbeuteilung')),
         ('el_test', _('DGUV V3')),
-        ('routine_test', _('Stückprüfung')),
+        ('routine_test', _('Begehung')),
         ('calibration', _('Kalibrierung')),
         ('uvv', _('Betriebssicherheitsprüfung')),
         ('maintenance', _('Wartung')),
         ('repairs', _('Reparatur')),
-    ], compute="_compute_equipment_test_type", string='Test strain')
+    ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
     sensor_type = fields.Char(string='Sensor Type')
@@ -52,6 +51,12 @@ class EquipmentProtocol(models.Model):
     eichamt = fields.Char(string="Eichamt")
     is_downloaded = fields.Boolean(string="Downloaded", compute="_compute_downloaded_protocol")
     downloaded_user_ids = fields.Many2many('res.users', string="Downloaded users")
+    begehung_id_feld = fields.Many2many('begehung', string="Begehung", store=True)
+    begehungs_id = fields.Many2one('begehung', string="Test", store=True)
+    begehungs_id_test = fields.Many2one('begehung_zwei', store=True)
+    begehung_id_feld_zwei = fields.Many2many('begehung_zwei',  string="Begehung zwei", store=True)
+    folg_erf_m =fields.Selection(related='mail_activity_id.folg_erf_m',string='Folgebegehung erforderlich?') 
+    note_rel =fields.Html(related='mail_activity_id.note',string='Bemerkung')
 
     @api.depends('downloaded_user_ids')
     def _compute_downloaded_protocol(self):
