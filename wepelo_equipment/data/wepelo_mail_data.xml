@@ -5,13 +5,13 @@
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
             <field name="equipment_test_type">calibration_ei</field>
-            <field name="cycle_duration">360</field>
+            <field name="cycle_duration">365</field>
         </record>
 
         <record id="activity_begehung" model="equipment.test">
             <field name="display_name">Begehung</field>
             <field name="equipment_test_type">routine_test</field>
-            <field name="cycle_duration">360</field>
+            <field name="cycle_duration">365</field>
         </record>
 
         <record id="activity_schulung_unterweisung" model="equipment.test">
@@ -60,7 +60,7 @@
         </record>
         <record id="mail_activity_data_routine_test" model="mail.activity.type">
             <field name="name">Begehung</field>
-            <field name="delay_count">360</field>
+            <field name="delay_count">365</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
             <field name="equipment_test_type_id" ref="activity_begehung"/>
@@ -381,6 +381,7 @@
             <field name="number_increment">1</field>
             <field name="company_id" eval="False"/>
         </record>
+
               
         
     </data>
