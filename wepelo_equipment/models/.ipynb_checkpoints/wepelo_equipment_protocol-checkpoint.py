@@ -27,7 +27,7 @@ class EquipmentProtocol(models.Model):
     equipment_test_type_id = fields.Many2one(related='mail_activity_id.equipment_test_type_id', store=True, readonly=True)
     equipment_test_type = fields.Selection([
         ('calibration_ei', _('Gefähdungsbeuteilung')),
-        ('el_test', _('DGUV V3')),
+        ('el_test', _('Folgebegehung')),
         ('routine_test', _('Begehung')),
         ('calibration', _('Kalibrierung')),
         ('uvv', _('Betriebssicherheitsprüfung')),

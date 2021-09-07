@@ -155,6 +155,7 @@ class MailActivity(models.Model):
     folg_erf_m =fields.Selection([('1', 'Ja'),
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
+    folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
                      
@@ -485,6 +486,7 @@ class MailActivity(models.Model):
             'begehung_id_feld':self.begehung_id_feld,
             'begehung_id_feld_zwei':self.begehung_id_feld_zwei,
             'folg_erf_m':self.folg_erf_m or False,
+            'folg_beg_ids':self.folg_beg_ids,
         }
         if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
             el_test_vals = {
@@ -566,24 +568,24 @@ class MailActivity(models.Model):
                     'month_less': False,
                 })
 
-        if self.equipment_test_type == 'el_test' or (self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device in ['diesel', 'petrol']):
-            if self.equipment_test_type == 'el_test':
-                report = self.env.ref('wepelo_equipment.wepelo_equipment_protocol').render_qweb_pdf(protocol.ids[0])
-            if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device in ['diesel', 'petrol']:
-                report = self.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').render_qweb_pdf(protocol.ids[0])
-            filename = protocol.order_date.strftime('%y_%m_%d')+'_'+self.equipment_id.serial_no+'_'+self.activity_type_id.name+'.pdf'
-            attachment = self.env['ir.attachment'].create({
-                'name': filename,
-                'type': 'binary',
-                'datas': base64.b64encode(report[0]),
-                'store_fname': filename,
-                'res_model': 'maintenance.equipment',
-                'res_id': self.equipment_id.id,
-                'mimetype': 'application/x-pdf'
-            })
-            self.equipment_id.message_post(body=_('%s Completed (originally assigned to %s)') % (self.activity_type_id.name, self.user_id.name,), attachment_ids=[attachment.id])
-        else:
-            self.equipment_id.message_post(body=_('%s Completed (originally assigned to %s)') % (self.activity_type_id.name, self.user_id.name,))
+#         if self.equipment_test_type == 'el_test' or (self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device in ['diesel', 'petrol']):
+#             if self.equipment_test_type == 'el_test':
+#                 report = self.env.ref('wepelo_equipment.wepelo_equipment_protocol').render_qweb_pdf(protocol.ids[0])
+#             if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device in ['diesel', 'petrol']:
+#                 report = self.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').render_qweb_pdf(protocol.ids[0])
+#             filename = protocol.order_date.strftime('%y_%m_%d')+'_'+self.equipment_id.serial_no+'_'+self.activity_type_id.name+'.pdf'
+#             attachment = self.env['ir.attachment'].create({
+#                 'name': filename,
+#                 'type': 'binary',
+#                 'datas': base64.b64encode(report[0]),
+#                 'store_fname': filename,
+#                 'res_model': 'maintenance.equipment',
+#                 'res_id': self.equipment_id.id,
+#                 'mimetype': 'application/x-pdf'
+#             })
+#             self.equipment_id.message_post(body=_('%s Completed (originally assigned to %s)') % (self.activity_type_id.name, self.user_id.name,), attachment_ids=[attachment.id])
+#         else:
+#             self.equipment_id.message_post(body=_('%s Completed (originally assigned to %s)') % (self.activity_type_id.name, self.user_id.name,))
 
         if self.equipment_test_type != 'repairs':
             next_activity = self.copy()
@@ -823,8 +825,45 @@ class MailActivity(models.Model):
                     })
                     activity_message.attachment_ids = message_attachments
                 messages |= activity_message
+                begehung_id_feld_zwei = activity.mapped('begehung_id_feld_zwei').filtered(
+                lambda x: x.folg_erf_m == 'Ja')
+            if len(begehung_id_feld_zwei)> 0:
+                #activity_after_days = activity.equipment_test_type_id.cycle_duration
+                schedule_activity_type = self.env['mail.activity.type'].search(
+                    [('id', '=',  self.env.ref('wepelo_equipment.mail_activity_data_el_test').id)])
+                new_act = self.create({
+                    'planning': 'basic_plan', 'equipment_test_type': 'el_test',
+                    'activity_type_id': schedule_activity_type.id,
+                    'summary': activity.summary or False,
+                    'automated': True,
+                    'note': activity.note or '',
+                    'date_deadline': activity.date_deadline,
+                    'res_model_id': activity.res_model_id.id,
+                    'res_model': activity.res_model,
+                    'user_id': activity.user_id.id or activity.env.uid,
+                    'res_id': activity.res_id,
+                })
+                vals = []
+                for begehung_id in activity.begehung_id_feld_zwei:
+                    if begehung_id.folg_erf_m == 'Ja':
+                        val = {
+                            'nummer_vier': begehung_id.nummer_drei,
+                            'name_vier': begehung_id.name_zwei,
+                            'klasse_drei': begehung_id.klasse_zwei,
+                            'abstellmassnahme_drei': begehung_id.abstellmassnahme_zwei,
+                            'abstellmassnahme_k_drei': begehung_id.abstellmassnahme_k_zwei,
+                            'deadline_abs_ref': begehung_id.deadline_abs,
+                            'verantwortlich_ref' : begehung_id.verantwortlich.id,
+                            'id_ref': new_act.id,
+                        }
+                        vals.append((0, 0, val))
+                new_act.write({'folg_beg_ids': vals})
         next_activities = self.env['mail.activity'].create(next_activities_values)
         self.unlink()  # will unlink activity, dont access `self` after that
+        sequence = self.env['ir.sequence'].search([('code', '=', 'begehung.eins')])
+        sequence.number_next_actual = 1
+        sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
+        sequence_zwei.number_next_actual = 1
         return messages, next_activities
 
 

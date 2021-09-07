@@ -448,6 +448,52 @@
         </field>
     </record>
     
+    <!-- View für Folgebegehung-->
+    
+    <record id="folgebegehung_view_tree" model="ir.ui.view">
+        <field name="name">folgebegehung.tree</field>
+        <field name="model">folgebegehung</field>
+        <field name="arch" type="xml">
+            <tree string="3. Kontrolle der Wirksamkeit">
+                <field name="id_ref" invisible="1"/>
+                <field name="nummer_vier"/>
+                <field name="name_vier"/>
+                <field name="klasse_drei"/>
+                <field name="abstellmassnahme_drei"/>
+                <field name="abstellmassnahme_k_drei"/>
+                <field name="deadline_abs_ref"/>
+                <field name="verantwortlich_ref"/>
+                <field name="wirksam"/>
+                <field name="w_folg_erf"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="folgebegehung_view_form" model="ir.ui.view">
+        <field name="name">folgebegehung.form</field>
+        <field name="model">folgebegehung</field>
+        <field name="arch" type="xml">
+            <form string="3. Kontrolle der Wirksamkeit">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id_ref" invisible="1"/>
+                <field name="nummer_vier"/>
+                <field name="name_vier"/>
+                <field name="klasse_drei"/>
+                <field name="abstellmassnahme_drei"/>
+                <field name="abstellmassnahme_k_drei"/>
+                <field name="deadline_abs_ref"/>
+                <field name="verantwortlich_ref"/>
+                <field name="wirksam"/>
+                <field name="w_folg_erf"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
     
     <!--Test Equipment History-->
     <record id="wepelo_equipment_history_view_tree" model="ir.ui.view">

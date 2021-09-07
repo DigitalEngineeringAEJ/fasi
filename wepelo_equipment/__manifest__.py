@@ -26,6 +26,7 @@
         'report/wepelo_equipment_protocol_rep_report.xml',
         'report/wepelo_equipment_protocol_rep_prot_report.xml',
         'report/wepelo_maintenance_equipment_strichcode.xml',
+        'report/folgebegehung_safety_master.xml',
         'views/menu.xml',
         'views/wepelo_equipment_protocol_views.xml',
         'views/wepelo_repair_view.xml',
