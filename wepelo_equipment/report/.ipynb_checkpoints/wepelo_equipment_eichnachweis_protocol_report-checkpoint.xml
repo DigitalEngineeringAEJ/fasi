@@ -18,7 +18,7 @@
                                     <span t-field="o.equipment_id.category_id"/>
                                 </td>
                             </tr>
-                              <t t-if="o.mail_activity_id.schedule_date is False">
+                            <t t-if="o.mail_activity_id.schedule_date is False">
                              <tr>
                                 <td >
                                     <strong>Datum: </strong>
@@ -137,7 +137,7 @@
             <field name="report_file">wepelo_equipment.report_equipment_eichnachweis_protocol</field>
             <field name="print_report_name">(object._get_report_filename())</field>
             <field name="binding_model_id" ref="model_equipment_protocol"/>
-            <field name="paperformat_id" ref="wepelo_equipment.paperformat_begehung" />
+            <field name="paperformat_id" ref="wepelo_equipment.paperformat_begehung"/>
             <field name="binding_type">report</field>
         </record>
     
