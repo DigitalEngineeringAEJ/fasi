@@ -6,11 +6,11 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <div class="col-12">
+<!--                         <div class="col-12"> -->
                            <h1>
                                 Begehungsprotokoll 
                             </h1>
-                        </div>
+<!--                         </div> -->
                         <table class="table table-borderless table-sm mt16 ml16">
                           <tr>
                                 <td style="width:200px;">
@@ -20,12 +20,12 @@
                                     <h5><span t-field="o.equipment_id.category_id"/></h5>
                                 </td>
                             </tr>
-                            <tr>
+                             <tr>
                                 <td style="width:200px;">
                                     <strong>Datum: </strong>
                                 </td>
                                 <td>
-                                    <h5><span t-field="o.mail_activity_id.schedule_date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/></h5>
+                                    <h5><span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -46,11 +46,9 @@
                                     <t t-esc="o.contractor_id.partner_id.street"/>, <t t-esc="o.contractor_id.partner_id.street2"/> <t t-esc="o.contractor_id.partner_id.zip"/>, <t t-esc="o.contractor_id.partner_id.city"/>
                                 </td>
                             </tr>
-                        <td style="width:200px; style=color: black;">
-                              <div style="color: black;"><strong style="color: black;"><caption style="color: black;">1. Festgestellte Mängel, die gleich behoben werden konnten:</caption> </strong></div>
-                            </td>
-                            <table class="table table-bordered table-sm mt16 ml16">
-                            <tr>
+                            <table style="table-layout:fixed; font-size:8px" class="table table-bordered table-sm mt16 ml16">
+                                <thead>1. Festgestellte Mängel, die gleich behoben werden konnten: </thead>
+                            <tr style="font-size:10px">
                             <th scope="col">Nr. </th>
                             <th scope="col">Name </th>
                             <th scope="col">Klassifizierung </th>
@@ -65,10 +63,8 @@
                                  <td><span t-esc="line.abstellmassnahme_k"/></td>
                             </tr>
                         </table>
-                         <td style="width:200px;">
-                              <div style="color: black;"><strong><caption>2. Mängel, die nicht sofort behoben werden können:</caption> </strong></div>
-                            </td>
-                            <table class="table table-bordered table-sm mt16 ml16">
+                            <table style="table-layout:fixed; font-size:10px" class="table table-bordered table-sm mt16 ml16">
+                                <thead>2. Mängel, die nicht sofort behoben werden können: </thead>
                             <tr>
                             <th scope="col">Nr.</th>
                             <th scope="col">Name</th>
@@ -90,6 +86,7 @@
                                  <td><span t-esc="line.folg_erf_m"/></td>
                             </tr>
                         </table>
+                            <p style="page-break-before:always;"></p>
                             <tr>
                           <div>
                                 <td style="width:200px;">
@@ -105,6 +102,23 @@
         </t>
     </template>
 
+    <record id="paperformat_begehung" model="report.paperformat">
+    <field name="name">Format für Begehung</field>
+    <field name="default" eval="False"/>
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <field name="margin_top">37.5</field>
+    <field name="margin_bottom">30</field>
+    <field name="margin_left">7</field>
+    <field name="margin_right">7</field>
+    <field name="header_line" eval="True" />
+    <field name="header_spacing">35</field>
+    <field name="dpi">90</field>
+    </record>
+    
+    
     <record id="wepelo_equipment_eichnachweis_protocol" model="ir.actions.report">
             <field name="name">Begehung</field>
             <field name="model">equipment.protocol</field>
@@ -113,7 +127,8 @@
             <field name="report_file">wepelo_equipment.report_equipment_eichnachweis_protocol</field>
             <field name="print_report_name">(object._get_report_filename())</field>
             <field name="binding_model_id" ref="model_equipment_protocol"/>
+            <field name="paperformat_id" ref="wepelo_equipment.paperformat_begehung" />
             <field name="binding_type">report</field>
         </record>
-
+    
 </odoo>
