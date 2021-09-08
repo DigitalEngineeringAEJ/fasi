@@ -58,6 +58,8 @@ class EquipmentTypes(models.Model):
     
     sequence_g = fields.Integer(string='Sequenz')
     
+    gefaehrdungsf_id = fields.One2many('gefahren.faktor', 'gefaehrdungsf')
+    
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
     def _compute_gef_beurteilung_e(self):
         for record in self:
