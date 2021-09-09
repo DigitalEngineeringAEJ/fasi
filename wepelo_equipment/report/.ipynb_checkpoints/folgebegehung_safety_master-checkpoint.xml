@@ -6,50 +6,58 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <div class="col-12">
                            <h1>
                                 Folgebegehungsprotokoll 
                             </h1>
-                        </div>
-                        <table class="table table-borderless table-sm mt16 ml16">
+                        <table style="font-size:16px" class="table table-borderless table-sm mt16 ml16">
                           <tr>
-                                <td style="width:200px;">
+                                <td>
                                     <strong>Arbeitsbereich: </strong>
                                 </td>
                                 <td>
-                                    <h5><span t-field="o.equipment_id.category_id"/></h5>
+                                    <span t-field="o.equipment_id.category_id"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="width:200px;">
+                             <t t-if="o.mail_activity_id.schedule_date is False">
+                             <tr>
+                                <td >
                                     <strong>Datum: </strong>
                                 </td>
                                 <td>
-                                    <h5><span t-field="o.mail_activity_id.schedule_date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/></h5>
+                                    <span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
                                 </td>
                             </tr>
+                            </t>
+                            <t t-if="o.mail_activity_id.schedule_date is not False">
+                             <tr>
+                                <td >
+                                    <strong>Datum: </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.mail_activity_id.schedule_date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+                                </td>
+                            </tr>
+                            </t>
                             <tr>
-                                <td style="width:200px;">
+                                <td>
                                     <strong>Kunde: </strong>
                                 </td>
                                 <td>
-                                    <h5><span t-field="o.customer_id"/></h5>
+                                    <span t-field="o.customer_id"/>,
                                     <t t-esc="o.customer_id.street"/>, <t t-esc="o.customer_id.street2"/> <t t-esc="o.customer_id.zip"/>, <t t-esc="o.customer_id.city"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width:200px;">
+                                <td>
                                     <strong>Contractor: </strong>
                                 </td>
                                 <td>
-                                    <h5><span t-field="o.contractor_id.partner_id"/></h5>
+                                    <span t-field="o.contractor_id.partner_id"/>
                                     <t t-esc="o.contractor_id.partner_id.street"/>, <t t-esc="o.contractor_id.partner_id.street2"/> <t t-esc="o.contractor_id.partner_id.zip"/>, <t t-esc="o.contractor_id.partner_id.city"/>
                                 </td>
                             </tr>
-                        <td style="width:200px; style=color: black;">
-                              <div style="color: black;"><strong style="color: black;"><caption style="color: black;">3. Kontrolle der Wirksamkeit:</caption> </strong></div>
-                            </td>
-                            <table class="table table-bordered table-sm mt16 ml16">
+                         <table style="table-layout:fixed; font-size:10px" class="table table-bordered table-sm mt16 ml16">
+                                <thead>3. Kontrolle der Wirksamkeit</thead>
                             <tr>
                             <th scope="col">Nr. </th>
                             <th scope="col">Name </th>
@@ -73,9 +81,10 @@
                                  <td><span t-esc="line.w_folg_erf"/></td>
                             </tr>
                         </table>
+                             <p style="page-break-before:always;"></p>
                             <tr>
                           <div>
-                                <td style="width:200px;">
+                                <td>
                                    <strong>Bemerkung : </strong>
                                    <span t-field="o.note_rel"/>
                                 </td>
@@ -96,6 +105,7 @@
             <field name="report_file">wepelo_equipment.report_folgebegehung</field>
             <field name="print_report_name">(object._get_report_filename())</field>
             <field name="binding_model_id" ref="model_equipment_protocol"/>
+            <field name="paperformat_id" ref="wepelo_equipment.paperformat_begehung"/>
             <field name="binding_type">report</field>
         </record>
 

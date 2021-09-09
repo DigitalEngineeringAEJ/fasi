@@ -133,8 +133,8 @@ class CustomerPortal(CustomerPortal):
             customer_ids = request.env['res.partner'].sudo().search(['|', ('name', 'ilike', global_search),
                                                                      ('ref', 'ilike', global_search)])
             domain += ['|', '|', ('name', 'ilike', global_search), ('serial_no', 'ilike', global_search), ('customer_id', 'in', customer_ids.ids)]
-        # archive groups - Default Group By 'create_date'
-        archive_groups = self._get_archive_groups('maintenance.equipment', domain)
+# archive groups - Default Group By 'create_date'
+#         archive_groups = self._get_archive_groups('maintenance.equipment', domain)
         if date_begin and date_end:
             domain += [('create_date', '>', date_begin), ('create_date', '<=', date_end)]
 
@@ -180,7 +180,7 @@ class CustomerPortal(CustomerPortal):
             'equipments': equipments,
             'grouped_equipments': grouped_equipments,
             'page_name': 'equipment',
-            'archive_groups': archive_groups,
+#             'archive_groups': archive_groups,
             'searchbar_filters': searchbar_filters,
             'searchbar_groupby': searchbar_groupby,
             'searchbar_inputs': searchbar_inputs,
@@ -289,8 +289,8 @@ class CustomerPortal(CustomerPortal):
                 search_domain = OR([search_domain, [('customer_id', 'in', customer_ids.ids)]])
             domain += search_domain
 
-        # archive groups - Default Group By 'create_date'
-        archive_groups = self._get_archive_groups('equipment.protocol', domain)
+# archive groups - Default Group By 'create_date'
+#         archive_groups = self._get_archive_groups('equipment.protocol', domain)
         # domain += [('technician_user_id', '=', request.uid)]
         if date_begin and date_end:
             domain += [('create_date', '>', date_begin), ('create_date', '<=', date_end)]
@@ -325,7 +325,7 @@ class CustomerPortal(CustomerPortal):
             'protocols': protocols,
             'page_name': 'protocol',
             'grouped_protocols': grouped_protocols,
-            'archive_groups': archive_groups,
+#             'archive_groups': archive_groups,
             'searchbar_filters': searchbar_filters,
             'searchbar_groupby': searchbar_groupby,
             'searchbar_inputs': searchbar_inputs,
@@ -499,19 +499,19 @@ class CustomerPortal(CustomerPortal):
             with zipfile.ZipFile(stream, 'w') as archive:
                 for protocol in protocols:
                     if protocol.equipment_test_type == 'el_test' and protocol.mail_activity_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.maintenance_request_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'maintenance' and protocol.mail_activity_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'calibration_ei' and protocol.mail_activity_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_hebebuhne"):
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id  == request.env.ref("wepelo_equipment.equipment_tore"):
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'routine_test' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_bremsprufstand"):
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_bremsprufstand_protocol').sudo().render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_bremsprufstand_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     if pdf:
                         if protocol:
                             protocol.downloaded_user_ids = [(4, request._uid)]
