@@ -149,13 +149,13 @@ class MailActivity(models.Model):
     is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
     is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
     is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
-    gefahrenquellen_typ_id_feld = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
     begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
     begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
     folg_erf_m =fields.Selection([('1', 'Ja'),
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
+    gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
     
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
                      
@@ -487,6 +487,7 @@ class MailActivity(models.Model):
             'begehung_id_feld_zwei':self.begehung_id_feld_zwei,
             'folg_erf_m':self.folg_erf_m or False,
             'folg_beg_ids':self.folg_beg_ids,
+            'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
         }
         if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
             el_test_vals = {
