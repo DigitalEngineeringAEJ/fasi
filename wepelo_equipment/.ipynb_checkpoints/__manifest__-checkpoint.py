@@ -5,9 +5,9 @@
     'version': '0.12',
     'category': 'Services',
     'author': "JADESi",
-    'description': """Anwendung zu Organisation von Tätigkeiten für den Arbeitsschutz""",
+    'description': """Anwendung für die Arbeitsabläufe in der Arbeitssicherheit""",
     'depends': ['maintenance', 'portal'],
-    'summary': 'Application for organizing activities for occupational safety',
+    'summary': 'Anwendung für die Arbeitsabläufe in der Arbeitssicherheit',
     'website': 'JADESi',
     'data': [
         'security/ir.model.access.csv',
