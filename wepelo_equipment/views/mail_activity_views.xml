@@ -182,6 +182,12 @@
                             <field name="gef_beurteilung_e" force_save="1"/>
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung"/>
+                            <field name="klasse_gef" string="Klassifizierung"/>
+                            <field name="abstellmassnahme_gef" string="Abstellmaßnahme"/>
+                            <field name="abstellmassnahme_gef" string="Abs Klassifizierung"/>
+                            <field name="deadline_abs_gef" string="Deadline Abstellmaßnahme"/>
+                            <field name="verantwortlich_gef" string="Verantwortlich"/>
+                            <field name="folg_beg_gef" string="Folgebegehung erforderlich?"/>
                             </tree>
                         </field>
                         </page>
