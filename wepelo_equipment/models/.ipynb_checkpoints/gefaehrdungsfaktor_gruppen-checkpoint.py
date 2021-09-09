@@ -80,14 +80,14 @@ class EquipmentTypes(models.Model):
                                ('Erste-Hilfe- und Feuerlöscheinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
                                 string='Klassifizierung')
     
-    abstellmassnahme_gef = fields.Text(string="Abstellmaßnahme", compute="")
     
-    abstellmassnahme_gef = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
+    abstellmassnahme_gef_kla = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
                                            ('Sicherheitstechnische Maßnahmen (AA)', 'Sicherheitstechnische Maßnahmen (AA)'),
                                            ('Organisatorische Maßnahmen (A)', 'Organisatorische Maßnahmen (A)'),
                                            ('Nutzung PSA (BBB)', 'Nutzung PSA (BBB)'),
                                            ('Verhaltensbezogene Maßnahmen (BB)', 'Verhaltensbezogene Maßnahmen (BB)')], 
                                             string='Abs Klassifizierung')
+    abs_gef = fields.Char(string="Abstellmaßnahme")
     
     deadline_abs_gef = fields.Date(string='Deadline Abstellmaßnahme')
     
@@ -96,6 +96,8 @@ class EquipmentTypes(models.Model):
     folg_beg_gef =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
                               string='Folgebegehung erforderlich?')
+    
+    equipment_protocol_id = fields.Many2one('equipment.protocol')
     
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
     def _compute_gef_beurteilung_e(self):

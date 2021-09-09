@@ -171,7 +171,7 @@
                     
                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
                             <page string="Gefahrenquelle">
-                            <field name= 'gefahrenquellen_typ_id_feld'>
+                            <field name= 'gefaehrdunsfaktor_ids'>
                             <tree editable="bottom">
                             <field name = "sequence_g" widget="handle"/>
                             <field name="gefahrenquellen_typ_id" /> 
@@ -183,8 +183,8 @@
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung"/>
                             <field name="klasse_gef" string="Klassifizierung"/>
-                            <field name="abstellmassnahme_gef" string="Abstellmaßnahme"/>
-                            <field name="abstellmassnahme_gef" string="Abs Klassifizierung"/>
+                            <field name="abs_gef"/>
+                            <field name="abstellmassnahme_gef_kla" string="Abs Klassifizierung"/>
                             <field name="deadline_abs_gef" string="Deadline Abstellmaßnahme"/>
                             <field name="verantwortlich_gef" string="Verantwortlich"/>
                             <field name="folg_beg_gef" string="Folgebegehung erforderlich?"/>

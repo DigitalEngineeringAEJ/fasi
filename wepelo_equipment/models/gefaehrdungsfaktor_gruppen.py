@@ -20,8 +20,6 @@ class EquipmentTypes(models.Model):
     
     gefaehrdungsf_name = fields.Many2one('gefahren.faktor', string="Gefährdungsfaktor")
     
-    sequence_g = fields.Integer(string='Sequenz')
-    
     gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefährdungsfaktor Gruppe") 
     
     gefahrenquellen_typ_beschreibung = fields.Text(string="Beschreibung")
@@ -45,7 +43,7 @@ class EquipmentTypes(models.Model):
                                           ('status_w_4', 'hoch')], 
                                          string='Eintrittswahrscheinlichkeit')
     
-    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'),
+    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankungen'),
                                           ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),
                                           ('status_a_3', 'schwere Verletzungen oder Erkrankungen'),
                                           ('status_a_4', 'möglicher Tod, Katastrophe')], 
@@ -80,14 +78,14 @@ class EquipmentTypes(models.Model):
                                ('Erste-Hilfe- und Feuerlöscheinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
                                 string='Klassifizierung')
     
-    abstellmassnahme_gef = fields.Text(string="Abstellmaßnahme", compute="")
     
-    abstellmassnahme_gef = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
+    abstellmassnahme_gef_kla = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
                                            ('Sicherheitstechnische Maßnahmen (AA)', 'Sicherheitstechnische Maßnahmen (AA)'),
                                            ('Organisatorische Maßnahmen (A)', 'Organisatorische Maßnahmen (A)'),
                                            ('Nutzung PSA (BBB)', 'Nutzung PSA (BBB)'),
                                            ('Verhaltensbezogene Maßnahmen (BB)', 'Verhaltensbezogene Maßnahmen (BB)')], 
                                             string='Abs Klassifizierung')
+    abs_gef = fields.Char(string="Abstellmaßnahme")
     
     deadline_abs_gef = fields.Date(string='Deadline Abstellmaßnahme')
     
@@ -96,6 +94,8 @@ class EquipmentTypes(models.Model):
     folg_beg_gef =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
                               string='Folgebegehung erforderlich?')
+    
+    equipment_protocol_id = fields.Many2one('equipment.protocol')
     
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
     def _compute_gef_beurteilung_e(self):

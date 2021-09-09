@@ -290,16 +290,30 @@
         </field>
     </record>
 
-    <!--Equipment Types Views-->
+    <!--Gefahrenquellen view-->
     <record id="wepelo_equipment_types_view_tree" model="ir.ui.view">
         <field name="name">wepelo.equipment.types.tree</field>
         <field name="model">equipment.types</field>
         <field name="arch" type="xml">
-            <tree string="Types">
+            <tree string="Gefährdungsbeurteilung">
                 <field name="name"/>
                 <field name="types_sn"/>
                 <field name="gefaehrdungsf_name"/>
                 <field name="id"/>
+                <field name="gefahrenquellen_typ_id"/>
+                <field name="gefahrenquellen_typ_beschreibung"/>
+                <field name="gefahrenquellen_typ_risiko"/>
+                <field name="gefahrenquellen_typ_beschreibung_risikominderung"/>
+                <field name="gef_beurteilung_w"/>
+                <field name="gef_beurteilung_a"/>
+                <field name="gef_beurteilung_e"/>
+                <field name="mail_activity_id"/>
+                <field name="klasse_gef"/>
+                <field name="abstellmassnahme_gef_kla"/>
+                <field name="abs_gef"/>
+                <field name="deadline_abs_gef"/>
+                <field name="verantwortlich_gef"/>
+                <field name="folg_beg_gef"/>
             </tree>
         </field>
     </record>
@@ -308,14 +322,28 @@
         <field name="name">wepelo.equipment.types.form</field>
         <field name="model">equipment.types</field>
         <field name="arch" type="xml">
-            <form string="Types">
+            <form string="Gefährdungsbeurteilung">
                 <sheet>
                     <group>
                         <group>
-                            <field name="name" required="1"/>
-                            <field name="types_sn" required="1"/>
-                            <field name="gefaehrdungsf_name" required="1"/>
+                            <field name="name"/>
+                            <field name="types_sn"/>
+                            <field name="gefaehrdungsf_name"/>
                             <field name="id" required="1"/>
+                            <field name="gefahrenquellen_typ_id"/>
+                            <field name="gefahrenquellen_typ_beschreibung"/>
+                            <field name="gefahrenquellen_typ_risiko"/>
+                            <field name="gefahrenquellen_typ_beschreibung_risikominderung"/>
+                            <field name="gef_beurteilung_w"/>
+                            <field name="gef_beurteilung_a"/>
+                            <field name="gef_beurteilung_e"/>
+                            <field name="mail_activity_id"/>
+                            <field name="klasse_gef"/>
+                            <field name="abstellmassnahme_gef_kla"/>
+                            <field name="abs_gef"/>
+                            <field name="deadline_abs_gef"/>
+                            <field name="verantwortlich_gef"/>
+                            <field name="folg_beg_gef"/>
                         </group>
                     </group>
                 </sheet>
@@ -380,7 +408,7 @@
         <field name="name">begehung.form</field>
         <field name="model">begehung</field>
         <field name="arch" type="xml">
-            <form string="begehung2">
+            <form string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
                 <sheet>
                     <group>
                         <group>
