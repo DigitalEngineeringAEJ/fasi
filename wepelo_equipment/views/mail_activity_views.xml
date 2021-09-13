@@ -360,7 +360,7 @@
                             <field name="note"  width="50%"/>
                         </tree>
                     </field>
-                    <strong attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}">(zutreffendes ankreuzen, wenn Nachprüfung erforderlich zusätzlich ankreuzen!)
+<!--                     <strong attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}">(zutreffendes ankreuzen, wenn Nachprüfung erforderlich zusätzlich ankreuzen!)
                         <br></br>
                     </strong>
                     <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_tore)d)]}">
@@ -439,7 +439,7 @@
                             <label for="is_result_exam_no_defect"
                                    style="display: inline-block;font-weight:normal;"/>
                         </div>
-                    </group>
+                    </group> -->
                     <field name="note" placeholder="Log a note..."/>
                     <footer>
                         <button string="Finished Test And Generate Protocol" name="action_generate_protocol" type="object" class="btn-primary" attrs="{'invisible': ['|', '|', ('equipment_protocol_id', '!=', False), ('test_fail', '=', True), ('active', '=', False)]}"/>
