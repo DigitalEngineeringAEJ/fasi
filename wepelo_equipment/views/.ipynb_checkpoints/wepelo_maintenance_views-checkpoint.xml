@@ -282,7 +282,6 @@
                         </group>
                         <group attrs="{'invisible': [('is_maintenance', '=', False)]}">
                             <field name="is_maintenance" invisible="1"/>
-                            <field name="exhaust_measuring_device" widget="selection"/>
                         </group>
                     </group>
                 </sheet>
