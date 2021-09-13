@@ -1329,7 +1329,7 @@ msgstr "Servicestamm"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__equipment_test_type_id
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity_type__equipment_test_type_id
 msgid "Equipment Test"
-msgstr "Gerätetest"
+msgstr "Aktivität"
 
 #. module: wepelo_equipment
 #: model:ir.model,name:wepelo_equipment.model_equipment_types

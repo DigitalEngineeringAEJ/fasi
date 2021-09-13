@@ -38,7 +38,6 @@ class MailActivity(models.Model):
     customer_base = fields.Char(related='customer_id.name', readonly=True) # Kundenstamm
     equipment_test_type_id = fields.Many2one(related='activity_type_id.equipment_test_type_id', store=True, readonly=False)
     equipment_test_type = fields.Selection(related='activity_type_id.equipment_test_type_id.equipment_test_type', store=True, readonly=True)
-#     exhaust_measuring_device = fields.Selection(related='equipment_id.equipment_service_id.exhaust_measuring_device', store=True)
     test_equipment_ids = fields.Many2many(related="equipment_id.equipment_service_id.test_equipment_ids", string='Test Equipments')
     equipment_protocol_id = fields.Many2one('equipment.protocol', string="Protocol", ondelete="set null")
     test_completed = fields.Boolean(string='Test Completed', default=False)
