@@ -138,7 +138,6 @@
                             <field name="activity_type_id" required="1" options="{'no_create': True, 'no_open': True}"/>
                             <field name="equipment_test_type_id" invisible="1"/>
                             <field name="equipment_test_type" invisible="1"/>
-                            <field name="exhaust_measuring_device" invisible="1"/>
                             <field name="equipment_protocol_id" invisible="1"/>
                             <field name="category_id" invisible="1"/>
                            <!-- <field name="summary" placeholder="e.g. Discuss proposal"/> -->
