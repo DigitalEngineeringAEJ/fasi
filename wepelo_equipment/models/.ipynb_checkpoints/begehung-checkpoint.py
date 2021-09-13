@@ -118,7 +118,7 @@ class Folgebegehung(models.Model):
     
     sequence_ref= fields.Integer(string='Sequenz z')
     
-    nummer_vier = fields.Float(string='Nr')
+    nummer_vier = fields.Char(string='Nr')
     
     name_vier = fields.Text(string='Name')
     

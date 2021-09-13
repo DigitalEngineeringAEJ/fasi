@@ -7,7 +7,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                            <h1>
-                                Begehungsprotokoll 
+                                Begehung 
                             </h1>
                         <table style="font-size:16px" class="table table-borderless table-sm mt16 ml16">
                           <tr>
@@ -40,7 +40,7 @@
                             </t>
                             <tr>
                                 <td >
-                                    <strong>Customer: </strong>
+                                    <strong>Kunde: </strong>
                                 </td>
                                 <td>
                                     <span t-field="o.customer_id"/>,
@@ -49,7 +49,7 @@
                             </tr>
                             <tr>
                                 <td >
-                                    <strong>Contractor: </strong>
+                                    <strong>Bearbeiter: </strong>
                                 </td>
                                 <td>
                                     <span t-field="o.contractor_id.partner_id"/>

@@ -274,8 +274,8 @@
                         </page>
                     </notebook>
                     </group>
-                    <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
-                        <group>
+<!--                     <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
+                         <group>
                             <field name="exhaust_hose_probe" class="ml16"/>
                             <field name="cables_hose_connections" class="ml16"/>
                             <field name="exhaust_measuring_device" invisible="1"/>
@@ -294,8 +294,8 @@
                         </group>
                     </group>
                     <group string="Exhaust Measuring Device Petrol" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
-                        <group>
-                            <field name="pre_filter"/>
+                        <group> -->
+                            <!--<field name="pre_filter"/>
                             <field name="coarse_filter"/>
                             <field name="test_o2_sensor"/>
                         </group>
@@ -341,7 +341,7 @@
                             <field name="value_after_adjustment_co2"/>
                             <field name="value_after_adjustment_c3"/>
                         </group>
-                    </group>
+                    </group> -->
                 </sheet>
             </form>
         </field>
