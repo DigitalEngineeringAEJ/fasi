@@ -391,8 +391,6 @@ class MailActivity(models.Model):
             'serial_no': self.equipment_id.serial_no,
             'equipment_service_id': self.equipment_id.equipment_service_id.id,
             'signature': self.signature or False,
-            'visual_inspection': self.visual_inspection,
-            'functional_test': self.functional_test,
             #Neue Felder per 26.12.2020 
             'equipment_id':self.equipment_id.id,
             'ref':self.ref,
@@ -778,6 +776,8 @@ class MailActivity(models.Model):
         sequence.number_next_actual = 1
         sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
         sequence_zwei.number_next_actual = 1
+        sequence_gef_beurteilung = self.env['ir.sequence'].search([('code', '=', 'gef.beurteilung')])
+        sequence_gef_beurteilung.number_next_actual = 1
         return messages, next_activities
 
 
