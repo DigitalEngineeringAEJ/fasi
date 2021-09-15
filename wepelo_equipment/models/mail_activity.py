@@ -263,77 +263,66 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
         }
-        if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
-            el_test_vals = {
-                'testing_device': self.testing_device_name,
-                'testing_device_sn': self.testing_device_sn,
-                'type': 'Infralyt Smart',
-                'voltage_u_in_volts_v': self.voltage_u_in_volts_v,
-                'frequency_f_in_heart_hz': self.frequency_f_in_heart_hz,
-                'protection_class': self.protection_class,
-                'tested_din_vde_0701_0702': self.tested_din_vde_0701_0702,
-                'rpe': self.rpe,
-                'operator_rpe': self.operator_rpe,
-                'riso_m': self.riso_m,
-                'operator_riso': self.operator_riso,
-                'iea_ma': self.iea_ma,
-                'operator_iea': self.operator_iea,
-                'evaluation': self.evaluation,
-            }
-            protocol_vals.update(el_test_vals)
-        if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'diesel':
-            el_test_vals = {
-                'testing_device': self.testing_device_name,
-                'testing_device_sn': self.testing_device_sn,
-                'type': 'Opacylit 1030',
-                'voltage_u_in_volts_v': self.voltage_u_in_volts_v,
-                'frequency_f_in_heart_hz': self.frequency_f_in_heart_hz,
-                'protection_class': self.protection_class,
-                'tested_din_vde_0701_0702': self.tested_din_vde_0701_0702,
-                'rpe': self.rpe,
-                'operator_rpe': self.operator_rpe,
-                'riso_m': self.riso_m,
-                'operator_riso': self.operator_riso,
-                'iea_ma': self.iea_ma,
-                'operator_iea': self.operator_iea,
-                'evaluation': self.evaluation,
-            }
-            protocol_vals.update(el_test_vals)
-        if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device == 'diesel':
-            maintenance_diesel_vals = {
-                'exhaust_hose_probe': self.exhaust_hose_probe,
-                'measuring_optics': self.measuring_optics,
-                'measuring_cell': self.measuring_cell,
-                'cables_hose_connections': self.cables_hose_connections,
-                'manual_calibration': self.manual_calibration,
-                'functional_control': self.functional_control,
-                'test_filter': self.test_filter,
-                'test_calibration_filter': self.test_calibration_filter,
-            }
-            protocol_vals.update(maintenance_diesel_vals)
+#         if self.equipment_test_type == 'el_test':
+#             el_test_vals = {
+#                 'testing_device': self.testing_device_name,
+#                 'testing_device_sn': self.testing_device_sn,
+#                 'type': 'Infralyt Smart',
+#             }
+#             protocol_vals.update(el_test_vals)
+#         if self.equipment_test_type == 'el_test':
+#             el_test_vals = {
+#                 'testing_device': self.testing_device_name,
+#                 'testing_device_sn': self.testing_device_sn,
+#                 'type': 'Opacylit 1030',
+#                 'voltage_u_in_volts_v': self.voltage_u_in_volts_v,
+#                 'frequency_f_in_heart_hz': self.frequency_f_in_heart_hz,
+#                 'protection_class': self.protection_class,
+#                 'tested_din_vde_0701_0702': self.tested_din_vde_0701_0702,
+#                 'rpe': self.rpe,
+#                 'operator_rpe': self.operator_rpe,
+#                 'riso_m': self.riso_m,
+#                 'operator_riso': self.operator_riso,
+#                 'iea_ma': self.iea_ma,
+#                 'operator_iea': self.operator_iea,
+#                 'evaluation': self.evaluation,
+#             }
+#             protocol_vals.update(el_test_vals)
+#         if self.equipment_test_type == 'maintenance':
+#             maintenance_diesel_vals = {
+#                 'exhaust_hose_probe': self.exhaust_hose_probe,
+#                 'measuring_optics': self.measuring_optics,
+#                 'measuring_cell': self.measuring_cell,
+#                 'cables_hose_connections': self.cables_hose_connections,
+#                 'manual_calibration': self.manual_calibration,
+#                 'functional_control': self.functional_control,
+#                 'test_filter': self.test_filter,
+#                 'test_calibration_filter': self.test_calibration_filter,
+#             }
+#             protocol_vals.update(maintenance_diesel_vals)
 
-        if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device == 'petrol':
-            maintenance_petrol_vals = {
-                'exhaust_hose_probe': self.exhaust_hose_probe,
-                'pre_filter': self.pre_filter,
-                'coarse_filter': self.coarse_filter,
-                'fine_filter': self.fine_filter,
-                'leak_test_seal': self.leak_test_seal,
-                'leak_test_performed': self.leak_test_performed,
-                'test_o2_sensor': self.test_o2_sensor,
-                'test_gas': self.test_gas,
-                'sensor_type': self.sensor_type,
-                'sensor_serial': self.sensor_serial,
-                'gas_certificate_no': self.gas_certificate_no,
-                'gas_bottle_no': self.gas_bottle_no,
-                'test_gas_concentration_co': self.test_gas_concentration_co,
-                'test_gas_concentration_co2': self.test_gas_concentration_co2,
-                'test_gas_concentration_c3': self.test_gas_concentration_c3,
-                'value_after_adjustment_co': self.value_after_adjustment_co,
-                'value_after_adjustment_co2': self.value_after_adjustment_co2,
-                'value_after_adjustment_c3': self.value_after_adjustment_c3
-            }
-            protocol_vals.update(maintenance_petrol_vals)
+#         if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device == 'petrol':
+#             maintenance_petrol_vals = {
+#                 'exhaust_hose_probe': self.exhaust_hose_probe,
+#                 'pre_filter': self.pre_filter,
+#                 'coarse_filter': self.coarse_filter,
+#                 'fine_filter': self.fine_filter,
+#                 'leak_test_seal': self.leak_test_seal,
+#                 'leak_test_performed': self.leak_test_performed,
+#                 'test_o2_sensor': self.test_o2_sensor,
+#                 'test_gas': self.test_gas,
+#                 'sensor_type': self.sensor_type,
+#                 'sensor_serial': self.sensor_serial,
+#                 'gas_certificate_no': self.gas_certificate_no,
+#                 'gas_bottle_no': self.gas_bottle_no,
+#                 'test_gas_concentration_co': self.test_gas_concentration_co,
+#                 'test_gas_concentration_co2': self.test_gas_concentration_co2,
+#                 'test_gas_concentration_c3': self.test_gas_concentration_c3,
+#                 'value_after_adjustment_co': self.value_after_adjustment_co,
+#                 'value_after_adjustment_co2': self.value_after_adjustment_co2,
+#                 'value_after_adjustment_c3': self.value_after_adjustment_c3
+#             }
+#             protocol_vals.update(maintenance_petrol_vals)
 
         protocol = self.env['equipment.protocol'].create(protocol_vals)
         self.write({'equipment_protocol_id': protocol.id,

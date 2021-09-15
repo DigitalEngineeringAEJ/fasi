@@ -440,10 +440,6 @@ class CustomerPortal(CustomerPortal):
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'calibration':
             pdf = request.env.ref('wepelo_equipment.gefaehrdungsbeurteilungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#gefährdungsbeurteilung
-        elif kw['type'] == 'uvv_hebebuhne':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
-        elif kw['type'] == 'uvv_tore':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'routine_test':
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Begehung
         elif kw['type'] == 'el_test':
@@ -455,7 +451,7 @@ class CustomerPortal(CustomerPortal):
             order_date = protocol.order_date.strftime('%y_%m_%d') if protocol.order_date else ''
             serial_no = protocol.equipment_id.serial_no if protocol.equipment_id else ''
             activity_type_name = protocol.equipment_id.activity_type_id.sudo().name if protocol.equipment_id.activity_type_id else ''
-            filename = order_date+''+serial_no+''+activity_type_name+'.pdf'
+            filename = order_date+'_'+serial_no+'_'+activity_type_name+'.pdf'
         pdfhttpheaders = [('Content-Type', 'application/pdf'),
                           ('Content-Length', len(pdf)),
                           ('Content-Disposition', 'attachment;filename='+filename)]

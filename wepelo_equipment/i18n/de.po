@@ -118,7 +118,7 @@ msgid ""
 "                                    <span>Equipment Protocol</span>"
 msgstr ""
 "<span class=\"fa fa-file-text\" role=\"img\" aria-label=\"Protocol Report (PDF)\" title=\"Protocol Report (PDF)\"/>\n"
-"                                    <span>Elektrisches Protokoll</span>"
+"                                    <span>Protokoll Folgebegehung</span>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
@@ -936,7 +936,7 @@ msgstr "Kunde"
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.hr_equipment_view_form_inherit_wepelo
 msgid "Customer Internal Designation"
-msgstr "Gefahrenquellen Bezeichnung"
+msgstr "Bezeichnung Gefahrenquelle"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
@@ -1282,7 +1282,7 @@ msgstr "Protokoll"
 #: model:ir.actions.report,name:wepelo_equipment.wepelo_equipment_protocol
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_protocol_view_form
 msgid "Equipment Protocol"
-msgstr "Elektrisches Protokoll"
+msgstr "Protokoll Folgebegehung"
 
 #. module: wepelo_equipment
 #: model:ir.actions.report,name:wepelo_equipment.wepelo_equipment_protocol_maintenance
@@ -2547,7 +2547,7 @@ msgstr "QR-Code"
 #: code:addons/wepelo_equipment/models/wepelo_equipment_system.py:0
 #: model:mail.activity.type,name:wepelo_equipment.mail_activity_data_routine_test
 #, python-format
-msgid "Stückprüfung"
+msgid "Begehung"
 msgstr ""
 
 #. module: wepelo_equipment
@@ -2601,8 +2601,8 @@ msgstr "Service"
 #: model:ir.ui.menu,name:wepelo_equipment.menu_wepelo_equipment_test
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_test_view_form
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_test_view_tree
-msgid "Test Equipment"
-msgstr "Teststamm"
+msgid "Service"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model:ir.actions.act_window,name:wepelo_equipment.wepelo_test_equipment_device_action
@@ -2641,13 +2641,13 @@ msgstr ""
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocols
-msgid "Test base"
-msgstr "Teststamm"
+msgid "Service"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
-msgid "Test base:"
-msgstr "Teststamm:"
+msgid "Service:"
+msgstr "Service:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields.selection,name:wepelo_equipment.selection__test_equipment_device__x_device_typ__testgas
@@ -3324,3 +3324,10 @@ msgid ""
 msgstr ""
 "<span class=\"fa fa-file-text-o\" role=\"img\" aria-label=\"Stückprüfung Protocol Report (PDF)\" title=\"Protocol Maintenance Report (PDF)\"/>\n"
 "                                    <span>Protokoll Begehung</span>"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment__name
+#: model_terms:ir.ui.view,arch_db:maintenance.hr_equipment_view_form
+msgid "Bezeichnung Gefahrenquelle"
+msgstr "Bezeichnung Gefahrenquelle"
+

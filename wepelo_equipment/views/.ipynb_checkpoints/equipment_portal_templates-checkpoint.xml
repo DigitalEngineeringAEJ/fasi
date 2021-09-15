@@ -70,13 +70,13 @@
                 </form>
         </xpath>
         <xpath expr="//div[hasclass('o_portal_my_home')]//h3" position="replace">
-            <h3>Equipement Master -
+            <h3>Safety Master -
                 <t t-esc="user_id.name"/>
             </h3>
         </xpath>
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
-                <t t-set="title">Equipment</t>
+                <t t-set="title">Gefahrenquellen</t>
                 <t t-set="url" t-value="'/my/equipments?global_search=' + global_search if global_search else '/my/equipments'"/>
                 <t t-set="count" t-value="equipment_count"/>
             </t>
@@ -95,7 +95,7 @@
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
             <t t-call="portal.portal_searchbar">
-                <t t-set="title">Equipments</t>
+                <t t-set="title">Gefahrenquellen</t>
             </t>
             <t t-if="not equipments">
                 <div class="alert alert-warning mt8" role="alert">
@@ -107,9 +107,9 @@
                     <t t-foreach="grouped_equipments" t-as="equipments">
                         <thead>
                             <tr t-attf-class="{{'thead-light' if groupby in ['category'] else ''}}">
-                                <th>Equipment Name</th>
-                                 <th class="text-center">Inventory Number</th>
-                                 <th class="text-center">Serial Number</th>
+                                <th>Gefahrenquelle</th>
+<!--                                  <th class="text-center">Inventory Number</th> -->
+                                 <th class="text-center">ID</th>
                                 <th class="text-center">Technician</th>
 
                                 <th class="text-center" t-if="groupby != 'category'">Equipment Category</th>
@@ -130,9 +130,9 @@
                                         <span t-field="equipment.name"/>
                                     </a>
                                 </td>
-                                 <td class="text-center">
+<!--                                  <td class="text-center">
                                     <span t-field="equipment.inventory_number"/>
-                                </td>
+                                </td> -->
                                  <td class="text-center">
                                     <span t-field="equipment.serial_no"/>
                                 </td>
@@ -168,12 +168,6 @@
                                 <span class="fa fa-clock-o" role="img" aria-label="Schedule activity"
                                       title="Schedule activity"/>
                                 <span>Schedule activity</span>
-                            </a>
-                            <a style="color:#FFFFFF !important;" role="button" id="form-maintenance-request"
-                               class="btn btn-sm btn-secondary">
-                                <span class="fa fa- fa-wrench" role="img" aria-label="Create Maintenance Request"
-                                      title="Create Maintenance Request"/>
-                                <span>Create Maintenance Request</span>
                             </a>
                         </span>
                     </h5>
@@ -614,7 +608,7 @@
                                         <t t-call="portal.portal_table">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-left">Serial No</th>
+                                                    <th class="text-left">ID</th>
                                                     <th class="text-left">Customer</th>
                                                     <th class="text-left">Order Date</th>
                                                     <th class="text-left">Due Date</th>
@@ -694,9 +688,9 @@
                         <thead>
                               <tr t-attf-class="{{'thead-light' if groupby in ['equipment'] else ''}}">
                                 <th></th>
-                                <th class="text-left">Equipment Name</th>
-                                <th class="text-center">Serial No</th>
-                                <th class="text-center">Test base</th>
+                                <th class="text-left">Gefahrenquelle</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Service</th>
                                 <th class="text-center">Order Date</th>
                                 <th class="text-center">Due Date</th>
                                 <th class="text-center"></th>

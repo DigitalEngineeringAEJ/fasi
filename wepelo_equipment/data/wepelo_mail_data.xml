@@ -198,8 +198,8 @@
         
                                         <!-- Gefahrstoffe -->
         
-         <record id="gefaehrdungsf_hautkontakt_feststoffe," model="gefahren.faktor">
-            <field name="gefaehrdungsf">Hautkontakt (Feststoffe,</field>
+         <record id="gefaehrdungsf_hautkontakt" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Hautkontakt (Feststoffe, Flüssigkeiten, Feuchtarbeit)</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_gefahrstoffe'/>
         </record>
         <record id="gefaehrdungsf_einatmen" model="gefahren.faktor">

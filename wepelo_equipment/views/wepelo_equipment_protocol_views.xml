@@ -113,7 +113,7 @@
         <field name="arch" type="xml">
             <form string="Equipment Protocol">
                  <header>
-                     <button name="%(wepelo_equipment_protocol)d"
+<!--                      <button name="%(wepelo_equipment_protocol)d"
                             string="Equipment Protocol"
                             type="action"
                             icon="fa-print"
@@ -121,7 +121,7 @@
                      <button name="%(wepelo_equipment_protocol_rep_prot)d"
                             string="Equipment Protocol Repair Prot"
                             type="action"
-                            icon="fa-print" attrs="{'invisible': [('maintenance_request_id','=',False)]}"/>
+                            icon="fa-print" attrs="{'invisible': [('maintenance_request_id','=',False)]}"/> -->
 
 <!--                      <button name="%(wepelo_equipment_protocol_maintenance)d"
                             string="Equipment Protocol Maintenance"
