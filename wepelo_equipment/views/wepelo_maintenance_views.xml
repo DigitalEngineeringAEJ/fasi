@@ -39,8 +39,12 @@
         <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//label[@for='name']" position="attributes">
-                <attribute name='string'>Bezeichnung Gefahrenquelle</attribute>
+               <attribute name='string'>Customer Internal Designation</attribute>
             </xpath>
+            <field name="name" position="attributes">
+                <attribute name='string'>Gefahrenquellen Bezeichnung</attribute>
+                <attribute name='placeholder'>Gefahrenquellen Bezeichnung</attribute>
+            </field>
             <field name="assign_date" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>

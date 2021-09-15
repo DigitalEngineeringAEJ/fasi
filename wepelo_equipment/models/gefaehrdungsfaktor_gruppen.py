@@ -102,7 +102,7 @@ class EquipmentTypes(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('nummer_gef', 'New') == 'New':
-            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('begehung.zwei') or 'New'
+            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('gef.beurteilung') or 'New'
         result = super(EquipmentTypes, self).create(vals)
         return result
     
