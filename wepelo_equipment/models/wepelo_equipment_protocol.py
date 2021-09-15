@@ -59,8 +59,8 @@ class EquipmentProtocol(models.Model):
     note_rel =fields.Html(related='mail_activity_id.note',string='Bemerkung')
     folg_beg_ids = fields.Many2many('folgebegehung', string='Folgebegehung', store=True)
     folg_beg_id = fields.Many2one('folgebegehung', string='Folgebegehung', store=True)
-    gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor', store=True)
-    gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor', store=True)
+    gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor')
+    gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor')
 
     @api.depends('downloaded_user_ids')
     def _compute_downloaded_protocol(self):

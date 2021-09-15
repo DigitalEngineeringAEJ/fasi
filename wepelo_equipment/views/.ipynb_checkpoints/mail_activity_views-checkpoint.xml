@@ -106,7 +106,7 @@
         <field name="model">mail.activity</field>
         <field name="priority">100</field>
         <field name="arch" type="xml">
-            <form string="Log an Activity" create="false">
+        <form string="Log an Activity" create="false">
                 <sheet string="Activity">
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <group invisible="1">
@@ -167,19 +167,20 @@
                         </group>
                     </group>
                     
-                    <!-- Ansicht für Gefährdungsbeurteilung -->
+                    <!-- Ansicht für Gefährdungsbeurteilung <field name="folg_beg_checkbox" widget="checkbox"/>-->
                     
                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
                             <page string="Gefahrenquelle">
-                            <field name= 'gefaehrdunsfaktor_ids'>
+                            <field name='gefaehrdunsfaktor_ids'>
                             <tree editable="bottom">
-                            <field name = "sequence_g" widget="handle"/>
-                            <field name="gefahrenquellen_typ_id" /> 
+                            <field name="sequence_g" widget="handle"/>
+                            <field name="nummer_gef"/> 
+                            <field name="gefahrenquellen_typ_id"/> 
                             <field name="gefaehrdungsf_name" domain="[('gefahrenquellen_typ_id', '=', gefahrenquellen_typ_id)]"/>
-                           <field name="gefahrenquellen_typ_beschreibung"/>
+                            <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w"/>
                             <field name="gef_beurteilung_a" />
-                            <field name="gef_beurteilung_e" force_save="1"/>
+                            <field name="gef_beurteilung_e" force_save="1" invisible="1"/>
                             <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
                             <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung"/>
                             <field name="klasse_gef" string="Klassifizierung"/>
@@ -192,6 +193,7 @@
                         </field>
                         </page>
                         </notebook>
+                    
                     
                     
                     <!-- Ansicht für Begehung -->                 

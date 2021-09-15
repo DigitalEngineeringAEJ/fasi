@@ -97,6 +97,17 @@ class EquipmentTypes(models.Model):
     
     equipment_protocol_id = fields.Many2one('equipment.protocol')
     
+    nummer_gef = fields.Char(string='Nr.', store=True, readonly=True)
+    
+    folg_beg_checkbox = fields.Boolean('Folgebegehung erforderlich?')
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('nummer_gef', 'New') == 'New':
+            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('begehung.zwei') or 'New'
+        result = super(EquipmentTypes, self).create(vals)
+        return result
+    
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
     def _compute_gef_beurteilung_e(self):
         for record in self:

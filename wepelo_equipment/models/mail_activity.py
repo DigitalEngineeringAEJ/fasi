@@ -155,7 +155,7 @@ class MailActivity(models.Model):
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
-    gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
+    gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe")
     
 #     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
                      
@@ -865,6 +865,8 @@ class MailActivity(models.Model):
         sequence.number_next_actual = 1
         sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
         sequence_zwei.number_next_actual = 1
+        sequence_gef_beurteilung = self.env['ir.sequence'].search([('code', '=', 'gef.beurteilung')])
+        sequence_gef_beurteilung.number_next_actual = 1
         return messages, next_activities
 
 
