@@ -433,19 +433,21 @@ class CustomerPortal(CustomerPortal):
     def print_protocol_report(self, protocol_id, **kw):
         """Get report of protocol by type."""
         if kw['type'] == 'maintenance':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'prot':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'protocol':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'calibration':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.gefaehrdungsbeurteilungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#gefährdungsbeurteilung
         elif kw['type'] == 'uvv_hebebuhne':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'uvv_tore':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'routine_test':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_bremsprufstand_protocol').sudo().render_qweb_pdf([protocol_id])[0]
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Begehung
+        elif kw['type'] == 'el_test':
+            pdf = request.env.ref('wepelo_equipment.folgebegehungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Folgebegehungsprotokoll
         protocol = request.env['equipment.protocol'].browse(int(protocol_id))
         filename = ''
         if protocol:
@@ -499,19 +501,19 @@ class CustomerPortal(CustomerPortal):
             with zipfile.ZipFile(stream, 'w') as archive:
                 for protocol in protocols:
                     if protocol.equipment_test_type == 'el_test' and protocol.mail_activity_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
-                    elif protocol.maintenance_request_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol.id])[0]
-                    elif protocol.equipment_test_type == 'maintenance' and protocol.mail_activity_id:
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo()._render_qweb_pdf([protocol.id])[0]
+                        pdf = request.env.ref('wepelo_equipment.folgebegehungs_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'calibration_ei' and protocol.mail_activity_id:
+                        pdf = request.env.ref('wepelo_equipment.gefaehrdungsbeurteilungs_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+                    elif protocol.equipment_test_type == 'routine_test' and protocol.mail_activity_id:
                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
-                    elif protocol.equipment_test_type == 'uvv' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_hebebuhne"):
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
-                    elif protocol.equipment_test_type == 'uvv' and protocol.category_id  == request.env.ref("wepelo_equipment.equipment_tore"):
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
-                    elif protocol.equipment_test_type == 'routine_test' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_bremsprufstand"):
-                        pdf = request.env.ref('wepelo_equipment.wepelo_equipment_bremsprufstand_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+#                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_hebebuhne"):
+#                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+#                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id  == request.env.ref("wepelo_equipment.equipment_tore"):
+#                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_tore_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+#                     elif protocol.maintenance_request_id:
+#                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol.id])[0]
+#                     elif protocol.equipment_test_type == 'maintenance' and protocol.mail_activity_id:
+#                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo()._render_qweb_pdf([protocol.id])[0]
                     if pdf:
                         if protocol:
                             protocol.downloaded_user_ids = [(4, request._uid)]

@@ -773,12 +773,28 @@
                         <small class="text-muted">protocol -</small>
                         <span t-field="protocol.name"/>
                         <span class="float-right">
+                            <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'routine_test'">
+                                 <a t-attf-href="/protocol/report/#{protocol.id}?type=routine_test" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text-o" role="img" aria-label="Stückprüfung Protocol Report (PDF)"
+                                          title="Protocol Maintenance Report (PDF)"/>
+                                    <span>Begehung</span>
+                                </a>
+                            </t>
+                            <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'calibration_ei'">
+                                 <a t-attf-href="/protocol/report/#{protocol.id}?type=calibration" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text-o" role="img" aria-label="Eichnachweis Report (PDF)"
+                                          title="Protocol Maintenance Report (PDF)"/>
+                                    <span>Gefährdungsbeurteilung</span>
+                                </a>
+                            </t>
                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'el_test'">
                                 <a t-attf-href="/protocol/report/#{protocol.id}?type=protocol" target="new" style="color:#FFFFFF !important;" role="button"
                                    class="btn btn-sm btn-secondary">
                                     <span class="fa fa-file-text" role="img" aria-label="Protocol Report (PDF)"
                                           title="Protocol Report (PDF)"/>
-                                    <span>Equipment Protocol</span>
+                                    <span>Folgebegehung</span>
                                 </a>
                             </t>
                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'maintenance'">
@@ -797,14 +813,6 @@
                                     <span>Equipment Protocol Repair Prot</span>
                                 </a>
                             </t>
-                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'calibration_ei'">
-                                 <a t-attf-href="/protocol/report/#{protocol.id}?type=calibration" target="new" style="color:#FFFFFF !important;" role="button"
-                                   class="btn btn-sm btn-secondary">
-                                    <span class="fa fa-file-text-o" role="img" aria-label="Eichnachweis Report (PDF)"
-                                          title="Protocol Maintenance Report (PDF)"/>
-                                    <span>Eichnachweis</span>
-                                </a>
-                            </t>
                               <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'uvv' and protocol.equipment_id.category_id.id == %(equipment_hebebuhne)d">
                                  <a t-attf-href="/protocol/report/#{protocol.id}?type=uvv_hebebuhne" target="new" style="color:#FFFFFF !important;" role="button"
                                    class="btn btn-sm btn-secondary">
@@ -821,14 +829,6 @@
                                     <span>Betriebssicherheitsprüfung Protocol</span>
                                 </a>
                             </t>
-                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'routine_test' and protocol.equipment_id.category_id.id == %(equipment_bremsprufstand)d">
-                                 <a t-attf-href="/protocol/report/#{protocol.id}?type=routine_test" target="new" style="color:#FFFFFF !important;" role="button"
-                                   class="btn btn-sm btn-secondary">
-                                    <span class="fa fa-file-text-o" role="img" aria-label="Stückprüfung Protocol Report (PDF)"
-                                          title="Protocol Maintenance Report (PDF)"/>
-                                    <span>Stückprüfung Protocol</span>
-                                </a>
-                            </t>
                         </span>
                     </h5>
                 </t>
@@ -837,37 +837,37 @@
                         <div class="col-12 col-md-6 mb-2 mb-md-0">
                             <div t-if="protocol.equipment_id" style="padding-top:10px;">
                                 <h6>
-                                    <p style="font-weight:bold;display:inline">Equipment:</p>
+                                    <p style="font-weight:bold;display:inline">Gefahrenquelle:</p>
                                     <span t-field="protocol.equipment_id.name"/>
                                 </h6>
                             </div>
                                 <div t-if="protocol.serial_no" style="padding-top:10px;">
                                 <h6>
-                                    <p style="font-weight:bold;display:inline">Serial No:</p>
+                                    <p style="font-weight:bold;display:inline">ID:</p>
                                     <span t-field="protocol.serial_no"/>
                                 </h6>
                             </div>
                             <div t-if="protocol.equipment_test_type" style="padding-top:10px;">
                                 <h6>
-                                    <p style="font-weight:bold;display:inline">Test strain:</p>
+                                    <p style="font-weight:bold;display:inline">Service:</p>
                                     <span t-field="protocol.equipment_test_type"/>
                                 </h6>
                             </div>
                             <div t-if="protocol.date" style="padding-top:10px;">
                                 <h6>
-                                    <p style="font-weight:bold;display:inline">Due Date:</p>
+                                    <p style="font-weight:bold;display:inline">Fälligkeitsdatum:</p>
                                     <span t-field="protocol.date"/>
                                 </h6>
                             </div>
                             <div t-if="protocol.order_date" style="padding-top:10px;">
                                 <h6>
-                                    <p style="font-weight:bold;display:inline">Order Date:</p>
+                                    <p style="font-weight:bold;display:inline">Datum des Service's:</p>
                                     <span t-field="protocol.order_date"/>
                                 </h6>
                             </div>
                             <div t-if="protocol.manufacturer_id" style="padding-top:10px;">
                                 <h6>
-                                    <p style="font-weight:bold;display:inline">Manufacturer:</p>
+                                    <p style="font-weight:bold;display:inline">Hersteller:</p>
                                     <span t-field="protocol.manufacturer_id.name"/>
                                 </h6>
                             </div>

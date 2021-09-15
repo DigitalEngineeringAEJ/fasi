@@ -97,7 +97,7 @@
         </t>
     </template>
 
-    <record id="Folgebegehungs_protocol" model="ir.actions.report">
+    <record id="folgebegehungs_protocol" model="ir.actions.report">
             <field name="name">Folgebegehung</field>
             <field name="model">equipment.protocol</field>
             <field name="report_type">qweb-pdf</field>
