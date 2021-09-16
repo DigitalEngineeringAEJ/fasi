@@ -97,6 +97,8 @@ class EquipmentTypes(models.Model):
     
     equipment_protocol_id = fields.Many2one('equipment.protocol')
     
+    nummer_gef = fields.Char(string="Nummer",  store=True, readonly=True)
+    
 
     
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
@@ -193,8 +195,15 @@ class EquipmentTypes(models.Model):
             else:
                 record.gefahrenquellen_typ_risiko = 'status_r_0'
                 
+    @api.model
+    def create(self, vals):
+        if vals.get('nummer_gef', 'New') == 'New':
+            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('gefaerdungs.beurteilung') or 'New'
+        result = super(EquipmentTypes, self).create(vals)
+        return result
                 
-class EquipmentTypes(models.Model):
+                
+class GefahrenFaktor(models.Model):
     _name = 'gefahren.faktor'
     _description = 'Gefährdungsfaktor'
     _rec_name = 'gefaehrdungsf'

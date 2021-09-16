@@ -299,6 +299,7 @@
         <field name="model">equipment.types</field>
         <field name="arch" type="xml">
             <tree string="Gefährdungsbeurteilung">
+                <field name="nummer_gef"/> 
                 <field name="name"/>
                 <field name="types_sn"/>
                 <field name="gefaehrdungsf_name"/>
@@ -329,6 +330,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="nummer_gef"/> 
                             <field name="name"/>
                             <field name="types_sn"/>
                             <field name="gefaehrdungsf_name"/>

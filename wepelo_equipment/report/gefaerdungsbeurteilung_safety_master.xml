@@ -59,6 +59,7 @@
                          <table style="table-layout:fixed; font-size:12px" class="table table-bordered table-sm mt16 ml16">
                                 <thead>Gefährdungen</thead>
                             <tr>
+                            <th scope="col">Nr.</th>
                             <th scope="col">Gefährdungs-<br/>faktor<br/>Gruppe</th>
                             <th scope="col">Gefähr-<br/>dungsfaktor</th>
                             <th scope="col">Beschreibung</th>
@@ -70,8 +71,9 @@
                             <th scope="col">Klassi-<br/>fizierung</th>
                           </tr>
                           <tr t-foreach="o.gefaehrdunsfaktor_ids" t-as="line">
+                                 <td><span t-esc="line.nummer_gef"/></td>
                                  <td><span t-esc="line.gefahrenquellen_typ_id.name"/></td>
-                                  <td><span t-esc="line.gefaehrdungsf_name.gefaehrdungsf"/></td>
+                                 <td><span t-esc="line.gefaehrdungsf_name.gefaehrdungsf"/></td>
                                  <td><span t-esc="line.gefahrenquellen_typ_beschreibung"/></td>
                                  <td><span t-esc="{False: False, 'status_w_1': 'sehr gering', 'status_w_2': 'gering','status_w_3':'mittel','status_w_4':'hoch'}[line.gef_beurteilung_w]"/></td>
                                  <td><span t-esc="{False: False, 'status_a_1': 'leichte Verletzugen oder Erkrankungen', 'status_a_2': 'mittelschwere Verletzungen oder Erkrankungen','status_a_3':'schwere Verletzungen oder Erkrankungen','status_a_4':'möglicher Tod, Katastrophe'}[line.gef_beurteilung_a]"/></td>
@@ -84,6 +86,7 @@
                          <table style="table-layout:fixed; font-size:12px" class="table table-bordered table-sm mt16 ml16">
                                 <thead>Gefährdungen</thead>
                             <tr>
+                            <th scope="col">Nr.</th>
                             <th scope="col">Abstell-<br/>maßnahme</th>
                             <th scope="col">Abs<br/>Klassi-<br/>fizierung</th>
                             <th scope="col">Deadline<br/>Abstell-<br/>maßnahme</th>
@@ -91,6 +94,7 @@
                             <th scope="col">Folge-<br/>begehung<br/>erforderlich?</th>
                           </tr>
                           <tr t-foreach="o.gefaehrdunsfaktor_ids" t-as="line">
+                                 <td><span t-esc="line.nummer_gef"/></td>
                                  <td><span t-esc="line.abs_gef"/></td>
                                  <td><span t-esc="line.abstellmassnahme_gef_kla"/></td>
                                  <td><span t-esc="line.deadline_abs_gef.strftime('%d.%m.%Y')"/></td>
