@@ -628,8 +628,6 @@ class MailActivity(models.Model):
         sequence.number_next_actual = 1
         sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
         sequence_zwei.number_next_actual = 1
-        sequence_gef_beurteilung = self.env['ir.sequence'].search([('code', '=', 'gef.beurteilung')])
-        sequence_gef_beurteilung.number_next_actual = 1
         return messages, next_activities
 
 
