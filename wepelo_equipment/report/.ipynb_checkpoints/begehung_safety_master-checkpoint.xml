@@ -104,6 +104,17 @@
                                    <span t-field="o.note_rel"/>
                                 </td>
                               </div>
+                                <table style="table-layout:fixed; font-size:20px" class="table table-borderless table-sm mt16 ml16">
+                                <thead></thead>
+                                <tr>
+                                <th scope="col"><br/><br/><br/><span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/></th>
+                                <th scope="col"><img t-if="o.signature" style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature)" alt="sign"/></th>
+                              </tr>
+                              <tr t-as="line">
+                                     <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Datum</td>
+                                      <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Signatur Bearbeiter</td>
+                                </tr>
+                        </table>
                             </tr>
                         </table>
                     </div>

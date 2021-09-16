@@ -106,34 +106,16 @@
                                    <span t-field="o.note_rel"/>
                                 </td>
                               </div>
-                            <table border="1" class="table table-borderless table-sm mt32">
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <img t-if="o.signature" t-att-src="image_data_uri(o.signature)"
-                                             style="max-height:4cm; max-width:9cm;" alt="sign"/>
-                                        <div class="ml32 mt16">
-                                            <p t-if="not o.signature" style="border-top:1px solid black; width:300px;"/>
-                                        </div>
-                                        <div>
-                                            <strong class="text-center">
-                                                Signatur Bearbeiter
-                                            </strong>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <div t-field="o.date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}" style="min-height:70px;"/>
-                                        <div class="ml32 mt16">
-                                            <p style="border-top:1px solid grey; width:300px;"/>
-                                        </div>
-                                        <div style="margin-top:40px;">
-                                            <strong class="text-center">
-                                               Datum
-                                            </strong>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <table style="table-layout:fixed; font-size:20px" class="table table-borderless table-sm mt16 ml16">
+                                <thead></thead>
+                            <tr>
+                            <th scope="col"><br/><br/><br/><span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/></th>
+                            <th scope="col"><img t-if="o.signature" style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature)" alt="sign"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                 <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Datum</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Signatur Bearbeiter</td>
+                            </tr>
                         </table>
                            </tr>
                         </table>
