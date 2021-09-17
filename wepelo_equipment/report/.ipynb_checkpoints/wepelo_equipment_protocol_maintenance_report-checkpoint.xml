@@ -398,7 +398,7 @@
 	<!--<field name="groups">base.group_system,base.group_user</field>-->
 	<field name="print_report_name">(object._get_report_filename())</field>
 	<field name="binding_type">report</field>
-	<field name="binding_model_id" ref="model_equipment_protocol"/>
+<!-- 	<field name="binding_model_id" ref="model_equipment_protocol"/> -->
 	<!--<field name="menu">False</field>-->
 </record>
 </odoo>

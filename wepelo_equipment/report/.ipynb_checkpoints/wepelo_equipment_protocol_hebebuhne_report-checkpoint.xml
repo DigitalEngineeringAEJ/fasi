@@ -244,16 +244,15 @@
         </t>
     </template>
 
-    <report
-            id="wepelo_equipment_hebebuhne_protocol"
-            model="equipment.protocol"
-            string="Hebebühne"
-            report_type="qweb-pdf"
-            name="wepelo_equipment.report_equipment_protocol_hebebuhne"
-            file="wepelo_equipment.report_equipment_protocol_hebebuhne"
-            groups="base.group_system,base.group_user"
-            print_report_name="(object._get_report_filename())"
-            menu="False"
-    />
+    <record id="wepelo_equipment_hebebuhne_protocol" model="ir.actions.report">
+            <field name="name">Hebebühne</field>
+            <field name="model">equipment.protocol</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.report_equipment_protocol_hebebuhne</field>
+            <field name="report_file">wepelo_equipment.report_equipment_protocol_hebebuhne</field>
+            <field name="print_report_name">(object._get_report_filename())</field>
+<!--             <field name="binding_model_id" ref="model_equipment_protocol"/> -->
+            <field name="binding_type">report</field>
+        </record>
 
 </odoo>

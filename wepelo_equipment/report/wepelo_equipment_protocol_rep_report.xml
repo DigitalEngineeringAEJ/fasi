@@ -156,7 +156,7 @@
             <field name="report_name">wepelo_equipment.report_equipment_protocol_rep</field>
             <field name="report_file">wepelo_equipment.report_equipment_protocol_rep</field>
             <field name="print_report_name">((object.name or '').replace('/','')+'.pdf')</field>
-            <field name="binding_model_id" ref="model_equipment_protocol"/>
+<!--             <field name="binding_model_id" ref="model_equipment_protocol"/> -->
             <field name="binding_type">report</field>
         </record>
 </odoo>
