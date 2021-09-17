@@ -22,7 +22,6 @@ class EquipmentProtocol(models.Model):
     manufacturer_id = fields.Many2one('res.partner', string='Manufacturer')
     equipment_id = fields.Many2one('maintenance.equipment', string='Gefahrenquelle')
     equipment_service_id = fields.Many2one('equipment.service', string='Equipment System')
-    exhaust_measuring_device = fields.Selection(related='equipment_service_id.exhaust_measuring_device', store=True, readonly=True)
     mail_activity_id = fields.Many2one('mail.activity', string='Mail Activity')
     equipment_test_type_id = fields.Many2one(related='mail_activity_id.equipment_test_type_id', store=True, readonly=True)
     equipment_test_type = fields.Selection([

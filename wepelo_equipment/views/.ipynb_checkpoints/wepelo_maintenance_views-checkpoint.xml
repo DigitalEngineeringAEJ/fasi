@@ -39,8 +39,12 @@
         <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//label[@for='name']" position="attributes">
-                <attribute name='string'>Customer Internal Designation</attribute>
+               <attribute name='string'>Customer Internal Designation</attribute>
             </xpath>
+            <field name="name" position="attributes">
+                <attribute name='string'>Gefahrenquellen Bezeichnung</attribute>
+                <attribute name='placeholder'>Gefahrenquellen Bezeichnung</attribute>
+            </field>
             <field name="assign_date" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
@@ -282,7 +286,6 @@
                         </group>
                         <group attrs="{'invisible': [('is_maintenance', '=', False)]}">
                             <field name="is_maintenance" invisible="1"/>
-                            <field name="exhaust_measuring_device" widget="selection"/>
                         </group>
                     </group>
                 </sheet>
@@ -296,6 +299,7 @@
         <field name="model">equipment.types</field>
         <field name="arch" type="xml">
             <tree string="Gefährdungsbeurteilung">
+                <field name="nummer_gef"/> 
                 <field name="name"/>
                 <field name="types_sn"/>
                 <field name="gefaehrdungsf_name"/>
@@ -326,6 +330,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="nummer_gef"/> 
                             <field name="name"/>
                             <field name="types_sn"/>
                             <field name="gefaehrdungsf_name"/>

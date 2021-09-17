@@ -20,8 +20,6 @@ class EquipmentTypes(models.Model):
     
     gefaehrdungsf_name = fields.Many2one('gefahren.faktor', string="Gefährdungsfaktor")
     
-    sequence_g = fields.Integer(string='Sequenz')
-    
     gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefährdungsfaktor Gruppe") 
     
     gefahrenquellen_typ_beschreibung = fields.Text(string="Beschreibung")
@@ -45,7 +43,7 @@ class EquipmentTypes(models.Model):
                                           ('status_w_4', 'hoch')], 
                                          string='Eintrittswahrscheinlichkeit')
     
-    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankugen'),
+    gef_beurteilung_a = fields.Selection([('status_a_1', 'leichte Verletzugen oder Erkrankungen'),
                                           ('status_a_2', 'mittelschwere Verletzungen oder Erkrankungen'),
                                           ('status_a_3', 'schwere Verletzungen oder Erkrankungen'),
                                           ('status_a_4', 'möglicher Tod, Katastrophe')], 
@@ -98,6 +96,10 @@ class EquipmentTypes(models.Model):
                               string='Folgebegehung erforderlich?')
     
     equipment_protocol_id = fields.Many2one('equipment.protocol')
+    
+    nummer_gef = fields.Char(string="Nummer",  store=True, readonly=True)
+    
+
     
     @api.depends('gef_beurteilung_w', 'gef_beurteilung_a')
     def _compute_gef_beurteilung_e(self):
@@ -193,8 +195,15 @@ class EquipmentTypes(models.Model):
             else:
                 record.gefahrenquellen_typ_risiko = 'status_r_0'
                 
+    @api.model
+    def create(self, vals):
+        if vals.get('nummer_gef', 'New') == 'New':
+            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('gefaerdungs.beurteilung') or 'New'
+        result = super(EquipmentTypes, self).create(vals)
+        return result
                 
-class EquipmentTypes(models.Model):
+                
+class GefahrenFaktor(models.Model):
     _name = 'gefahren.faktor'
     _description = 'Gefährdungsfaktor'
     _rec_name = 'gefaehrdungsf'

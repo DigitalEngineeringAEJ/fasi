@@ -12,58 +12,9 @@ class EquipmentMailActivity(models.AbstractModel):
     _name = 'equipment.mail.activity'
     _description = 'Equipment Mail Activity'
 
-    iea_ma = fields.Float(string='IEA [mA]')
-    riso_m = fields.Float(string='RISO [MΩ]', default=19.99)
-    rpe = fields.Float(string='RPE [Ω]')
-    operator_rpe = fields.Selection([('equal', '='), ('greater_then', '>'), ('less_then', '<')], string='RPE Operator', default='equal')
-    operator_riso = fields.Selection([('equal', '='), ('greater_then', '>'), ('less_then', '<')], string='RISO Operator', default='greater_then')
-    operator_iea = fields.Selection([('equal', '='), ('greater_then', '>'), ('less_then', '<')], string='IEA Operator', default='equal')
-    protection_class = fields.Char(string='Protection Class', default='I')
-    visual_inspection = fields.Selection([('i.o', 'i.O'), ('n.i.o', 'n.i.O')], string='Visual Inspection', default='i.o')
-    voltage_u_in_volts_v = fields.Float(string='Voltage U in volts [V]',  default=230)
-    frequency_f_in_heart_hz = fields.Float(string='Frequency F in heart [Hz]', default=50)
     signature = fields.Binary(string='Signature')
-    functional_test = fields.Selection([('i.o', 'i.O'), ('n.i.o', 'n.i.O')], string='Functional Test', default='i.o')
-    tested_din_vde_0701_0702 = fields.Selection([('protective_line', 'Protective Line'), ('protective_insulation', 'Protective Insulation')],
-                                                string='Tested according to DIN VDE 0701-0702 and Protected by', default='protective_line')
-    evaluation = fields.Selection([('correspond_device', 'The device corresponds to the recognized rules of electrical engineering.'),
-                                   ('not_correspond_device', 'The device does not corresponds to the recognized rules of electrical engineering.')],
-                                   string='Evaluation', default='correspond_device')
-
-    exhaust_hose_probe = fields.Boolean(string='Exhaust hose and exhaust probe removed and cleaned', default=True)
-    measuring_optics = fields.Boolean(string='Measuring optics checked cleaned', default=True)
-    measuring_cell = fields.Boolean(string='Measuring cell cleaned', default=True)
-    cables_hose_connections = fields.Boolean(string='All cables and hose connections checked for tight fit', default=True)
-    manual_calibration = fields.Boolean(string='Manual Calibration', default=True)
-    functional_control = fields.Boolean(string='Function control of the device', default=True)
-    test_filter = fields.Boolean(string='Testing the filters', default=True)
-    test_calibration_filter = fields.Boolean(string='Testing of calibration filters (values see calibration certificate)', default=True)
-
-    pre_filter = fields.Boolean(string='Prefilter removed and cleaned', default=True)
-    coarse_filter = fields.Boolean(string='Coarse filter removed and cleaned', default=True)
-    fine_filter = fields.Boolean(string='Fine filter replaced', default=True)
-    leak_test_seal = fields.Boolean(string='Leak test seal checked for damage', default=True)
-    leak_test_performed = fields.Boolean(string='Leak test performed', default=True)
-    test_o2_sensor = fields.Boolean(string='O2 sensor tested', default=True)
-    test_gas = fields.Boolean(string='Test Gas', default=True)
     type = fields.Char(string='Type')
-    sensor_type = fields.Char(string='Sensor Type', default='Prüfung über ADU-Werte')
-    sensor_serial = fields.Char(related='equipment_id.test_equipment_device_id.sn', string='Serial No sensor', store=True, readonly=False)
     equipment_id = fields.Many2one('maintenance.equipment', compute='_get_equipment', string='Equipment', store=True)
-    #gas_certificate_no = fields.Char(string='Certificate No')
-    gas_certificate_no = fields.Char(related='equipment_id.test_equipment_device_id.x_zertnum' ,string='Certificate No', store=True, readonly=False)
-    #gas_bottle_no = fields.Char(string='Bottle No')
-    gas_bottle_no = fields.Char(related='equipment_id.test_equipment_device_id.x_flaschnum' ,string='Bottle No', store=True, readonly=False)
-    #test_gas_concentration_co = fields.Float(string='Test gas concentration CO (vol %):')
-    test_gas_concentration_co = fields.Float(related='equipment_id.test_equipment_device_id.x_gasco' ,string='Test gas concentration CO (vol %):', store=True, readonly=False)
-    #test_gas_concentration_co2 = fields.Float(string='Test gas concentration CO2 (vol %):')
-    test_gas_concentration_co2 = fields.Float(related='equipment_id.test_equipment_device_id.x_gasco2' ,string='Test gas concentration CO2 (vol %):', store=True, readonly=False)
-    #test_gas_concentration_c3 = fields.Float(string='Test gas concentration C3 H8 (ppm):')
-    test_gas_concentration_c3 = fields.Float(related='equipment_id.test_equipment_device_id.x_gasc3' ,string='Test gas concentration C3 H8 (ppm):', store=True, readonly=False)
-    
-    value_after_adjustment_co = fields.Float(string='Value displayed after adjustment CO (vol %):')
-    value_after_adjustment_co2 = fields.Float(string='Value displayed after adjustment CO2 (vol %):')
-    value_after_adjustment_c3 = fields.Float(string='Value displayed after adjustment C3 H8 (ppm):')
     date_action = fields.Datetime('Date current action', required=False, readonly=False, index=True, default=lambda self: fields.datetime.now())
 
 
@@ -87,7 +38,6 @@ class MailActivity(models.Model):
     customer_base = fields.Char(related='customer_id.name', readonly=True) # Kundenstamm
     equipment_test_type_id = fields.Many2one(related='activity_type_id.equipment_test_type_id', store=True, readonly=False)
     equipment_test_type = fields.Selection(related='activity_type_id.equipment_test_type_id.equipment_test_type', store=True, readonly=True)
-    exhaust_measuring_device = fields.Selection(related='equipment_id.equipment_service_id.exhaust_measuring_device', store=True)
     test_equipment_ids = fields.Many2many(related="equipment_id.equipment_service_id.test_equipment_ids", string='Test Equipments')
     equipment_protocol_id = fields.Many2one('equipment.protocol', string="Protocol", ondelete="set null")
     test_completed = fields.Boolean(string='Test Completed', default=False)
@@ -101,54 +51,18 @@ class MailActivity(models.Model):
     serial_no = fields.Char('Serial Number')
     testing_device_name = fields.Char(related='equipment_id.equipment_type_id.name', string='testing_device_name', readonly=True)
     testing_device_sn = fields.Char(related='equipment_id.equipment_type_id.types_sn', string='testing_device_sn', readonly=True)
-    
     zip2 = fields.Char(related='customer_id.zip2', string='Zip2', store=True, readonly=True)
     customer_street = fields.Char(related='customer_id.street', string='Street', store=True, readonly=True)
     customer_zip = fields.Char(related='customer_id.zip', string='ZIP', store=True, readonly=True)
     customer_city = fields.Char(related='customer_id.city', string='City', store=True, readonly=True)
-
     schedule_activity_type_ids = fields.One2many('schedule.activity.type', 'mail_activity_id', string="Activity Types")
-    eichamt = fields.Char(string="Eichamt")
     test_specification_ids = fields.One2many('mail.activity.test', 'mail_activity_id', string="Tests Specification")
-    is_exam_result_review = fields.Boolean(string="Weiterbetrieb bedenklich, Nachprüfung erforderlich")
-    is_result_continuation_operation = fields.Boolean(string="Weiterbetrieb möglich, Mängel beheben")
-    is_result_exam_no_defect = fields.Boolean(string="Keine Mängel, Weiterbetrieb bedenkenlos")
-    is_exam_regular = fields.Boolean(string="Regelmäßige Prüfung")
-    is_extraordinary = fields.Boolean(string="Außerordentliche Prüfung")
-    is_exam_tore_review = fields.Boolean(string="Nachprüfung")
-    result_exam_no_defects = fields.Boolean(string="Es wurden keine Mängel festgestellt")
-    result_exam_defects = fields.Boolean(string="Es wurden folgende Mängel festgestellt:")
     note_tore = fields.Text(string="Note Tore")
-    partial_exams = fields.Char(string="Ausstehende Teilprüfungen: ")
-    operation_no_defects = fields.Boolean(string="Weiterbetrieb bedenkenlos, keine Mängel feststellbar")
-    operation_review = fields.Boolean(string="Weiterbetrieb ist bedenklich, Nachprüfung erforderlich")
-    operation_defects_remedied = fields.Boolean(string="Weiterbetrieb möglich, Mängel müssen behoben werden")
-    calibration_device = fields.Char(string="Kalibriervorrichtung: ")
-    ks = fields.Integer(string="KS: ")
-    is_torque_measurement = fields.Boolean(string="Rollenbremsprüfstand auf der Basis der Drehmomentmessung")
-    is_thermal_power = fields.Boolean(string="Rollenbremsprüfstand auf der Basis der Wirkleistungsmessung")
-    is_plate = fields.Boolean(string="Plattenbremsprüfstand")
-    small_measuring_range = fields.Float(string="Small measuring range")
-    large_measuring_range = fields.Float(string="Large measuring range")
     measuring_ids = fields.One2many('mail.activity.measuring', 'mail_activity_id', string="Measuring")
     max_difference_ids = fields.One2many('mail.activity.max.difference', 'mail_activity_id', string="Max difference")
-    is_test_speed = fields.Boolean(string="Prüfgeschwindigkeit bei Nenndrehzahl und max. Bremslast, für die der Bremsenprüfstand ausgelegt ist, wurde eingehalten")
-    is_key_switch = fields.Boolean(string="Schlupfabschaltung bei max. 30 % tatsächlichem Schlupf wurde eingehalten")
-    is_error_limit = fields.Boolean(string="Die Fehlergrenzen für die Anzeige von + - 2% für den gesamten Messbereich, auf den Skalenendwert, wurden eingehalten. Ab Rili 2011, bei nominaler maximaler Bremskraft von 8 kN im Messbereich 0-2000 N + -40 N und darüber + -2% vom momentanen Messwert, und bei einer nominalen maximalen Bremskraft über 8 kN im Messbereich von 0-5000 N + -100 N und darüber 2 % vom momentanen Messwert")
-    is_permissible  = fields.Boolean(string="Die zulässige Abweichung zwischen der Anzeige der beiden Messgeräte li - re von 5 % des größeren Werts, jedoch höchstens 2 % des Skalenwerts, wurde eingehalten")
-    is_less_nominal_diameter = fields.Boolean(string="Der gemessene Rollendurchmesser war an keiner Stelle geringer als 98 % vom Nenndurchmesser")
-    is_surface_quality = fields.Boolean(string="Oberflächenbeschaffenheit der Rollen wurde eingehalten")
-    is_no_concerns = fields.Boolean(string="Keine Bedenken")
-    is_concerns = fields.Boolean(string="Bedenken. Die festgestellten Mängel sind umgehend zu beheben. Eine Wieder- holung der Stückprüfung ist innerhalb von 4 Wochen durchzuführen")
-    is_next_routine_test = fields.Boolean(string="Nächste Stückprüfung:")
     month = fields.Char(string="Monat: ")
     year = fields.Char(string="Jahr: ")
     is_manufacturer = fields.Boolean(string="des Herstellers oder Importeurs")
-    is_responsible_calibration_authority = fields.Boolean(string="der zuständigen Eichbehörde")
-    is_state_side = fields.Boolean(string="von staatlicher Seite")
-    is_technical_test = fields.Boolean(string="einer Technischen Prüfstelle")
-    is_officially_organizations = fields.Boolean(string="der amtlich anerkannten Überwachungsorgnisationen")
-    is_vehicle = fields.Boolean(string="der KFZ-Innung oder des KFZ-Landesverbandes")
     begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
     begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
     folg_erf_m =fields.Selection([('1', 'Ja'),
@@ -156,70 +70,7 @@ class MailActivity(models.Model):
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
-    
-#     gefaehrdungsfaktor = fields.One2many('equipment.types', 'gefaehrdungsf', string="Gefährdungsfaktor")
-                     
-#     @api.depends('gefahrenquellen_typ_id')
-#     def _dann_aktiv(self):
-#         for gefahrenquellen_typ_id in self:
-#             if self.gefahrenquellen_typ_id.id == '1':
-#                 self.check = True
-#             else:
-#                 self.check = False
 
-    @api.onchange('operation_no_defects')
-    def _onchange_operation_no_defects(self):
-        if self.operation_no_defects:
-            self.operation_review = False
-            self.operation_defects_remedied = False
-
-    @api.onchange('operation_review')
-    def _onchange_review(self):
-        if self.operation_review:
-            self.operation_no_defects = False
-            self.operation_defects_remedied = False
-
-    @api.onchange('operation_defects_remedied')
-    def _onchange_operation_defects_remedied(self):
-        if self.operation_defects_remedied:
-            self.operation_review = False
-            self.operation_no_defects = False
-
-    @api.onchange('is_exam_regular')
-    def _onchange_is_exam_regular(self):
-        if self.is_exam_regular:
-            self.is_extraordinary = False
-            self.is_exam_tore_review = False
-
-    @api.onchange('is_extraordinary')
-    def _onchange_is_exam_extraordinary(self):
-        if self.is_extraordinary:
-            self.is_exam_regular = False
-            self.is_exam_tore_review = False
-
-    @api.onchange('is_exam_tore_review')
-    def _onchange_iis_exam_tore_review(self):
-        if self.is_exam_tore_review:
-            self.is_exam_regular = False
-            self.is_extraordinary = False
-
-    @api.onchange('is_exam_result_review')
-    def _onchange_is_exam_result_review(self):
-        if self.is_exam_result_review:
-            self.is_result_continuation_operation = False
-            self.is_result_exam_no_defect = False
-
-    @api.onchange('is_result_continuation_operation')
-    def _onchange_is_result_continuation_operation(self):
-        if self.is_result_continuation_operation:
-            self.is_exam_result_review = False
-            self.is_result_exam_no_defect = False
-
-    @api.onchange('is_result_exam_no_defect')
-    def _onchange_iis_result_exam_no_defect(self):
-        if self.is_result_exam_no_defect:
-            self.is_exam_result_review = False
-            self.is_result_continuation_operation = False
 
     @api.onchange('is_manufacturer')
     def _onchange_is_manufacturer(self):
@@ -229,81 +80,6 @@ class MailActivity(models.Model):
             self.is_technical_test = False
             self.is_officially_organizations = False
             self.is_vehicle = False
-
-    @api.onchange('is_responsible_calibration_authority')
-    def _onchange_is_responsible_calibration_authority(self):
-        if self.is_responsible_calibration_authority:
-            self.is_manufacturer = False
-            self.is_state_side = False
-            self.is_technical_test = False
-            self.is_officially_organizations = False
-            self.is_vehicle = False
-
-    @api.onchange('is_state_side')
-    def _onchange_is_state_side(self):
-        if self.is_state_side:
-            self.is_responsible_calibration_authority = False
-            self.is_manufacturer = False
-            self.is_technical_test = False
-            self.is_officially_organizations = False
-            self.is_vehicle = False
-
-    @api.onchange('is_technical_test')
-    def _onchange_is_technical_test(self):
-        if self.is_technical_test:
-            self.is_responsible_calibration_authority = False
-            self.is_manufacturer = False
-            self.is_state_side = False
-            self.is_officially_organizations = False
-            self.is_vehicle = False
-
-    @api.onchange('is_officially_organizations')
-    def _onchange_is_officially_organizations(self):
-        if self.is_officially_organizations:
-            self.is_responsible_calibration_authority = False
-            self.is_manufacturer = False
-            self.is_state_side = False
-            self.is_technical_test = False
-            self.is_vehicle = False
-
-    @api.onchange('is_vehicle')
-    def _onchange_is_vehicle(self):
-        if self.is_vehicle:
-            self.is_responsible_calibration_authority = False
-            self.is_manufacturer = False
-            self.is_state_side = False
-            self.is_officially_organizations = False
-            self.is_technical_test = False
-
-    @api.onchange('is_torque_measurement')
-    def _onchange_is_torque_measurement(self):
-        if self.is_torque_measurement:
-            self.is_thermal_power = False
-            self.is_plate = False
-
-    @api.onchange('is_thermal_power')
-    def _onchange_is_thermal_power(self):
-        if self.is_thermal_power:
-            self.is_torque_measurement = False
-            self.is_plate = False
-
-    @api.onchange('is_plate')
-    def _onchange_is_plate(self):
-        if self.is_plate:
-            self.is_torque_measurement = False
-            self.is_thermal_power = False
-
-    @api.onchange('result_exam_no_defects')
-    def _onchange_result_exam_no_defects(self):
-        if self.result_exam_no_defects:
-            self.result_exam_defects = False
-
-    @api.onchange('result_exam_defects')
-    def _onchange_result_exam_defects(self):
-        if self.result_exam_defects:
-            self.result_exam_no_defects = False
-        else:
-            self.note_tore = ""
 
     @api.depends('res_model', 'res_id')
     def _get_equipment(self):
@@ -478,8 +254,6 @@ class MailActivity(models.Model):
             'serial_no': self.equipment_id.serial_no,
             'equipment_service_id': self.equipment_id.equipment_service_id.id,
             'signature': self.signature or False,
-            'visual_inspection': self.visual_inspection,
-            'functional_test': self.functional_test,
             #Neue Felder per 26.12.2020 
             'equipment_id':self.equipment_id.id,
             'ref':self.ref,
@@ -489,77 +263,66 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
         }
-        if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'petrol':
-            el_test_vals = {
-                'testing_device': self.testing_device_name,
-                'testing_device_sn': self.testing_device_sn,
-                'type': 'Infralyt Smart',
-                'voltage_u_in_volts_v': self.voltage_u_in_volts_v,
-                'frequency_f_in_heart_hz': self.frequency_f_in_heart_hz,
-                'protection_class': self.protection_class,
-                'tested_din_vde_0701_0702': self.tested_din_vde_0701_0702,
-                'rpe': self.rpe,
-                'operator_rpe': self.operator_rpe,
-                'riso_m': self.riso_m,
-                'operator_riso': self.operator_riso,
-                'iea_ma': self.iea_ma,
-                'operator_iea': self.operator_iea,
-                'evaluation': self.evaluation,
-            }
-            protocol_vals.update(el_test_vals)
-        if self.equipment_test_type == 'el_test' and self.exhaust_measuring_device == 'diesel':
-            el_test_vals = {
-                'testing_device': self.testing_device_name,
-                'testing_device_sn': self.testing_device_sn,
-                'type': 'Opacylit 1030',
-                'voltage_u_in_volts_v': self.voltage_u_in_volts_v,
-                'frequency_f_in_heart_hz': self.frequency_f_in_heart_hz,
-                'protection_class': self.protection_class,
-                'tested_din_vde_0701_0702': self.tested_din_vde_0701_0702,
-                'rpe': self.rpe,
-                'operator_rpe': self.operator_rpe,
-                'riso_m': self.riso_m,
-                'operator_riso': self.operator_riso,
-                'iea_ma': self.iea_ma,
-                'operator_iea': self.operator_iea,
-                'evaluation': self.evaluation,
-            }
-            protocol_vals.update(el_test_vals)
-        if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device == 'diesel':
-            maintenance_diesel_vals = {
-                'exhaust_hose_probe': self.exhaust_hose_probe,
-                'measuring_optics': self.measuring_optics,
-                'measuring_cell': self.measuring_cell,
-                'cables_hose_connections': self.cables_hose_connections,
-                'manual_calibration': self.manual_calibration,
-                'functional_control': self.functional_control,
-                'test_filter': self.test_filter,
-                'test_calibration_filter': self.test_calibration_filter,
-            }
-            protocol_vals.update(maintenance_diesel_vals)
+#         if self.equipment_test_type == 'el_test':
+#             el_test_vals = {
+#                 'testing_device': self.testing_device_name,
+#                 'testing_device_sn': self.testing_device_sn,
+#                 'type': 'Infralyt Smart',
+#             }
+#             protocol_vals.update(el_test_vals)
+#         if self.equipment_test_type == 'el_test':
+#             el_test_vals = {
+#                 'testing_device': self.testing_device_name,
+#                 'testing_device_sn': self.testing_device_sn,
+#                 'type': 'Opacylit 1030',
+#                 'voltage_u_in_volts_v': self.voltage_u_in_volts_v,
+#                 'frequency_f_in_heart_hz': self.frequency_f_in_heart_hz,
+#                 'protection_class': self.protection_class,
+#                 'tested_din_vde_0701_0702': self.tested_din_vde_0701_0702,
+#                 'rpe': self.rpe,
+#                 'operator_rpe': self.operator_rpe,
+#                 'riso_m': self.riso_m,
+#                 'operator_riso': self.operator_riso,
+#                 'iea_ma': self.iea_ma,
+#                 'operator_iea': self.operator_iea,
+#                 'evaluation': self.evaluation,
+#             }
+#             protocol_vals.update(el_test_vals)
+#         if self.equipment_test_type == 'maintenance':
+#             maintenance_diesel_vals = {
+#                 'exhaust_hose_probe': self.exhaust_hose_probe,
+#                 'measuring_optics': self.measuring_optics,
+#                 'measuring_cell': self.measuring_cell,
+#                 'cables_hose_connections': self.cables_hose_connections,
+#                 'manual_calibration': self.manual_calibration,
+#                 'functional_control': self.functional_control,
+#                 'test_filter': self.test_filter,
+#                 'test_calibration_filter': self.test_calibration_filter,
+#             }
+#             protocol_vals.update(maintenance_diesel_vals)
 
-        if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device == 'petrol':
-            maintenance_petrol_vals = {
-                'exhaust_hose_probe': self.exhaust_hose_probe,
-                'pre_filter': self.pre_filter,
-                'coarse_filter': self.coarse_filter,
-                'fine_filter': self.fine_filter,
-                'leak_test_seal': self.leak_test_seal,
-                'leak_test_performed': self.leak_test_performed,
-                'test_o2_sensor': self.test_o2_sensor,
-                'test_gas': self.test_gas,
-                'sensor_type': self.sensor_type,
-                'sensor_serial': self.sensor_serial,
-                'gas_certificate_no': self.gas_certificate_no,
-                'gas_bottle_no': self.gas_bottle_no,
-                'test_gas_concentration_co': self.test_gas_concentration_co,
-                'test_gas_concentration_co2': self.test_gas_concentration_co2,
-                'test_gas_concentration_c3': self.test_gas_concentration_c3,
-                'value_after_adjustment_co': self.value_after_adjustment_co,
-                'value_after_adjustment_co2': self.value_after_adjustment_co2,
-                'value_after_adjustment_c3': self.value_after_adjustment_c3
-            }
-            protocol_vals.update(maintenance_petrol_vals)
+#         if self.equipment_test_type == 'maintenance' and self.exhaust_measuring_device == 'petrol':
+#             maintenance_petrol_vals = {
+#                 'exhaust_hose_probe': self.exhaust_hose_probe,
+#                 'pre_filter': self.pre_filter,
+#                 'coarse_filter': self.coarse_filter,
+#                 'fine_filter': self.fine_filter,
+#                 'leak_test_seal': self.leak_test_seal,
+#                 'leak_test_performed': self.leak_test_performed,
+#                 'test_o2_sensor': self.test_o2_sensor,
+#                 'test_gas': self.test_gas,
+#                 'sensor_type': self.sensor_type,
+#                 'sensor_serial': self.sensor_serial,
+#                 'gas_certificate_no': self.gas_certificate_no,
+#                 'gas_bottle_no': self.gas_bottle_no,
+#                 'test_gas_concentration_co': self.test_gas_concentration_co,
+#                 'test_gas_concentration_co2': self.test_gas_concentration_co2,
+#                 'test_gas_concentration_c3': self.test_gas_concentration_c3,
+#                 'value_after_adjustment_co': self.value_after_adjustment_co,
+#                 'value_after_adjustment_co2': self.value_after_adjustment_co2,
+#                 'value_after_adjustment_c3': self.value_after_adjustment_c3
+#             }
+#             protocol_vals.update(maintenance_petrol_vals)
 
         protocol = self.env['equipment.protocol'].create(protocol_vals)
         self.write({'equipment_protocol_id': protocol.id,
@@ -865,6 +628,8 @@ class MailActivity(models.Model):
         sequence.number_next_actual = 1
         sequence_zwei = self.env['ir.sequence'].search([('code', '=', 'begehung.zwei')])
         sequence_zwei.number_next_actual = 1
+        nummer_gef = self.env['ir.sequence'].search([('code', '=', 'gefaerdungs.beurteilung')])
+        nummer_gef.number_next_actual = 1
         return messages, next_activities
 
 

@@ -8,7 +8,7 @@
     'description': """Anwendung für die Arbeitsabläufe in der Arbeitssicherheit""",
     'depends': ['maintenance', 'portal'],
     'summary': 'Anwendung für die Arbeitsabläufe in der Arbeitssicherheit',
-    'website': 'JADESi',
+    'website': 'https://www.jadesi.de',
     'data': [
         'security/ir.model.access.csv',
         'data/wepelo_mail_data.xml',
