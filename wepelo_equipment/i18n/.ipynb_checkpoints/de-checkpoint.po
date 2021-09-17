@@ -596,12 +596,12 @@ msgstr "Status der Aktivität"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_schedule_activity_type__activity_type_id
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_mail_activity_search_view
 msgid "Activity Type"
-msgstr "Aktivitätstyp"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "Activity Type: <span style=\"color:red;\">*</span>"
-msgstr "Aktivitätstyp: <span style=\"color:red;\">*</span>"
+msgstr "Service: <span style=\"color:red;\">*</span>"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__schedule_activity_type_ids
@@ -612,7 +612,7 @@ msgstr "Service"
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #, python-format
 msgid "Activity type : "
-msgstr "Aktivitätstyp: "
+msgstr "Service: "
 
 #. module: wepelo_equipment
 #: model_terms:ir.actions.act_window,help:wepelo_equipment.wepelo_equipment_service_action
@@ -1959,7 +1959,7 @@ msgstr "Zusammenfassung nächste Aktion"
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_history__activity_type_id
 msgid "Next Activity Type"
-msgstr "Nächster Aktivitätstyp"
+msgstr "Nächster Service"
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0

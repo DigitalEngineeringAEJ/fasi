@@ -56,6 +56,7 @@
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">9</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_gefährdungsbeurteilung"/>
         </record>
         <record id="mail_activity_data_routine_test" model="mail.activity.type">
@@ -63,6 +64,7 @@
             <field name="delay_count">365</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
+            <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_begehung"/>
         </record>
         <record id="mail_activity_data_uvv" model="mail.activity.type">
@@ -70,6 +72,7 @@
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">11</field>
+            <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_schulung_unterweisung"/>
 <!--             <field name="category">upload_file</field> -->
         </record>
@@ -84,6 +87,7 @@
             <field name="name">Folgebegehung</field>
 <!--             <field name="delay_count">360</field> -->
             <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
             <field name="sequence">12</field>
 <!--             <field name="category">upload_file</field> -->
