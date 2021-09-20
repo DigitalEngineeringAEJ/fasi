@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!--Service strain Data-->
+        <!--Service Data-->
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
             <field name="equipment_test_type">calibration_ei</field>
