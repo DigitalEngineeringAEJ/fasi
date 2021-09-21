@@ -187,7 +187,7 @@
                             <field name="abstellmassnahme_gef_kla" string="Abs Klassifizierung"/>
                             <field name="deadline_abs_gef" string="Deadline Abstellmaßnahme"/>
                             <field name="verantwortlich_gef" string="Verantwortlich"/>
-                            <field name="folg_beg_gef" string="Folgebegehung erforderlich?"/>
+                            <field name="folg_beg_gef" string="Folgebegehung erforderlich?" context="{'defaultfolg_beg_gef': 'Ja'}"/>
                             </tree>
                         </field>
                         </page>

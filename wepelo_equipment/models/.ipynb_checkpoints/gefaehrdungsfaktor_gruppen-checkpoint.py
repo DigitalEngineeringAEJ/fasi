@@ -89,7 +89,7 @@ class EquipmentTypes(models.Model):
     
     deadline_abs_gef = fields.Date(string='Deadline Abstellmaßnahme')
     
-    verantwortlich_gef = fields.Many2one('res.partner', string='Verantwortlich')
+    verantwortlich_gef = fields.Many2one('res.partner', string='Verantwortlich', default=lambda self: self.env['mail.activity'].search([('customer_id','=','customer_id.name')]))
     
     folg_beg_gef =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
