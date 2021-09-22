@@ -9,7 +9,6 @@ class TestEquipmentService(models.Model):
 
     name = fields.Char(string='Name')
     test_equipment_ids = fields.Many2many('equipment.test', 'equipment_service_equipment_test_rel', 'equipment_service_id', 'equipment_test_id', string='Test Equipment')
-    exhaust_measuring_device = fields.Selection([('diesel', 'Diesel'), ('petrol', 'Petrol')], string='Exhaust Measuring Device')
     is_maintenance = fields.Boolean(string="Maintenance", compute='_is_maintenance', store=True)
 
     @api.depends('test_equipment_ids')

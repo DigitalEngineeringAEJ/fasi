@@ -77,7 +77,7 @@ msgstr ""
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "<small class=\"text-muted\">equipment -</small>"
-msgstr "<small class=\"text-muted\">Inventar -</small>"
+msgstr "<small class=\"text-muted\">Gefahrenquelle -</small>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
@@ -118,7 +118,7 @@ msgid ""
 "                                    <span>Equipment Protocol</span>"
 msgstr ""
 "<span class=\"fa fa-file-text\" role=\"img\" aria-label=\"Protocol Report (PDF)\" title=\"Protocol Report (PDF)\"/>\n"
-"                                    <span>Elektrisches Protokoll</span>"
+"                                    <span>Protokoll Folgebegehung</span>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
@@ -306,7 +306,7 @@ msgstr ""
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol
 msgid "<strong><span>Equipment Kategorie:</span></strong>"
-msgstr "<strong><span>Inventarkategorie:</span></strong>"
+msgstr "<strong><span>Gefahrenquellenkategorie:</span></strong>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol
@@ -356,7 +356,7 @@ msgstr ""
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol
 msgid "<strong><span>Serial Number:</span></strong>"
-msgstr "<strong><span>Seriennummer:</span></strong>"
+msgstr "<strong><span>ID:</span></strong>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol
@@ -494,8 +494,8 @@ msgstr "<strong>Serien-Nr: </strong>"
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol_rep
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol_rep_prot
-msgid "<strong>Seriennummer: </strong>"
-msgstr "<strong>Seriennummer: </strong>"
+msgid "<strong>ID: </strong>"
+msgstr "<strong>ID: </strong>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_protocol_maintenance
@@ -596,12 +596,12 @@ msgstr "Status der Aktivität"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_schedule_activity_type__activity_type_id
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_mail_activity_search_view
 msgid "Activity Type"
-msgstr "Aktivitätstyp"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "Activity Type: <span style=\"color:red;\">*</span>"
-msgstr "Aktivitätstyp: <span style=\"color:red;\">*</span>"
+msgstr "Service: <span style=\"color:red;\">*</span>"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__schedule_activity_type_ids
@@ -612,7 +612,7 @@ msgstr "Service"
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #, python-format
 msgid "Activity type : "
-msgstr "Aktivitätstyp: "
+msgstr "Service: "
 
 #. module: wepelo_equipment
 #: model_terms:ir.actions.act_window,help:wepelo_equipment.wepelo_equipment_service_action
@@ -806,12 +806,12 @@ msgstr "Stornieren"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_mail_activity_view_map
 #, python-format
 msgid "Category"
-msgstr "Inventarkategorie"
+msgstr "Gefahrenquellenkategorie"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "Category:"
-msgstr "Inventarkategorie:"
+msgstr "Gefahrenquellenkategorie:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_mail_activity__gas_certificate_no
@@ -936,7 +936,7 @@ msgstr "Kunde"
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.hr_equipment_view_form_inherit_wepelo
 msgid "Customer Internal Designation"
-msgstr "Gefahrenquellen Bezeichnung"
+msgstr "Bezeichnung Gefahrenquelle"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
@@ -1229,12 +1229,12 @@ msgstr "Gefahrenquelle"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_protocol_view_search
 #, python-format
 msgid "Equipment"
-msgstr "Inventar"
+msgstr "Gefahrenquelle"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_mail_activity_search_view
 msgid "Equipment Activity"
-msgstr "Inventar Aktivität"
+msgstr "Gefahrenquelle Aktivität"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_history__category_id
@@ -1251,7 +1251,7 @@ msgstr "Objekte:"
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__customer
 msgid "Equipment Customer"
-msgstr "Inventar Kunde"
+msgstr "Gefahrenquelle Kunde"
 
 #. module: wepelo_equipment
 #: model:ir.actions.act_window,name:wepelo_equipment.wepelo_wepelo_historie_action
@@ -1261,7 +1261,7 @@ msgstr ""
 #. module: wepelo_equipment
 #: model:ir.model,name:wepelo_equipment.model_equipment_mail_activity
 msgid "Equipment Mail Activity"
-msgstr "Inventar Mail-Aktivität"
+msgstr "Gefahrenquelle Mail-Aktivität"
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0
@@ -1282,7 +1282,7 @@ msgstr "Protokoll"
 #: model:ir.actions.report,name:wepelo_equipment.wepelo_equipment_protocol
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_protocol_view_form
 msgid "Equipment Protocol"
-msgstr "Elektrisches Protokoll"
+msgstr "Protokoll Folgebegehung"
 
 #. module: wepelo_equipment
 #: model:ir.actions.report,name:wepelo_equipment.wepelo_equipment_protocol_maintenance
@@ -1329,7 +1329,7 @@ msgstr "Servicestamm"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity__equipment_test_type_id
 #: model:ir.model.fields,field_description:wepelo_equipment.field_mail_activity_type__equipment_test_type_id
 msgid "Equipment Test"
-msgstr "Gerätetest"
+msgstr "Aktivität"
 
 #. module: wepelo_equipment
 #: model:ir.model,name:wepelo_equipment.model_equipment_types
@@ -1340,7 +1340,7 @@ msgstr "Gerätetypen"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
 msgid "Equipment:"
-msgstr "Inventar:"
+msgstr "Gefahrenquelle:"
 
 #. module: wepelo_equipment
 #: model:ir.actions.act_window,name:wepelo_equipment.hr_equipment_action_from_customer_form
@@ -1350,7 +1350,7 @@ msgstr "Inventar:"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_layout
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 msgid "Equipments"
-msgstr "Inventar"
+msgstr "Gefahrenquelle"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_mail_activity__evaluation
@@ -1473,7 +1473,7 @@ msgstr "Hoch"
 
 #. module: wepelo_equipment
 #: model:ir.model,name:wepelo_equipment.model_equipment_history
-msgid "Historie des Inventars"
+msgid "Historie der Gefahrenquelle"
 msgstr ""
 
 #. module: wepelo_equipment
@@ -1559,12 +1559,12 @@ msgstr "Wenn gewählt, ist das Senden einiger Nachrichten fehlgeschlagen."
 #: model:ir.model.fields,field_description:wepelo_equipment.field_maintenance_equipment__inventory_number
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 msgid "Inventory Number"
-msgstr "Inventarnummer"
+msgstr "Gefahrenquellennummer"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "Inventory Number :"
-msgstr "Inventarnummer:"
+msgstr "Gefahrenquellennummer:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,help:wepelo_equipment.field_res_partner__type
@@ -1703,7 +1703,7 @@ msgstr ""
 #: code:addons/wepelo_equipment/models/.ipynb_checkpoints/wepelo_maintenance-checkpoint.py:0
 #: code:addons/wepelo_equipment/models/wepelo_maintenance.py:0
 #, python-format
-msgid "Leider wurde keine Seriennummer angegeben"
+msgid "Leider wurde keine ID angegeben"
 msgstr ""
 
 #. module: wepelo_equipment
@@ -1959,7 +1959,7 @@ msgstr "Zusammenfassung nächste Aktion"
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_history__activity_type_id
 msgid "Next Activity Type"
-msgstr "Nächster Aktivitätstyp"
+msgstr "Nächster Service"
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0
@@ -2394,7 +2394,7 @@ msgstr "Suchen"
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #, python-format
 msgid "Search <span class=\"nolabel\"> (in Gefahrenquellen)</span>"
-msgstr "Suche <span class=\"nolabel\"> (im Inventarbezeichnung)</span>"
+msgstr "Suche <span class=\"nolabel\"> (in Gefahrenquellen)</span>"
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0
@@ -2433,7 +2433,7 @@ msgstr "Suche im Hersteller"
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #, python-format
 msgid "Search in Serial Number"
-msgstr "Suche in Seriennummer"
+msgstr "Suche in ID"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_mail_activity__sensor_type
@@ -2453,7 +2453,7 @@ msgstr "September"
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocols
 msgid "Serial No"
-msgstr "Seriennummer"
+msgstr "ID"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_mail_activity__sensor_serial
@@ -2464,7 +2464,7 @@ msgstr ""
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
 msgid "Serial No:"
-msgstr "Seriennummer:"
+msgstr "ID:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields,field_description:wepelo_equipment.field_equipment_history__serial_no
@@ -2473,12 +2473,12 @@ msgstr "Seriennummer:"
 #: model:ir.model.fields,field_description:wepelo_equipment.field_maintenance_request__serial_no
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 msgid "Serial Number"
-msgstr "Seriennummer"
+msgstr "ID"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
 msgid "Serial Number:"
-msgstr "Seriennummer:"
+msgstr "ID:"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipment
@@ -2547,7 +2547,7 @@ msgstr "QR-Code"
 #: code:addons/wepelo_equipment/models/wepelo_equipment_system.py:0
 #: model:mail.activity.type,name:wepelo_equipment.mail_activity_data_routine_test
 #, python-format
-msgid "Stückprüfung"
+msgid "Begehung"
 msgstr ""
 
 #. module: wepelo_equipment
@@ -2601,8 +2601,8 @@ msgstr "Service"
 #: model:ir.ui.menu,name:wepelo_equipment.menu_wepelo_equipment_test
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_test_view_form
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_test_view_tree
-msgid "Test Equipment"
-msgstr "Teststamm"
+msgid "Service"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model:ir.actions.act_window,name:wepelo_equipment.wepelo_test_equipment_device_action
@@ -2641,13 +2641,13 @@ msgstr ""
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocols
-msgid "Test base"
-msgstr "Teststamm"
+msgid "Service"
+msgstr "Service"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
-msgid "Test base:"
-msgstr "Teststamm:"
+msgid "Service:"
+msgstr "Service:"
 
 #. module: wepelo_equipment
 #: model:ir.model.fields.selection,name:wepelo_equipment.selection__test_equipment_device__x_device_typ__testgas
@@ -2730,7 +2730,7 @@ msgstr "Das Gerät entspricht nicht den anerkannten Regeln der Elektrotechnik."
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 msgid "There are no equipments."
-msgstr "Es gibt keine Inventar."
+msgstr "Es gibt keine Gefahrenquellen."
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocols
@@ -3001,7 +3001,7 @@ msgstr ""
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_equipments
 msgid "for equipment:"
-msgstr "für Inventar:"
+msgstr "für Gefahrenquellen:"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocols
@@ -3166,7 +3166,7 @@ msgstr "November"
 #: code:addons/wepelo_equipment/controllers/portal.py:0
 #, python-format
 msgid "Equipment : "
-msgstr "Inventar: "
+msgstr "Gefahrenquelle: "
 
 #. module: wepelo_equipment
 #: code:addons/wepelo_equipment/controllers/portal.py:0
@@ -3268,12 +3268,12 @@ msgstr "Reiter Eichung einblenden
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_eichnachweis_protocol
 msgid "<strong>Scheduled Date: </strong>"
-msgstr "<strong>Eichdatum: </strong>"
+msgstr "<strong>Geplantes Datum: </strong>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_eichnachweis_protocol
 msgid "<strong>Serial No: </strong>"
-msgstr "<strong>Seriennummer: </strong>"
+msgstr "<strong>ID: </strong>"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.report_equipment_eichnachweis_protocol
@@ -3313,14 +3313,21 @@ msgstr "Protokoll Betriebssicherheitsprüfung"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.wepelo_equipment_protocol_view_form
-msgid "Stückprüfung Protocol"
-msgstr "Protokoll Stückprüfung"
+msgid "Protokoll Begehung"
+msgstr "Protokoll Begehung"
 
 #. module: wepelo_equipment
 #: model_terms:ir.ui.view,arch_db:wepelo_equipment.portal_my_protocol
 msgid ""
 "<span class=\"fa fa-file-text-o\" role=\"img\" aria-label=\"Stückprüfung Protocol Report (PDF)\" title=\"Protocol Maintenance Report (PDF)\"/>\n"
-"                                    <span>Stückprüfung Protocol</span>"
+"                                    <span>Protokoll Begehung</span>"
 msgstr ""
 "<span class=\"fa fa-file-text-o\" role=\"img\" aria-label=\"Stückprüfung Protocol Report (PDF)\" title=\"Protocol Maintenance Report (PDF)\"/>\n"
-"                                    <span>Protokoll Stückprüfung</span>"
+"                                    <span>Protokoll Begehung</span>"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment__name
+#: model_terms:ir.ui.view,arch_db:maintenance.hr_equipment_view_form
+msgid "Bezeichnung Gefahrenquelle"
+msgstr "Bezeichnung Gefahrenquelle"
+

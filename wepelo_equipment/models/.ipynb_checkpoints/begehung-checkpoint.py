@@ -86,7 +86,7 @@ class BegehungZwei(models.Model):
     
     folg_erf_m =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
-                              string='Folgebegehung erforderlich?')
+                              string='Folgebegehung erforderlich?', default='Nein')
     
     nummer_drei = fields.Char(string="Nummer",  store=True, readonly=True)
     
@@ -118,7 +118,7 @@ class Folgebegehung(models.Model):
     
     sequence_ref= fields.Integer(string='Sequenz z')
     
-    nummer_vier = fields.Float(string='Nr')
+    nummer_vier = fields.Char(string='Nr')
     
     name_vier = fields.Text(string='Name')
     
@@ -138,5 +138,5 @@ class Folgebegehung(models.Model):
     
     w_folg_erf =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
-                              string='Folgebegehung erforderlich?')
+                              string='Folgebegehung erforderlich?', default='Nein')
     
