@@ -419,7 +419,7 @@ class CustomerPortal(CustomerPortal):
                 summary = summary + "<br/>" + equipment + "<br/>" + created_on + "<br/>" + created_by + "<br/>" + assigned_to + "<br/>" + due_on
                 if customer:
                     summary = summary + "<br/>" + customer
-                local = pytz.timezone(request._context.get("tz"))
+                local = pytz.timezone(request._context.get("tz") or "UTC")
                 schedule_date = datetime.strptime(schedule_date, "%Y-%m-%d %H:%M:%S")
                 schedule_date = schedule_date.astimezone(local)
                 schedule_date = schedule_date.strftime(date_format)

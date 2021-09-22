@@ -93,7 +93,7 @@ class EquipmentTypes(models.Model):
     
     folg_beg_gef =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
-                              string='Folgebegehung erforderlich?')
+                              string='Folgebegehung erforderlich?', default='Nein')
     
     equipment_protocol_id = fields.Many2one('equipment.protocol')
     
