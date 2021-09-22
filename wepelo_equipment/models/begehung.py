@@ -86,7 +86,7 @@ class BegehungZwei(models.Model):
     
     folg_erf_m =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
-                              string='Folgebegehung erforderlich?')
+                              string='Folgebegehung erforderlich?', default='Nein')
     
     nummer_drei = fields.Char(string="Nummer",  store=True, readonly=True)
     
@@ -138,5 +138,5 @@ class Folgebegehung(models.Model):
     
     w_folg_erf =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
-                              string='Folgebegehung erforderlich?')
+                              string='Folgebegehung erforderlich?', default='Nein')
     
