@@ -257,6 +257,30 @@
                         </notebook>
                     </group>
                     
+                     <!-- Ansicht für Arbeitsstoff-und Gefahrstoff-Verzeichnis  -->
+                    
+                     <group string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)" attrs="{'invisible': [('equipment_test_type', '!=', 'gefahrstoff_verszeichnis')]}">
+                        <notebook>
+                            <page string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)">
+<!--                             <field name= 'folg_beg_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence_ref" widget="handle"/>
+                            <field name="id_ref" invisible="1"/>
+                            <field name="nummer_vier"/>
+                            <field name="name_vier"/>
+                            <field name="klasse_drei"/>
+                            <field name="abstellmassnahme_drei"/>
+                            <field name="abstellmassnahme_k_drei"/>
+                            <field name="deadline_abs_ref"/>
+                            <field name="verantwortlich_ref"/>
+                            <field name="wirksam"/>
+                            <field name="w_folg_erf"/>
+                        </tree>
+                        </field> -->
+                        </page>
+                        </notebook>
+                    </group>
+                    
                     <!-- noch nicht defnierte View -->
 <!--                     <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
                         <group>

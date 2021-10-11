@@ -38,6 +38,7 @@ class EquipmentTest(models.Model):
             ('uvv', _('Betriebssicherheitsprüfung')),
             ('maintenance', _('Wartung')),
             ('repairs', _('Reparaturen')),
+            ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
         ]
 
     equipment_test_types = {
@@ -48,6 +49,7 @@ class EquipmentTest(models.Model):
         'uvv': _('Betriebssicherheitsprüfung'),
         'maintenance': _('Wartung'),
         'repairs': _('Reparaturen'),
+        'gefahrstoff_verszeichnis': _('Gefahrstoff-Verszeichnis'),
     }
 # 
 #     @api.depends('equipment_test_type', 'cycle_duration')
