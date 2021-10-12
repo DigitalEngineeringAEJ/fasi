@@ -70,6 +70,8 @@ class MailActivity(models.Model):
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
+    gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", store=True)
+    
 
 
     @api.onchange('is_manufacturer')
@@ -262,6 +264,7 @@ class MailActivity(models.Model):
             'folg_erf_m':self.folg_erf_m or False,
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
+            'gef_verzeichnis_ids':self.gef_verzeichnis_ids,
         }
 #         if self.equipment_test_type == 'el_test':
 #             el_test_vals = {

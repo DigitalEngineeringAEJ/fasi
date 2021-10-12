@@ -32,6 +32,7 @@ class EquipmentProtocol(models.Model):
         ('uvv', _('Betriebssicherheitsprüfung')),
         ('maintenance', _('Wartung')),
         ('repairs', _('Reparatur')),
+        ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
     ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
@@ -60,7 +61,10 @@ class EquipmentProtocol(models.Model):
     folg_beg_id = fields.Many2one('folgebegehung', string='Folgebegehung', store=True)
     gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor', store=True)
     gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor', store=True)
+    gef_verzeichnis_ids = fields.Many2many('gefahrstoff.verzeichnis', string="Gefahrstoff Verzeichnis", store=True)
 
+    
+    
     @api.depends('downloaded_user_ids')
     def _compute_downloaded_protocol(self):
         for rec in self:

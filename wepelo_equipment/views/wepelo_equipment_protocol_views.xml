@@ -275,6 +275,29 @@
                         </page>
                     </notebook>
                     </group>
+                    
+                    <!-- Ansicht für Arbeitsstoff-und Gefahrstoff-Verzeichnis  -->
+                    
+                     <group attrs="{'invisible': [('equipment_test_type', '!=', 'gefahrstoff_verszeichnis')]}">
+                        <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'gefahrstoff_verszeichnis')]}">
+                            <page string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)">
+                            <field name= 'gef_verzeichnis_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="name" />
+                            <field name="prod_bez"/>
+                            <field name="partner_id"/>
+                            <field name="kategorie"/>
+                            <field name="zweck"/>
+                            <field name="menge"/>
+                            <field name="zeitraum"/>
+                            <field name="daten_blatt"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    </group>
 <!--                     <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                          <group>
                             <field name="exhaust_hose_probe" class="ml16"/>

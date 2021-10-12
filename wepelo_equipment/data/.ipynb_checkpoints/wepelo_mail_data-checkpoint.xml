@@ -93,7 +93,7 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_gefahrstoff_verszeichnis"/>
-            <field name="sequence">12</field>
+            <field name="sequence">13</field>
         </record>
         
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">

@@ -14,6 +14,10 @@ class GefahrstoffVerzeichnis(models.Model):
 
     name = fields.Char(string='Arbeitsbereich')
     
+    id = fields.Char(string='Identifikation')
+    
+    sequence = fields.Integer(string='Sequenz')
+    
     prod_bez = fields.Char(string='Stoff-/Produkt-bezeichnung(Handelsname,Produkt-Nr.)')
     
     partner_id = fields.Many2one('res.partner', string='Hersteller/Lieferant')
@@ -32,7 +36,7 @@ class GefahrstoffVerzeichnis(models.Model):
     
     zweck = fields.Char(string='Verwendungszweck/Arbeitsverfahren')
     
-    menge = fields.Char(sting='Im Betrieb verwendete Mengenbereiche pro Jahr(l, kg, t)')
+    menge = fields.Char(string='Im Betrieb verwendete Mengenbereiche pro Jahr(l, kg, t)')
     
     zeitraum = fields.Date(string='Verwendungszeitraum')
     
