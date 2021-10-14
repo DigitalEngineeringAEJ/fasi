@@ -280,6 +280,23 @@
                         </notebook>
                     </group>
                     
+                    <!-- Ansicht für Unterweisung  -->
+                    
+                     <group string="Dokumentation der Unterweisung" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <notebook>
+                            <page string="Bestätigung der Unterweisung nach § 4 der Unfallverhütungsvorschrift„Grundsätze der Prävention“ (DGUV Vorschrift 1)">
+                            <field name= 'unterweisung_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="name_customer" />
+                            <field name="signature_customer" widget="signature"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    </group>
+                    
                     <!-- noch nicht defnierte View -->
 <!--                     <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
                         <group>

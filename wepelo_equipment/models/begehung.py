@@ -110,8 +110,11 @@ class Folgebegehung(models.Model):
     _description = 'Aktivität Folgebegehung'
     
     mail_id = fields.Many2one('mail.activity')
+    
     protocol_id = fields.Many2one('equipment.protocol')
+    
     begehungs_id = fields.Many2one('begehung')
+    
     begehungs_id_zwei = fields.Many2one('begehung_zwei')
     
     id_ref = fields.Char(string='Identifikation')

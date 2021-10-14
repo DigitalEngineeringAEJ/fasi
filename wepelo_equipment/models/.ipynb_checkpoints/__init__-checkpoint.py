@@ -15,4 +15,5 @@ from . import ir_attachment
 from . import gefaehrdungsfaktor_gruppen
 from . import begehung
 from . import gefahrstoff_verzeichnis
+from . import unterweisung
 

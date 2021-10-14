@@ -71,6 +71,7 @@ class MailActivity(models.Model):
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
     gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", store=True)
+    unterweisung_ids = fields.One2many('unterweisung', 'sequence', string="Unterweisung", store=True)
     
 
 

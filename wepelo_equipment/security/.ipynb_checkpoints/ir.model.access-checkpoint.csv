@@ -33,3 +33,4 @@ access_begehung,access_begehung,model_begehung,base.group_user,1,1,1,1
 access_begehung_zwei,access_begehung_zwei,model_begehung_zwei,base.group_user,1,1,1,1
 access_folgebegehung,access_folgebegehung,model_folgebegehung,base.group_user,1,1,1,1
 access_gefahrstoff_verzeichnis,access_gefahrstoff_verzeichnis,model_gefahrstoff_verzeichnis,base.group_user,1,1,1,1
+access_unterweisung,access_unterweisung,model_unterweisung,base.group_user,1,1,1,1

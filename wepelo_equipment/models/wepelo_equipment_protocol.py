@@ -33,6 +33,7 @@ class EquipmentProtocol(models.Model):
         ('maintenance', _('Wartung')),
         ('repairs', _('Reparatur')),
         ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
+        ('unterweisung', _('Unterweisung')),
     ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
