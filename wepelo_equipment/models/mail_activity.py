@@ -70,6 +70,16 @@ class MailActivity(models.Model):
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
+    gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
+    mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Activities", compute='_compute_activities_type', store=1)
+
+    @api.depends('equipment_id', 'equipment_id.category_id')
+    def _compute_activities_type(self):
+        for rec in self:
+            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisun").id)]
+            if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_hebebuhne"), rec.env.ref("wepelo_equipment.equipment_tore"), rec.env.ref("wepelo_equipment.equipment_bremsprufstand")]:
+                domain = []
+            rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
 
 
     @api.onchange('is_manufacturer')
@@ -262,6 +272,7 @@ class MailActivity(models.Model):
             'folg_erf_m':self.folg_erf_m or False,
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
+            'gefaehrdunsfaktor_betriebsanweisun_ids':self.gefaehrdunsfaktor_betriebsanweisun_ids,
         }
 #         if self.equipment_test_type == 'el_test':
 #             el_test_vals = {
@@ -437,6 +448,29 @@ class MailActivity(models.Model):
                 max_difference_data.append(
                     self.env["mail.activity.max.difference"].create({"name": _("Anzeige bei max Belastung:")}).id)
                 res.max_difference_ids = [(6, 0, max_difference_data)]
+            gefaehrdunsfaktor_betriebsanweisun_data = []
+            if res.equipment_test_type == 'betriebsanweisung':
+                last_activity_gefahrenquelle = self.search(
+                    [("equipment_id", '=', res.equipment_id.id), ('activity_type_id', '=', self.env.ref("wepelo_equipment.mail_activity_data_calibration_ei").id)],
+                    order='id desc', limit=1)
+                if last_activity_gefahrenquelle:
+                    for gefaehrdunsfaktor in last_activity_gefahrenquelle.gefaehrdunsfaktor_ids:
+                        gefaehrdunsfaktor_betriebsanweisun = self.env['equipment.types'].create({
+                            'gefaehrdungsf_name': gefaehrdunsfaktor.gefaehrdungsf_name.id,
+                            'gefahrenquellen_typ_id': gefaehrdunsfaktor.gefahrenquellen_typ_id.id,
+                            'gefahrenquellen_typ_beschreibung': gefaehrdunsfaktor.gefahrenquellen_typ_beschreibung,
+                            'gef_beurteilung_w': gefaehrdunsfaktor.gef_beurteilung_w,
+                            'gef_beurteilung_a': gefaehrdunsfaktor.gef_beurteilung_a,
+                            'gef_beurteilung_e': gefaehrdunsfaktor.gef_beurteilung_e,
+                            'klasse_gef': gefaehrdunsfaktor.klasse_gef,
+                            'abstellmassnahme_gef_kla': gefaehrdunsfaktor.abstellmassnahme_gef_kla,
+                            'abs_gef': gefaehrdunsfaktor.abs_gef,
+                            'deadline_abs_gef': gefaehrdunsfaktor.deadline_abs_gef,
+                            'verantwortlich_gef': gefaehrdunsfaktor.verantwortlich_gef,
+                            'folg_beg_gef': gefaehrdunsfaktor.folg_beg_gef,
+                        })
+                        gefaehrdunsfaktor_betriebsanweisun_data.append(gefaehrdunsfaktor_betriebsanweisun.id)
+                res.gefaehrdunsfaktor_betriebsanweisun_ids = [(6, 0, gefaehrdunsfaktor_betriebsanweisun_data)]
 
         return res
 
