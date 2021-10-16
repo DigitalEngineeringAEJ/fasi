@@ -29,6 +29,7 @@
         'report/folgebegehung_safety_master.xml',
         'report/gefaerdungsbeurteilung_safety_master.xml',
         'report/gefahrstoff_verzeichnis.xml',
+        'report/unterweisung.xml',
         'views/menu.xml',
         'views/wepelo_equipment_protocol_views.xml',
         'views/wepelo_repair_view.xml',

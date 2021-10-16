@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_unterweisung">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="border-top:1px solid grey; border-left:1px solid grey; border-right:1px solid grey; border-bottom:1px solid grey;">
+                          <h1 style="border-bottom:1px solid grey;">
+                                Dokumentation der Unterweisung
+                            </h1>
+                        <table style="font-size:16px" class="table table-borderless table-sm mt16 ml16">
+                            <h2>
+                                Bestätigung der Unterweisung nach § 4 der Unfallverhütungsvorschrift „Grundsätze der Prävention“ (DGUV Vorschrift 1)
+                                </h2>
+                            <tr>
+                                <td>
+                                    <strong>Unternehmen: </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.customer_id"/>,
+                                    <t t-esc="o.customer_id.street"/>, <t t-esc="o.customer_id.street2"/> <t t-esc="o.customer_id.zip"/>, <t t-esc="o.customer_id.city"/>
+                                </td>
+                            </tr>
+                          <tr>
+                                <td>
+                                    <strong>Arbeitsbereich: </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.equipment_id.category_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Durchgeführt von: </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contractor_id.partner_id"/>
+                                </td>
+                            </tr>
+                             <t t-if="o.mail_activity_id.schedule_date is False">
+                             <tr>
+                                <td>
+                                    <strong>Datum: </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+                                </td>
+                            </tr>
+                            </t>
+                            <t t-if="o.mail_activity_id.schedule_date is not False">
+                             <tr>
+                                <td>
+                                    <strong>Datum: </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.mail_activity_id.schedule_date" t-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+                                </td>
+                            </tr>
+                            </t>
+                             <tr>
+                                <td>
+                                    <strong>Unterweisungsinhalte (insbesondere Gefahrquellen, Maßnahmen zur Arbeitssicherheit und zum Gesundheitsschutz, Erste Hilfe): </strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.inhalte"/>
+                                </td>
+                            </tr>
+                         <table style="table-layout:fixed; font-size:10px" class="table table-bordered table-sm mt16 ml16">
+                                <thead><h3>Name und Unterschrift der Teilnehmer:
+                                </h3>
+                             Mit meiner Unterschrift bestätige ich, dass ich an der Unterweisung teilgenommen und den Inhalt verstanden habe.
+                             </thead>
+                            <tr>
+                            <th scope="col">Name, Vorname </th>
+                            <th scope="col">Unterschrift </th>
+                          </tr>
+                          <tr t-foreach="o.unterweisung_ids" t-as="line">
+                                 <td><span t-esc="line.name_customer"/></td>
+                                  <td><span><img style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(line.signature_customer)" alt="sign"/></span></td>
+                            </tr>
+                        </table>
+                             <p style="page-break-before:always;"/>
+                            <tr>
+                          <div>
+                                <td>
+                                   <strong>Bemerkungen : </strong>
+                                   <span t-field="o.note_rel"/>
+                                </td>
+                              </div>
+                                <table style="table-layout:fixed; font-size:20px" class="table table-borderless table-sm mt16 ml16">
+                             <tr>
+                            <th scope="col"><img style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature)" alt="sign"/></th>
+                           <th scope="col"><img  style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature_leiter)" alt="sign"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Unterschrift des Trainers/Unterweisenden</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Leitung z.K.</td>
+                            </tr>
+                        </table>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    
+    <record id="paperformat_unterweisung" model="report.paperformat">
+    <field name="name">Format für Unterweisung</field>
+    <field name="default" eval="False"/>
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <field name="margin_top">0</field>
+    <field name="margin_bottom">0</field>
+    <field name="margin_left">7</field>
+    <field name="margin_right">7</field>
+    <field name="header_line" eval="True" />
+    <field name="header_spacing">0</field>
+    <field name="dpi">90</field>
+    </record>
+
+    <record id="unterweisungs_protocol" model="ir.actions.report">
+            <field name="name">Unterweisung</field>
+            <field name="model">equipment.protocol</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.report_unterweisung</field>
+            <field name="report_file">wepelo_equipment.report_unterweisung</field>
+            <field name="print_report_name">(object._get_report_filename())</field>
+            <field name="paperformat_id" ref="wepelo_equipment.paperformat_unterweisung"/>
+            <field name="binding_model_id" ref="model_equipment_protocol"/>
+            <field name="binding_type">report</field>
+        </record>
+
+</odoo>

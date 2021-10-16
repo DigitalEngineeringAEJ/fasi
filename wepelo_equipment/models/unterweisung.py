@@ -18,17 +18,15 @@ class Unterweisung(models.Model):
     
     sequence = fields.Integer(string='Sequenz')
     
-    name_customer = fields.Char(string='Unterschrift der Teilnehmer')
+    name_customer = fields.Char(string='Name, Vorname der Teilnehmer')
     
-    signature_customer = fields.Binary(string='Signatur Teilnehmer')
+    signature_customer = fields.Binary(string='Unterschrift der Teilnehmer')
     
     name_trainer = fields.Char(string='Unterschrift des Trainers')
     
     signature_trainer = fields.Binary(string='Signatur Trainer')
+
     
-    name_leitung = fields.Char(string='Unterschrift der Leitung')
-    
-    signature_leiter = fields.Binary(string='Signatur Leitung')
     
     
     

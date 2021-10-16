@@ -25,10 +25,8 @@ class Unterweisung(models.Model):
     name_trainer = fields.Char(string='Unterschrift des Trainers')
     
     signature_trainer = fields.Binary(string='Signatur Trainer')
+
     
-    name_leitung = fields.Char(string='Unterschrift der Leitung')
-    
-    signature_leiter = fields.Binary(string='Signatur Leitung')
     
     
     

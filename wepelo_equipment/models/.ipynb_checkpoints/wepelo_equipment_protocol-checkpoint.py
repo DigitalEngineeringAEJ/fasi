@@ -63,6 +63,8 @@ class EquipmentProtocol(models.Model):
     gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor', store=True)
     gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor', store=True)
     gef_verzeichnis_ids = fields.Many2many('gefahrstoff.verzeichnis', string="Gefahrstoff Verzeichnis", store=True)
+    unterweisung_ids = fields.Many2many('unterweisung', string="Unterweisung", store=True)
+    inhalte = fields.Text(string='Unterweisungsinhalte')
 
     
     
