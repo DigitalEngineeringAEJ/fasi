@@ -11,10 +11,11 @@ import calendar
 class Begehung(models.Model):
     _name = 'begehung'
     _description = 'Aktivität Begehung'
+    _order = "sequence_b"
     
     id = fields.Char(string='Identifikation')
     sequence_b = fields.Integer(string='Sequenz')
-    nummer_eins = fields.Char(string="Nummer",  store=True, readonly=True)
+    nummer_eins = fields.Char(string="Nummer", compute="_compute_nummer_eins", store=1)
     name = fields.Char(string="Name")
     name_eins = fields.Char(string="Name")
     klasse = fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
@@ -41,14 +42,32 @@ class Begehung(models.Model):
     
     @api.model
     def create(self, vals):
-        if vals.get('nummer_eins', 'New') == 'New':
-            vals['nummer_eins'] = self.env['ir.sequence'].next_by_code('begehung.eins') or 'New'
+        if vals.get('name'):
+            activity = self.env['mail.activity'].browse(int(vals.get('name')))
+        else:
+            activity = vals.get('relationm')
+        sequence_b = 1
+        if activity and activity.begehung_id_feld:
+            last_sequence = activity.begehung_id_feld[-1].sequence_b
+            sequence_b = last_sequence +1
         result = super(Begehung, self).create(vals)
+        result.sequence_b = sequence_b
         return result
+    
+    @api.depends('sequence_b')
+    def _compute_nummer_eins(self):
+        """compute sequence_b."""
+        for rec in self:
+            if rec.sequence_b:
+                rec.nummer_eins = "1." + ("0"+ str(rec.sequence_b)) if len(str(rec.sequence_b)) == 1 else "1." +str(rec.sequence_b)
+
+    
+
     
 class BegehungZwei(models.Model):
     _name = 'begehung_zwei'
     _description = 'Aktivität Begehung zwei'
+    _order = "sequence_b_zwei"
 
     id_zwei = fields.Char(string='Identifikation')
     
@@ -88,22 +107,35 @@ class BegehungZwei(models.Model):
                                ('Nein', 'Nein')],
                               string='Folgebegehung erforderlich?', default='Nein')
     
-    nummer_drei = fields.Char(string="Nummer",  store=True, readonly=True)
+    nummer_drei = fields.Char(string="Nummer", compute="_compute_nummer_zwei", store=1)
     
     name_drei = fields.Text(string="Name")
     
     
     relation_m = fields.Many2one('mail.activity')
     relation_e = fields.Many2one('equipment.protocol')
-    
-    relation_f = fields.Many2one('folgebegehung')
-    
+        
     @api.model
     def create(self, vals):
-        if vals.get('nummer_drei', 'New') == 'New':
-            vals['nummer_drei'] = self.env['ir.sequence'].next_by_code('begehung.zwei') or 'New'
+        if vals.get('name'):
+            activity = self.env['mail.activity'].browse(int(vals.get('name')))
+        else:
+            activity = vals.get('relation_m')
+        sequence_b_zwei = 1
+        if activity and activity.begehung_id_feld_zwei:
+            last_sequence = activity.begehung_id_feld_zwei[-1].sequence_b_zwei
+            sequence_b_zwei = last_sequence +1
         result = super(BegehungZwei, self).create(vals)
+        result.sequence_b_zwei = sequence_b_zwei
         return result
+    
+    @api.depends('sequence_b_zwei')
+    def _compute_nummer_zwei(self):
+        """compute sequence_b_zwei."""
+        for rec in self:
+            if rec.sequence_b_zwei:
+                rec.nummer_drei = "1." + ("0"+ str(rec.sequence_b_zwei)) if len(str(rec.sequence_b_zwei)) == 1 else "1." +str(rec.sequence_b_zwei)
+
     
 class Folgebegehung(models.Model):
     _name = 'folgebegehung'
@@ -118,7 +150,7 @@ class Folgebegehung(models.Model):
     
     sequence_ref= fields.Integer(string='Sequenz z')
     
-    nummer_vier = fields.Char(string='Nr')
+    nummer_vier =fields.Char(string="Nummer", compute="_compute_nummer_vier", store=1)
     
     name_vier = fields.Text(string='Name')
     
@@ -139,4 +171,25 @@ class Folgebegehung(models.Model):
     w_folg_erf =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
                               string='Folgebegehung erforderlich?', default='Nein')
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('name'):
+            activity = self.env['mail.activity'].browse(int(vals.get('name')))
+        else:
+            activity = vals.get('mail_id')
+        sequence_ref = 1
+        if activity and activity.folg_beg_ids:
+            last_sequence = activity.folg_beg_ids[-1].sequence_ref
+            sequence_ref = last_sequence +1
+        result = super(Folgebegehung, self).create(vals)
+        result.sequence_ref = sequence_ref
+        return result
+    
+    @api.depends('sequence_ref')
+    def _compute_nummer_vier(self):
+        """compute sequence_ref."""
+        for rec in self:
+            if rec.sequence_ref:
+                rec.nummer_vier = "1." + ("0"+ str(rec.sequence_ref)) if len(str(rec.sequence_ref)) == 1 else "1." +str(rec.sequence_ref)
     
