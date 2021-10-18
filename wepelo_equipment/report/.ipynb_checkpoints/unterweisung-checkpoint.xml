@@ -80,11 +80,11 @@
                                   <td><span><img style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(line.signature_customer)" alt="sign"/></span></td>
                             </tr>
                         </table>
-                             <p style="page-break-before:always;"/>
+<!--                              <p style="page-break-before:always;"/> -->
                             <tr>
                           <div>
                                 <td>
-                                   <strong>Bemerkungen : </strong>
+                                   <strong>Bemerkungen: </strong>
                                    <span t-field="o.note_rel"/>
                                 </td>
                               </div>
@@ -113,7 +113,7 @@
     <field name="page_height">0</field>
     <field name="page_width">0</field>
     <field name="orientation">Portrait</field>
-    <field name="margin_top">0</field>
+    <field name="margin_top">50</field>
     <field name="margin_bottom">0</field>
     <field name="margin_left">7</field>
     <field name="margin_right">7</field>
