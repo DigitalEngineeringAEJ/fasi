@@ -28,6 +28,7 @@
         'report/wepelo_maintenance_equipment_strichcode.xml',
         'report/folgebegehung_safety_master.xml',
         'report/gefaerdungsbeurteilung_safety_master.xml',
+        'report/protocol_betriebsanweisung_template.xml',
         'report/gefahrstoff_verzeichnis.xml',
         'report/unterweisung.xml',
         'views/menu.xml',
@@ -36,7 +37,6 @@
         'views/wepelo_customer_view.xml',
         'views/equipment_portal_templates.xml',
         'views/res_users_views.xml',
-        'views/maintenance_equipment_category_views.xml'
     ],
     'demo': [],
     'installable': True,

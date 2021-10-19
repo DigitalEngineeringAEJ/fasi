@@ -35,6 +35,12 @@
             <field name="equipment_test_type">unterweisung</field>
         </record>
 
+         <record id="activity_betriebsanweisun" model="equipment.test">
+            <field name="display_name">Betriebsanweisung</field>
+            <field name="equipment_test_type">betriebsanweisung</field>
+            <field name="cycle_duration">365</field>
+        </record>
+
      <!--   <record id="equipment_test_data_calibration" model="equipment.test">
             <field name="display_name">Kalibrierung</field>
             <field name="equipment_test_type">calibration</field>
@@ -92,6 +98,17 @@
             <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
             <field name="sequence">12</field>
         </record>
+
+
+        <record id="mail_activity_data_betriebsanweisun" model="mail.activity.type">
+            <field name="name">Betriebsanweisung</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">12</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisun"/>
+        </record>
+
         
         <record id="mail_activity_gefahrstoff_verszeichnis" model="mail.activity.type">
             <field name="name">Gefahrstoff-Verzeichnis</field>
@@ -115,7 +132,7 @@
         <field name="res_model_id" ref="maintenance.model_maintenance_request"/> -->
         <!--active="false"/>-->
 <!--     </record> -->
-      
+
         <!-- <record id="mail_activity_data_maintenance" model="mail.activity.type">
             <field name="name">Wartung</field>
             <field name="delay_count">360</field>
