@@ -11,6 +11,7 @@ import calendar
 class EquipmentTypes(models.Model):
     _name = 'equipment.types'
     _description = 'Equipment Types'
+    _order = "sequence_g"
 
     name = fields.Char(string='Name')
     
@@ -98,7 +99,7 @@ class EquipmentTypes(models.Model):
     
     equipment_protocol_id = fields.Many2one('equipment.protocol')
     
-    nummer_gef = fields.Char(string="Nummer",  store=True, readonly=True)
+    nummer_gef = fields.Char(string="Nummer", compute="_compute_nummer_gef", store=1)
     
 
     
@@ -195,14 +196,28 @@ class EquipmentTypes(models.Model):
                 record.gefahrenquellen_typ_risiko = 'status_r_3'
             else:
                 record.gefahrenquellen_typ_risiko = 'status_r_0'
-                
     @api.model
     def create(self, vals):
-        if vals.get('nummer_gef', 'New') == 'New':
-            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('gefaerdungs.beurteilung') or 'New'
+        if vals.get('name'):
+            activity = self.env['mail.activity'].browse(int(vals.get('name')))
+        else:
+            activity = vals.get('mail_activity_id')
+        sequence_g = 1
+        if activity and activity.gefaehrdunsfaktor_ids:
+            last_sequence = activity.gefaehrdunsfaktor_ids[-1].sequence_g
+            sequence_g = last_sequence +1
         result = super(EquipmentTypes, self).create(vals)
+        result.sequence_g = sequence_g
         return result
-                
+    
+    @api.depends('sequence_g')
+    def _compute_nummer_gef(self):
+        """compute sequence_g."""
+        for rec in self:
+            if rec.sequence_g:
+                rec.nummer_gef = "1." + ("0"+ str(rec.sequence_g)) if len(str(rec.sequence_g)) == 1 else "1." +str(rec.sequence_g)
+
+
                 
 class GefahrenFaktor(models.Model):
     _name = 'gefahren.faktor'
