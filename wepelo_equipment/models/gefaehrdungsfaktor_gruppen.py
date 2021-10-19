@@ -59,6 +59,7 @@ class EquipmentTypes(models.Model):
                                           ('status_e_6', '6'),
                                           ('status_e_7', '7')], 
                                          string='Maßzahl', compute="_compute_gef_beurteilung_e", store=True)
+    
     mail_activity_id =  fields.Many2one('mail.activity', string="Mail Activity")
     
     

@@ -72,6 +72,11 @@ class MailActivity(models.Model):
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
     gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Activities", compute='_compute_activities_type', store=1)
+    gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", store=True)
+    unterweisung_ids = fields.One2many('unterweisung', 'sequence', string="Unterweisung", store=True)
+    inhalte = fields.Text(string='Unterweisungsinhalte')
+    name_leitung = fields.Char(string='Unterschrift der Leitung')
+    signature_leiter = fields.Binary(string='Signatur Leitung')
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
@@ -273,6 +278,11 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
             'gefaehrdunsfaktor_betriebsanweisun_ids':self.gefaehrdunsfaktor_betriebsanweisun_ids,
+
+            'gef_verzeichnis_ids':self.gef_verzeichnis_ids,
+            'unterweisung_ids':self.unterweisung_ids,
+            'inhalte':self.inhalte,
+
         }
 #         if self.equipment_test_type == 'el_test':
 #             el_test_vals = {
