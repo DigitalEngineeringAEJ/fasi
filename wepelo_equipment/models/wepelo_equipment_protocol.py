@@ -33,6 +33,8 @@ class EquipmentProtocol(models.Model):
         ('uvv', _('Betriebssicherheitsprüfung')),
         ('maintenance', _('Wartung')),
         ('repairs', _('Reparatur')),
+        ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
+        ('unterweisung', _('Unterweisung')),
     ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
@@ -62,7 +64,14 @@ class EquipmentProtocol(models.Model):
     gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor', store=True)
     gefaehrdunsfaktor_betriebsanweisun_ids = fields.Many2many('equipment.types', 'protocol_equipment_type_rel', 'protocol_id', 'equipment_type_id', string='Gefahrenfaktor')
     gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor', store=True)
+    gef_verzeichnis_ids = fields.Many2many('gefahrstoff.verzeichnis', string="Gefahrstoff Verzeichnis", store=True)
+    unterweisung_ids = fields.Many2many('unterweisung', string="Unterweisung", store=True)
+    inhalte = fields.Text(string='Unterweisungsinhalte')
+    name_leitung = fields.Char(string='Unterschrift der Leitung')
+    signature_leiter = fields.Binary(string='Signatur Leitung')
 
+    
+    
     @api.depends('downloaded_user_ids')
     def _compute_downloaded_protocol(self):
         for rec in self:
