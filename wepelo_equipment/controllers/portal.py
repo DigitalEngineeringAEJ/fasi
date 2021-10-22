@@ -444,6 +444,10 @@ class CustomerPortal(CustomerPortal):
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Begehung
         elif kw['type'] == 'el_test':
             pdf = request.env.ref('wepelo_equipment.folgebegehungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Folgebegehungsprotokoll
+        elif kw['type'] == 'unterweisung':
+            pdf = request.env.ref('wepelo_equipment.unterweisungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Unterweisung
+        elif kw['type'] == 'gefahrstoff_verszeichnis':
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_gef_verzeichnis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Gefahrstoff-Verzeichnis
         elif kw['type'] == 'betriebsanweisung':
             pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Betriebsanweisung
         protocol = request.env['equipment.protocol'].browse(int(protocol_id))

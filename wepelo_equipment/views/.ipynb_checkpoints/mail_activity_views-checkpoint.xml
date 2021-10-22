@@ -88,7 +88,8 @@
                 </group>
             </group>
             <field name="summary" position="before">
-                <field name="activity_type_id"/>
+                <field name="mail_activity_type_ids" invisible="1"/>
+                <field name="activity_type_id" domain="[('id', 'in', mail_activity_type_ids)]"/>
                 <field name="date_deadline"/>
             </field>
             <field name="summary" position="after">
@@ -173,8 +174,8 @@
                             <field name= 'gefaehrdunsfaktor_ids'>
                             <tree editable="bottom">
                             <field name="sequence_g" widget="handle"/>
-                            <field name="nummer_gef"/> 
-                            <field name="gefahrenquellen_typ_id"/> 
+                            <field name="nummer_gef"/>
+                            <field name="gefahrenquellen_typ_id"/>
                             <field name="gefaehrdungsf_name" domain="[('gefahrenquellen_typ_id', '=', gefahrenquellen_typ_id)]"/>
                             <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w"/>
@@ -192,7 +193,18 @@
                         </field>
                         </page>
                         </notebook>
-                    
+
+                     <notebook attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'betriebsanweisung'), ('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                            <page string="Gefährdungen">
+                            <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                            <tree create="0" edit="0">
+                            <field name="gefahrenquellen_typ_id"/>
+                            <field name="gefaehrdungsf_name"/>
+                            <field name="gefahrenquellen_typ_beschreibung"/>
+                            </tree>
+                        </field>
+                        </page>
+                        </notebook>
                     
                     <!-- Ansicht für Begehung -->                 
                     
@@ -305,6 +317,14 @@
                         </notebook>                   
                      </group>
                     <table style="table-layout:fixed; font-size:16px" class="table table-borderless table-sm mt16 ml16" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <tr>
+                                <td scope="col"><p/>Bemerkungen:</td>
+                            </tr>
+                        <tr>
+                            <th scope="col"> <field name='note_u'/></th>
+                        </tr>
+                        <br></br>
+                        <br></br>
                              <tr>
                             <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px"/></th>
                            <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
