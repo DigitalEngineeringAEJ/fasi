@@ -198,16 +198,17 @@ class EquipmentTypes(models.Model):
                 record.gefahrenquellen_typ_risiko = 'status_r_0'
     @api.model
     def create(self, vals):
-        if vals.get('name'):
-            activity = self.env['mail.activity'].browse(int(vals.get('name')))
-        else:
-            activity = vals.get('mail_activity_id')
-        sequence_g = 1
-        if activity and activity.gefaehrdunsfaktor_ids:
-            last_sequence = activity.gefaehrdunsfaktor_ids[-1].sequence_g
-            sequence_g = last_sequence +1
         result = super(EquipmentTypes, self).create(vals)
-        result.sequence_g = sequence_g
+        if result.name:
+            gefaehrdunsfaktors = self.env['equipment.types'].search([('name', '=', result.name)])
+        else:
+            gefaehrdunsfaktors= self.env['equipment.types'].search([('mail_activity_id', '=', result.id)])
+        if not len(gefaehrdunsfaktors):
+            result.sequence_g = result.sequence_g+1
+        elif len(gefaehrdunsfaktors)==1:
+            result.sequence_g = gefaehrdunsfaktors[-1].sequence_g + 1
+        else:
+            result.sequence_g = gefaehrdunsfaktors[-2].sequence_g +1
         return result
     
     @api.depends('sequence_g')
