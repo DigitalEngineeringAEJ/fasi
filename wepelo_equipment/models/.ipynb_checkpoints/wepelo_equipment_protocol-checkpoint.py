@@ -29,6 +29,7 @@ class EquipmentProtocol(models.Model):
         ('el_test', _('Folgebegehung')),
         ('routine_test', _('Begehung')),
         ('calibration', _('Kalibrierung')),
+        ('betriebsanweisung', _('Betriebsanweisung')),
         ('uvv', _('Betriebssicherheitsprüfung')),
         ('maintenance', _('Wartung')),
         ('repairs', _('Reparatur')),
@@ -61,10 +62,14 @@ class EquipmentProtocol(models.Model):
     folg_beg_ids = fields.Many2many('folgebegehung', string='Folgebegehung', store=True)
     folg_beg_id = fields.Many2one('folgebegehung', string='Folgebegehung', store=True)
     gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor', store=True)
+    gefaehrdunsfaktor_betriebsanweisun_ids = fields.Many2many('equipment.types', 'protocol_equipment_type_rel', 'protocol_id', 'equipment_type_id', string='Gefahrenfaktor')
     gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor', store=True)
     gef_verzeichnis_ids = fields.Many2many('gefahrstoff.verzeichnis', string="Gefahrstoff Verzeichnis", store=True)
     unterweisung_ids = fields.Many2many('unterweisung', string="Unterweisung", store=True)
     inhalte = fields.Text(string='Unterweisungsinhalte')
+    name_leitung = fields.Char(string='Unterschrift der Leitung')
+    signature_leiter = fields.Binary(string='Signatur Leitung')
+    note_u = fields.Text(string='Bemerkung')
 
     
     

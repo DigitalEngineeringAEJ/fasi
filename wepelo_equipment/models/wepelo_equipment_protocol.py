@@ -69,6 +69,7 @@ class EquipmentProtocol(models.Model):
     inhalte = fields.Text(string='Unterweisungsinhalte')
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
+    note_u = fields.Text(string='Bemerkung')
 
     
     

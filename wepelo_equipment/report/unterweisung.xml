@@ -85,9 +85,10 @@
                           <div>
                                 <td>
                                    <strong>Bemerkungen: </strong>
-                                   <span t-field="o.note_rel"/>
+                                   <span t-field="o.note_u"/>
                                 </td>
                               </div>
+                                <div>
                                 <table style="table-layout:fixed; font-size:20px" class="table table-borderless table-sm mt16 ml16">
                              <tr>
                             <th scope="col"><img style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature)" alt="sign"/></th>
@@ -98,6 +99,7 @@
                                   <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Leitung z.K.</td>
                             </tr>
                         </table>
+                            </div>
                             </tr>
                         </table>
                     </div>
@@ -113,12 +115,12 @@
     <field name="page_height">0</field>
     <field name="page_width">0</field>
     <field name="orientation">Portrait</field>
-    <field name="margin_top">50</field>
+    <field name="margin_top">0</field>
     <field name="margin_bottom">0</field>
     <field name="margin_left">7</field>
     <field name="margin_right">7</field>
     <field name="header_line" eval="True" />
-    <field name="header_spacing">0</field>
+    <field name="header_spacing">40</field>
     <field name="dpi">90</field>
     </record>
 

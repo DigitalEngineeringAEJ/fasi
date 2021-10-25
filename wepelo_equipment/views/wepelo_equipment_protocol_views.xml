@@ -330,6 +330,14 @@
                         </notebook>                   
                      </group>
                     <table style="table-layout:fixed; font-size:16px" class="table table-borderless table-sm mt16 ml16" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <tr>
+                                <td scope="col"><p/>Bemerkungen:</td>
+                            </tr>
+                        <tr>
+                            <th scope="col"> <field name='note_u'/></th>
+                        </tr>
+                        <br></br>
+                        <br></br>
                              <tr>
                             <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px"/></th>
                            <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>

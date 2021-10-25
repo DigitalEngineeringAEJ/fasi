@@ -77,6 +77,7 @@ class MailActivity(models.Model):
     inhalte = fields.Text(string='Unterweisungsinhalte')
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
+    note_u =fields.Text(string='Bemerkung')
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
@@ -278,10 +279,12 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
             'gefaehrdunsfaktor_betriebsanweisun_ids':self.gefaehrdunsfaktor_betriebsanweisun_ids,
-
             'gef_verzeichnis_ids':self.gef_verzeichnis_ids,
             'unterweisung_ids':self.unterweisung_ids,
             'inhalte':self.inhalte,
+            'name_leitung':self.name_leitung,
+            'signature_leiter':self.signature_leiter,
+            'note_u':self.note_u
 
         }
 #         if self.equipment_test_type == 'el_test':

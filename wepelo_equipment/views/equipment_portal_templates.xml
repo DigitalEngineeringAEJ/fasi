@@ -799,6 +799,22 @@
                                     <span>Folgebegehung</span>
                                 </a>
                             </t>
+                            <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'unterweisung'">
+                                <a t-attf-href="/protocol/report/#{protocol.id}?type=unterweisung" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text" role="img" aria-label="Unterweisung (PDF)"
+                                          title="Unterweisung (PDF)"/>
+                                    <span>Unterweisung</span>
+                                </a>
+                            </t>
+                            <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'gefahrstoff_verszeichnis'">
+                                <a t-attf-href="/protocol/report/#{protocol.id}?type=gefahrstoff_verszeichnis" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text" role="img" aria-label="Arbeitsstoff- und Gefahrstoff-Verzeichnis (PDF)"
+                                          title="Arbeitsstoff- und Gefahrstoff-Verzeichnis (PDF)"/>
+                                    <span>Gefahrstoff-Verszeichnis</span>
+                                </a>
+                            </t>
                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'maintenance'">
                                  <a t-attf-href="/protocol/report/#{protocol.id}?type=maintenance" target="new" style="color:#FFFFFF !important;" role="button"
                                    class="btn btn-sm btn-secondary">
