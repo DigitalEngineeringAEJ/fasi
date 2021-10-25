@@ -33,7 +33,8 @@ class GefahrstoffVerzeichnis(models.Model):
                                 ('H411', 'H411'),
                                 ],
                                 string='Einstufung, gefährliche Eigenschaften',)
-    
+    kategorie_ids = fields.One2many('gefahrstoff.kategorie','name' ,string="kategorie")
+        
     zweck = fields.Char(string='Verwendungszweck/Arbeitsverfahren')
     
     menge = fields.Char(string='Im Betrieb verwendete Mengenbereiche pro Jahr(l, kg, t)')
@@ -41,6 +42,30 @@ class GefahrstoffVerzeichnis(models.Model):
     zeitraum = fields.Date(string='Verwendungszeitraum')
     
     daten_blatt = fields.Date(string='Sicherheitsdatenblatt vom')
+    
+class GefahrstoffVerzeichnisKategorie(models.Model):
+    _name = 'gefahrstoff.kategorie'
+    _description = 'Gefahrstoff Verzeichnis Kategorie'
+    
+    name = fields.Char(string='Gefahrstoff Verzeichnis Kategorie')
+    
+    flamme = fields.Boolean(string='Flamme (GHS02)')
+    
+    gesundheitsgefahr = fields.Boolean(string='Gesund-heitsgefahr (GHS08)')
+    
+    umwelt = fields.Boolean(string='Umwelt (GHS09)')
+    
+    ausrufezeichen = fields.Boolean(string='Ausrufezeichen (GHS07)')
+    
+    h_zwei_zwei_sechs = fields.Boolean(string='H226')
+    
+    h_drei_null_vier = fields.Boolean(string='H304')
+    
+    h_drei_drei_fünf = fields.Boolean(string='H335')
+    
+    h_drei_drei_sechs = fields.Boolean(string='H336')
+    
+    h_vier_eins_eins = fields.Boolean(string='H411')
     
     
     
