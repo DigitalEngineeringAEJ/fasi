@@ -91,7 +91,7 @@ class EquipmentTypes(models.Model):
     
     deadline_abs_gef = fields.Date(string='Deadline Abstellmaßnahme')
     
-    verantwortlich_gef = fields.Many2one('res.partner', string='Verantwortlich')
+    customer_id = fields.Many2one('res.partner', compute='_get_customer', string='Veranwortlich', ondelete='set null', inverse='_inverse_customer')
     
     folg_beg_gef =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
@@ -100,6 +100,8 @@ class EquipmentTypes(models.Model):
     equipment_protocol_id = fields.Many2one('equipment.protocol')
     
     nummer_gef = fields.Char(string="Nummer", compute="_compute_nummer_gef", store=1)
+    
+    equipment_id = fields.Many2one('maintenance.equipment', string='Equipment', store=True)
     
 
     
@@ -216,6 +218,16 @@ class EquipmentTypes(models.Model):
         for rec in self:
             if rec.sequence_g:
                 rec.nummer_gef = "1." + ("0"+ str(rec.sequence_g)) if len(str(rec.sequence_g)) == 1 else "1." +str(rec.sequence_g)
+                
+                
+    @api.depends('equipment_id')
+    def _get_customer(self):
+        for activity in self:
+            activity.customer_id = activity.equipment_id.customer_id if activity else False
+            
+    def _inverse_customer(self):
+        for customer in self:
+            customer.customer_id.name = customer.name
 
 
                 

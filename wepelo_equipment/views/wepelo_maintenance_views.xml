@@ -316,7 +316,7 @@
                 <field name="abstellmassnahme_gef_kla"/>
                 <field name="abs_gef"/>
                 <field name="deadline_abs_gef"/>
-                <field name="verantwortlich_gef"/>
+                <field name="customer_id"/>
                 <field name="folg_beg_gef"/>
             </tree>
         </field>
@@ -347,7 +347,7 @@
                             <field name="abstellmassnahme_gef_kla"/>
                             <field name="abs_gef"/>
                             <field name="deadline_abs_gef"/>
-                            <field name="verantwortlich_gef"/>
+                            <field name="customer_id"/>
                             <field name="folg_beg_gef"/>
                         </group>
                     </group>
