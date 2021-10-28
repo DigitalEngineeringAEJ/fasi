@@ -113,41 +113,7 @@
         <field name="arch" type="xml">
             <form string="Equipment Protocol">
                  <header>
-<!--                      <button name="%(wepelo_equipment_protocol)d"
-                            string="Equipment Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|', ('mail_activity_id','=',False), ('equipment_test_type','!=','el_test')]}"/>
-                     <button name="%(wepelo_equipment_protocol_rep_prot)d"
-                            string="Equipment Protocol Repair Prot"
-                            type="action"
-                            icon="fa-print" attrs="{'invisible': [('maintenance_request_id','=',False)]}"/> -->
 
-<!--                      <button name="%(wepelo_equipment_protocol_maintenance)d"
-                            string="Equipment Protocol Maintenance"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|', ('mail_activity_id','=',False), ('equipment_test_type','!=','maintenance')]}"/>
-                     <button name="%(wepelo_equipment_eichnachweis_protocol)d"
-                            string="Eichnachweis"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|', ('mail_activity_id','=',False), ('equipment_test_type','!=','calibration_ei')]}"/>
-                     <button name="%(wepelo_equipment_hebebuhne_protocol)d"
-                            string="Betriebssicherheitsprüfung Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|','|', ('mail_activity_id','=',False), ('equipment_test_type','!=','uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}"/>
-                      <button name="%(wepelo_equipment_tore_protocol)d"
-                            string="Betriebssicherheitsprüfung Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|','|', ('mail_activity_id','=',False), ('equipment_test_type','!=','uvv'), ('category_id', '!=', %(equipment_tore)d)]}"/>
-                     <button name="%(wepelo_equipment_bremsprufstand_protocol)d"
-                            string="Stückprüfung Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|','|', ('mail_activity_id','=',False), ('equipment_test_type','!=','routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}"/> -->
                 </header>
                 <sheet>
                     <div class="oe_title">
