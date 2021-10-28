@@ -434,10 +434,10 @@ class CustomerPortal(CustomerPortal):
         """Get report of protocol by type."""
         if kw['type'] == 'maintenance':
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo()._render_qweb_pdf([protocol_id])[0]
-        elif kw['type'] == 'prot':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol_id])[0]
-        elif kw['type'] == 'protocol':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
+#         elif kw['type'] == 'prot':
+#             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol_id])[0]
+#         elif kw['type'] == 'protocol':
+#             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'calibration':
             pdf = request.env.ref('wepelo_equipment.gefaehrdungsbeurteilungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#gefährdungsbeurteilung
         elif kw['type'] == 'routine_test':
