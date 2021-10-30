@@ -5,7 +5,7 @@ access_equipment_test_user,access_equipment_test,model_equipment_test,base.group
 access_equipment_test_manager,access_equipment_test,model_equipment_test,base.group_system,1,1,1,1
 access_test_equipment_device_user,access_test_equipment_device,model_test_equipment_device,base.group_user,1,1,1,0
 access_test_equipment_device_manager,access_test_equipment_device,model_test_equipment_device,base.group_system,1,1,1,1
-access_equipment_types_user,access_equipment_types,model_equipment_types,base.group_user,1,1,1,0
+access_equipment_types_user,access_equipment_types,model_equipment_types,base.group_user,1,1,0,0
 access_equipment_types_manager,access_equipment_types,model_equipment_types,base.group_system,1,1,1,1
 access_equipment_protocol_user,access_equipment_protocol,model_equipment_protocol,base.group_user,1,1,1,0
 access_equipment_protocol_manager,access_equipment_protocol,model_equipment_protocol,base.group_user,1,1,1,1

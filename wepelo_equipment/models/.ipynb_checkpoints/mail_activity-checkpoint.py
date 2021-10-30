@@ -69,10 +69,10 @@ class MailActivity(models.Model):
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
-    gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
+    gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", auto_join=True, copy=False, )
     gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Activities", compute='_compute_activities_type', store=1)
-    gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", store=True)
+    gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", auto_join=True)
     unterweisung_ids = fields.One2many('unterweisung', 'sequence', string="Unterweisung", store=True)
     inhalte = fields.Text(string='Unterweisungsinhalte')
     name_leitung = fields.Char(string='Unterschrift der Leitung')
