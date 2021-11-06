@@ -78,6 +78,16 @@ class MailActivity(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u =fields.Text(string='Bemerkung')
+    
+    def _track_subtype(self, init_values):
+        # init_values contains the modified fields' values before the changes
+        #
+        # the applied values can be accessed on the record as they are already
+        # in cache
+        self.ensure_one()
+        if 'test_completed' in init_values and self.test_completed == 'True':
+            return self.env.ref('wepelo_equipment.mt_new_protocol')
+        return super(MailActivity, self)._track_subtype(init_values)
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):

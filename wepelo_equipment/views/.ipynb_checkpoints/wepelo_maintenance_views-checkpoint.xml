@@ -902,6 +902,13 @@
         </field>
     </record>
     
+    <record id="mt_new_protocol" model="mail.message.subtype">
+    <field name="name">Message new Protocol</field>
+    <field name="res_model">maintenance.equipment</field>
+    <field name="default" eval="True"/>
+    <field name="description">Sie haben ein neues Protokoll!</field>
+    </record>
+    
     <record model="ir.ui.menu" id="maintenance.menu_m_dashboard">
         <field name="action" eval="False">
         </field>
