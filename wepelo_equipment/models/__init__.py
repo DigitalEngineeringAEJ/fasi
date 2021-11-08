@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from . import wepelo_equipment_customer
-from . import wepelo_equipment_system
-from . import wepelo_maintenance
-from . import mail_activity
-from . import wepelo_equipment_protocol
-from . import wepelo_repair
-from . import qr_code
-from . import wepelo_customer
-from . import wepelo_history
-from . import res_users
-from . import ir_attachment
-from . import gefaehrdungsfaktor_gruppen
-from . import begehung
-from . import gefahrstoff_verzeichnis
-from . import unterweisung
+from . import sm_customer
+from . import sm_system
+from . import sm_maintenance
+from . import sm_mail_activity
+from . import sm_protocol
+from . import sm_qr_code
+from . import sm_history
+from . import sm_res_users
+from . import sm_ir_attachment
+from . import sm_a_gefaehrdungsbeurteilung
+from . import sm_a_begehung
+from . import sm_a_gefahrstoff_verzeichnis
+from . import sm_a_unterweisung
 
