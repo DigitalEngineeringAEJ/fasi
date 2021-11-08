@@ -175,7 +175,7 @@
                             <tree editable="bottom">
                             <field name="sequence_g" widget="handle"/>
                             <field name="nummer_gef"/>
-                            <field name="gefahrenquellen_typ_id"/>
+                            <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
                             <field name="gefaehrdungsf_name" domain="[('gefahrenquellen_typ_id', '=', gefahrenquellen_typ_id)]"/>
                             <field name="gefahrenquellen_typ_beschreibung"/>
                             <field name="gef_beurteilung_w"/>

@@ -510,6 +510,8 @@ class CustomerPortal(CustomerPortal):
                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'betriebsanweisung' and protocol.mail_activity_id:
                         pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+                    elif protocol.equipment_test_type == 'unterweisung' and protocol.mail_activity_id:
+                        pdf = request.env.ref('wepelo_equipment.unterweisungs_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
 #                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_hebebuhne"):
 #                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
 #                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id  == request.env.ref("wepelo_equipment.equipment_tore"):
