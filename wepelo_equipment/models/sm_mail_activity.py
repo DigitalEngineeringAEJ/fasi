@@ -63,14 +63,14 @@ class MailActivity(models.Model):
     month = fields.Char(string="Monat: ")
     year = fields.Char(string="Jahr: ")
     is_manufacturer = fields.Boolean(string="des Herstellers oder Importeurs")
-    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
-    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
+    begehung_id_feld = fields.One2many('begehung', 'name', store=True)
+    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', store=True)
     folg_erf_m =fields.Selection([('1', 'Ja'),
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
-    gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
+    gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Grp.")
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Activities", compute='_compute_activities_type', store=1)
     gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", store=True)
     unterweisung_ids = fields.One2many('unterweisung', 'sequence', string="Unterweisung", store=True)

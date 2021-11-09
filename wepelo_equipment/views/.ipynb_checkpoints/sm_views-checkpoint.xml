@@ -692,6 +692,7 @@
         <field name="arch" type="xml">
             <search string="Partner">
                 <filter name="manufacturer" string="Manufacturer" domain="[('type', '=', 'manufacturer')]"/>
+                <field string="Name" name="name" filter_domain="[('name', 'ilike', self)]"/>
             </search>
         </field>
     </record>

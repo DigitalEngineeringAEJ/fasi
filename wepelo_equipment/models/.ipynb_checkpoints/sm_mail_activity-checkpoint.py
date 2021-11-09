@@ -63,8 +63,8 @@ class MailActivity(models.Model):
     month = fields.Char(string="Monat: ")
     year = fields.Char(string="Jahr: ")
     is_manufacturer = fields.Boolean(string="des Herstellers oder Importeurs")
-    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
-    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
+    begehung_id_feld = fields.One2many('begehung', 'name', store=True)
+    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', store=True)
     folg_erf_m =fields.Selection([('1', 'Ja'),
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')

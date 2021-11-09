@@ -16,7 +16,7 @@ class Begehung(models.Model):
     id = fields.Char(string='Identifikation')
     sequence_b = fields.Integer(string='Sequenz')
     nummer_eins = fields.Char(string="Nummer", compute="_compute_nummer_eins", store=1)
-    name = fields.Char(string="Name")
+    name = fields.Char(string="N.")
     name_eins = fields.Char(string="Name")
     klasse = fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
                                ('Beleuchtung, Lüftungs-, Heizeinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
@@ -109,7 +109,7 @@ class BegehungZwei(models.Model):
     
     nummer_drei = fields.Char(string="Nummer", compute="_compute_nummer_zwei", store=1)
     
-    name_drei = fields.Text(string="Name")
+    name_drei = fields.Text(string="")
     
     
     relation_m = fields.Many2one('mail.activity')
