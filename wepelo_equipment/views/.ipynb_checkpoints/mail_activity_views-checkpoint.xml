@@ -281,12 +281,11 @@
                             <field name="name" />
                             <field name="prod_bez"/>
                             <field name="partner_id"/>
+                            <field name='kategorie' widget="selection"/>
                             <field name="zweck"/>
                             <field name="menge"/>
                             <field name="zeitraum"/>
                             <field name="daten_blatt"/>
-                            <field name="kategorie_ids"/>
-                            <field name='kategorie' widget="selection"/>
                         </tree>
                         </field>
                         </page>

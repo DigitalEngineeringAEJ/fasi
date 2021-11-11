@@ -70,7 +70,7 @@
                             <th scope="col">Einstufung, gefährliche Eigenschaften</th>
                             <th scope="col">Verwendungszweck/ Arbeitsverfahren</th>
                             <th scope="col">Im Betrieb verwendete Mengenberei-che pro Jahr (l, kg, t)</th>
-                            <th scope="col">Verwendungs-<br/>zeitraum</th>
+                            <th scope="col">Verwendungs-<br/>zeitraum<br/>(seit)</th>
                             <th scope="col">Sicherheitsda-<br/>tenblatt vom</th>
                           </tr>
                           <tr t-foreach="o.gef_verzeichnis_ids" t-as="line">

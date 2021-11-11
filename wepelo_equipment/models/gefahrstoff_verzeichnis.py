@@ -33,13 +33,13 @@ class GefahrstoffVerzeichnis(models.Model):
                                 ('H411', 'H411'),
                                 ],
                                 string='Einstufung, gefährliche Eigenschaften',)
-    kategorie_ids = fields.One2many('gefahrstoff.kategorie','name' ,string="kategorie")
+    kategorie_ids = fields.One2many('gefahrstoff.kategorie','name' ,string="Kategorie")
         
     zweck = fields.Char(string='Verwendungszweck/Arbeitsverfahren')
     
     menge = fields.Char(string='Im Betrieb verwendete Mengenbereiche pro Jahr(l, kg, t)')
     
-    zeitraum = fields.Date(string='Verwendungszeitraum')
+    zeitraum = fields.Date(string='Verwendungszeitraum (seit)', default=lambda self: fields.datetime.now())
     
     daten_blatt = fields.Date(string='Sicherheitsdatenblatt vom')
     
