@@ -434,16 +434,22 @@ class CustomerPortal(CustomerPortal):
         """Get report of protocol by type."""
         if kw['type'] == 'maintenance':
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_maintenance').sudo()._render_qweb_pdf([protocol_id])[0]
-        elif kw['type'] == 'prot':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol_id])[0]
-        elif kw['type'] == 'protocol':
-            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
+#         elif kw['type'] == 'prot':
+#             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol_rep_prot').sudo()._render_qweb_pdf([protocol_id])[0]
+#         elif kw['type'] == 'protocol':
+#             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_protocol').sudo()._render_qweb_pdf([protocol_id])[0]
         elif kw['type'] == 'calibration':
             pdf = request.env.ref('wepelo_equipment.gefaehrdungsbeurteilungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#gefährdungsbeurteilung
         elif kw['type'] == 'routine_test':
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Begehung
         elif kw['type'] == 'el_test':
             pdf = request.env.ref('wepelo_equipment.folgebegehungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Folgebegehungsprotokoll
+        elif kw['type'] == 'unterweisung':
+            pdf = request.env.ref('wepelo_equipment.unterweisungs_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Unterweisung
+        elif kw['type'] == 'gefahrstoff_verszeichnis':
+            pdf = request.env.ref('wepelo_equipment.wepelo_equipment_gef_verzeichnis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Gefahrstoff-Verzeichnis
+        elif kw['type'] == 'betriebsanweisung':
+            pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Betriebsanweisung
         protocol = request.env['equipment.protocol'].browse(int(protocol_id))
         filename = ''
         if protocol:
@@ -502,6 +508,10 @@ class CustomerPortal(CustomerPortal):
                         pdf = request.env.ref('wepelo_equipment.gefaehrdungsbeurteilungs_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'routine_test' and protocol.mail_activity_id:
                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_eichnachweis_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+                    elif protocol.equipment_test_type == 'betriebsanweisung' and protocol.mail_activity_id:
+                        pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+                    elif protocol.equipment_test_type == 'unterweisung' and protocol.mail_activity_id:
+                        pdf = request.env.ref('wepelo_equipment.unterweisungs_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
 #                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_hebebuhne"):
 #                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
 #                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id  == request.env.ref("wepelo_equipment.equipment_tore"):

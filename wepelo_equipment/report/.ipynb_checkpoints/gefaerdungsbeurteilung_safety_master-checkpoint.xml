@@ -98,7 +98,7 @@
                                  <td><span t-esc="line.abs_gef"/></td>
                                  <td><span t-esc="line.abstellmassnahme_gef_kla"/></td>
                                  <td><span t-esc="line.deadline_abs_gef.strftime('%d.%m.%Y')"/></td>
-                                 <td><span t-esc="line.verantwortlich_gef.name"/></td>
+                                 <td><span t-esc="line.customer_id.name"/></td>
                                  <td><span t-esc="line.folg_beg_gef"/></td>
                             </tr>
                         </table>   
