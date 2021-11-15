@@ -42,16 +42,17 @@ class Begehung(models.Model):
     
     @api.model
     def create(self, vals):
-        if vals.get('name'):
-            activity = self.env['mail.activity'].browse(int(vals.get('name')))
-        else:
-            activity = vals.get('relationm')
-        sequence_b = 1
-        if activity and activity.begehung_id_feld:
-            last_sequence = activity.begehung_id_feld[-1].sequence_b
-            sequence_b = last_sequence +1
         result = super(Begehung, self).create(vals)
-        result.sequence_b = sequence_b
+        if result.name:
+            begehung = self.env['begehung'].search([('name', '=', result.name)])
+        else:
+            begehung= self.env['begehung'].search([('relationm', '=', result.id)])
+        if not len(begehung):
+            result.sequence_b = result.sequence_b+1
+        elif len(begehung)==1:
+            result.sequence_b = begehung[-1].sequence_b + 1
+        else:
+            result.sequence_b = begehung[-2].sequence_b +1
         return result
     
     @api.depends('sequence_b')
@@ -115,18 +116,20 @@ class BegehungZwei(models.Model):
     relation_m = fields.Many2one('mail.activity')
     relation_e = fields.Many2one('equipment.protocol')
         
+        
     @api.model
     def create(self, vals):
-        if vals.get('name'):
-            activity = self.env['mail.activity'].browse(int(vals.get('name')))
-        else:
-            activity = vals.get('relation_m')
-        sequence_b_zwei = 1
-        if activity and activity.begehung_id_feld_zwei:
-            last_sequence = activity.begehung_id_feld_zwei[-1].sequence_b_zwei
-            sequence_b_zwei = last_sequence +1
         result = super(BegehungZwei, self).create(vals)
-        result.sequence_b_zwei = sequence_b_zwei
+        if result.name_zwei:
+            begehungzwei = self.env['begehung_zwei'].search([('name_zwei', '=', result.name_zwei)])
+        else:
+            begehungzwei= self.env['begehung_zwei'].search([('relation_m', '=', result.id)])
+        if not len(begehungzwei):
+            result.sequence_b_zwei = result.sequence_b_zwei+1
+        elif len(begehungzwei)==1:
+            result.sequence_b_zwei = begehungzwei[-1].sequence_b_zwei + 1
+        else:
+            result.sequence_b_zwei = begehungzwei[-2].sequence_b_zwei +1
         return result
     
     @api.depends('sequence_b_zwei')
@@ -153,7 +156,7 @@ class Folgebegehung(models.Model):
     
     sequence_ref= fields.Integer(string='Sequenz z')
     
-    nummer_vier =fields.Char(string="Nummer", compute="_compute_nummer_vier", store=1)
+    nummer_vier =fields.Char(string="Nummer", store=1)
     
     name_vier = fields.Text(string='Name')
     
@@ -177,16 +180,17 @@ class Folgebegehung(models.Model):
     
     @api.model
     def create(self, vals):
-        if vals.get('name'):
-            activity = self.env['mail.activity'].browse(int(vals.get('name')))
-        else:
-            activity = vals.get('mail_id')
-        sequence_ref = 1
-        if activity and activity.folg_beg_ids:
-            last_sequence = activity.folg_beg_ids[-1].sequence_ref
-            sequence_ref = last_sequence +1
         result = super(Folgebegehung, self).create(vals)
-        result.sequence_ref = sequence_ref
+        if result.name_vier:
+            folgebegehung = self.env['folgebegehung'].search([('name_vier', '=', result.name_vier)])
+        else:
+            folgebegehung= self.env['folgebegehung'].search([('mail_id', '=', result.id)])
+        if not len(folgebegehung):
+            result.sequence_ref = result.sequence_ref+1
+        elif len(folgebegehung)==1:
+            result.sequence_ref = folgebegehung[-1].sequence_ref + 1
+        else:
+            result.sequence_ref = folgebegehung[-2].sequence_ref +1
         return result
     
     @api.depends('sequence_ref')
