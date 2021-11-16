@@ -95,8 +95,10 @@
                            <th scope="col"><img  style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature_leiter)" alt="sign"/></th>
                           </tr>
                           <tr t-as="line">
-                                <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Unterschrift des Trainers/Unterweisenden</td>
-                                  <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Leitung z.K.</td>
+                            <td scope="col"><p style="border-top:1px solid grey; width:300px;"/><span t-field="o.contractor_id.name"/>
+                            </td>
+                            <td scope="col"><p style="border-top:1px solid grey; width:300px;"/><span t-field="o.name_leitung"/>
+                             </td>
                             </tr>
                         </table>
                             </div>
