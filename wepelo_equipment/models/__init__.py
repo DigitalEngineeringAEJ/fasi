@@ -3,7 +3,7 @@
 
 from . import wepelo_equipment_customer
 from . import wepelo_equipment_system
-from . import wepelo_maintenance
+from . import safety_master
 from . import mail_activity
 from . import wepelo_equipment_protocol
 from . import wepelo_repair
