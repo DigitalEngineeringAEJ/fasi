@@ -194,16 +194,31 @@
                         </page>
                         </notebook>
 
-                     <notebook attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'betriebsanweisung'), ('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
-                            <page string="Gefährdungen">
-                            <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
-                            <tree create="0" edit="0">
-                            <field name="gefahrenquellen_typ_id"/>
-                            <field name="gefaehrdungsf_name"/>
-                            <field name="gefahrenquellen_typ_beschreibung"/>
-                            </tree>
-                        </field>
-                        </page>
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung')]}">
+                            <page string="Gefährdungen" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Schutzmaßnahmen und Verhaltensregeln">
+                                <field name= 'protective_measures' nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'malfunctions' nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="Instandhaltung, Reinigung, Entsorgung">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="Folgen der Nichtbeachtung">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
                         </notebook>
                     
                     <!-- Ansicht für Begehung -->                 

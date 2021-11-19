@@ -70,6 +70,11 @@ class EquipmentProtocol(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u = fields.Text(string='Bemerkung')
+    protective_measures = fields.Text(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Text(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    first_aid = fields.Text(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Text(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Text(string="Folgen der Nichtbeachtung")
 
     
     

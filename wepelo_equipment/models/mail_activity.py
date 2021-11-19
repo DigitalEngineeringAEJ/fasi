@@ -78,6 +78,11 @@ class MailActivity(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u =fields.Text(string='Bemerkung')
+    protective_measures = fields.Text(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Text(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    first_aid = fields.Text(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Text(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Text(string="Folgen der Nichtbeachtung")
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
@@ -279,6 +284,11 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
             'gefaehrdunsfaktor_betriebsanweisun_ids':self.gefaehrdunsfaktor_betriebsanweisun_ids,
+            'protective_measures':self.protective_measures,
+            'malfunctions':self.malfunctions,
+            'first_aid':self.first_aid,
+            'maintenance_cleaning':self.maintenance_cleaning,
+            'consequences':self.consequences,
             'gef_verzeichnis_ids':self.gef_verzeichnis_ids,
             'unterweisung_ids':self.unterweisung_ids,
             'inhalte':self.inhalte,

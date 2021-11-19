@@ -220,6 +220,21 @@
                                     </tree>
                                 </field>
                             </page>
+                             <page string="Schutzmaßnahmen und Verhaltensregeln"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'protective_measures' nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Störungen / Verhalten bei Gefahrfall"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'malfunctions' nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Unfällen, Erste Hilfe"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="Instandhaltung, Reinigung, Entsorgung"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="Folgen der Nichtbeachtung"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
                         </notebook>
                     </group>
                     
