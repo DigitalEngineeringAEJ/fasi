@@ -11,6 +11,7 @@ import calendar
 class EquipmentTypes(models.Model):
     _name = 'equipment.types'
     _description = 'Equipment Types'
+    _order = "sequence_g"
 
     name = fields.Char(string='Name')
     
@@ -58,6 +59,7 @@ class EquipmentTypes(models.Model):
                                           ('status_e_6', '6'),
                                           ('status_e_7', '7')], 
                                          string='Maßzahl', compute="_compute_gef_beurteilung_e", store=True)
+    
     mail_activity_id =  fields.Many2one('mail.activity', string="Mail Activity")
     
     
@@ -89,7 +91,7 @@ class EquipmentTypes(models.Model):
     
     deadline_abs_gef = fields.Date(string='Deadline Abstellmaßnahme')
     
-    verantwortlich_gef = fields.Many2one('res.partner', string='Verantwortlich')
+    customer_id = fields.Many2one('res.partner', string='Veranwortlich')
     
     folg_beg_gef =fields.Selection([('Ja', 'Ja'),
                                ('Nein', 'Nein')],
@@ -97,7 +99,9 @@ class EquipmentTypes(models.Model):
     
     equipment_protocol_id = fields.Many2one('equipment.protocol')
     
-    nummer_gef = fields.Char(string="Nummer",  store=True, readonly=True)
+    nummer_gef = fields.Char(string="Nummer", compute="_compute_nummer_gef", store=1)
+    
+    equipment_id = fields.Many2one('maintenance.equipment', string='Equipment', store=True)
     
 
     
@@ -194,14 +198,39 @@ class EquipmentTypes(models.Model):
                 record.gefahrenquellen_typ_risiko = 'status_r_3'
             else:
                 record.gefahrenquellen_typ_risiko = 'status_r_0'
-                
     @api.model
     def create(self, vals):
-        if vals.get('nummer_gef', 'New') == 'New':
-            vals['nummer_gef'] = self.env['ir.sequence'].next_by_code('gefaerdungs.beurteilung') or 'New'
         result = super(EquipmentTypes, self).create(vals)
+        if result.name:
+            gefaehrdunsfaktors = self.env['equipment.types'].search([('name', '=', result.name)])
+        else:
+            gefaehrdunsfaktors= self.env['equipment.types'].search([('mail_activity_id', '=', result.id)])
+        if not len(gefaehrdunsfaktors):
+            result.sequence_g = result.sequence_g+1
+        elif len(gefaehrdunsfaktors)==1:
+            result.sequence_g = gefaehrdunsfaktors[-1].sequence_g + 1
+        else:
+            result.sequence_g = gefaehrdunsfaktors[-2].sequence_g +1
         return result
+    
+    @api.depends('sequence_g')
+    def _compute_nummer_gef(self):
+        """compute sequence_g."""
+        for rec in self:
+            if rec.sequence_g:
+                rec.nummer_gef = "1." + ("0"+ str(rec.sequence_g)) if len(str(rec.sequence_g)) == 1 else "1." +str(rec.sequence_g)
                 
+                
+#     @api.depends('equipment_id')
+#     def _get_customer(self):
+#         for activity in self:
+#             activity.customer_id = activity.equipment_id.customer_id if activity else False
+            
+#     def _inverse_customer(self):
+#         for customer in self:
+#             customer.customer_id.name = customer.name
+
+
                 
 class GefahrenFaktor(models.Model):
     _name = 'gefahren.faktor'

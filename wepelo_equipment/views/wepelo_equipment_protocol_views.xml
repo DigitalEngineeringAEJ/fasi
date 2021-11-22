@@ -113,41 +113,7 @@
         <field name="arch" type="xml">
             <form string="Equipment Protocol">
                  <header>
-<!--                      <button name="%(wepelo_equipment_protocol)d"
-                            string="Equipment Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|', ('mail_activity_id','=',False), ('equipment_test_type','!=','el_test')]}"/>
-                     <button name="%(wepelo_equipment_protocol_rep_prot)d"
-                            string="Equipment Protocol Repair Prot"
-                            type="action"
-                            icon="fa-print" attrs="{'invisible': [('maintenance_request_id','=',False)]}"/> -->
 
-<!--                      <button name="%(wepelo_equipment_protocol_maintenance)d"
-                            string="Equipment Protocol Maintenance"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|', ('mail_activity_id','=',False), ('equipment_test_type','!=','maintenance')]}"/>
-                     <button name="%(wepelo_equipment_eichnachweis_protocol)d"
-                            string="Eichnachweis"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|', ('mail_activity_id','=',False), ('equipment_test_type','!=','calibration_ei')]}"/>
-                     <button name="%(wepelo_equipment_hebebuhne_protocol)d"
-                            string="Betriebssicherheitsprüfung Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|','|', ('mail_activity_id','=',False), ('equipment_test_type','!=','uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}"/>
-                      <button name="%(wepelo_equipment_tore_protocol)d"
-                            string="Betriebssicherheitsprüfung Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|','|', ('mail_activity_id','=',False), ('equipment_test_type','!=','uvv'), ('category_id', '!=', %(equipment_tore)d)]}"/>
-                     <button name="%(wepelo_equipment_bremsprufstand_protocol)d"
-                            string="Stückprüfung Protocol"
-                            type="action"
-                            icon="fa-print"
-                            attrs="{'invisible': ['|','|', ('mail_activity_id','=',False), ('equipment_test_type','!=','routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}"/> -->
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -221,9 +187,9 @@
                     
                     <!-- Ansicht für Gefährdungsbeurteilung-->
                     
-                    <group  attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
-                        <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
-                            <page string="Gefahrenquelle">
+                    <group  attrs="{'invisible': [('equipment_test_type', 'not in', ['calibration_ei', 'betriebsanweisung'])]}">
+                        <notebook>
+                            <page string="Gefahrenquelle" attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
                             <field name= 'gefaehrdunsfaktor_ids'>
                             <tree editable="bottom">
                             <field name = "sequence_g" widget="handle"/>
@@ -240,17 +206,23 @@
                             <field name="abs_gef"/>
                             <field name="abstellmassnahme_gef_kla" string="Abs Klassifizierung"/>
                             <field name="deadline_abs_gef" string="Deadline Abstellmaßnahme"/>
-                            <field name="verantwortlich_gef" string="Verantwortlich"/>
+                            <field name="customer_id" string="Verantwortlich"/>
                             <field name="folg_beg_gef" string="Folgebegehung erforderlich?"/>
                             </tree>
                         </field>
                         </page>
+                            <page string="Gefahrenquelle" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'betriebsanweisung'), ('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids' readonly="1" force_save="1">
+                                    <tree create="0" edit="0">
+                                        <field name="gefahrenquellen_typ_id"/>
+                                        <field name="gefaehrdungsf_name" />
+                                       <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </group>
-                    <group>
-                           <field name="signature" widget="signature"/>
-                            <field name="note_rel"/>
-                     </group>
+                    
                     
                     <!-- Ansicht für Folgebegehung-->
                     
@@ -275,6 +247,72 @@
                         </page>
                     </notebook>
                     </group>
+                    
+                    <!-- Ansicht für Arbeitsstoff-und Gefahrstoff-Verzeichnis  -->
+                    
+                     <group attrs="{'invisible': [('equipment_test_type', '!=', 'gefahrstoff_verszeichnis')]}">
+                        <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'gefahrstoff_verszeichnis')]}">
+                            <page string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)">
+                            <field name= 'gef_verzeichnis_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="name" />
+                            <field name="prod_bez"/>
+                            <field name="partner_id"/>
+                            <field name="kategorie"/>
+                            <field name="zweck"/>
+                            <field name="menge"/>
+                            <field name="zeitraum"/>
+                            <field name="daten_blatt"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    </group>
+                    
+                    <!-- Ansicht für Unterweisung  -->
+                    <group string="Dokumentation der Unterweisung" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                         <notebook>
+                    <page string='Unterweisungsinhalte (insbesondere Gefahrquellen, Maßnahmen zur Arbeitssicherheit und zum Gesundheitsschutz, Erste Hilfe):'>
+                    <field name= 'inhalte'>
+                         </field>
+                             </page>
+                    </notebook>
+                    </group>
+                    
+                     <group string="Name und Unterschrift der Teilnehmer:" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <notebook>
+                            <page string="Mit meiner Unterschrift bestätige ich, dass ich an der Unterweisung teilgenommen und den Inhalt verstanden habe.">
+                            <field name= 'unterweisung_ids'>  
+                            <tree editable="bottom">
+                            <field name = "sequence" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="name_customer" />
+                            <field name="signature_customer" widget="signature"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>                   
+                     </group>
+                    <table style="table-layout:fixed; font-size:16px" class="table table-borderless table-sm mt16 ml16" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <tr>
+                                <td scope="col"><p/>Bemerkungen:</td>
+                            </tr>
+                        <tr>
+                            <th scope="col"> <field name='note_u'/></th>
+                        </tr>
+                        <br></br>
+                        <br></br>
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                        </table>      
 <!--                     <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                          <group>
                             <field name="exhaust_hose_probe" class="ml16"/>

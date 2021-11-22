@@ -316,7 +316,7 @@
                 <field name="abstellmassnahme_gef_kla"/>
                 <field name="abs_gef"/>
                 <field name="deadline_abs_gef"/>
-                <field name="verantwortlich_gef"/>
+                <field name="customer_id"/>
                 <field name="folg_beg_gef"/>
             </tree>
         </field>
@@ -347,7 +347,7 @@
                             <field name="abstellmassnahme_gef_kla"/>
                             <field name="abs_gef"/>
                             <field name="deadline_abs_gef"/>
-                            <field name="verantwortlich_gef"/>
+                            <field name="customer_id"/>
                             <field name="folg_beg_gef"/>
                         </group>
                     </group>
@@ -527,6 +527,96 @@
         </field>
     </record>
     
+     <!-- Ansicht für Arbeitsstoff-und Gefahrstoff-Verzeichnis-->
+    
+    <record id="gef_verzeichnis_view_tree" model="ir.ui.view">
+        <field name="name">gef_verzeichnis.tree</field>
+        <field name="model">gefahrstoff.verzeichnis</field>
+        <field name="arch" type="xml">
+            <tree string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)">
+                <field name="id" invisible="1"/>
+                            <field name="name" />
+                            <field name="prod_bez"/>
+                            <field name="partner_id"/>
+                            <field name="zweck"/>
+                            <field name="menge"/>
+                            <field name="zeitraum"/>
+                            <field name="daten_blatt"/>
+                            <field name="kategorie_ids"/>
+                            <field name='kategorie' widget="selection"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gef_verzeichnis_view_form" model="ir.ui.view">
+        <field name="name">gef_verzeichnis.form</field>
+        <field name="model">gefahrstoff.verzeichnis</field>
+        <field name="arch" type="xml">
+            <form string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="id" invisible="1"/>
+                            <field name="name" />
+                            <field name="prod_bez"/>
+                            <field name="partner_id"/>
+                            <field name="zweck"/>
+                            <field name="menge"/>
+                            <field name="zeitraum"/>
+                            <field name="daten_blatt"/>
+                            <field name="kategorie_ids"/>
+                            <field name='kategorie' widget="selection"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Ansicht für Arbeitsstoff-und Gefahrstoff-Verzeichnis Kategorie-->
+    
+    <record id="gef_verzeichnis_kat_view_tree" model="ir.ui.view">
+        <field name="name">gef_verzeichnis_kat.tree</field>
+        <field name="model">gefahrstoff.kategorie</field>
+        <field name="arch" type="xml">
+            <tree string="Arbeitsstoff-und Gefahrstoff-Verzeichnis Kategorie">
+                <field name="name" invisible="1"/>
+                            <field name="flamme"/>
+                            <field name="gesundheitsgefahr" widget="checkbox"/>
+                            <field name="ausrufezeichen" widget="checkbox"/>
+                            <field name="h_zwei_zwei_sechs" widget="checkbox"/>
+                            <field name="h_drei_null_vier" widget="checkbox"/>
+                            <field name="h_drei_drei_fünf" widget="checkbox"/>
+                            <field name="h_drei_drei_sechs" widget="checkbox"/>
+                            <field name='h_vier_eins_eins' widget="checkbox"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gef_verzeichnis_kat_view_form" model="ir.ui.view">
+        <field name="name">gef_verzeichnis_kat.form</field>
+        <field name="model">gefahrstoff.kategorie</field>
+        <field name="arch" type="xml">
+            <form string="Arbeitsstoff-und Gefahrstoff-Verzeichnis Kategorie">
+                <sheet>
+                    <group>
+                        <group>
+                <field name="name" invisible="1"/>
+                            <field name="flamme"/>
+                            <field name="gesundheitsgefahr" widget="checkbox"/>
+                            <field name="ausrufezeichen" widget="checkbox"/>
+                            <field name="h_zwei_zwei_sechs" widget="checkbox"/>
+                            <field name="h_drei_null_vier" widget="checkbox"/>
+                            <field name="h_drei_drei_fünf" widget="checkbox"/>
+                            <field name="h_drei_drei_sechs" widget="checkbox"/>
+                            <field name='h_vier_eins_eins' widget="checkbox"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
     
     <!--Test Equipment History-->
     <record id="wepelo_equipment_history_view_tree" model="ir.ui.view">
@@ -602,6 +692,7 @@
         <field name="arch" type="xml">
             <search string="Partner">
                 <filter name="manufacturer" string="Manufacturer" domain="[('type', '=', 'manufacturer')]"/>
+                <field string="Name" name="name" filter_domain="[('name', 'ilike', self)]"/>
             </search>
         </field>
     </record>

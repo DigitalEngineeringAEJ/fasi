@@ -14,16 +14,25 @@
             <field name="cycle_duration">365</field>
         </record>
 
-        <record id="activity_schulung_unterweisung" model="equipment.test">
-            <field name="display_name">Schulung/Unterweisung</field>
-            <field name="equipment_test_type">uvv</field>
-            <field name="cycle_duration">360</field>
-        </record>
-
         <record id="equipment_test_data_el_test" model="equipment.test">
             <field name="display_name">Folgebegehung</field>
             <field name="equipment_test_type">el_test</field>
-<!--             <field name="cycle_duration">360</field> -->
+        </record>
+        
+        <record id="activity_gefahrstoff_verszeichnis" model="equipment.test">
+            <field name="display_name">Gefahrstoff-Verzeichnis</field>
+            <field name="equipment_test_type">gefahrstoff_verszeichnis</field>
+        </record>
+        
+        <record id="activity_unterweisung" model="equipment.test">
+            <field name="display_name">Unterweisung</field>
+            <field name="equipment_test_type">unterweisung</field>
+        </record>
+
+         <record id="activity_betriebsanweisun" model="equipment.test">
+            <field name="display_name">Betriebsanweisung</field>
+            <field name="equipment_test_type">betriebsanweisung</field>
+            <field name="cycle_duration">365</field>
         </record>
 
      <!--   <record id="equipment_test_data_calibration" model="equipment.test">
@@ -43,14 +52,7 @@
         </record>-->
 
         <!-- Mail Activity Data-->
-      <!--  <record id="mail_activity_data_calibration" model="mail.activity.type">
-            <field name="name">Schulung/Unterweisung</field>
-            <field name="delay_count">720</field>
-            <field name="delay_unit">days</field>
-            <field name="equipment_test_type_id" ref="equipment_test_data_calibration"/>
-            <field name="sequence">8</field>
-            <field name="category">upload_file</field>
-        </record>-->
+
          <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
             <field name="name">Gefährdungsbeurteilung</field>
             <field name="delay_count">360</field>
@@ -67,14 +69,41 @@
             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_begehung"/>
         </record>
-        <record id="mail_activity_data_uvv" model="mail.activity.type">
-            <field name="name">Schulung/Unterweisung</field>
+        
+        <record id="mail_activity_data_el_test" model="mail.activity.type">
+            <field name="name">Folgebegehung</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
+            <field name="sequence">12</field>
+        </record>
+
+
+        <record id="mail_activity_data_betriebsanweisun" model="mail.activity.type">
+            <field name="name">Betriebsanweisung</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
-            <field name="sequence">11</field>
-            <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
-            <field name="equipment_test_type_id" ref="activity_schulung_unterweisung"/>
-<!--             <field name="category">upload_file</field> -->
+            <field name="sequence">12</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisun"/>
+        </record>
+
+
+        
+        <record id="mail_activity_gefahrstoff_verszeichnis" model="mail.activity.type">
+            <field name="name">Gefahrstoff-Verzeichnis</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_gefahrstoff_verszeichnis"/>
+            <field name="sequence">13</field>
+        </record>
+        
+        <record id="mail_activity_unterweisung" model="mail.activity.type">
+            <field name="name">Unterweisung</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_unterweisung"/>
+            <field name="sequence">14</field>
         </record>
         
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
@@ -83,15 +112,8 @@
         <field name="res_model_id" ref="maintenance.model_maintenance_request"/> -->
         <!--active="false"/>-->
 <!--     </record> -->
-      <record id="mail_activity_data_el_test" model="mail.activity.type">
-            <field name="name">Folgebegehung</field>
-<!--             <field name="delay_count">360</field> -->
-            <field name="delay_unit">days</field>
-          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
-            <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
-            <field name="sequence">12</field>
-<!--             <field name="category">upload_file</field> -->
-        </record>
+
+
         <!-- <record id="mail_activity_data_maintenance" model="mail.activity.type">
             <field name="name">Wartung</field>
             <field name="delay_count">360</field>
@@ -436,16 +458,6 @@
             <field name="number_increment">1</field>
             <field name="company_id" eval="False"/>
         </record>
-        
-        <record id="seq_gefaerdungsbeurteilung" model="ir.sequence">
-            <field name="name">Gefährdungsbeurteilung</field>
-            <field name="code">gefaerdungs.beurteilung</field>
-            <field name="prefix">1.</field>
-            <field name="padding">2</field>
-            <field name="number_next">1</field>
-            <field name="number_increment">1</field>
-            <field name="company_id" eval="False"/>
-        </record>     
         
     </data>
 

@@ -767,6 +767,14 @@
                         <small class="text-muted">protocol -</small>
                         <span t-field="protocol.name"/>
                         <span class="float-right">
+                              <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'betriebsanweisung'">
+                                 <a t-attf-href="/protocol/report/#{protocol.id}?type=betriebsanweisung" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text-o" role="img" aria-label="Betriebsanweisung Protocol Report (PDF)"
+                                          title="Betriebsanweisung Report (PDF)"/>
+                                    <span>Betriebsanweisung</span>
+                                </a>
+                            </t>
                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'routine_test'">
                                  <a t-attf-href="/protocol/report/#{protocol.id}?type=routine_test" target="new" style="color:#FFFFFF !important;" role="button"
                                    class="btn btn-sm btn-secondary">
@@ -789,6 +797,22 @@
                                     <span class="fa fa-file-text" role="img" aria-label="Protocol Report (PDF)"
                                           title="Protocol Report (PDF)"/>
                                     <span>Folgebegehung</span>
+                                </a>
+                            </t>
+                            <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'unterweisung'">
+                                <a t-attf-href="/protocol/report/#{protocol.id}?type=unterweisung" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text" role="img" aria-label="Unterweisung (PDF)"
+                                          title="Unterweisung (PDF)"/>
+                                    <span>Unterweisung</span>
+                                </a>
+                            </t>
+                            <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'gefahrstoff_verszeichnis'">
+                                <a t-attf-href="/protocol/report/#{protocol.id}?type=gefahrstoff_verszeichnis" target="new" style="color:#FFFFFF !important;" role="button"
+                                   class="btn btn-sm btn-secondary">
+                                    <span class="fa fa-file-text" role="img" aria-label="Arbeitsstoff- und Gefahrstoff-Verzeichnis (PDF)"
+                                          title="Arbeitsstoff- und Gefahrstoff-Verzeichnis (PDF)"/>
+                                    <span>Gefahrstoff-Verszeichnis</span>
                                 </a>
                             </t>
                             <t t-if="protocol.mail_activity_id and protocol.equipment_test_type == 'maintenance'">
