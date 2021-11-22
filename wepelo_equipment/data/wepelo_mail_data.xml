@@ -128,6 +128,8 @@
             <field name="category">upload_file</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/>
         </record>-->
+        
+        </data>
         <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
             <field name="name">Mechanische Gefährdungen</field>
             <field name="types_sn">-----</field>
@@ -459,7 +461,7 @@
             <field name="company_id" eval="False"/>
         </record>
         
-    </data>
+    
 
     <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">
         <field name="name">Partner Ref Sequence</field>
