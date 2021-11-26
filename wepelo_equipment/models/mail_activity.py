@@ -80,7 +80,7 @@ class MailActivity(models.Model):
     note_u =fields.Text(string='Bemerkung')
     protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
     malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
-    first_aid = fields.Text(string="Verhalten bei Unfällen, Erste Hilfe")
+    first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
     maintenance_cleaning = fields.Text(string="Instandhaltung, Reinigung, Entsorgung")
     consequences = fields.Text(string="Folgen der Nichtbeachtung")
     release_date = fields.Date(string="Freigabedatum")
