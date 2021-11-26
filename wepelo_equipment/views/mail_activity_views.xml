@@ -194,6 +194,8 @@
                         </page>
                         </notebook>
 
+                    <!-- Ansicht für Betriebsanweisung -->
+                    
                      <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung')]}">
                             <page string="Gefährdungen" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
                                 <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
@@ -205,10 +207,11 @@
                                 </field>
                             </page>
                             <page string="Schutzmaßnahmen und Verhaltensregeln">
-                                <field name= 'protective_measures' nolabel="1"/>
-                            </page>
+                                     <field name= 'protective_measures_picture'  nolabel="1"/>
+                                     <field name= 'protective_measures'  nolabel="1"/>
+                        </page>
                           <page string="Verhalten bei Störungen / Verhalten bei Gefahrfall">
-                                <field name= 'malfunctions' nolabel="1"/>
+                                <field name= 'malfunctions'  nolabel="1"/>
                             </page>
                           <page string="Verhalten bei Unfällen, Erste Hilfe">
                                 <field name= 'first_aid' nolabel="1"/>
@@ -218,6 +221,25 @@
                             </page>
                          <page string="Folgen der Nichtbeachtung">
                                 <field name= 'consequences' nolabel="1"/>
+                            </page>
+                         <page string="Freigabedatum">
+                                 <field name= 'release_date'/>
+                             <br/>
+                             </page>
+                             <page string="Nächster Überprüfungstermin dieser Betriebsanweisung:">
+                                 <field name= 'review_date' string="Nächster Überprüfungstermin dieser Betriebsanweisung"/>
+                         </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
                             </page>
                         </notebook>
                     
@@ -533,7 +555,10 @@
                                    style="display: inline-block;font-weight:normal;"/>
                         </div>
                     </group> -->
-                    <field name="note" placeholder="Log a note..."/>
+                    <br/>
+                    <group string="Anmerkung">
+                    <field name="note" placeholder="Log a note..." nolabel="1"/>
+                    </group>
                     <footer>
                         <button string="Finished Test And Generate Protocol" name="action_generate_protocol" type="object" class="btn-primary" attrs="{'invisible': ['|', '|', ('equipment_protocol_id', '!=', False), ('test_fail', '=', True), ('active', '=', False)]}"/>
                         <button attrs="{'invisible': ['|',('active', '=', False), ('test_fail', '=', True)]}" string="Mark as Done" name="action_done" type="object" class="btn-primary ml16"

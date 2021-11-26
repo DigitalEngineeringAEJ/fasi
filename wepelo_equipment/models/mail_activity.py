@@ -78,11 +78,15 @@ class MailActivity(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u =fields.Text(string='Bemerkung')
-    protective_measures = fields.Text(string="Schutzmaßnahmen und Verhaltensregeln")
-    malfunctions = fields.Text(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
     first_aid = fields.Text(string="Verhalten bei Unfällen, Erste Hilfe")
     maintenance_cleaning = fields.Text(string="Instandhaltung, Reinigung, Entsorgung")
     consequences = fields.Text(string="Folgen der Nichtbeachtung")
+    release_date = fields.Date(string="Freigabedatum")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
+    protective_measures_picture = fields.Html(string='Pictogram')
+    
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
