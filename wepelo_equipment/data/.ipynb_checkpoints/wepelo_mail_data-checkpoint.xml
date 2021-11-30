@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        
         <!--Service Data-->
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
@@ -29,11 +30,23 @@
             <field name="equipment_test_type">unterweisung</field>
         </record>
 
-         <record id="activity_betriebsanweisun" model="equipment.test">
-            <field name="display_name">Betriebsanweisung</field>
+         <record id="activity_betriebsanweisung" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
             <field name="equipment_test_type">betriebsanweisung</field>
             <field name="cycle_duration">365</field>
         </record>
+        
+<!--         <record id="activity_betriebsanweisung_gefahrstoffe" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="equipment_test_type">betriebsanweisunggefahrstoffe</field>
+            <field name="cycle_duration">365</field>
+        </record> -->
+        
+<!--         <record id="activity_betriebsanweisung_psa" model="equipment.test">
+            <field name="display_name">Betriebsanweisung PSA</field>
+            <field name="equipment_test_type">betriebsanweisung_psa</field>
+            <field name="cycle_duration">365</field>
+        </record> -->
 
      <!--   <record id="equipment_test_data_calibration" model="equipment.test">
             <field name="display_name">Kalibrierung</field>
@@ -79,15 +92,31 @@
         </record>
 
 
-        <record id="mail_activity_data_betriebsanweisun" model="mail.activity.type">
-            <field name="name">Betriebsanweisung</field>
+        <record id="mail_activity_data_betriebsanweisung" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">12</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
-            <field name="equipment_test_type_id" ref="activity_betriebsanweisun"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung"/>
         </record>
 
+<!--         <record id="mail_activity_data_betriebsanweisung_gefahrstoffe" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">12</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung_gefahrstoffe"/>
+        </record> -->
+<!--         <record id="mail_activity_data_betriebsanweisung_psa" model="mail.activity.type">
+            <field name="name">Betriebsanweisung PSA</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">12</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung_psa"/>
+        </record> -->
 
         
         <record id="mail_activity_gefahrstoff_verszeichnis" model="mail.activity.type">
@@ -105,7 +134,7 @@
             <field name="equipment_test_type_id" ref="activity_unterweisung"/>
             <field name="sequence">14</field>
         </record>
-        
+        </data>
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
         <field name="name">Maintenance Request</field>
         <field name="icon">fa-wrench</field>
@@ -459,7 +488,7 @@
             <field name="company_id" eval="False"/>
         </record>
         
-    </data>
+    
 
     <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">
         <field name="name">Partner Ref Sequence</field>
