@@ -9,7 +9,7 @@
                 <t t-call="web.external_layout">
                     <div class="page" style="border: 1rem solid blue;">
                            <h1 style="text-align:center;">
-                                Betriebsanweisung
+                                Betriebsanweisung Maschinen und Arbeitsverfahren
                             </h1>
                         <br></br>
                         <br></br>
@@ -84,7 +84,7 @@
                               <tr>
                                 <td colspan="3">
                                     <span t-field="o.protective_measures"/>
-                                    <span t_field="o.protective_measures_picture"/>
+                                    <span t-raw="o.protective_measures_picture"/>
                                 </td>
                             </tr>
                              </t>
@@ -206,7 +206,7 @@
     </record>
 
     <record id="betriebsanweisung_protocol" model="ir.actions.report">
-        <field name="name">Betriebsanweisung</field>
+        <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
         <field name="model">equipment.protocol</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">wepelo_equipment.betriebsanweisung_protocol_template</field>

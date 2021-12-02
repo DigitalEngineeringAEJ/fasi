@@ -245,7 +245,7 @@
                     
                     <!-- Ansicht für Betriebsanweisung Gefahrstoffe-->
                     
-                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', '')]}">
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration')]}">
                             <page string="1. Gefahrstoffbezeichnung">
                                      <field name= 'protective_measures'  nolabel="1"/>
                         </page>
@@ -293,7 +293,7 @@
                     
                     <!-- Ansicht für Betriebsanweisung PSA -->
                     
-                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung_psa')]}">
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                             <page string="1. Anwendungsbereich">
                                      <field name= 'protective_measures'  nolabel="1"/>
                         </page>

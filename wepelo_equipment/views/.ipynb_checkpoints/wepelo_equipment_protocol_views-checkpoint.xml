@@ -220,8 +220,105 @@
                                     </tree>
                                 </field>
                             </page>
+                             <page string="Schutzmaßnahmen und Verhaltensregeln"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'protective_measures' nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Störungen / Verhalten bei Gefahrfall"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'malfunctions' nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Unfällen, Erste Hilfe"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="Instandhaltung, Reinigung, Entsorgung"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="Folgen der Nichtbeachtung"  attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung') ]}">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
                         </notebook>
                     </group>
+                    
+                    <!-- Ansicht für Betriebsanweisung Gefahrstoffe-->
+                    
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration')]}">
+                            <page string="1. Gefahrstoffbezeichnung">
+                                     <field name= 'protective_measures'  nolabel="1"/>
+                        </page>
+                         <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                          <page string="3. Schutzmaßnahmen und Verhaltensregeln">
+                                <field name= 'malfunctions'  nolabel="1"/>
+                            </page>
+                          <page string="4. Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="5. Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="6. Sachgerechte Entsorgung">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                            </page>
+                        </notebook>
+                    
+                    <!-- Ansicht für Betriebsanweisung PSA -->
+                    
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
+                            <page string="1. Anwendungsbereich">
+                                     <field name= 'protective_measures'  nolabel="1"/>
+                        </page>
+                         <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                          <page string="3. Schutzmaßnahmen und Verhaltensregeln ">
+                                <field name= 'malfunctions'  nolabel="1"/>
+                            </page>
+                          <page string="4. Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="5. Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="6. Sachgerechte Entsorgung">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                            </page>
+                        </notebook>
                     
                     
                     <!-- Ansicht für Folgebegehung-->
