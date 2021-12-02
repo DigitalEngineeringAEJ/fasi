@@ -245,7 +245,7 @@
                     
                     <!-- Ansicht für Betriebsanweisung Gefahrstoffe-->
                     
-                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung_gefahrstoffe')]}">
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', '')]}">
                             <page string="1. Gefahrstoffbezeichnung">
                                      <field name= 'protective_measures'  nolabel="1"/>
                         </page>

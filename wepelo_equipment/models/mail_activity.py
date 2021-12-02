@@ -91,7 +91,7 @@ class MailActivity(models.Model):
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
         for rec in self:
-            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung_m_a").id)]
+            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung").id)]
             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_hebebuhne"), rec.env.ref("wepelo_equipment.equipment_tore"), rec.env.ref("wepelo_equipment.equipment_bremsprufstand")]:
                 domain = []
             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
