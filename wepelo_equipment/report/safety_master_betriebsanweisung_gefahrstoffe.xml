@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="betriebsanweisung_protocol_template">
+    <template id="safety_master_betriebsanweisung_gefahrstoffe">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <div class="header"/>
                 <div class="footer"/>
                 <t t-call="web.external_layout">
-                    <div class="page" style="border: 1rem solid blue;">
+                    <div class="page" style="border: 1rem solid orange;">
                            <h1 style="text-align:center;">
-                                Betriebsanweisung Maschinen und Arbeitsverfahren
+                                Betriebsanweisung Gefahrstoffe 
                             </h1>
-                        <br></br>
+                          <br></br>
                         <br></br>
                              <div class="col-12">
                                  <div class="col-9  pull-left">
@@ -36,7 +36,7 @@
                         </div>
 
                         <table style="font-size:16px" class="table table-bordered">
-                            <tr style="background-color:blue;">
+                            <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Anwendungsbereich</strong>
                                 </td>
@@ -47,7 +47,28 @@
                                     <br></br>
                                 </td>
                             </tr>
-                            <tr style="background-color:blue;">
+                            <tr style="background-color:orange;">
+                                <td colspan="3" style="text-align:center;">
+                                    <strong style="color:white;">Gefahrstoffbezeichnung</strong>
+                                </td>
+                            </tr>
+                             <t  t-if="o.hazardous_material_designation">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.hazardous_material_designation"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
+                                <td colspan="3" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </td>
+                            </tr>
+                             </t>
+                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Gefahren für Mensch und Umwelt</strong>
                                 </td>
@@ -75,36 +96,15 @@
                                     <br></br>
                                 </tr>
                             </t>
-                            <tr style="background-color:blue;">
+                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Schutzmaßnahmen und Verhaltensregeln</strong>
                                 </td>
                             </tr>
-                             <t  t-if="o.protective_measures">
+                            <t  t-if="o.protective_measures">
                               <tr>
                                 <td colspan="3">
                                     <span t-field="o.protective_measures"/>
-                                </td>
-                            </tr>
-                             </t>
-                           <t t-else="">
-                              <tr>
-                                <td colspan="3" style="text-align:center;">
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                </td>
-                            </tr>
-                             </t>
-                             <tr style="background-color:blue;">
-                                <td colspan="3" style="text-align:center;">
-                                    <strong style="color:white;">Verhalten bei Störungen / Verhalten bei Gefahrfall</strong>
-                                </td>
-                            </tr>
-                            <t  t-if="o.malfunctions">
-                              <tr>
-                                <td colspan="3">
-                                    <span t-field="o.malfunctions"/>
                                 </td>
                             </tr>
                              </t>
@@ -117,12 +117,33 @@
                                 </td>
                             </tr>
                            </t>
-                            <tr style="background-color:blue;">
+                            <tr style="background-color:orange;">
+                                <td colspan="3" style="text-align:center;">
+                                    <strong style="color:white;">Verhalten bei Störungen / Verhalten bei Gefahrfall</strong>
+                                </td>
+                            </tr>
+                              <t  t-if="o.malfunctions">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.malfunctions"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
+                                <td colspan="3" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </td>
+                            </tr>
+                           </t>
+                            <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Verhalten bei Unfällen, Erste Hilfe</strong>
                                 </td>
                             </tr>
-                              <t  t-if="o.first_aid">
+                             <t  t-if="o.first_aid">
                               <tr>
                                 <td colspan="3">
                                     <span t-field="o.first_aid"/>
@@ -138,9 +159,9 @@
                                 </td>
                             </tr>
                            </t>
-                            <tr style="background-color:blue;">
+                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong style="color:white;">Instandhaltung, Reinigung, Entsorgung</strong>
+                                    <strong style="color:white;"> Sachgerechte Entsorgung</strong>
                                 </td>
                             </tr>
                              <t  t-if="o.maintenance_cleaning">
@@ -159,9 +180,9 @@
                                 </td>
                             </tr>
                            </t>
-                             <tr style="background-color:blue;">
+                            <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong style="color:white;">Folgen der Nichtbeachtung</strong>
+                                    <strong style="color:white;"> Folgen der Nichtbeachtung</strong>
                                 </td>
                             </tr>
                              <t  t-if="o.consequences">
@@ -181,39 +202,39 @@
                             </tr>
                            </t>
                         </table>
-
                     </div>
                 </t>
             </t>
         </t>
     </template>
-
-    <record id="paperformat_betriebsanweisung" model="report.paperformat">
-        <field name="name">Format für Betriebsanweisung</field>
-        <field name="default" eval="False"/>
-        <field name="format">A4</field>
-        <field name="page_height">0</field>
-        <field name="page_width">0</field>
-        <field name="orientation">Portrait</field>
-        <field name="margin_top">0</field>
-        <field name="margin_bottom">0</field>
-        <field name="margin_left">7</field>
-        <field name="margin_right">7</field>
-        <field name="header_line" eval="False" />
-        <field name="header_spacing">0</field>
-        <field name="dpi">90</field>
-    </record>
-
-    <record id="betriebsanweisung_protocol" model="ir.actions.report">
-        <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
-        <field name="model">equipment.protocol</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">wepelo_equipment.betriebsanweisung_protocol_template</field>
-        <field name="report_file">wepelo_equipment.betriebsanweisung_protocol_template</field>
-        <field name="print_report_name">(object._get_report_filename())</field>
-        <field name="binding_model_id" ref="model_equipment_protocol"/>
+    
+<!--     <record id="paperformat_betriebsanweisung_gefahrstoffe" model="report.paperformat">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record> -->
+    
+    
+    <record id="safety_master_betriebsanweisung_gefahrstoffe" model="ir.actions.report">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="model">equipment.protocol</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.safety_master_betriebsanweisung_gefahrstoffe</field>
+            <field name="report_file">wepelo_equipment.safety_master_betriebsanweisung_gefahrstoffe</field>
+            <field name="print_report_name">(object._get_report_filename())</field>
+            <field name="binding_model_id" ref="model_equipment_protocol"/>
         <field name="paperformat_id" ref="wepelo_equipment.paperformat_betriebsanweisung"/>
-        <field name="binding_type">report</field>
-    </record>
-
+            <field name="binding_type">report</field>
+        </record>
+    
 </odoo>

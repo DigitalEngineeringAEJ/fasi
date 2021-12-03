@@ -449,7 +449,11 @@ class CustomerPortal(CustomerPortal):
         elif kw['type'] == 'gefahrstoff_verszeichnis':
             pdf = request.env.ref('wepelo_equipment.wepelo_equipment_gef_verzeichnis_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Gefahrstoff-Verzeichnis
         elif kw['type'] == 'betriebsanweisung':
-            pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Betriebsanweisung
+            pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol_id])[0]#Betriebsanweisung Maschinen und Arbeitsverfahren
+        elif kw['type'] == 'calibration':
+            pdf = request.env.ref('wepelo_equipment.safety_master_betriebsanweisung_gefahrstoffe').sudo()._render_qweb_pdf([protocol_id])[0]#Betriebsanweisung Gefahrstoffe
+        elif kw['type'] == 'maintenance':
+            pdf = request.env.ref('wepelo_equipment.safety_master_betriebsanweisung_psa').sudo()._render_qweb_pdf([protocol_id])[0]#Betriebsanweisung PSA
         protocol = request.env['equipment.protocol'].browse(int(protocol_id))
         filename = ''
         if protocol:
@@ -512,6 +516,10 @@ class CustomerPortal(CustomerPortal):
                         pdf = request.env.ref('wepelo_equipment.betriebsanweisung_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
                     elif protocol.equipment_test_type == 'unterweisung' and protocol.mail_activity_id:
                         pdf = request.env.ref('wepelo_equipment.unterweisungs_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
+                    elif protocol.equipment_test_type == 'calibration' and protocol.mail_activity_id:
+                        pdf = request.env.ref('wepelo_equipment.safety_master_betriebsanweisung_gefahrstoffe').sudo()._render_qweb_pdf([protocol.id])[0]
+                    elif protocol.equipment_test_type == 'maintenance' and protocol.mail_activity_id:
+                        pdf = request.env.ref('wepelo_equipment.safety_master_betriebsanweisung_psa').sudo()._render_qweb_pdf([protocol.id])[0]
 #                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id == request.env.ref("wepelo_equipment.equipment_hebebuhne"):
 #                         pdf = request.env.ref('wepelo_equipment.wepelo_equipment_hebebuhne_protocol').sudo()._render_qweb_pdf([protocol.id])[0]
 #                     elif protocol.equipment_test_type == 'uvv' and protocol.category_id  == request.env.ref("wepelo_equipment.equipment_tore"):

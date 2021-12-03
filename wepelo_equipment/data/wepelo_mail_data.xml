@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        
         <!--Service Data-->
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
@@ -29,23 +30,23 @@
             <field name="equipment_test_type">unterweisung</field>
         </record>
 
-         <record id="activity_betriebsanweisun" model="equipment.test">
-            <field name="display_name">Betriebsanweisung</field>
+         <record id="activity_betriebsanweisung" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
             <field name="equipment_test_type">betriebsanweisung</field>
             <field name="cycle_duration">365</field>
         </record>
 
-     <!--   <record id="equipment_test_data_calibration" model="equipment.test">
-            <field name="display_name">Kalibrierung</field>
+        <record id="equipment_test_data_calibration" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Gefahrstoffe</field>
             <field name="equipment_test_type">calibration</field>
-            <field name="cycle_duration">720</field>
+            <field name="cycle_duration">365</field>
         </record>
         <record id="equipment_test_data_maintenance" model="equipment.test">
-            <field name="display_name">Wartung</field>
+            <field name="display_name">Betriebsanweisung PSA</field>
             <field name="equipment_test_type">maintenance</field>
-            <field name="cycle_duration">360</field>
+            <field name="cycle_duration">365</field>
         </record>
-        <record id="equipment_test_data_repairs" model="equipment.test">
+        <!--<record id="equipment_test_data_repairs" model="equipment.test">
             <field name="display_name">Reparaturen</field>
             <field name="equipment_test_type">repairs</field>
             <field name="cycle_duration">0</field>
@@ -75,19 +76,35 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
-            <field name="sequence">12</field>
+            <field name="sequence">11</field>
         </record>
 
 
-        <record id="mail_activity_data_betriebsanweisun" model="mail.activity.type">
-            <field name="name">Betriebsanweisung</field>
+        <record id="mail_activity_data_betriebsanweisung" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">12</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
-            <field name="equipment_test_type_id" ref="activity_betriebsanweisun"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung"/>
         </record>
 
+        <record id="mail_activity_data_betriebsanweisung_gefahrstoffe" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">13</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_calibration"/>
+        </record>
+        <record id="mail_activity_data_betriebsanweisung_psa" model="mail.activity.type">
+            <field name="name">Betriebsanweisung PSA</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">14</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_maintenance"/>
+        </record>
 
         
         <record id="mail_activity_gefahrstoff_verszeichnis" model="mail.activity.type">
@@ -95,7 +112,7 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_gefahrstoff_verszeichnis"/>
-            <field name="sequence">13</field>
+            <field name="sequence">15</field>
         </record>
         
         <record id="mail_activity_unterweisung" model="mail.activity.type">
@@ -103,9 +120,9 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_unterweisung"/>
-            <field name="sequence">14</field>
+            <field name="sequence">16</field>
         </record>
-        
+        </data>
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
         <field name="name">Maintenance Request</field>
         <field name="icon">fa-wrench</field>
@@ -129,7 +146,6 @@
             <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/>
         </record>-->
         
-        </data>
         <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
             <field name="name">Mechanische Gefährdungen</field>
             <field name="types_sn">-----</field>

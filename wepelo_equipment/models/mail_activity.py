@@ -78,14 +78,41 @@ class MailActivity(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u =fields.Text(string='Bemerkung')
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Text(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Text(string="Folgen der Nichtbeachtung")
+    release_date = fields.Date(string="Freigabedatum")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
+    hazardous_material_designation = fields.Text(string='Gefahrstoffbezeichnung')
+    
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
         for rec in self:
-            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisun").id)]
+            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung").id)]
             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_hebebuhne"), rec.env.ref("wepelo_equipment.equipment_tore"), rec.env.ref("wepelo_equipment.equipment_bremsprufstand")]:
                 domain = []
             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
+            
+            
+#     @api.depends('equipment_id', 'equipment_id.category_id')
+#     def _compute_activities_type(self):
+#         for rec in self:
+#             domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung_gefahrstoffe").id)]
+#             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_arbeitsstoffe"),]:
+#                 domain = []
+#             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
+            
+            
+#     @api.depends('equipment_id', 'equipment_id.category_id')
+#     def _compute_activities_type(self):
+#         for rec in self:
+#             domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung_psa").id)]
+#             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_psa")]:
+#                 domain = []
+#             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
 
 
     @api.onchange('is_manufacturer')
@@ -279,6 +306,11 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
             'gefaehrdunsfaktor_betriebsanweisun_ids':self.gefaehrdunsfaktor_betriebsanweisun_ids,
+            'protective_measures':self.protective_measures,
+            'malfunctions':self.malfunctions,
+            'first_aid':self.first_aid,
+            'maintenance_cleaning':self.maintenance_cleaning,
+            'consequences':self.consequences,
             'gef_verzeichnis_ids':self.gef_verzeichnis_ids,
             'unterweisung_ids':self.unterweisung_ids,
             'inhalte':self.inhalte,
