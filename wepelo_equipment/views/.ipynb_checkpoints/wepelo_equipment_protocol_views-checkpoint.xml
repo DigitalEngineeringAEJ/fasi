@@ -242,7 +242,7 @@
                     
                      <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration')]}">
                             <page string="1. Gefahrstoffbezeichnung">
-                                     <field name= 'protective_measures'  nolabel="1"/>
+                                     <field name= 'hazardous_material_designation'  nolabel="1"/>
                         </page>
                          <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
                                 <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
@@ -253,18 +253,25 @@
                                     </tree>
                                 </field>
                             </page>
-                          <page string="3. Schutzmaßnahmen und Verhaltensregeln">
-                                <field name= 'malfunctions'  nolabel="1"/>
+                         <page string="3. Schutzmaßnahmen und Verhaltensregeln">
+                                <field name= 'protective_measures'  nolabel="1"/>
                             </page>
                           <page string="4. Verhalten bei Störungen / Verhalten bei Gefahrfall">
-                                <field name= 'first_aid' nolabel="1"/>
+                                <field name= 'malfunctions' nolabel="1"/>
                             </page>
                           <page string="5. Verhalten bei Unfällen, Erste Hilfe">
-                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                                <field name= 'first_aid' nolabel="1"/>
                             </page>
                          <page string="6. Sachgerechte Entsorgung">
-                                <field name= 'consequences' nolabel="1"/>
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
                             </page>
+                         <page string="7. Folgen der Nichtbeachtung">
+                                 <field name= 'consequences'/>
+                             <br/>
+                             </page>
+                             <page string="Nächster Überprüfungstermin dieser Betriebsanweisung:">
+                                 <field name= 'review_date' string="Nächster Überprüfungstermin dieser Betriebsanweisung"/>
+                         </page>
                          <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
                                 <field name= 'signature_leiter' invisible="True"/>
                              

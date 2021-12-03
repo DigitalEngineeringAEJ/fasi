@@ -85,7 +85,7 @@ class MailActivity(models.Model):
     consequences = fields.Text(string="Folgen der Nichtbeachtung")
     release_date = fields.Date(string="Freigabedatum")
     review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
-    protective_measures_picture = fields.Html(string='Pictogram')
+    hazardous_material_designation = fields.Text(string='Gefahrstoffbezeichnung')
     
 
     @api.depends('equipment_id', 'equipment_id.category_id')

@@ -49,6 +49,27 @@
                             </tr>
                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
+                                    <strong style="color:white;">Gefahrstoffbezeichnung</strong>
+                                </td>
+                            </tr>
+                             <t  t-if="o.hazardous_material_designation">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.hazardous_material_designation"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
+                                <td colspan="3" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </td>
+                            </tr>
+                             </t>
+                             <tr style="background-color:orange;">
+                                <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Gefahren für Mensch und Umwelt</strong>
                                 </td>
                             </tr>
@@ -75,36 +96,15 @@
                                     <br></br>
                                 </tr>
                             </t>
-                            <tr style="background-color:orange;">
+                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Schutzmaßnahmen und Verhaltensregeln</strong>
                                 </td>
                             </tr>
-                             <t  t-if="o.protective_measures">
+                            <t  t-if="o.protective_measures">
                               <tr>
                                 <td colspan="3">
                                     <span t-field="o.protective_measures"/>
-                                </td>
-                            </tr>
-                             </t>
-                           <t t-else="">
-                              <tr>
-                                <td colspan="3" style="text-align:center;">
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                </td>
-                            </tr>
-                             </t>
-                             <tr style="background-color:orange;">
-                                <td colspan="3" style="text-align:center;">
-                                    <strong style="color:white;">Verhalten bei Störungen / Verhalten bei Gefahrfall</strong>
-                                </td>
-                            </tr>
-                            <t  t-if="o.malfunctions">
-                              <tr>
-                                <td colspan="3">
-                                    <span t-field="o.malfunctions"/>
                                 </td>
                             </tr>
                              </t>
@@ -119,10 +119,31 @@
                            </t>
                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
+                                    <strong style="color:white;">Verhalten bei Störungen / Verhalten bei Gefahrfall</strong>
+                                </td>
+                            </tr>
+                              <t  t-if="o.malfunctions">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.malfunctions"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
+                                <td colspan="3" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </td>
+                            </tr>
+                           </t>
+                            <tr style="background-color:orange;">
+                                <td colspan="3" style="text-align:center;">
                                     <strong style="color:white;">Verhalten bei Unfällen, Erste Hilfe</strong>
                                 </td>
                             </tr>
-                              <t  t-if="o.first_aid">
+                             <t  t-if="o.first_aid">
                               <tr>
                                 <td colspan="3">
                                     <span t-field="o.first_aid"/>
@@ -138,9 +159,9 @@
                                 </td>
                             </tr>
                            </t>
-                            <tr style="background-color:orange;">
+                             <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong style="color:white;">Instandhaltung, Reinigung, Entsorgung</strong>
+                                    <strong style="color:white;"> Sachgerechte Entsorgung</strong>
                                 </td>
                             </tr>
                              <t  t-if="o.maintenance_cleaning">
@@ -159,9 +180,9 @@
                                 </td>
                             </tr>
                            </t>
-                             <tr style="background-color:orange;">
+                            <tr style="background-color:orange;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong style="color:white;">Folgen der Nichtbeachtung</strong>
+                                    <strong style="color:white;"> Folgen der Nichtbeachtung</strong>
                                 </td>
                             </tr>
                              <t  t-if="o.consequences">

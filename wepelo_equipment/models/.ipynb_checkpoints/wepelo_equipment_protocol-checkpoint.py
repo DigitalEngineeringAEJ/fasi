@@ -28,10 +28,10 @@ class EquipmentProtocol(models.Model):
         ('calibration_ei', _('Gefähdungsbeuteilung')),
         ('el_test', _('Folgebegehung')),
         ('routine_test', _('Begehung')),
-        ('calibration', _('Kalibrierung')),
-        ('betriebsanweisung', _('Betriebsanweisung')),
+        ('calibration', _('Betriebsanweisung Gefahrstoffe')),
+        ('betriebsanweisung', _('Betriebsanweisung Maschinen und Arbeitsverfahren')),
         ('uvv', _('Betriebssicherheitsprüfung')),
-        ('maintenance', _('Wartung')),
+        ('maintenance', _('Betriebsanweisung PSA')),
         ('repairs', _('Reparatur')),
         ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
         ('unterweisung', _('Unterweisung')),
@@ -75,6 +75,7 @@ class EquipmentProtocol(models.Model):
     first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
     maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
     consequences = fields.Html(string="Folgen der Nichtbeachtung")
+    hazardous_material_designation = fields.Text(string='Gefahrstoffbezeichnung')
 
     
     

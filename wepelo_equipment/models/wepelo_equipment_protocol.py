@@ -75,6 +75,7 @@ class EquipmentProtocol(models.Model):
     first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
     maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
     consequences = fields.Html(string="Folgen der Nichtbeachtung")
+    hazardous_material_designation = fields.Text(string='Gefahrstoffbezeichnung')
 
     
     
