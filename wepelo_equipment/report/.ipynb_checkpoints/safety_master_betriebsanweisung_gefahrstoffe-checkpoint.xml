@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="betriebsanweisung_protocol_gefahrstoffe">
+    <template id="safety_master_betriebsanweisung_gefahrstoffe">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <div class="header"/>
-                <div class="footer"/>
                 <t t-call="web.external_layout">
-                    <div class="page" style="border: 1rem solid orange;">
-                           <h1 style="text-align:center;">
-                                Betriebsanweisung Gefahrstoffe
+                    <div class="page">
+                           <h1>
+                                Safety MAster 
                             </h1>
-                        <br></br>
+                          <br></br>
                         <br></br>
                              <div class="col-12">
                                  <div class="col-9  pull-left">
@@ -182,39 +180,39 @@
                             </tr>
                            </t>
                         </table>
-
                     </div>
                 </t>
             </t>
         </t>
     </template>
     
-     <record id="paperformat_betriebsanweisung_gefahrstoffe" model="report.paperformat">
-        <field name="name">Format für Betriebsanweisung Gefahrstoffe</field>
-        <field name="default" eval="False"/>
-        <field name="format">A4</field>
-        <field name="page_height">0</field>
-        <field name="page_width">0</field>
-        <field name="orientation">Portrait</field>
-        <field name="margin_top">0</field>
-        <field name="margin_bottom">0</field>
-        <field name="margin_left">7</field>
-        <field name="margin_right">7</field>
-        <field name="header_line" eval="False" />
-        <field name="header_spacing">0</field>
-        <field name="dpi">90</field>
-    </record>
-
-    <record id="betriebsanweisung_protocol" model="ir.actions.report">
-        <field name="name">Betriebsanweisung Gefahrstoffe</field>
-        <field name="model">equipment.protocol</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">wepelo_equipment.betriebsanweisung_protocol_gefahrstoffe</field>
-        <field name="report_file">wepelo_equipment.betriebsanweisung_protocol_gefahrstoffe</field>
-        <field name="print_report_name">(object._get_report_filename())</field>
-        <field name="binding_model_id" ref="paperformat_betriebsanweisung_gefahrstoffe"/>
-        <field name="paperformat_id" ref="wepelo_equipment.paperformat_betriebsanweisung"/>
-        <field name="binding_type">report</field>
-    </record>
-
+    <record id="paperformat_betriebsanweisung_gefahrstoffe" model="report.paperformat">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+    
+    
+    <record id="safety_master_betriebsanweisung_gefahrstoffe" model="ir.actions.report">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="model">equipment.protocol</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wepelo_equipment.safety_master_betriebsanweisung_gefahrstoffe</field>
+            <field name="report_file">wepelo_equipment.safety_master_betriebsanweisung_gefahrstoffe</field>
+            <field name="print_report_name">(object._get_report_filename())</field>
+            <field name="binding_model_id" ref="model_equipment_protocol"/>
+        <field name="paperformat_id" ref="wepelo_equipment.paperformat_betriebsanweisung_gefahrstoffe"/>
+            <field name="binding_type">report</field>
+        </record>
+    
 </odoo>
