@@ -145,6 +145,7 @@
             <field name="category">upload_file</field>
             <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/>
         </record>-->
+        
         <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
             <field name="name">Mechanische Gefährdungen</field>
             <field name="types_sn">-----</field>

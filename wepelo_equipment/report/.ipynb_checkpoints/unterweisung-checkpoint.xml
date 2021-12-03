@@ -59,14 +59,16 @@
                             </tr>
                             </t>
                              <tr>
-                                <td>
-                                    <strong>Unterweisungsinhalte (insbesondere Gefahrquellen, Maßnahmen zur Arbeitssicherheit und zum Gesundheitsschutz, Erste Hilfe): </strong>
-                                </td>
-                                <td>
+                               <td>
+                                    <strong>Unterweisungsinhalte (insbesondere Gefahrquellen, Maßnahmen zur Arbeitssicherheit und zum Gesundheitsschutz, Erste Hilfe):<br/> </strong>
+                                
                                     <span t-field="o.inhalte"/>
-                                </td>
+                               </td> 
                             </tr>
                          <table style="table-layout:fixed; font-size:10px" class="table table-bordered table-sm mt16 ml16">
+                             <p style="page-break-before:always;"/>
+                             <br/>
+                             <br/>
                                 <thead><h3>Name und Unterschrift der Teilnehmer:
                                 </h3>
                              Mit meiner Unterschrift bestätige ich, dass ich an der Unterweisung teilgenommen und den Inhalt verstanden habe.
@@ -77,7 +79,7 @@
                           </tr>
                           <tr t-foreach="o.unterweisung_ids" t-as="line">
                                  <td><span t-esc="line.name_customer"/></td>
-                                  <td><span><img style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(line.signature_customer)" alt="sign"/></span></td>
+                                  <td><span><img style="max-height:4cm; max-width:5cm;" t-att-src="image_data_uri(line.signature_customer)" alt="sign"/></span></td>
                             </tr>
                         </table>
 <!--                              <p style="page-break-before:always;"/> -->
@@ -95,8 +97,12 @@
                            <th scope="col"><img  style="max-height:4cm; max-width:9cm;" t-att-src="image_data_uri(o.signature_leiter)" alt="sign"/></th>
                           </tr>
                           <tr t-as="line">
-                                <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Unterschrift des Trainers/Unterweisenden</td>
-                                  <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Leitung z.K.</td>
+                            <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Unterschrift des Trainers/Unterweisenden<br/>
+                                <span t-field="o.contractor_id.name"/>
+                            </td>
+                            <td scope="col"><p style="border-top:1px solid grey; width:300px;"/>Leitung z.K.<br/>
+                                <span t-field="o.name_leitung"/>
+                             </td>
                             </tr>
                         </table>
                             </div>
