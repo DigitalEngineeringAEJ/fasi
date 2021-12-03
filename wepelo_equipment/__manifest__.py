@@ -24,6 +24,8 @@
         'report/protocol_betriebsanweisung_template.xml',
         'report/gefahrstoff_verzeichnis.xml',
         'report/unterweisung.xml',
+        'report/protocol_betriebsanweisung_psa.xml',
+        'report/protocol_betriebsanweisung_gefahrstoffe.xml',
         'views/menu.xml',
         'views/wepelo_equipment_protocol_views.xml',
         'views/wepelo_repair_view.xml',
