@@ -207,7 +207,6 @@
                                 </field>
                             </page>
                             <page string="Schutzmaßnahmen und Verhaltensregeln">
-                                     <field name= 'protective_measures_picture'  nolabel="1"/>
                                      <field name= 'protective_measures'  nolabel="1"/>
                         </page>
                           <page string="Verhalten bei Störungen / Verhalten bei Gefahrfall">
