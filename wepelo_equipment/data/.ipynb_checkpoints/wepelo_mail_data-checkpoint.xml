@@ -46,6 +46,26 @@
             <field name="equipment_test_type">maintenance</field>
             <field name="cycle_duration">365</field>
         </record>
+        <record id="activity_el_pruefung_buero" model="equipment.test">
+            <field name="display_name">Elektroprüfung Büro</field>
+            <field name="equipment_test_type">el_pruefung_buero</field>
+            <field name="cycle_duration">730</field>
+        </record>
+        <record id="activity_el_pruefung_werk_prod" model="equipment.test">
+            <field name="display_name">Elektroprüfung Werkstatt/Produktion</field>
+            <field name="equipment_test_type">el_pruefung_werk_prod</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <record id="activity_pruefung_fuerloescher" model="equipment.test">
+            <field name="display_name">Prüfung Feuerlöscher</field>
+            <field name="equipment_test_type">pruefung_fuerloescher</field>
+            <field name="cycle_duration">730</field>
+        </record>
+        <record id="activity_bet_sich_pruefung" model="equipment.test">
+            <field name="display_name">Betriebssicherheitsprüfung</field>
+            <field name="equipment_test_type">bet_sich_pruefung</field>
+            <field name="cycle_duration">365</field>
+        </record>
         <!--<record id="equipment_test_data_repairs" model="equipment.test">
             <field name="display_name">Reparaturen</field>
             <field name="equipment_test_type">repairs</field>
@@ -121,6 +141,40 @@
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_unterweisung"/>
             <field name="sequence">16</field>
+        </record>
+        
+        
+        <record id="mail_activity_el_pruefung_buero" model="mail.activity.type">
+            <field name="name">Elektroprüfung Büro</field>
+            <field name="delay_count">730</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_el_pruefung_buero"/>
+            <field name="sequence">17</field>
+        </record>
+        <record id="mail_el_pruefung_werk_prod" model="mail.activity.type">
+            <field name="name">Elektroprüfung Werkstatt</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_el_pruefung_werk_prod"/>
+            <field name="sequence">18</field>
+        </record>
+        <record id="mail_activity_pruefung_fuerloescher" model="mail.activity.type">
+            <field name="name">Prüfung Feuerlöscher</field>
+            <field name="delay_count">730</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_pruefung_fuerloescher"/>
+            <field name="sequence">19</field>
+        </record>
+        <record id="mail_activity_bet_sich_pruefung" model="mail.activity.type">
+            <field name="name">Betriebssicherheitsprüfung</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_bet_sich_pruefung"/>
+            <field name="sequence">20</field>
         </record>
         </data>
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
