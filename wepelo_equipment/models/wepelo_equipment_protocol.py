@@ -35,6 +35,10 @@ class EquipmentProtocol(models.Model):
         ('repairs', _('Reparatur')),
         ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
         ('unterweisung', _('Unterweisung')),
+        ('el_pruefung_buero', _('Elektroprüfung Büro')),
+        ('el_pruefung_werk_prod', _('Elektroprüfung Werkstatt/Produktion')),
+        ('pruefung_fuerloescher', _('Prüfung Feuerlöscher')),
+        ('bet_sich_pruefung', _('Betriebssicherheitsprüfung')),
     ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
