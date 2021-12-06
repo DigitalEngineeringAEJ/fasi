@@ -77,15 +77,15 @@ class MailActivity(models.Model):
     inhalte = fields.Text(string='Unterweisungsinhalte')
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
-    note_u =fields.Text(string='Bemerkung')
+    note_u = fields.Text(string='Bemerkung')
     protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
     malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
     first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
-    maintenance_cleaning = fields.Text(string="Instandhaltung, Reinigung, Entsorgung")
-    consequences = fields.Text(string="Folgen der Nichtbeachtung")
+    maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Html(string="Folgen der Nichtbeachtung")
     release_date = fields.Date(string="Freigabedatum")
     review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
-    hazardous_material_designation = fields.Text(string='Gefahrstoffbezeichnung')
+    hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
     
 
     @api.depends('equipment_id', 'equipment_id.category_id')
@@ -316,10 +316,11 @@ class MailActivity(models.Model):
             'inhalte':self.inhalte,
             'name_leitung':self.name_leitung,
             'signature_leiter':self.signature_leiter,
-            'note_u':self.note_u
+            'note_u':self.note_u,
+            'hazardous_material_designation':self.hazardous_material_designation
 
         }
-#         if self.equipment_test_type == 'el_test':
+#         if self.equipment_test_type == 'el_test': hazardous_material_designation
 #             el_test_vals = {
 #                 'testing_device': self.testing_device_name,
 #                 'testing_device_sn': self.testing_device_sn,
