@@ -86,7 +86,7 @@ class MailActivity(models.Model):
     release_date = fields.Date(string="Freigabedatum")
     review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
     hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
-    
+
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):

@@ -531,7 +531,15 @@
             <field name="company_id" eval="False"/>
         </record>
         
-    
+        <record id="seq_folgebegehung" model="ir.sequence">
+            <field name="name">folgebegehung</field>
+            <field name="code">folgebegehung</field>
+            <field name="prefix">2.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
 
     <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">
         <field name="name">Partner Ref Sequence</field>
