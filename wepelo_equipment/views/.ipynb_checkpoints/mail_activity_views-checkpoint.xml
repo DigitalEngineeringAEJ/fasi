@@ -347,7 +347,7 @@
                                 <field name = "sequence_b" widget="handle"/>
                                 <field name="id" invisible="1"/>
                                 <field name="nummer_eins"/>
-                                <field name="name_eins"/>
+                                <field name="name_eins" string="Name"/>
                                 <field name="klasse"/>
                                 <field name="abstellmassnahme"/>
                                 <field name="abstellmassnahme_k"/>
