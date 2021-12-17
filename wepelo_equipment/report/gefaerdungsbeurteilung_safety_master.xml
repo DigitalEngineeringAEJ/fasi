@@ -79,7 +79,7 @@
                                  <td><span t-esc="{False: False, 'status_a_1': 'leichte Verletzugen oder Erkrankungen', 'status_a_2': 'mittelschwere Verletzungen oder Erkrankungen','status_a_3':'schwere Verletzungen oder Erkrankungen','status_a_4':'möglicher Tod, Katastrophe'}[line.gef_beurteilung_a]"/></td>
                                   <td><span t-esc="{False: False, 'status_e_0': '0', 'status_e_1': '1','status_e_2':'2','status_e_3':'3', 'status_e_4': '4','status_e_5':'5','status_e_6':'6', 'status_e_7':'7'}[line.gef_beurteilung_e]" force_save="1"/></td>
                                  <td><span t-esc="{False: False, 'status_r_0': '', 'status_r_1': 'gering','status_r_2':'signifikant','status_r_3':'hoch'}[line.gefahrenquellen_typ_risiko]" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/></td>
-                                  <td><span t-esc="{False: False, 'status_b_0': '', 'status_b_1': 'Risiko akzeptabel','status_b_2':'Reduzierung des Risikos notwendig','status_b_3':'Risikoreduzierung dringend erforderlich'}[line.gefahrenquellen_typ_beschreibung_risikominderung]"/></td>
+                                  <td><span t-esc="{False: False, 'status_b_0': '', 'status_b_1': 'Risiko akzeptabel','status_b_2':'Reduzierung des Risikos notwendig','status_b_3':'Risiko-\nreduzierung dringend erforderlich'}[line.gefahrenquellen_typ_beschreibung_risikominderung]"/></td>
                                  <td><span t-esc="line.klasse_gef"/></td>
                             </tr>
                         </table>
