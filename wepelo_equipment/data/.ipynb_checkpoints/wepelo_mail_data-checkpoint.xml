@@ -320,15 +320,18 @@
                                 <!-- Biologische Arbeitsstoffe -->
         
          <record id="gefaehrdungsf_infektionsgefährdung_durch_pathogene_migroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Migroorganismen</field>
+             <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Mikro-
+                 organismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_toxische_wirkung_von_mikroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Toxische Wirkung von Mikroorganismen</field>
+            <field name="gefaehrdungsf">Toxische Wirkung von Mikro-
+                organismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_sensibilisierende_wirkung_von_mikroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikroorganismen</field>
+            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikro-
+                organismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_gentechnisch_veränderte_organismen" model="gefahren.faktor">
