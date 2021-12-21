@@ -63,29 +63,56 @@ class MailActivity(models.Model):
     month = fields.Char(string="Monat: ")
     year = fields.Char(string="Jahr: ")
     is_manufacturer = fields.Boolean(string="des Herstellers oder Importeurs")
-    begehung_id_feld = fields.One2many('begehung', 'name', string="Begehung", store=True)
-    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', string="Begehung", store=True)
+    begehung_id_feld = fields.One2many('begehung', 'name',  store=True)
+    begehung_id_feld_zwei = fields.One2many('begehung_zwei', 'name_drei', store=True)
     folg_erf_m =fields.Selection([('1', 'Ja'),
                                ('0', 'Nein')],
                               string='Folgebegehung erforderlich?')
     folg_beg_ids = fields.One2many('folgebegehung', 'id_ref', string="Folgebegehung", store=True)
     gefaehrdunsfaktor_ids = fields.One2many('equipment.types', 'name', string="Gefährdungsfaktor Gruppe", store=True)
-    gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id', string="Gefährdungsfaktor Gruppe")
+    gefaehrdunsfaktor_betriebsanweisun_ids = fields.One2many('equipment.types', 'mail_activity_id')
     mail_activity_type_ids = fields.Many2many('mail.activity.type', string="Activities", compute='_compute_activities_type', store=1)
     gef_verzeichnis_ids = fields.One2many('gefahrstoff.verzeichnis', 'sequence', string="Gefahrstoff Verzeichnis", store=True)
     unterweisung_ids = fields.One2many('unterweisung', 'sequence', string="Unterweisung", store=True)
     inhalte = fields.Text(string='Unterweisungsinhalte')
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
-    note_u =fields.Text(string='Bemerkung')
+    note_u = fields.Text(string='Bemerkung')
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Html(string="Folgen der Nichtbeachtung")
+    release_date = fields.Date(string="Freigabedatum")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
+    hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
+
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
         for rec in self:
-            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisun").id)]
+            domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung").id)]
             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_hebebuhne"), rec.env.ref("wepelo_equipment.equipment_tore"), rec.env.ref("wepelo_equipment.equipment_bremsprufstand")]:
                 domain = []
             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
+            
+            
+#     @api.depends('equipment_id', 'equipment_id.category_id')
+#     def _compute_activities_type(self):
+#         for rec in self:
+#             domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung_gefahrstoffe").id)]
+#             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_arbeitsstoffe"),]:
+#                 domain = []
+#             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
+            
+            
+#     @api.depends('equipment_id', 'equipment_id.category_id')
+#     def _compute_activities_type(self):
+#         for rec in self:
+#             domain = [('id', '!=',  rec.env.ref("wepelo_equipment.mail_activity_data_betriebsanweisung_psa").id)]
+#             if rec.equipment_id and rec.equipment_id.category_id and rec.equipment_id.category_id in [rec.env.ref("wepelo_equipment.equipment_psa")]:
+#                 domain = []
+#             rec.mail_activity_type_ids = rec.env["mail.activity.type"].search(domain).ids
 
 
     @api.onchange('is_manufacturer')
@@ -279,15 +306,21 @@ class MailActivity(models.Model):
             'folg_beg_ids':self.folg_beg_ids,
             'gefaehrdunsfaktor_ids':self.gefaehrdunsfaktor_ids,
             'gefaehrdunsfaktor_betriebsanweisun_ids':self.gefaehrdunsfaktor_betriebsanweisun_ids,
+            'protective_measures':self.protective_measures,
+            'malfunctions':self.malfunctions,
+            'first_aid':self.first_aid,
+            'maintenance_cleaning':self.maintenance_cleaning,
+            'consequences':self.consequences,
             'gef_verzeichnis_ids':self.gef_verzeichnis_ids,
             'unterweisung_ids':self.unterweisung_ids,
             'inhalte':self.inhalte,
             'name_leitung':self.name_leitung,
             'signature_leiter':self.signature_leiter,
-            'note_u':self.note_u
+            'note_u':self.note_u,
+            'hazardous_material_designation':self.hazardous_material_designation
 
         }
-#         if self.equipment_test_type == 'el_test':
+#         if self.equipment_test_type == 'el_test': hazardous_material_designation
 #             el_test_vals = {
 #                 'testing_device': self.testing_device_name,
 #                 'testing_device_sn': self.testing_device_sn,

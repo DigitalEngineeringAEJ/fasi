@@ -34,7 +34,7 @@ class EquipmentTypes(models.Model):
     gefahrenquellen_typ_beschreibung_risikominderung = fields.Selection([('status_b_0', ''),
                                                                          ('status_b_1', 'Risiko akzeptabel'), 
                                                                          ('status_b_2', 'Reduzierung des Risikos notwendig'),
-                                                                         ('status_b_3', 'Risikoreduzierung dringend erforderlich')],
+                                                                         ('status_b_3', 'Risiko-\nreduzierung dringend erforderlich')],
                                                                         string="Beschreibung/Risikominderung", compute="_compute_beschreibung_risikominderung", store=True)
     
 
@@ -68,16 +68,16 @@ class EquipmentTypes(models.Model):
     gefaehrdungsf_id = fields.One2many('gefahren.faktor', 'gefaehrdungsf')
     
     klasse_gef =fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
-                               ('Beleuchtung, Lüftungs-, Heizeinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
+                               ('Beleuchtung, Lüftungs-, Heiz-\neinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
                                ('Lagerung', 'Lagerung'),
-                               ('Gefahrenhinweise', 'Gefahrenhinweise'),
-                               ('Arbeitsplatzgestaltung', 'Arbeitsplatzgestaltung'),
+                               ('Gefahren-\nhinweise', 'Gefahrenhinweise'),
+                               ('Arbeitsplatz-\ngestaltung', 'Arbeitsplatzgestaltung'),
                                ('Maschinen, Geräte, Betriebsmittel, Anlagen, Transportmittel, Bildschirm etc.', 'Maschinen, Geräte, Betriebsmittel, Anlagen, Transportmittel, Bildschirm etc.'),
                                ('Aufbewahrung von chemischen Stoffen', 'Aufbewahrung von chemischen Stoffen'),
-                               ('Persönliche Schutzausrüstungen', 'Persönliche Schutzausrüstungen'),
-                               ('Sicherheitseinrichtungen', 'Sicherheitseinrichtungen'),
-                               ('Betriebsanweisungen', 'Betriebsanweisungen'),
-                               ('Erste-Hilfe- und Feuerlöscheinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
+                               ('Persönliche Schutz\nausrüstungen', 'Persönliche Schutzausrüstungen'),
+                               ('Sicherheits-\neinrichtungen', 'Sicherheitseinrichtungen'),
+                               ('Betriebsan-\nweisungen', 'Betriebsanweisungen'),
+                               ('Erste-Hilfe- und Feuerlösch-\neinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
                                 string='Klassifizierung')
     
     

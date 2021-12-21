@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        
         <!--Service Data-->
        <record id="activity_gefährdungsbeurteilung" model="equipment.test">
             <field name="display_name">Gefährdungsbeurteilung</field>
@@ -29,23 +30,43 @@
             <field name="equipment_test_type">unterweisung</field>
         </record>
 
-         <record id="activity_betriebsanweisun" model="equipment.test">
-            <field name="display_name">Betriebsanweisung</field>
+         <record id="activity_betriebsanweisung" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
             <field name="equipment_test_type">betriebsanweisung</field>
             <field name="cycle_duration">365</field>
         </record>
 
-     <!--   <record id="equipment_test_data_calibration" model="equipment.test">
-            <field name="display_name">Kalibrierung</field>
+        <record id="equipment_test_data_calibration" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Gefahrstoffe</field>
             <field name="equipment_test_type">calibration</field>
-            <field name="cycle_duration">720</field>
+            <field name="cycle_duration">365</field>
         </record>
         <record id="equipment_test_data_maintenance" model="equipment.test">
-            <field name="display_name">Wartung</field>
+            <field name="display_name">Betriebsanweisung PSA</field>
             <field name="equipment_test_type">maintenance</field>
-            <field name="cycle_duration">360</field>
+            <field name="cycle_duration">365</field>
         </record>
-        <record id="equipment_test_data_repairs" model="equipment.test">
+        <record id="activity_el_pruefung_buero" model="equipment.test">
+            <field name="display_name">Elektroprüfung Büro</field>
+            <field name="equipment_test_type">el_pruefung_buero</field>
+            <field name="cycle_duration">730</field>
+        </record>
+        <record id="activity_el_pruefung_werk_prod" model="equipment.test">
+            <field name="display_name">Elektroprüfung Werkstatt/Produktion</field>
+            <field name="equipment_test_type">el_pruefung_werk_prod</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <record id="activity_pruefung_fuerloescher" model="equipment.test">
+            <field name="display_name">Prüfung Feuerlöscher</field>
+            <field name="equipment_test_type">pruefung_fuerloescher</field>
+            <field name="cycle_duration">730</field>
+        </record>
+        <record id="activity_bet_sich_pruefung" model="equipment.test">
+            <field name="display_name">Betriebssicherheitsprüfung</field>
+            <field name="equipment_test_type">bet_sich_pruefung</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <!--<record id="equipment_test_data_repairs" model="equipment.test">
             <field name="display_name">Reparaturen</field>
             <field name="equipment_test_type">repairs</field>
             <field name="cycle_duration">0</field>
@@ -75,19 +96,35 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
-            <field name="sequence">12</field>
+            <field name="sequence">11</field>
         </record>
 
 
-        <record id="mail_activity_data_betriebsanweisun" model="mail.activity.type">
-            <field name="name">Betriebsanweisung</field>
+        <record id="mail_activity_data_betriebsanweisung" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">12</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
-            <field name="equipment_test_type_id" ref="activity_betriebsanweisun"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung"/>
         </record>
 
+        <record id="mail_activity_data_betriebsanweisung_gefahrstoffe" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">13</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_calibration"/>
+        </record>
+        <record id="mail_activity_data_betriebsanweisung_psa" model="mail.activity.type">
+            <field name="name">Betriebsanweisung PSA</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">14</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_maintenance"/>
+        </record>
 
         
         <record id="mail_activity_gefahrstoff_verszeichnis" model="mail.activity.type">
@@ -95,7 +132,7 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_gefahrstoff_verszeichnis"/>
-            <field name="sequence">13</field>
+            <field name="sequence">15</field>
         </record>
         
         <record id="mail_activity_unterweisung" model="mail.activity.type">
@@ -103,33 +140,73 @@
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_unterweisung"/>
-            <field name="sequence">14</field>
+            <field name="sequence">16</field>
         </record>
         
-<!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
+        
+        <record id="mail_activity_el_pruefung_buero" model="mail.activity.type">
+            <field name="name">Elektroprüfung Büro</field>
+            <field name="delay_count">730</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_el_pruefung_buero"/>
+            <field name="sequence">17</field>
+        </record>
+        <record id="mail_el_pruefung_werk_prod" model="mail.activity.type">
+            <field name="name">Elektroprüfung Werkstatt</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_el_pruefung_werk_prod"/>
+            <field name="sequence">18</field>
+        </record>
+        <record id="mail_activity_pruefung_fuerloescher" model="mail.activity.type">
+            <field name="name">Prüfung Feuerlöscher</field>
+            <field name="delay_count">730</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_pruefung_fuerloescher"/>
+            <field name="sequence">19</field>
+        </record>
+        
+        </data>
+    
+    
+    <record id="mail_activity_bet_sich_pruefung" model="mail.activity.type">
+            <field name="name">Betriebssicherheitsprüfung</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_bet_sich_pruefung"/>
+            <field name="sequence">20</field>
+        <field name="active">False</field>
+        </record>
+    
+         <record id="mail_act_maintenance_request" model="mail.activity.type">
         <field name="name">Maintenance Request</field>
         <field name="icon">fa-wrench</field>
-        <field name="res_model_id" ref="maintenance.model_maintenance_request"/> -->
-        <!--active="false"/>-->
-<!--     </record> -->
+        <field name="res_model_id" ref="maintenance.model_maintenance_request"/> 
+        <field name="active">False</field>
+     </record> 
 
 
-        <!-- <record id="mail_activity_data_maintenance" model="mail.activity.type">
+        <record id="mail_activity_data_maintenance" model="mail.activity.type">
             <field name="name">Wartung</field>
             <field name="delay_count">360</field>
             <field name="delay_unit">days</field>
             <field name="sequence">13</field>
             <field name="category">upload_file</field>
-            <field name="equipment_test_type_id" ref="equipment_test_data_maintenance"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_maintenance"/> 
+        <field name="active">False</field>
         </record>
-        <record id="mail_activity_data_repairs" model="mail.activity.type">
+<!--         <record id="mail_activity_data_repairs" model="mail.activity.type">
             <field name="name">Reparaturen</field>
             <field name="sequence">14</field>
             <field name="category">upload_file</field>
-            <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/>
-        </record>-->
+            <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/> 
+        <field name="active">False</field>
+        </record> -->
         
-        </data>
         <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
             <field name="name">Mechanische Gefährdungen</field>
             <field name="types_sn">-----</field>
@@ -250,15 +327,18 @@
                                 <!-- Biologische Arbeitsstoffe -->
         
          <record id="gefaehrdungsf_infektionsgefährdung_durch_pathogene_migroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Migroorganismen</field>
+             <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Mikro-
+                 organismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_toxische_wirkung_von_mikroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Toxische Wirkung von Mikroorganismen</field>
+            <field name="gefaehrdungsf">Toxische Wirkung von Mikro-
+                organismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_sensibilisierende_wirkung_von_mikroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikroorganismen</field>
+            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikro-
+                organismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_gentechnisch_veränderte_organismen" model="gefahren.faktor">
@@ -461,7 +541,15 @@
             <field name="company_id" eval="False"/>
         </record>
         
-    
+        <record id="seq_folgebegehung" model="ir.sequence">
+            <field name="name">folgebegehung</field>
+            <field name="code">folgebegehung</field>
+            <field name="prefix">2.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
 
     <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">
         <field name="name">Partner Ref Sequence</field>

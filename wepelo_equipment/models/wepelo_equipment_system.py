@@ -34,26 +34,35 @@ class EquipmentTest(models.Model):
             ('calibration_ei', _('Gefährdungsbeurteilung')),
             ('el_test', _('Folgebegehung')),
             ('routine_test', _('Begehung')),
-            ('calibration', _('Kalibrierung')),
-            ('betriebsanweisung', _('Betriebsanweisung')),
+            ('calibration', _('Betriebsanweisung Gefahrstoffe')),
+            ('betriebsanweisung', _('Betriebsanweisung Maschinen und Arbeitsverfahren')),
             ('uvv', _('Betriebssicherheitsprüfung')),
-            ('maintenance', _('Wartung')),
+            ('maintenance', _('Betriebsanweisung PSA')),
             ('repairs', _('Reparaturen')),
             ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
             ('unterweisung', _('Unterweisung')),
+            ('el_pruefung_buero', _('Elektroprüfung Büro')),
+            ('el_pruefung_werk_prod', _('Elektroprüfung Werkstatt/Produktion')),
+            ('pruefung_fuerloescher', _('Prüfung Feuerlöscher')),
+            ('bet_sich_pruefung', _('Betriebssicherheitsprüfung')),
+            
         ]
 
     equipment_test_types = {
         'calibration_ei': _('Gefährdungsbeurteilung'),
         'el_test': _('Folgebegehung'),
         'routine_test': _('Begehung'),
-        'calibration': _('Kalibrierung'),
-        'betriebsanweisung': _('Betriebsanweisung'),
+        'calibration': _('Betriebsanweisung Gefahrstoffe'),
+        'betriebsanweisung': _('Betriebsanweisung Maschinen und Arbeitsverfahren'),
         'uvv': _('Betriebssicherheitsprüfung'),
-        'maintenance': _('Wartung'),
+        'maintenance': _('Betriebsanweisung PSA'),
         'repairs': _('Reparaturen'),
         'gefahrstoff_verszeichnis': _('Gefahrstoff-Verszeichnis'),
         'unterweisung': _('Unterweisung'),
+        'el_pruefung_buero': _('Elektroprüfung Büro'),
+        'el_pruefung_werk_prod': _('Elektroprüfung Werkstatt/Produktion'),
+        'pruefung_fuerloescher': _('Prüfung Feuerlöscher'),
+        'bet_sich_pruefung': _('Betriebssicherheitsprüfung'),
     }
 # 
 #     @api.depends('equipment_test_type', 'cycle_duration')

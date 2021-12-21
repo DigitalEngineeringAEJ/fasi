@@ -16,8 +16,8 @@ class Begehung(models.Model):
     id = fields.Char(string='Identifikation')
     sequence_b = fields.Integer(string='Sequenz')
     nummer_eins = fields.Char(string="Nummer", compute="_compute_nummer_eins", store=1)
-    name = fields.Char(string="Name")
-    name_eins = fields.Char(string="Name")
+    name = fields.Char(string="Name.")
+    name_eins = fields.Char(string="Nam.")
     klasse = fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
                                ('Beleuchtung, Lüftungs-, Heizeinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
                                ('Lagerung', 'Lagerung'),
@@ -91,7 +91,7 @@ class BegehungZwei(models.Model):
                                ('Erste-Hilfe- und Feuerlöscheinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
                                 string='Klassifizierung')
     
-    abstellmassnahme_zwei = fields.Text(string="Abstellmaßnahme", compute="")
+    abstellmassnahme_zwei = fields.Text(string="Abstellmaßnahme")
     
     abstellmassnahme_k_zwei = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
                                            ('Sicherheitstechnische Maßnahmen (AA)', 'Sicherheitstechnische Maßnahmen (AA)'),
@@ -110,7 +110,7 @@ class BegehungZwei(models.Model):
     
     nummer_drei = fields.Char(string="Nummer", compute="_compute_nummer_zwei", store=1)
     
-    name_drei = fields.Text(string="Name")
+    name_drei = fields.Text(string="Name.")
     
     
     relation_m = fields.Many2one('mail.activity')
@@ -156,15 +156,31 @@ class Folgebegehung(models.Model):
     
     sequence_ref= fields.Integer(string='Sequenz z')
     
-    nummer_vier =fields.Char(string="Nummer", store=1)
+    nummer_vier =fields.Char(string="Nummer", compute="_compute_nummer_vier", store=1)
     
     name_vier = fields.Text(string='Name')
     
-    klasse_drei = fields.Char(string='Klassifizierung')
+    klasse_drei = fields.Selection([('Verkehrswege, Flucht- und Rettungswege', 'Verkehrswege, Flucht- und Rettungswege'),
+                               ('Beleuchtung, Lüftungs-, Heizeinrichtungen', 'Beleuchtung, Lüftungs-, Heizeinrichtungen'),
+                               ('Lagerung', 'Lagerung'),
+                               ('Gefahrenhinweise', 'Gefahrenhinweise'),
+                               ('Arbeitsplatzgestaltung', 'Arbeitsplatzgestaltung'),
+                               ('Maschinen, Geräte, Betriebsmittel, Anlagen, Transportmittel, Bildschirm etc.', 'Maschinen, Geräte, Betriebsmittel, Anlagen, Transportmittel, Bildschirm etc.'),
+                               ('Aufbewahrung von chemischen Stoffen', 'Aufbewahrung von chemischen Stoffen'),
+                               ('Persönliche Schutzausrüstungen', 'Persönliche Schutzausrüstungen'),
+                               ('Sicherheitseinrichtungen', 'Sicherheitseinrichtungen'),
+                               ('Betriebsanweisungen', 'Betriebsanweisungen'),
+                               ('Erste-Hilfe- und Feuerlöscheinrichtungen', 'Erste-Hilfe- und Feuerlöscheinrichtungen')], 
+                                string='Klassifizierung')
     
     abstellmassnahme_drei = fields.Text(string="Abstellmaßnahme",)
     
-    abstellmassnahme_k_drei = fields.Char(string='Abs Klassifizierung')
+    abstellmassnahme_k_drei = fields.Selection([('Gefahrenquelle vermeiden / beseitigen (AAA)', 'Gefahrenquelle vermeiden / beseitigen (AAA)'),
+                                           ('Sicherheitstechnische Maßnahmen (AA)', 'Sicherheitstechnische Maßnahmen (AA)'),
+                                           ('Organisatorische Maßnahmen (A)', 'Organisatorische Maßnahmen (A)'),
+                                           ('Nutzung PSA (BBB)', 'Nutzung PSA (BBB)'),
+                                           ('Verhaltensbezogene Maßnahmen (BB)', 'Verhaltensbezogene Maßnahmen (BB)')], 
+                                            string='Abs Klassifizierung')
     
     deadline_abs_ref = fields.Date(string='Deadline Abstellmaßnahme')
     

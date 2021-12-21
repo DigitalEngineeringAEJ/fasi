@@ -4,10 +4,12 @@
     <template id="betriebsanweisung_protocol_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
+                <div class="header"/>
+                <div class="footer"/>
                 <t t-call="web.external_layout">
-                    <div class="page">
+                    <div class="page" style="border: 1rem solid blue;">
                            <h1 style="text-align:center;">
-                                Betriebsanweisung
+                                Betriebsanweisung Maschinen und Arbeitsverfahren
                             </h1>
                         <br></br>
                         <br></br>
@@ -34,9 +36,9 @@
                         </div>
 
                         <table style="font-size:16px" class="table table-bordered">
-                            <tr>
+                            <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong>Anwendungsbereich</strong>
+                                    <strong style="color:white;">Anwendungsbereich</strong>
                                 </td>
                             </tr>
                             <tr>
@@ -45,14 +47,13 @@
                                     <br></br>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong>Gefahren für Mensch und Umwelt</strong>
+                                    <strong style="color:white;">Gefahren für Mensch und Umwelt</strong>
                                 </td>
                             </tr>
-                              <t t-set="last_activity_gefahrenquelle" t-value="request.env['mail.activity'].search([('equipment_id', '=', o.equipment_id.id), ('activity_type_id', '=', %(mail_activity_data_calibration_ei)d)], order='id desc', limit=1)"/>
-                            <t  t-if="last_activity_gefahrenquelle and last_activity_gefahrenquelle.gefaehrdunsfaktor_ids">
-                                <t t-foreach="last_activity_gefahrenquelle.gefaehrdunsfaktor_ids" t-as="risk">
+                            <t  t-if="o.gefaehrdunsfaktor_betriebsanweisun_ids">
+                                <t t-foreach="o.gefaehrdunsfaktor_betriebsanweisun_ids" t-as="risk">
                                  <tr>
 
                                     <td>
@@ -74,11 +75,19 @@
                                     <br></br>
                                 </tr>
                             </t>
-                            <tr>
+                            <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong>Schutzmaßnahmen und Verhaltensregeln</strong>
+                                    <strong style="color:white;">Schutzmaßnahmen und Verhaltensregeln</strong>
                                 </td>
                             </tr>
+                             <t  t-if="o.protective_measures">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.protective_measures"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
                               <tr>
                                 <td colspan="3" style="text-align:center;">
                                     <br></br>
@@ -86,11 +95,41 @@
                                     <br></br>
                                 </td>
                             </tr>
-                             <tr>
+                             </t>
+                             <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong>Verhalten bei Störungen / Verhalten bei Gefahrfall</strong>
+                                    <strong style="color:white;">Verhalten bei Störungen / Verhalten bei Gefahrfall</strong>
                                 </td>
                             </tr>
+                            <t  t-if="o.malfunctions">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.malfunctions"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
+                                <td colspan="3">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                </td>
+                            </tr>
+                           </t>
+                            <tr style="background-color:blue;">
+                                <td colspan="3" style="text-align:center;">
+                                    <strong style="color:white;">Verhalten bei Unfällen, Erste Hilfe</strong>
+                                </td>
+                            </tr>
+                              <t  t-if="o.first_aid">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.first_aid"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
                               <tr>
                                 <td colspan="3" style="text-align:center;">
                                     <br></br>
@@ -98,43 +137,49 @@
                                     <br></br>
                                 </td>
                             </tr>
-
-                            <tr>
+                           </t>
+                            <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong>Verhalten bei Unfällen, Erste Hilfe</strong>
+                                    <strong style="color:white;">Instandhaltung, Reinigung, Entsorgung</strong>
                                 </td>
                             </tr>
-                             <tr>
-                                <td colspan="3" style="text-align:center;">
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
+                             <t  t-if="o.maintenance_cleaning">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.maintenance_cleaning"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="3" style="text-align:center;">
-                                    <strong>Instandhaltung, Reinigung, Entsorgung</strong>
-                                </td>
-                            </tr>
-                             <tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
                                 <td colspan="3" style="text-align:center;">
                                     <br></br>
                                     <br></br>
                                     <br></br>
                                 </td>
                             </tr>
-                             <tr>
+                           </t>
+                             <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
-                                    <strong>Folgen der Nichtbeachtung</strong>
+                                    <strong style="color:white;">Folgen der Nichtbeachtung</strong>
                                 </td>
                             </tr>
-                             <tr>
+                             <t  t-if="o.consequences">
+                              <tr>
+                                <td colspan="3">
+                                    <span t-field="o.consequences"/>
+                                </td>
+                            </tr>
+                             </t>
+                           <t t-else="">
+                              <tr>
                                 <td colspan="3" style="text-align:center;">
                                     <br></br>
                                     <br></br>
                                     <br></br>
                                 </td>
                             </tr>
+                           </t>
                         </table>
 
                     </div>
@@ -142,20 +187,33 @@
             </t>
         </t>
     </template>
-    
-    
-    
+
+    <record id="paperformat_betriebsanweisung" model="report.paperformat">
+        <field name="name">Format für Betriebsanweisung</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
 
     <record id="betriebsanweisung_protocol" model="ir.actions.report">
-            <field name="name">Betriebsanweisung</field>
-            <field name="model">equipment.protocol</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="report_name">wepelo_equipment.betriebsanweisung_protocol_template</field>
-            <field name="report_file">wepelo_equipment.betriebsanweisung_protocol_template</field>
-            <field name="print_report_name">(object._get_report_filename())</field>
-            <field name="binding_model_id" ref="model_equipment_protocol"/>
-            <field name="paperformat_id" ref="wepelo_equipment.paperformat_begehung"/>
-            <field name="binding_type">report</field>
-        </record>
+        <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
+        <field name="model">equipment.protocol</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">wepelo_equipment.betriebsanweisung_protocol_template</field>
+        <field name="report_file">wepelo_equipment.betriebsanweisung_protocol_template</field>
+        <field name="print_report_name">(object._get_report_filename())</field>
+        <field name="binding_model_id" ref="model_equipment_protocol"/>
+        <field name="paperformat_id" ref="wepelo_equipment.paperformat_betriebsanweisung"/>
+        <field name="binding_type">report</field>
+    </record>
 
 </odoo>

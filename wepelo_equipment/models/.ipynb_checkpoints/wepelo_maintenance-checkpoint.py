@@ -51,7 +51,7 @@ class MaintenanceEquipment(models.Model):
     attachment_count = fields.Integer(
         string="Attachments Number", compute="_compute_attachment_count"
     )
-    name_seq = fields.Char(string="Nummer", default=lambda self: self._get_next_serial_no_name(),  store=True, readonly=True)
+    name_seq = fields.Char(string="Nummer",  store=True, readonly=True)
     ir_sequence_id = fields.Many2one('ir.sequence')
 
     def attachment_tree_view(self):
@@ -182,4 +182,4 @@ class MaintenanceEquipmentCategory(models.Model):
     _inherit = 'maintenance.equipment.category'
 
     show_user_tab_eichung = fields.Boolean('Show User Tab Eichung')
-    serial_no = fields.Many2one('maintenance.equipment', string='ID')
+    serial_no = fields.Many2one('maintenance.equipment', string='ID.')

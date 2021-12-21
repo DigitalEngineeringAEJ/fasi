@@ -28,13 +28,17 @@ class EquipmentProtocol(models.Model):
         ('calibration_ei', _('Gefähdungsbeuteilung')),
         ('el_test', _('Folgebegehung')),
         ('routine_test', _('Begehung')),
-        ('calibration', _('Kalibrierung')),
-        ('betriebsanweisung', _('Betriebsanweisung')),
+        ('calibration', _('Betriebsanweisung Gefahrstoffe')),
+        ('betriebsanweisung', _('Betriebsanweisung Maschinen und Arbeitsverfahren')),
         ('uvv', _('Betriebssicherheitsprüfung')),
-        ('maintenance', _('Wartung')),
+        ('maintenance', _('Betriebsanweisung PSA')),
         ('repairs', _('Reparatur')),
         ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
         ('unterweisung', _('Unterweisung')),
+        ('el_pruefung_buero', _('Elektroprüfung Büro')),
+        ('el_pruefung_werk_prod', _('Elektroprüfung Werkstatt/Produktion')),
+        ('pruefung_fuerloescher', _('Prüfung Feuerlöscher')),
+        ('bet_sich_pruefung', _('Betriebssicherheitsprüfung')),
     ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
@@ -59,17 +63,25 @@ class EquipmentProtocol(models.Model):
     begehung_id_feld_zwei = fields.Many2many('begehung_zwei',  string="Begehung zwei", store=True)
     folg_erf_m = fields.Selection(related='mail_activity_id.folg_erf_m',string='Folgebegehung erforderlich?') 
     note_rel =fields.Html(related='mail_activity_id.note',string='Bemerkung')
-    folg_beg_ids = fields.Many2many('folgebegehung', string='Folgebegehung', store=True)
-    folg_beg_id = fields.Many2one('folgebegehung', string='Folgebegehung', store=True)
-    gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor', store=True)
-    gefaehrdunsfaktor_betriebsanweisun_ids = fields.Many2many('equipment.types', 'protocol_equipment_type_rel', 'protocol_id', 'equipment_type_id', string='Gefahrenfaktor')
+    folg_beg_ids = fields.Many2many('folgebegehung', store=True)
+    f_beg_id = fields.Many2one('folgebegehung', store=True)
+    gefaehrdunsfaktor_ids = fields.Many2many('equipment.types', string='Gefahrenfaktor.', store=True)
+    gefaehrdunsfaktor_betriebsanweisun_ids = fields.Many2many('equipment.types', 'protocol_equipment_type_rel', 'protocol_id', 'equipment_type_id', string='Gef.faktor')
     gefaehrdunsfaktor_id = fields.Many2one('equipment.types', string='Gefahrenfaktor', store=True)
     gef_verzeichnis_ids = fields.Many2many('gefahrstoff.verzeichnis', string="Gefahrstoff Verzeichnis", store=True)
     unterweisung_ids = fields.Many2many('unterweisung', string="Unterweisung", store=True)
     inhalte = fields.Text(string='Unterweisungsinhalte')
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
-    note_u = fields.Text(string='Bemerkung')
+    note_u = fields.Text(string='Anmerkung')
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Html(string="Folgen der Nichtbeachtung")
+    hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
+    release_date = fields.Date(string="Freigabedatum")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
 
     
     
