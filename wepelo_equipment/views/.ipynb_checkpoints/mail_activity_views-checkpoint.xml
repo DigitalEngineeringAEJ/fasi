@@ -370,6 +370,7 @@
                             <field name="deadline_abs"/>
                             <field name="verantwortlich"/>
                             <field name="folg_erf_m"/>
+                            <field name="checkbox"/>
                         </tree>
                         </field>
                         </page>

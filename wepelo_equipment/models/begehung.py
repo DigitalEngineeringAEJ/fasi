@@ -7,6 +7,7 @@ from datetime import date
 from odoo.exceptions import ValidationError
 from collections import defaultdict
 import calendar
+from odoo import exceptions
 
 class Begehung(models.Model):
     _name = 'begehung'
@@ -115,6 +116,8 @@ class BegehungZwei(models.Model):
     
     relation_m = fields.Many2one('mail.activity')
     relation_e = fields.Many2one('equipment.protocol')
+    
+    checkbox = fields.Boolean(string='Eigene Gefahrenquelle?')
         
         
     @api.model

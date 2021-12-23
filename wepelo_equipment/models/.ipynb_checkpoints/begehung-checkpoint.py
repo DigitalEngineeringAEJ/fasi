@@ -7,6 +7,7 @@ from datetime import date
 from odoo.exceptions import ValidationError
 from collections import defaultdict
 import calendar
+from odoo import exceptions
 
 class Begehung(models.Model):
     _name = 'begehung'
@@ -115,6 +116,22 @@ class BegehungZwei(models.Model):
     
     relation_m = fields.Many2one('mail.activity')
     relation_e = fields.Many2one('equipment.protocol')
+    
+    checkbox = fields.Boolean(string='Eigene Gefahrenquelle?')
+    
+    @api.onchange('checkbox')
+    def onchange_checkbox_true(self):
+        if self.checkbox == True:
+            raise exceptions.ValidationError(_("hat Funktioniert")) 
+#             create = super(MaintenanceEquipment,self).create(vals)
+#             vals = {
+#             'name_zwei': self.name,
+#             'category_id': self.category_id[13],
+#             'verantwortlich': self.customer_id.name
+#             }
+#             history3 = self.env['maintenance.equipment'].create(vals)
+        else:
+            None
         
         
     @api.model

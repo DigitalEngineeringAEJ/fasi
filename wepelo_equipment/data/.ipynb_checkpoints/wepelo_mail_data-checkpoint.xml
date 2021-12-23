@@ -177,6 +177,55 @@
             <field name="sequence">20</field>
         </record>
         </data>
+    
+<!--     <record id="automation_gefahrenquellen" model="base.automation">
+            <field name="name">Erstellen von Gefahrenquellen</field>
+            <field name="model_id" ref="model_begehung_zwei"/>
+            <field name="trigger">on_create_or_write</field>
+            <field name="trigger_field_ids">checkbox</field>
+            <field name="filter_pre_domain">[]</field>
+            <field name="filter_domain">[["checkbox","=",1]]</field>
+            <field name="state">object_create</field>
+            <field name="crud_model_id" ref='model_maintenance_equipment'/>
+            <field name="fields_lines"> name</field>
+            <field name="fields_lines">equation</field>
+            <field name="fields_lines">resource_ref</field>
+            <field name="value">record.name_zwei</field>
+            <field name="fields_lines">category_id</field>
+            <field name="evaluation_type">reference</field>
+            <field name="resource_ref">Arbeitsmittel</field>
+            <field name="value">13</field>
+            <field name="fields_lines">customer_id</field>
+            <field name="evaluation_type">equation</field>
+            <field name="resource_ref"></field>
+            <field name="value">record.verantwortlich.id</field>
+            <field name="active">True</field>
+        </record>
+     -->
+<!--     <record id="automation_gefahrenquellen" model="base.automation">
+            <field name="name">Erstellen von Gefahrenquellen</field>
+            <field name="model_id" ref="model_begehung_zwei"/>
+            <field name="trigger">on_create_or_write</field>
+            <field name="trigger_field_ids">checkbox</field>
+            <field name="filter_pre_domain">[]</field>
+            <field name="filter_domain">[["checkbox","=",1]]</field>
+            <field name="state">object_create</field>
+            <field name="crud_model_id" ref='model_maintenance_equipment'/>
+            <field name="fields_lines"> name</field>
+            <field name="fields_lines">equation</field>
+            <field name="fields_lines">resource_ref</field>
+            <field name="fields_lines">record.name_zwei</field>
+            <field name="fields_lines">category_id</field>
+            <field name="fields_lines">reference</field>
+            <field name="fields_lines">Arbeitsmittel</field>
+            <field name="fields_lines">13</field>
+            <field name="fields_lines">customer_id</field>
+            <field name="fields_lines">equation</field>
+            <field name="fields_lines">resource_ref</field>
+             <field name="fields_lines"></field> 
+            <field name="active">True</field>
+        </record> -->
+    
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
         <field name="name">Maintenance Request</field>
         <field name="icon">fa-wrench</field>

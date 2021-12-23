@@ -6,7 +6,7 @@
     'category': 'Services',
     'author': "JADESi",
     'description': """Anwendung für die Arbeitsabläufe in der Arbeitssicherheit""",
-    'depends': ['maintenance', 'portal'],
+    'depends': ['maintenance', 'portal','base_automation'],
     'summary': 'Anwendung für die Arbeitsabläufe in der Arbeitssicherheit',
     'website': 'https://www.jadesi.de',
     'data': [

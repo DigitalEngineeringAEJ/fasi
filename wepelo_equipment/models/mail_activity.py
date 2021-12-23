@@ -687,6 +687,14 @@ class MailActivity(models.Model):
                     'user_id': activity.user_id.id or activity.env.uid,
                     'res_id': activity.res_id,
                 })
+#                 begehung_id_feld_zwei = activity.mapped('begehung_id_feld_zwei').filtered(
+#                 lambda x: x.checkbox == True)
+#             if len(begehung_id_feld_zwei)>0:
+#                 new_ = self.env['maintenance.equipment'].create(vals)
+#                 vals = self.create({
+#                     'name_zwei': new_.name,
+#                 })
+                
                 vals = []
                 for begehung_id in activity.begehung_id_feld_zwei:
                     if begehung_id.folg_erf_m == 'Ja':
