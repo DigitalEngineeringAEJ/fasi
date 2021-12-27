@@ -179,8 +179,8 @@
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_bet_sich_pruefung"/>
             <field name="sequence">20</field>
-        <field name="active">False</field>
-        </record>
+<!--         <field name="active">False</field> -->
+    </record>
     
          <record id="mail_act_maintenance_request" model="mail.activity.type">
         <field name="name">Maintenance Request</field>

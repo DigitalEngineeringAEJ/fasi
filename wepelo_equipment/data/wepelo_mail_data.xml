@@ -179,8 +179,8 @@
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_bet_sich_pruefung"/>
             <field name="sequence">20</field>
-        <field name="active">False</field>
-        </record>
+<!--         <field name="active">False</field> -->
+    </record>
     
          <record id="mail_act_maintenance_request" model="mail.activity.type">
         <field name="name">Maintenance Request</field>
@@ -327,18 +327,15 @@
                                 <!-- Biologische Arbeitsstoffe -->
         
          <record id="gefaehrdungsf_infektionsgefährdung_durch_pathogene_migroorganismen" model="gefahren.faktor">
-             <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Mikro-
-                 organismen</field>
+             <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Mikroorganismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_toxische_wirkung_von_mikroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Toxische Wirkung von Mikro-
-                organismen</field>
+            <field name="gefaehrdungsf">Toxische Wirkung von Mikroorganismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_sensibilisierende_wirkung_von_mikroorganismen" model="gefahren.faktor">
-            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikro-
-                organismen</field>
+            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikroorganismen</field>
              <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
         </record>
         <record id="gefaehrdungsf_gentechnisch_veränderte_organismen" model="gefahren.faktor">
