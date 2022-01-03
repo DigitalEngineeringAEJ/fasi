@@ -5,11 +5,31 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <div class="page" style="border-top:1px solid grey; border-left:1px solid grey; border-right:1px solid grey; border-bottom:1px solid grey;">
+                    <link rel="stylesheet" href="/wepelo_equipment/static/src/css/style.css"/>
+<!--                     <div class="page" style="border-top:1px solid grey; border-left:1px solid grey; border-right:1px solid grey; border-bottom:1px solid grey;"> -->
+                    <div class="page">
                           <h1 style="border-bottom:1px solid grey;">
                                 Dokumentation der Unterweisung
                             </h1>
-                        <table style="font-size:16px" class="table table-borderless table-sm mt16 ml16">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Telefon</th>
+                                    <th>E-Mail</th>
+                                    <th>WasWeißIch</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <span t-field="o.customer_id.name"/></td>
+                                    <td> <span t-field="o.customer_id.phone"/></td>
+                                    <td> <span t-field="o.customer_id.email"/></td>
+                                    <td> <span t-field="o.customer_id.street"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="styled-table">
                             <h2>
                                 Bestätigung der Unterweisung nach § 4 der Unfallverhütungsvorschrift „Grundsätze der Prävention“ (DGUV Vorschrift 1)
                                 </h2>
@@ -65,7 +85,7 @@
                                     <span t-field="o.inhalte"/>
                                </td> 
                             </tr>
-                         <table style="table-layout:fixed; font-size:10px" class="table table-bordered table-sm mt16 ml16">
+                         <table class="styled-table">
                              <p style="page-break-before:always;"/>
                              <br/>
                              <br/>
