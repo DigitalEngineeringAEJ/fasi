@@ -35,6 +35,7 @@ class EquipmentProtocol(models.Model):
         ('repairs', _('Reparatur')),
         ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
         ('unterweisung', _('Unterweisung')),
+        ('betriebsanweisung_gefahrstoffe', _('Betriebsanweisung Gefahrstoffe')),
     ], compute="_compute_equipment_test_type", string='Service')
     serial_no = fields.Char(string='Serial No')
     type = fields.Char(string='Type')
@@ -70,6 +71,14 @@ class EquipmentProtocol(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u = fields.Text(string='Bemerkung')
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Html(string="Folgen der Nichtbeachtung")
+    release_date = fields.Date(string="Freigabedatum")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
+    hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
 
     
     

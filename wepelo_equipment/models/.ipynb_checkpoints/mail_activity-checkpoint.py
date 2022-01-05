@@ -22,7 +22,32 @@ class MailActivity(models.Model):
     _name = 'mail.activity'
     _inherit = ['mail.activity', 'equipment.mail.activity', 'mail.thread']
     _description = 'Mail Activity'
-
+    
+    
+    def _get_default_malfunctions(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td><field name="folg_erf_m"/></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+    
+    def _get_protective_measures(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+    
     category_id = fields.Many2one(related='equipment_id.category_id', string='Equipment Category', store=True, readonly=False)
     active = fields.Boolean(default=True)
     equipment_id = fields.Many2one('maintenance.equipment', compute='_get_equipment', string='Equipment', store=True)
@@ -78,6 +103,14 @@ class MailActivity(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u =fields.Text(string='Bemerkung')
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln", default=_get_protective_measures)
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall", default=_get_default_malfunctions)
+    first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
+    maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
+    consequences = fields.Html(string="Folgen der Nichtbeachtung")
+    release_date = fields.Date(string="Freigabedatum")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
+    hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
 
     @api.depends('equipment_id', 'equipment_id.category_id')
     def _compute_activities_type(self):
@@ -284,7 +317,15 @@ class MailActivity(models.Model):
             'inhalte':self.inhalte,
             'name_leitung':self.name_leitung,
             'signature_leiter':self.signature_leiter,
-            'note_u':self.note_u
+            'note_u':self.note_u,
+            'protective_measures':self.protective_measures,
+            'malfunctions':self.malfunctions,
+            'first_aid':self.first_aid,
+            'maintenance_cleaning':self.maintenance_cleaning,
+            'consequences':self.consequences,
+            'release_date':self.release_date,
+            'review_date':self.review_date,
+            'hazardous_material_designation':self.hazardous_material_designation,
 
         }
 #         if self.equipment_test_type == 'el_test':

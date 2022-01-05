@@ -35,11 +35,13 @@ class EquipmentTest(models.Model):
             ('el_test', _('Folgebegehung')),
             ('routine_test', _('Begehung')),
             ('calibration', _('Kalibrierung')),
+            ('betriebsanweisung', _('Betriebsanweisung')),
             ('uvv', _('Betriebssicherheitsprüfung')),
             ('maintenance', _('Wartung')),
             ('repairs', _('Reparaturen')),
             ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
             ('unterweisung', _('Unterweisung')),
+            ('betriebsanweisung_gefahrstoffe', _('Betriebsanweisung Gefahrstoffe')),
         ]
 
     equipment_test_types = {
@@ -47,6 +49,7 @@ class EquipmentTest(models.Model):
         'el_test': _('Folgebegehung'),
         'routine_test': _('Begehung'),
         'calibration': _('Kalibrierung'),
+        'betriebsanweisung': _('Betriebsanweisung'),
         'uvv': _('Betriebssicherheitsprüfung'),
         'maintenance': _('Wartung'),
         'repairs': _('Reparaturen'),

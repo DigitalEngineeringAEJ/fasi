@@ -51,9 +51,9 @@ class MaintenanceEquipment(models.Model):
     attachment_count = fields.Integer(
         string="Attachments Number", compute="_compute_attachment_count"
     )
-    name_seq = fields.Char(string="Nummer", default=lambda self: self._get_next_serial_no_name(),  store=True, readonly=True)
+    name_seq = fields.Char(string="Nummer",  store=True, readonly=True)
     ir_sequence_id = fields.Many2one('ir.sequence')
-
+#, default=lambda self: self._get_next_serial_no_name()
     def attachment_tree_view(self):
         """Get attachments for this object."""
         attachment_action = self.env.ref("base.action_attachment")

@@ -312,7 +312,57 @@
                                 <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
                                   <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
                             </tr>
-                        </table>      
+                        </table>
+                    
+                    
+                    <!-- Ansicht für Betriebsanweisung Gefahrstoffe -->
+                    
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung_gefahrstoffe')]}">
+                            <page string="1. Gefahrstoffbezeichnung">
+                                     <field name= 'hazardous_material_designation'  nolabel="1"/>
+                        </page>
+                         <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                          <page string="3. Schutzmaßnahmen und Verhaltensregeln">
+                                <field name= 'protective_measures'  nolabel="1"/>
+                            </page>
+                          <page string="4. Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'malfunctions' nolabel="1"/>
+                            </page>
+                          <page string="5. Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                         <page string="6. Sachgerechte Entsorgung">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="7. Folgen der Nichtbeachtung">
+                                 <field name= 'consequences'/>
+                             <br/>
+                             </page>
+                             <page string="Nächster Überprüfungstermin dieser Betriebsanweisung:">
+                                 <field name= 'review_date' string="Nächster Überprüfungstermin dieser Betriebsanweisung"/>
+                         </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                            </page>
+                        </notebook>
+                    
 <!--                     <group string="Maintenance" attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
                          <group>
                             <field name="exhaust_hose_probe" class="ml16"/>

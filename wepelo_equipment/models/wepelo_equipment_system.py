@@ -41,6 +41,7 @@ class EquipmentTest(models.Model):
             ('repairs', _('Reparaturen')),
             ('gefahrstoff_verszeichnis', _('Gefahrstoff-Verszeichnis')),
             ('unterweisung', _('Unterweisung')),
+            ('betriebsanweisung_gefahrstoffe', _('Betriebsanweisung Gefahrstoffe')),
         ]
 
     equipment_test_types = {

@@ -34,6 +34,12 @@
             <field name="equipment_test_type">betriebsanweisung</field>
             <field name="cycle_duration">365</field>
         </record>
+        
+        <record id="activity_betriebsanweisung_gefahrstoffe" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="equipment_test_type">betriebsanweisung_gefahrstoffe</field>
+            <field name="cycle_duration">365</field>
+        </record>
 
      <!--   <record id="equipment_test_data_calibration" model="equipment.test">
             <field name="display_name">Kalibrierung</field>
@@ -104,6 +110,14 @@
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_unterweisung"/>
             <field name="sequence">14</field>
+        </record>
+        
+        <record id="mail_activity_betriebsanweisung_gefahrstoffe" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung_gefahrstoffe"/>
+            <field name="sequence">15</field>
         </record>
         
 <!--         <record id="mail_act_maintenance_request" model="mail.activity.type">
