@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 from datetime import date, datetime, timedelta
 import re
 
-class MaintenanceEquipment(models.Model):
+class Safety_Master(models.Model):
     _inherit = 'maintenance.equipment'
 
     def name_get(self):
@@ -15,7 +15,46 @@ class MaintenanceEquipment(models.Model):
         for record in self:
             result.append((record.id, record.name))
         return result
+    #hier sind die felder aus Inherit
+    category_id = fields.Many2one('maintenance.equipment.category', string='Equipment Category',
+                                  tracking=True, group_expand='_read_group_category_ids')
+    user_id = fields.Many2one('res.users', string='Technician', tracking=True)
+    name = fields.Char('Equipment Name', required=True, translate=True)
 
+    owner_user_id = fields.Many2one('res.users', string='Owner', tracking=True)
+    assign_date = fields.Date('Assigned Date', tracking=True)
+    serial_no = fields.Char('Serial Number', copy=False)
+    technician_user_id = fields.Many2one('res.users', string='Technician', tracking=True)
+    maintenance_ids = fields.One2many('maintenance.request', 'equipment_id')
+    maintenance_open_count = fields.Integer(compute='_compute_maintenance_count', string="Current Maintenance",
+                                            store=True)
+
+    active = fields.Boolean(default=True)
+    next_action_date = fields.Date(compute='_compute_next_maintenance', string='Date of the next preventive maintenance', store=True)
+    model = fields.Char('Model')
+    category_id = fields.Many2one('maintenance.equipment.category', string='Equipment Category',
+                                  tracking=True, group_expand='_read_group_category_ids')
+    partner_id = fields.Many2one('res.partner', string='Vendor', check_company=True)
+    company_id = fields.Many2one('res.company', string='Company',
+                                 default=lambda self: self.env.company)
+    color = fields.Integer('Color Index')
+    partner_ref = fields.Char('Vendor Reference')
+    effective_date = fields.Date('Effective Date', default=fields.Date.context_today, required=True,
+                                 help="Date at which the equipment became effective. This date will be used to compute the Mean Time Between Failure.")
+    warranty_date = fields.Date('Warranty Expiration Date')
+    note = fields.Text('Comments', translate=True)
+    maintenance_team_id = fields.Many2one('maintenance.team', string='Maintenance Team', check_company=True)
+    location = fields.Char('Location')
+    period = fields.Integer('Days between each preventive maintenance')
+    maintenance_duration = fields.Float(help="Maintenance Duration in hours.")
+    equipment_count = fields.Integer(string="Equipment", compute='_compute_equipment_count')
+    maintenance_count = fields.Integer(string="maintenance Count", compute='_compute_maintenance_count')
+    alias_id = fields.Many2one(
+        'mail.alias', 'Alias', ondelete='restrict', required=True,
+        help="Email alias for this equipment category. New emails will automatically "
+             "create a new equipment under this category.")
+
+    #bis hier
     contact_person = fields.Char(related='customer_id.contact_person', string='Contact Person', readonly=True, store=True)
     activity_id = fields.Many2one('mail.activity', string='Activity', store=True, ondelete='set null')
     activity_ids = fields.One2many('mail.activity', 'equipment_id')
@@ -177,9 +216,70 @@ class MaintenanceEquipment(models.Model):
 #         if self.serial_no and search(substring, self.category_id.name):
 #             self.equipment_service_id = self.env['equipment.service'].search([('name','ilike',"Diesel")]).id
 
+    @api.depends('equipment_ids')
+    def _compute_equipment(self):
+        for team in self:
+            team.equipment_count = len(team.equipment_ids)
+
+    @api.depends('effective_date', 'period', 'maintenance_ids.request_date', 'maintenance_ids.close_date')
+    def _compute_next_maintenance(self):
+        date_now = fields.Date.context_today(self)
+        equipments = self.filtered(lambda x: x.period > 0)
+        for equipment in equipments:
+            next_maintenance_todo = self.env['maintenance.request'].search([
+                ('equipment_id', '=', equipment.id),
+                ('maintenance_type', '=', 'preventive'),
+                ('stage_id.done', '!=', True),
+                ('close_date', '=', False)], order="request_date asc", limit=1)
+            last_maintenance_done = self.env['maintenance.request'].search([
+                ('equipment_id', '=', equipment.id),
+                ('maintenance_type', '=', 'preventive'),
+                ('stage_id.done', '=', True),
+                ('close_date', '!=', False)], order="close_date desc", limit=1)
+            if next_maintenance_todo and last_maintenance_done:
+                next_date = next_maintenance_todo.request_date
+                date_gap = next_maintenance_todo.request_date - last_maintenance_done.close_date
+                # If the gap between the last_maintenance_done and the next_maintenance_todo one is bigger than 2 times the period and next request is in the future
+                # We use 2 times the period to avoid creation too closed request from a manually one created
+                if date_gap > timedelta(0) and date_gap > timedelta(
+                        days=equipment.period) * 2 and next_maintenance_todo.request_date > date_now:
+                    # If the new date still in the past, we set it for today
+                    if last_maintenance_done.close_date + timedelta(days=equipment.period) < date_now:
+                        next_date = date_now
+                    else:
+                        next_date = last_maintenance_done.close_date + timedelta(days=equipment.period)
+            elif next_maintenance_todo:
+                next_date = next_maintenance_todo.request_date
+                date_gap = next_maintenance_todo.request_date - date_now
+                # If next maintenance to do is in the future, and in more than 2 times the period, we insert an new request
+                # We use 2 times the period to avoid creation too closed request from a manually one created
+                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period) * 2:
+                    next_date = date_now + timedelta(days=equipment.period)
+            elif last_maintenance_done:
+                next_date = last_maintenance_done.close_date + timedelta(days=equipment.period)
+                # If when we add the period to the last maintenance done and we still in past, we plan it for today
+                if next_date < date_now:
+                    next_date = date_now
+            else:
+                next_date = equipment.effective_date + timedelta(days=equipment.period)
+            equipment.next_action_date = next_date
+        (self - equipments).next_action_date = False
+
+    @api.depends('maintenance_ids.stage_id.done')
+    def _compute_maintenance_count(self):
+        for equipment in self:
+            equipment.maintenance_count = len(equipment.maintenance_ids)
+            equipment.maintenance_open_count = len(equipment.maintenance_ids.filtered(lambda x: not x.stage_id.done))
+
+    def _compute_equipment_count(self):
+        equipment_data = self.env['maintenance.equipment'].read_group([('category_id', 'in', self.ids)], ['category_id'], ['category_id'])
+        mapped_data = dict([(m['category_id'][0], m['category_id_count']) for m in equipment_data])
+        for category in self:
+            category.equipment_count = mapped_data.get(category.id, 0)
 
 class MaintenanceEquipmentCategory(models.Model):
     _inherit = 'maintenance.equipment.category'
 
+    name = fields.Char('Category Name', required=True, translate=True)
     show_user_tab_eichung = fields.Boolean('Show User Tab Eichung')
     serial_no = fields.Many2one('maintenance.equipment', string='ID')
