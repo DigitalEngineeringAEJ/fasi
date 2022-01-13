@@ -4,6 +4,7 @@ import base64
 from odoo import api, fields, models, _
 from dateutil.relativedelta import relativedelta
 from datetime import date
+from datetime import datetime
 from odoo.exceptions import ValidationError
 from collections import defaultdict
 import calendar
@@ -84,7 +85,7 @@ class MailActivity(models.Model):
     maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
     consequences = fields.Html(string="Folgen der Nichtbeachtung")
     release_date = fields.Date(string="Freigabedatum")
-    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung")
+    review_date = fields.Date(string="Nächster Überprüfungstermin dieser Betriebsanweisung", default=lambda self: (datetime.today() + relativedelta(days=360)))
     hazardous_material_designation = fields.Html(string='Gefahrstoffbezeichnung')
 
 

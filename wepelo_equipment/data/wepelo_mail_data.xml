@@ -76,7 +76,7 @@
 
          <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
             <field name="name">Gefährdungsbeurteilung</field>
-            <field name="delay_count">360</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
             <field name="sequence">9</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
@@ -84,7 +84,7 @@
         </record>
         <record id="mail_activity_data_routine_test" model="mail.activity.type">
             <field name="name">Begehung</field>
-            <field name="delay_count">365</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
             <field name="sequence">10</field>
             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
@@ -102,7 +102,7 @@
 
         <record id="mail_activity_data_betriebsanweisung" model="mail.activity.type">
             <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
-            <field name="delay_count">360</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
             <field name="sequence">12</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
@@ -111,7 +111,7 @@
 
         <record id="mail_activity_data_betriebsanweisung_gefahrstoffe" model="mail.activity.type">
             <field name="name">Betriebsanweisung Gefahrstoffe</field>
-            <field name="delay_count">360</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
             <field name="sequence">13</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
@@ -119,7 +119,7 @@
         </record>
         <record id="mail_activity_data_betriebsanweisung_psa" model="mail.activity.type">
             <field name="name">Betriebsanweisung PSA</field>
-            <field name="delay_count">360</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
             <field name="sequence">14</field>
              <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
@@ -146,7 +146,7 @@
         
         <record id="mail_activity_el_pruefung_buero" model="mail.activity.type">
             <field name="name">Elektroprüfung Büro</field>
-            <field name="delay_count">730</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_el_pruefung_buero"/>
@@ -154,7 +154,7 @@
         </record>
         <record id="mail_el_pruefung_werk_prod" model="mail.activity.type">
             <field name="name">Elektroprüfung Werkstatt</field>
-            <field name="delay_count">360</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_el_pruefung_werk_prod"/>
@@ -162,7 +162,7 @@
         </record>
         <record id="mail_activity_pruefung_fuerloescher" model="mail.activity.type">
             <field name="name">Prüfung Feuerlöscher</field>
-            <field name="delay_count">730</field>
+            <field name="delay_count">0</field>
             <field name="delay_unit">days</field>
           <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
             <field name="equipment_test_type_id" ref="activity_pruefung_fuerloescher"/>
