@@ -206,51 +206,62 @@
             <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/> 
         <field name="active">False</field>
         </record> -->
-        
-        <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
-            <field name="name">Mechanische Gefährdungen</field>
-            <field name="types_sn">-----</field>
-        </record>
-        <record id="equipment_types_elektrische_gefährdungen" model="equipment.types">
-            <field name="name">Elektrische Gefährdungen</field>
-            <field name="types_sn">-----</field>
-        </record>
-        <record id="equipment_types_gefahrstoffe" model="equipment.types">
-            <field name="name">Gefahrstoffe</field>
-            <field name="types_sn">-----</field>
-        </record>
-        <record id="equipment_types_biologische_arbeitsstoffe" model="equipment.types">
-            <field name="name">Biologische Arbeitsstoffe</field>
-            <field name="types_sn">-----</field>
-        </record>
-        <record id="equipment_types_brand_und_explosion" model="equipment.types">
-            <field name="name">Brand und Explosion</field>
-            <field name="types_sn">-----</field>
-        </record>
-        <record id="equipment_types_thermische_faktoren" model="equipment.types">
-            <field name="name">Thermische Faktoren</field>
-            <field name="types_sn">-----</field>
-        </record>
-        <record id="equipment_types_spezielle_physikalische_belastungen" model="equipment.types">
-            <field name="name">Spezielle Physikalische Belastungen</field>
-            <field name="types_sn">-----</field>
-        </record>
+    
         <record id="equipment_types_arbeitsumgebungsbedingungen" model="equipment.types">
             <field name="name">Arbeitsumgebungsbedingungen</field>
             <field name="types_sn">-----</field>
         </record>
-        <record id="equipment_types_physische_belastung" model="equipment.types">
-            <field name="name">Physische Belastung</field>
+    
+        <record id="equipment_types_biologische_arbeitsstoffe" model="equipment.types">
+            <field name="name">Biologische Arbeitsstoffe</field>
             <field name="types_sn">-----</field>
         </record>
-        <record id="equipment_types_psychische_belastungen" model="equipment.types">
-            <field name="name">Psychische Belastungen</field>
+    
+        <record id="equipment_types_brand_und_explosion" model="equipment.types">
+            <field name="name">Brand und Explosion</field>
             <field name="types_sn">-----</field>
         </record>
+    
+        <record id="equipment_types_elektrische_gefährdungen" model="equipment.types">
+            <field name="name">Elektrische Gefährdungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+    
+        <record id="equipment_types_gefahrstoffe" model="equipment.types">
+            <field name="name">Gefahrstoffe</field>
+            <field name="types_sn">-----</field>
+        </record>
+    
+        <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
+            <field name="name">Mechanische Gefährdungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+    
         <record id="equipment_types_menschen_tiere_pflanzen_menschen" model="equipment.types">
             <field name="name">Menschen, Tiere, Pflanzen, Menschen</field>
             <field name="types_sn">-----</field>
         </record>
+        
+        <record id="equipment_types_physische_belastung" model="equipment.types">
+            <field name="name">Physische Belastung</field>
+            <field name="types_sn">-----</field>
+        </record>
+    
+        <record id="equipment_types_psychische_belastungen" model="equipment.types">
+            <field name="name">Psychische Belastungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+    
+        <record id="equipment_types_spezielle_physikalische_belastungen" model="equipment.types">
+            <field name="name">Spezielle Physikalische Belastungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+    
+        <record id="equipment_types_thermische_faktoren" model="equipment.types">
+            <field name="name">Thermische Faktoren</field>
+            <field name="types_sn">-----</field>
+        </record>
+        
         
                                     <!-- Mechanische Gefährdungen -->
           <record id="gefaehrdungsf_kontrolliert_bewegte_ungeschuetzte_teile" model="gefahren.faktor">

@@ -298,7 +298,7 @@
         <field name="name">wepelo.equipment.types.tree</field>
         <field name="model">equipment.types</field>
         <field name="arch" type="xml">
-            <tree string="Gefährdungsbeurteilung">
+            <tree string="Gefährdungsbeurteilung" default_order='name'>
                 <field name="nummer_gef"/> 
                 <field name="name"/>
                 <field name="types_sn"/>
@@ -361,7 +361,7 @@
         <field name="name">gefaehrdungsfaktor.tree</field>
         <field name="model">gefahren.faktor</field>
         <field name="arch" type="xml">
-            <tree string="Gefährdungsfaktor">
+            <tree string="Gefährdungsfaktor" default_order='gefaehrdungsf'>
                 <field name="gefaehrdungsf"/>
             </tree>
         </field>

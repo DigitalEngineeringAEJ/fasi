@@ -171,7 +171,7 @@
                     
                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
                             <page string="Gefährdungen">
-                            <field name= 'gefaehrdunsfaktor_ids'>
+                            <field name= 'gefaehrdunsfaktor_ids' context="{'default_customer_id' : customer_id}">
                             <tree editable="bottom">
                             <field name="sequence_g" widget="handle"/>
                             <field name="nummer_gef"/>
@@ -198,7 +198,7 @@
                     
                      <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung')]}">
                             <page string="Gefährdungen" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
-                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids' context="{'default_customer_id' : customer_id}" >
                                     <tree editable="bottom">
                                         <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
                                         <field name="gefaehrdungsf_name"/>
@@ -249,7 +249,7 @@
                                      <field name= 'hazardous_material_designation'  nolabel="1"/>
                         </page>
                          <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
-                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids' context="{'default_customer_id' : customer_id}">
                                     <tree editable="bottom">
                                         <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
                                         <field name="gefaehrdungsf_name"/>
@@ -297,7 +297,7 @@
                                      <field name= 'protective_measures'  nolabel="1"/>
                         </page>
                          <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
-                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids' context="{'default_customer_id' : customer_id}">
                                     <tree editable="bottom">
                                         <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
                                         <field name="gefaehrdungsf_name"/>
