@@ -7,7 +7,7 @@ from datetime import date
 from odoo.exceptions import ValidationError
 from collections import defaultdict
 import calendar
-
+#
 class Begehung(models.Model):
     _name = 'begehung'
     _description = 'Aktivität Begehung'
