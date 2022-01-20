@@ -47,6 +47,7 @@ class MaintenanceEquipment(models.Model):
     naechste_eichung = fields.Date(string="Eichung bis", default=(datetime(datetime.today().year + 1, 12, 31)).date())
     show_user_tab_eichung = fields.Boolean(string='Show User Tab Eichung', related='category_id.show_user_tab_eichung')
     owner_user_ids = fields.Many2many('res.users', string='Owners', compute='_compute_owner_users')
+    owner_user_id = fields.Many2one('res.partner', string='Owner')
     attachment_ids = fields.Many2many("ir.attachment", string="Attachments")
     attachment_count = fields.Integer(
         string="Attachments Number", compute="_compute_attachment_count"

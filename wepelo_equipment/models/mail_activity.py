@@ -23,6 +23,77 @@ class MailActivity(models.Model):
     _name = 'mail.activity'
     _inherit = ['mail.activity', 'equipment.mail.activity', 'mail.thread']
     _description = 'Mail Activity'
+    
+    def _get_default_malfunctions(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+
+    def _get_default_protective_measures(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+    def _get_default_first_aid(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+
+    def _get_default_protective_maintenance_cleaning(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+    
+    def _get_default_consequences(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
+
+    def _get_default_hazardous_material_designation(self):
+        result = """
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>"""
+        return result
 
     category_id = fields.Many2one(related='equipment_id.category_id', string='Equipment Category', store=True, readonly=False)
     active = fields.Boolean(default=True)
@@ -79,8 +150,8 @@ class MailActivity(models.Model):
     name_leitung = fields.Char(string='Unterschrift der Leitung')
     signature_leiter = fields.Binary(string='Signatur Leitung')
     note_u = fields.Text(string='Bemerkung')
-    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln")
-    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall")
+    protective_measures = fields.Html(string="Schutzmaßnahmen und Verhaltensregeln",default=_get_default_protective_measures)
+    malfunctions = fields.Html(string="Verhalten bei Störungen / Verhalten bei Gefahrfall", default=_get_default_malfunctions)
     first_aid = fields.Html(string="Verhalten bei Unfällen, Erste Hilfe")
     maintenance_cleaning = fields.Html(string="Instandhaltung, Reinigung, Entsorgung")
     consequences = fields.Html(string="Folgen der Nichtbeachtung")

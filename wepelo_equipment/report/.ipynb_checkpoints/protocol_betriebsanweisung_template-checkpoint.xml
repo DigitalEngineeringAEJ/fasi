@@ -12,7 +12,6 @@
                                 Betriebsanweisung Maschinen und Arbeitsverfahren
                             </h1>
                         <br></br>
-                        <br></br>
                              <div class="col-12">
                                  <div class="col-9  pull-left">
 
@@ -34,7 +33,8 @@
                                       <address t-field="o.customer_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
                                  </div>
                         </div>
-
+                        
+                        
                         <table style="font-size:16px" class="table table-bordered">
                             <tr style="background-color:blue;">
                                 <td colspan="3" style="text-align:center;">
