@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!--Service Data-->
+       <record id="activity_gefährdungsbeurteilung" model="equipment.test">
+            <field name="display_name">Gefährdungsbeurteilung</field>
+            <field name="equipment_test_type">calibration_ei</field>
+            <field name="cycle_duration">365</field>
+        </record>
+
+        <record id="activity_begehung" model="equipment.test">
+            <field name="display_name">Begehung</field>
+            <field name="equipment_test_type">routine_test</field>
+            <field name="cycle_duration">365</field>
+        </record>
+
+        <record id="equipment_test_data_el_test" model="equipment.test">
+            <field name="display_name">Folgebegehung</field>
+            <field name="equipment_test_type">el_test</field>
+        </record>
+        
+        <record id="activity_gefahrstoff_verszeichnis" model="equipment.test">
+            <field name="display_name">Gefahrstoff-Verzeichnis</field>
+            <field name="equipment_test_type">gefahrstoff_verszeichnis</field>
+        </record>
+        
+        <record id="activity_unterweisung" model="equipment.test">
+            <field name="display_name">Unterweisung</field>
+            <field name="equipment_test_type">unterweisung</field>
+        </record>
+
+         <record id="activity_betriebsanweisung" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
+            <field name="equipment_test_type">betriebsanweisung</field>
+            <field name="cycle_duration">365</field>
+        </record>
+
+        <record id="equipment_test_data_calibration" model="equipment.test">
+            <field name="display_name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="equipment_test_type">calibration</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <record id="equipment_test_data_maintenance" model="equipment.test">
+            <field name="display_name">Betriebsanweisung PSA</field>
+            <field name="equipment_test_type">maintenance</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <record id="activity_el_pruefung_buero" model="equipment.test">
+            <field name="display_name">Elektroprüfung Büro</field>
+            <field name="equipment_test_type">el_pruefung_buero</field>
+            <field name="cycle_duration">730</field>
+        </record>
+        <record id="activity_el_pruefung_werk_prod" model="equipment.test">
+            <field name="display_name">Elektroprüfung Werkstatt/Produktion</field>
+            <field name="equipment_test_type">el_pruefung_werk_prod</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <record id="activity_pruefung_fuerloescher" model="equipment.test">
+            <field name="display_name">Prüfung Feuerlöscher</field>
+            <field name="equipment_test_type">pruefung_fuerloescher</field>
+            <field name="cycle_duration">730</field>
+        </record>
+        <record id="activity_bet_sich_pruefung" model="equipment.test">
+            <field name="display_name">Betriebssicherheitsprüfung</field>
+            <field name="equipment_test_type">bet_sich_pruefung</field>
+            <field name="cycle_duration">365</field>
+        </record>
+        <!--<record id="equipment_test_data_repairs" model="equipment.test">
+            <field name="display_name">Reparaturen</field>
+            <field name="equipment_test_type">repairs</field>
+            <field name="cycle_duration">0</field>
+        </record>-->
+
+        <!-- Mail Activity Data-->
+
+         <record id="mail_activity_data_calibration_ei" model="mail.activity.type">
+            <field name="name">Gefährdungsbeurteilung</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">9</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_gefährdungsbeurteilung"/>
+        </record>
+        <record id="mail_activity_data_routine_test" model="mail.activity.type">
+            <field name="name">Begehung</field>
+            <field name="delay_count">365</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">10</field>
+            <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_begehung"/>
+        </record>
+        
+        <record id="mail_activity_data_el_test" model="mail.activity.type">
+            <field name="name">Folgebegehung</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_el_test"/>
+            <field name="sequence">11</field>
+        </record>
+
+
+        <record id="mail_activity_data_betriebsanweisung" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Maschinen und Arbeitsverfahren</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">12</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_betriebsanweisung"/>
+        </record>
+
+        <record id="mail_activity_data_betriebsanweisung_gefahrstoffe" model="mail.activity.type">
+            <field name="name">Betriebsanweisung Gefahrstoffe</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">13</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_calibration"/>
+        </record>
+        <record id="mail_activity_data_betriebsanweisung_psa" model="mail.activity.type">
+            <field name="name">Betriebsanweisung PSA</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">14</field>
+             <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="equipment_test_data_maintenance"/>
+        </record>
+
+        
+        <record id="mail_activity_gefahrstoff_verszeichnis" model="mail.activity.type">
+            <field name="name">Gefahrstoff-Verzeichnis</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_gefahrstoff_verszeichnis"/>
+            <field name="sequence">15</field>
+        </record>
+        
+        <record id="mail_activity_unterweisung" model="mail.activity.type">
+            <field name="name">Unterweisung</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_unterweisung"/>
+            <field name="sequence">16</field>
+        </record>
+        
+        
+        <record id="mail_activity_el_pruefung_buero" model="mail.activity.type">
+            <field name="name">Elektroprüfung Büro</field>
+            <field name="delay_count">730</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_el_pruefung_buero"/>
+            <field name="sequence">17</field>
+        </record>
+        <record id="mail_el_pruefung_werk_prod" model="mail.activity.type">
+            <field name="name">Elektroprüfung Werkstatt</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_el_pruefung_werk_prod"/>
+            <field name="sequence">18</field>
+        </record>
+        <record id="mail_activity_pruefung_fuerloescher" model="mail.activity.type">
+            <field name="name">Prüfung Feuerlöscher</field>
+            <field name="delay_count">730</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_pruefung_fuerloescher"/>
+            <field name="sequence">19</field>
+        </record>
+        
+        </data>
+    
+    
+    <record id="mail_activity_bet_sich_pruefung" model="mail.activity.type">
+            <field name="name">Betriebssicherheitsprüfung</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+          <field name="res_model_id" ref="maintenance.model_maintenance_equipment"/>
+            <field name="equipment_test_type_id" ref="activity_bet_sich_pruefung"/>
+            <field name="sequence">20</field>
+<!--         <field name="active">False</field> -->
+    </record>
+    
+         <record id="mail_act_maintenance_request" model="mail.activity.type">
+        <field name="name">Maintenance Request</field>
+        <field name="icon">fa-wrench</field>
+        <field name="res_model_id" ref="maintenance.model_maintenance_request"/> 
+        <field name="active">False</field>
+     </record> 
+
+
+        <record id="mail_activity_data_maintenance" model="mail.activity.type">
+            <field name="name">Wartung</field>
+            <field name="delay_count">360</field>
+            <field name="delay_unit">days</field>
+            <field name="sequence">13</field>
+            <field name="category">upload_file</field>
+            <field name="equipment_test_type_id" ref="equipment_test_data_maintenance"/> 
+        <field name="active">False</field>
+        </record>
+<!--         <record id="mail_activity_data_repairs" model="mail.activity.type">
+            <field name="name">Reparaturen</field>
+            <field name="sequence">14</field>
+            <field name="category">upload_file</field>
+            <field name="equipment_test_type_id" ref="equipment_test_data_repairs"/> 
+        <field name="active">False</field>
+        </record> -->
+        
+        <record id="equipment_types_mechanische_gefährdungen" model="equipment.types">
+            <field name="name">Mechanische Gefährdungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_elektrische_gefährdungen" model="equipment.types">
+            <field name="name">Elektrische Gefährdungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_gefahrstoffe" model="equipment.types">
+            <field name="name">Gefahrstoffe</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_biologische_arbeitsstoffe" model="equipment.types">
+            <field name="name">Biologische Arbeitsstoffe</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_brand_und_explosion" model="equipment.types">
+            <field name="name">Brand und Explosion</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_thermische_faktoren" model="equipment.types">
+            <field name="name">Thermische Faktoren</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_spezielle_physikalische_belastungen" model="equipment.types">
+            <field name="name">Spezielle Physikalische Belastungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_arbeitsumgebungsbedingungen" model="equipment.types">
+            <field name="name">Arbeitsumgebungsbedingungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_physische_belastung" model="equipment.types">
+            <field name="name">Physische Belastung</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_psychische_belastungen" model="equipment.types">
+            <field name="name">Psychische Belastungen</field>
+            <field name="types_sn">-----</field>
+        </record>
+        <record id="equipment_types_menschen_tiere_pflanzen_menschen" model="equipment.types">
+            <field name="name">Menschen, Tiere, Pflanzen, Menschen</field>
+            <field name="types_sn">-----</field>
+        </record>
+        
+                                    <!-- Mechanische Gefährdungen -->
+          <record id="gefaehrdungsf_kontrolliert_bewegte_ungeschuetzte_teile" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Kontrolliert bewegte ungeschützte Teile</field> 
+            <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_mechanische_gefährdungen'/>
+        </record>
+        
+        <record id="gefaehrdungsf_gefährliche_oberflächen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Gefährliche Oberflächen</field>
+            <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_mechanische_gefährdungen'/>
+        </record>
+        
+        <record id="gefaehrdungsf_unkontrolliert_bewegte_herabfallende_umstuerzende_teile" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Unkontrolliert bewegte, herabfallende, umstürzende Teile</field>
+            <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_mechanische_gefährdungen'/>
+        </record>
+        
+        <record id="gefaehrdungsf_transport_oder_mobile_arbeitsmittel" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Transport oder mobile Arbeitsmittel</field>
+            <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_mechanische_gefährdungen'/>
+        </record>
+        
+        <record id="gefaehrdungsf_sturz" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Sturz</field>
+            <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_mechanische_gefährdungen'/>
+        </record>
+        
+        <record id="gefaehrdungsf_absturz" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Absturz</field>
+            <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_mechanische_gefährdungen'/>
+        </record> 
+        
+                                <!-- Elektrische Gefährdungen -->
+         <record id="gefaehrdungsf_elektrischer_schlag" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Elektrischer Schlag</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_elektrische_gefährdungen'/>
+        </record>
+        <record id="gefaehrdungsf_lichtbögen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Lichtbögen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_elektrische_gefährdungen'/>
+        </record>
+        <record id="gefaehrdungsf_statische_elektrische" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Statische Elektrische</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_elektrische_gefährdungen'/>
+        </record>
+        <record id="gefaehrdungsf_elektromagnetische_felder" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Elektromagnetische Felder</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_elektrische_gefährdungen'/>
+        </record> 
+        
+                                        <!-- Gefahrstoffe -->
+        
+         <record id="gefaehrdungsf_hautkontakt" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Hautkontakt (Feststoffe, Flüssigkeiten, Feuchtarbeit)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_gefahrstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_einatmen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Einatmen (Gase, Dämpfe, Nebel, Stäube, Rauche)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_gefahrstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_verschlucken" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Verschlucken</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_gefahrstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_physikal_chemische_gefährdungen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">physikal.- chemische Gefährdungen (unkontrollierte chem. Reaktionen)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_gefahrstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_nanomaterialien" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Nanomaterialien</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_gefahrstoffe'/>
+        </record> -->
+        
+                                <!-- Biologische Arbeitsstoffe -->
+        
+         <record id="gefaehrdungsf_infektionsgefährdung_durch_pathogene_migroorganismen" model="gefahren.faktor">
+             <field name="gefaehrdungsf">Infektionsgefährdung durch pathogene Mikro-
+                 organismen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_toxische_wirkung_von_mikroorganismen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Toxische Wirkung von Mikro-
+                organismen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_sensibilisierende_wirkung_von_mikroorganismen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Sensibilisierende Wirkung von Mikro-
+                organismen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
+        </record>
+        <record id="gefaehrdungsf_gentechnisch_veränderte_organismen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Gentechnisch veränderte Organismen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_biologische_arbeitsstoffe'/>
+        </record>  
+        
+                                <!-- Brand und Explosion -->
+        
+         <record id="gefaehrdungsf_brandgefährdung_durch_feststoffe_flüssigkeiten_gase" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Brandgefährdung durch Feststoffe, Flüssigkeiten, Gase </field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_brand_und_explosion'/>
+        </record>
+        <record id="gefaehrdungsf_explosionsgefährdung" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Explosionsgefährdung</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_brand_und_explosion'/>
+        </record>
+        <record id="gefaehrdungsf_zündquellen_bei_brand_bzw_explosionsgefahr" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Zündquellen bei Brand- bzw. Explosionsgefahr</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_brand_und_explosion'/>
+        </record>
+        <record id="gefaehrdungsf_explosivstoffe" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Explosivstoffe (explosionsfähige Stoffe / Sprengstoffe)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_brand_und_explosion'/>
+        </record>
+        <record id="gefaehrdungsf_physikalische_explosionen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Physikalische Explosionen (Druckgasbehälter)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_brand_und_explosion'/>
+        </record>
+         
+                                <!-- Thermische Faktoren -->
+        
+         <record id="gefaehrdungsf_kontakt_mit_heißen_oberflächen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Kontakt mit heißen Oberflächen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_thermische_faktoren'/>
+        </record>
+        <record id="gefaehrdungsf_kontakt_mit_kalten_oberflächen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Kontakt mit kalten Oberflächen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_thermische_faktoren'/>
+        </record>
+        <record id="gefaehrdungsf_kontakt_mit_heißen_medien" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Kontakt mit heißen Medien</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_thermische_faktoren'/>
+        </record>
+        <record id="gefaehrdungsf_kontakt_mit_kalten_medien" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Kontakt mit kalten Medien</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_thermische_faktoren'/>
+        </record> 
+        
+                                <!-- Spezielle Physikalische Belastungen -->
+        
+        
+         <record id="gefaehrdungsf_ultraschall_infraschall" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Ultraschall, Infraschall</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_spezielle_physikalische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_vibrationen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Vibrationen (Ganzkörper- oder Hand-Arm-Vibrationen)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_spezielle_physikalische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_lärm" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Lärm</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_spezielle_physikalische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_optische_strahlung" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Optische Strahlung (UV-, IR-, sichtbare und Laserstrahlung)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_spezielle_physikalische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_unter_oder_überdruck" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Unter- oder Überdruck</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_spezielle_physikalische_belastungen'/>
+        </record>
+        
+                                <!-- Arbeitsumgebungsbedingungen -->
+        
+        
+         
+        <record id="gefaehrdungsf_klima" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Klima (Temperatur, Feuchte, Luftgeschwindigkeit, Wärmestrahlung) </field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_arbeitsumgebungsbedingungen'/>
+        </record>
+        <record id="gefaehrdungsf_beleuchtung" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Beleuchtung (Beleuchtungsstärke, Blendung, Reflexion)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_arbeitsumgebungsbedingungen'/>
+        </record>
+        <record id="gefaehrdungsf_unzureichende_atematmosphäre" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Unzureichende Atematmosphäre (Luftwechsel)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_arbeitsumgebungsbedingungen'/>
+        </record>
+        <record id="gefaehrdungsf_unzureichende_flucht" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Unzureichende Flucht- und Verkehrswege, Böden, Treppen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_arbeitsumgebungsbedingungen'/>
+        </record>
+        <record id="gefaehrdungsf_unzureichende_kennzeichnung" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Unzureichende Kennzeichnung</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_arbeitsumgebungsbedingungen'/>
+        </record>
+        <record id="gefaehrdungsf_unzureichende_bewegungsfläche" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Unzureichende Bewegungsfläche, ungünstige Anordnungen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_arbeitsumgebungsbedingungen'/>
+        </record>
+        
+                                <!-- Physische Belastung -->
+        
+        
+         
+        
+        <record id="gefaehrdungsf_schwere_dynamische_arbeit" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Schwere dynamische Arbeit (Handhaben schwerer Lasten)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_physische_belastung'/>
+        </record>
+        <record id="gefaehrdungsf_einseitige_dynamische_arbeit" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Einseitige dynamische Arbeit (wiederkehrende Bewegungen)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_physische_belastung'/>
+        </record>
+        <record id="gefaehrdungsf_haltungsarbeit" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Haltungsarbeit (Zwangshaltung), Haltearbeit</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_physische_belastung'/>
+        </record>
+        <record id="gefaehrdungsf_kombination_aus_statischer_und_dynamischer_arbeit" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Kombination aus statischer und dynamischer Arbeit</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_physische_belastung'/>
+        </record>
+        
+                                
+                                        <!-- Psychische Belastungen -->
+        
+         
+        
+        
+        <record id="gefaehrdungsf_ungenügend_gestaltete_arbeitsaufgabe" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Ungenügend gestaltete Arbeitsaufgabe</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_psychische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_ungenügend_gestaltete_arbeitsorganisation" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Ungenügend gestaltete Arbeitsorganisation</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_psychische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_ungenügend_gestaltete_soziale_bedingungen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Ungenügend gestaltete soziale Bedingungen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_psychische_belastungen'/>
+        </record>
+        <record id="gefaehrdungsf_ungenügend_arbeitsplatz_und_arbeitsumgebungsbedingungen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Ungenügende Arbeitsplatz- und Arbeitsumgebungsbedingungen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_psychische_belastungen'/>
+        </record>
+        
+        
+                                <!-- Menschen, Tiere, Pflanzen, Menschen -->
+        
+        
+         <record id="gefaehrdungsf_umgang_mit_tieren" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Umgang mit Tieren (z.B. beißen, stechen) </field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_menschen_tiere_pflanzen_menschen'/>
+        </record>
+        <record id="gefaehrdungsf_durch_menschen" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Durch Menschen (z. B. Straftaten / Raubüberfall)</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_menschen_tiere_pflanzen_menschen'/>
+        </record>
+        <record id="gefaehrdungsf_gefahr_des_ertrinkens" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Gefahr des Ertrinkens</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_menschen_tiere_pflanzen_menschen'/>
+        </record>
+        <record id="gefaehrdungsf_alleinarbeit" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Alleinarbeit</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_menschen_tiere_pflanzen_menschen'/>
+        </record>
+        <record id="gefaehrdungsf_informationsaufnahme" model="gefahren.faktor">
+            <field name="gefaehrdungsf">Informationsaufnahme, Handhabung von Stellteilen</field>
+             <field name="gefahrenquellen_typ_id" ref='wepelo_equipment.equipment_types_menschen_tiere_pflanzen_menschen'/>
+        </record>
+        
+        <record id="seq_fortlaufende_seriennummer" model="ir.sequence">
+            <field name="name">Seriennummer</field>
+            <field name="code">fortlaufende.seriennummer</field>
+            <field name="prefix">0</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_begehung_eins" model="ir.sequence">
+            <field name="name">Begehung</field>
+            <field name="code">begehung.eins</field>
+            <field name="prefix">1.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_begehung_zwei" model="ir.sequence">
+            <field name="name">Begehung Zwei</field>
+            <field name="code">begehung.zwei</field>
+            <field name="prefix">2.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_folgebegehung" model="ir.sequence">
+            <field name="name">folgebegehung</field>
+            <field name="code">folgebegehung</field>
+            <field name="prefix">2.</field>
+            <field name="padding">2</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    <record id="res_partner_ref_seq" forcecreate="1" model="ir.sequence">
+        <field name="name">Partner Ref Sequence</field>
+        <field name="code">res.partner.ref.seq</field>
+        <field eval="1" name="number_increment" />
+        <field name="padding">6</field>
+    </record>
+
+    <record id="equipment_hebebuhne" model="maintenance.equipment.category">
+        <field name="name">Arbeitsplatz</field>
+    </record>
+
+    <record id="equipment_tore" model="maintenance.equipment.category">
+        <field name="name">Arbeitsmittel</field>
+    </record>
+
+    <record id="equipment_bremsprufstand" model="maintenance.equipment.category">
+        <field name="name">Tätigkeit</field>
+    </record>
+
+    <record id="equipment_personal" model="maintenance.equipment.category">
+        <field name="name">Personal</field>
+    </record>
+    
+    <record id="equipment_wege" model="maintenance.equipment.category">
+        <field name="name">Wege</field>
+    </record>
+
+    <record id="equipment_umwelteinwirkung" model="maintenance.equipment.category">
+        <field name="name">Umwelteinwirkung</field>
+    </record>
+    
+    <record id="equipment_arbeitsstoffe" model="maintenance.equipment.category">
+        <field name="name">Arbeitsstoffe</field>
+    </record>
+    
+    <record id="equipment_psa" model="maintenance.equipment.category">
+        <field name="name">PSA</field>
+    </record>
+</odoo>

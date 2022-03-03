@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_hazard_category_view_form" model="ir.ui.view">
+        <field name="name">hazard.category.form</field>
+        <field name="model">hazard.category</field>
+        <field name="inherit_id" ref="safety_master.hr_equipment_category_view_form"/>
+        <field name="arch" type="xml"> 
+            <field name="technician_user_id" position="after">
+                <field name="serial_no"/>
+                <field name="show_user_tab_eichung"/>
+            </field>
+        </field>
+    </record>
+</odoo>

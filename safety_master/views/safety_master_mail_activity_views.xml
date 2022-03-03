@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_activity_type_view_tree_inherit_safety_master" model="ir.ui.view">
+        <field name="name">mail.activity.type.view.tree.inherit.safety.master</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_tree"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="id"/>
+            	<field name="equipment_test_type_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mail_activity_type_view_form_inherit_safety_master" model="ir.ui.view">
+        <field name="name">mail.activity.type.view.form.inherit.safety.master</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <field name="category" position="after">
+                <field name="equipment_test_type_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mail_activity_view_tree_inherit_safety_master" model="ir.ui.view">
+        <field name="name">mail.activity.view.tree.inherit.safety.master</field>
+        <field name="model">mail.activity</field>
+        <field name="inherit_id" ref="mail.mail_activity_view_tree"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='summary']" position="replace" invisible="1">
+        </xpath>
+            <field name="res_name" position='after'>
+                <field name="customer_id"/>
+                <field name="equipment_service_id" invisible="1"/>
+                <field name="category_id"/>
+                <field name="serial_no"/>
+            </field>
+        <xpath expr="//field[@name='res_name']" position="replace" invisible="1">
+        </xpath>
+            <field name="date_deadline" position="after">
+                <field name="month_more" invisible="1"/>
+                <field name="month_less" invisible="1"/>
+                <field name="month_late" invisible="1"/>
+                <field name="schedule_date"/>
+                <field name="test_completed"/>
+                <field name="test_fail"/>
+            </field>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-success">test_completed == True</attribute>
+                <attribute name="decoration-warning">month_less == True</attribute>
+                <attribute name="decoration-danger">month_late == True</attribute>
+                <attribute name="decoration-muted">month_more == True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mail_activity_view_form_popup_inherit_safety_master" model="ir.ui.view">
+        <field name="name">mail.activity.view.form.popup.inherit.safety.master</field>
+        <field name="model">mail.activity</field>
+        <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <field name="activity_type_id" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">True</attribute>
+                <attribute name="attrs">{'invisible': [('id','=',False)], 'required': ('id','!=',False)}</attribute>
+            </field>
+             <field name="date_deadline" position="attributes">
+                 <attribute name="required">0</attribute>
+                <attribute name="attrs">{'invisible': [('id','=',False)], 'required': ('id','!=',False)}</attribute>
+            </field>
+            <group position="before">
+                <field name="test_equipment_ids" invisible="1"/>
+                <group attrs="{'invisible': [('id','!=',False)]}">
+                    <field name="schedule_activity_type_ids" invisible="1" nolabel="1">
+                        <tree editable="1">
+                            <field name="res_model_id" invisible="1" />
+                            <field name="mail_activity_id" invisible="1" />
+                            <field name="mail_activity_type_ids"  invisible="1"/>
+                            <field name="activity_type_id" invisible="1" required="0"  options="{'no_create': True, 'no_open': True}"/>
+                            <field name="date_deadline" invisible="1"  required="0" />
+                        </tree>
+                    </field>
+                </group>
+            </group>
+            <field name="summary" position="before">
+                <field name="mail_activity_type_ids" invisible="1"/>
+                <field name="activity_type_id" domain="[('id', 'in', mail_activity_type_ids)]"/>
+                <field name="date_deadline"/>
+            </field>
+            <field name="summary" position="after">
+                <field name="customer_id"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="res_name"/>
+                <field name="equipment_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="safety_master_mail_activity_view_form" model="ir.ui.view">
+        <field name="name">safety.master.mail.activity.view.form</field>
+        <field name="model">mail.activity</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <form string="Log an Activity" create="false">
+                <sheet string="Activity">
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <group invisible="1">
+                        <field name="activity_category" invisible="1" />
+                        <field name="res_model" invisible="1"/>
+                        <field name="res_model_id" invisible="1"/>
+                        <field name="res_id" invisible="1" widget="integer"/>
+                        <field name="force_next" invisible="1"/>
+                        <field name="previous_activity_type_id"/>
+                        <field name="has_recommended_activities"/>
+                        <field name="active"/>
+                        <field name="month_more"/>
+                        <field name="month_less"/>
+                        <field name="month_late"/>
+                        <field name="test_completed"/>
+                        <field name="test_fail"/>
+                    </group>
+                    <group attrs="{'invisible': [('has_recommended_activities','=',False)]}">
+                        <div class="o_row">
+                            <strong>Recommended Activities</strong>
+                            <field name="recommended_activity_type_id" widget="selection_badge"
+                                domain="[('previous_type_ids', '=', previous_activity_type_id)]"
+                                nolabel="1"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="test_equipment_ids" invisible="1"/>
+                            <field name="activity_type_id" required="1" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="equipment_test_type_id" invisible="1"/>
+                            <field name="equipment_test_type" invisible="1"/>
+                            <field name="equipment_protocol_id" invisible="1"/>
+                            <field name="category_id" invisible="1"/>
+                           <!-- <field name="summary" placeholder="e.g. Discuss proposal"/> -->
+                            <field name="equipment_id" invisible="0"/>
+                            <field name="planning"/>
+                            <field name="customer_id"/>
+                            <field name="res_name"/>
+                        </group>
+                        
+                        
+                         <!-- Basis Ansicht  -->
+                        
+                        
+                        <group>
+                            <field name="date_deadline"/>
+                            <field name="user_id"/>
+                            <field name="schedule_date" attrs="{'invisible': [('planning', '!=', 'detail_plan')]}"/>
+                            <label for="duration" attrs="{'invisible': [('planning', '!=', 'detail_plan')]}"/>
+                            <div attrs="{'invisible': [('planning', '!=', 'detail_plan')]}">
+                                <field name="duration"
+                                       widget="float_time"
+                                       class="oe_inline"/> <span class="ml8">hours</span>
+                            </div>
+                            <field name="signature" widget="signature"/>
+                            <field name="equipment_service_id" invisible="1"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Ansicht für Gefährdungsbeurteilung -->
+                    
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration_ei')]}">
+                            <page string="Gefährdungen">
+                            <field name= 'gefaehrdunsfaktor_ids'>
+                            <tree editable="bottom">
+                            <field name="sequence_g" widget="handle"/>
+                            <field name="nummer_gef"/>
+                            <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
+                            <field name="gefaehrdungsf_name" domain="[('gefahrenquellen_typ_id', '=', gefahrenquellen_typ_id)]"/>
+                            <field name="gefahrenquellen_typ_beschreibung"/>
+                            <field name="gef_beurteilung_w"/>
+                            <field name="gef_beurteilung_a" />
+                            <field name="gef_beurteilung_e" force_save="1" invisible="1"/>
+                            <field name="gefahrenquellen_typ_risiko" string="Risiko" attrs="{'invisible': [('gef_beurteilung_e', '=', False)]}"/>
+                            <field name="gefahrenquellen_typ_beschreibung_risikominderung" string="Beschreibung/Risikominderung"/>
+                            <field name="klasse_gef" string="Klassifizierung"/>
+                            <field name="abs_gef"/>
+                            <field name="abstellmassnahme_gef_kla" string="Abs Klassifizierung"/>
+                            <field name="deadline_abs_gef" string="Deadline Abstellmaßnahme"/>
+                            <field name="customer_id" string="Verantwortlich"/>
+                            <field name="folg_beg_gef" string="Folgebegehung erforderlich?" context="{'defaultfolg_beg_gef': 'Ja'}"/>
+                            </tree>
+                        </field>
+                        </page>
+                        </notebook>
+
+                    <!-- Ansicht für Betriebsanweisung Maschinen und Arbeitsverfahren-->
+                    
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'betriebsanweisung')]}">
+                            <page string="Gefährdungen" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Schutzmaßnahmen und Verhaltensregeln">
+                                     <field name= 'protective_measures'  nolabel="1"/>
+                        </page>
+                          <page string="Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'malfunctions'  nolabel="1"/>
+                            </page>
+                          <page string="Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="Instandhaltung, Reinigung, Entsorgung">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="Folgen der Nichtbeachtung">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
+                         <page string="Freigabedatum">
+                                 <field name= 'release_date'/>
+                             <br/>
+                             </page>
+                             <page string="Nächster Überprüfungstermin dieser Betriebsanweisung:">
+                                 <field name= 'review_date' string="Nächster Überprüfungstermin dieser Betriebsanweisung"/>
+                         </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                            </page>
+                        </notebook>
+                    
+                    <!-- Ansicht für Betriebsanweisung Gefahrstoffe-->
+                    
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'calibration')]}">
+                            <page string="1. Gefahrstoffbezeichnung">
+                                     <field name= 'hazardous_material_designation'  nolabel="1"/>
+                        </page>
+                         <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                          <page string="3. Schutzmaßnahmen und Verhaltensregeln">
+                                <field name= 'protective_measures'  nolabel="1"/>
+                            </page>
+                          <page string="4. Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'malfunctions' nolabel="1"/>
+                            </page>
+                          <page string="5. Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                         <page string="6. Sachgerechte Entsorgung">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="7. Folgen der Nichtbeachtung">
+                                 <field name= 'consequences'/>
+                             <br/>
+                             </page>
+                             <page string="Nächster Überprüfungstermin dieser Betriebsanweisung:">
+                                 <field name= 'review_date' string="Nächster Überprüfungstermin dieser Betriebsanweisung"/>
+                         </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                            </page>
+                        </notebook>
+                    
+                    <!-- Ansicht für Betriebsanweisung PSA -->
+                    
+                     <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'maintenance')]}">
+                            <page string="1. Anwendungsbereich">
+                                     <field name= 'protective_measures'  nolabel="1"/>
+                        </page>
+                         <page string="2. Gefahren für Mensch und Umwelt" attrs="{'invisible': [('gefaehrdunsfaktor_betriebsanweisun_ids', '=', False) ]}">
+                                <field name= 'gefaehrdunsfaktor_betriebsanweisun_ids'>
+                                    <tree editable="bottom">
+                                        <field name="gefahrenquellen_typ_id" domain="[['types_sn', '=', '-----']]"/>
+                                        <field name="gefaehrdungsf_name"/>
+                                        <field name="gefahrenquellen_typ_beschreibung"/>
+                                    </tree>
+                                </field>
+                            </page>
+                          <page string="3. Schutzmaßnahmen und Verhaltensregeln ">
+                                <field name= 'malfunctions'  nolabel="1"/>
+                            </page>
+                          <page string="4. Verhalten bei Störungen / Verhalten bei Gefahrfall">
+                                <field name= 'first_aid' nolabel="1"/>
+                            </page>
+                          <page string="5. Verhalten bei Unfällen, Erste Hilfe">
+                                <field name= 'maintenance_cleaning' nolabel="1"/>
+                            </page>
+                         <page string="6. Sachgerechte Entsorgung">
+                                <field name= 'consequences' nolabel="1"/>
+                            </page>
+                         <page string="Freigabedatum">
+                                 <field name= 'release_date'/>
+                             <br/>
+                             </page>
+                             <page string="Nächster Überprüfungstermin dieser Betriebsanweisung:">
+                                 <field name= 'review_date' string="Nächster Überprüfungstermin dieser Betriebsanweisung"/>
+                         </page>
+                         <page string="Unterschrift der Geschäftsleitung/ Vorgesetzter Person">
+                                <field name= 'signature_leiter' invisible="True"/>
+                             
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px; margin-right:250px;"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                            </page>
+                        </notebook>
+                    
+                    <!-- Ansicht für Begehung -->                 
+                    
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
+                        <page string="1. Festgestellte Mängel, die gleich behoben werden konnten:">
+                            <field name= 'begehung_id_feld'>
+                                <tree editable="bottom">
+                                <field name = "sequence_b" widget="handle"/>
+                                <field name="id" invisible="1"/>
+                                <field name="nummer_eins"/>
+                                <field name="name_eins" string="Name"/>
+                                <field name="klasse"/>
+                                <field name="abstellmassnahme"/>
+                                <field name="abstellmassnahme_k"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    
+                    <notebook attrs="{'invisible': [('equipment_test_type', '!=', 'routine_test')]}">
+                            <page string="2. Festgestellte Mängel, die nicht gleich behoben werden konnten:">
+                            <field name= 'begehung_id_feld_zwei'>
+                            <tree editable="bottom">
+                            <field name = "sequence_b_zwei" widget="handle"/>
+                            <field name="id_zwei" invisible="1"/>
+                            <field name="nummer_drei"/>
+                            <field name="name_zwei"/>
+                            <field name="klasse_zwei"/>
+                            <field name="abstellmassnahme_zwei"/>
+                            <field name="abstellmassnahme_k_zwei"/>
+                            <field name="deadline_abs"/>
+                            <field name="verantwortlich"/>
+                            <field name="folg_erf_m"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+
+                    
+                    
+                    <!-- Ansicht für Folgebegehung -->
+                    
+                     <group string="Folgebegehung" attrs="{'invisible': [('equipment_test_type', '!=', 'el_test')]}">
+                        <notebook>
+                            <page string="3. Kontrolle der Wirksamkeit">
+                            <field name= 'folg_beg_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence_ref" widget="handle"/>
+                            <field name="id_ref" invisible="1"/>
+                            <field name="nummer_vier"/>
+                            <field name="name_vier"/>
+                            <field name="klasse_drei"/>
+                            <field name="abstellmassnahme_drei"/>
+                            <field name="abstellmassnahme_k_drei"/>
+                            <field name="deadline_abs_ref"/>
+                            <field name="verantwortlich_ref"/>
+                            <field name="wirksam"/>
+                            <field name="w_folg_erf"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    </group>
+                    
+                     <!-- Ansicht für Arbeitsstoff-und Gefahrstoff-Verzeichnis  -->
+                    
+                     <group string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)" attrs="{'invisible': [('equipment_test_type', '!=', 'gefahrstoff_verszeichnis')]}">
+                        <notebook>
+                            <page string="Arbeitsstoff-und Gefahrstoff-Verzeichnis (§6 GefStoffV)">
+                            <field name= 'gef_verzeichnis_ids'>
+                            <tree editable="bottom">
+                            <field name = "sequence" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="name" />
+                            <field name="prod_bez"/>
+                            <field name="partner_id"/>
+                            <field name='kategorie' widget="selection"/>
+                            <field name="zweck"/>
+                            <field name="menge"/>
+                            <field name="zeitraum"/>
+                            <field name="daten_blatt"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    </group>
+                    
+                    <!-- Ansicht für Unterweisung  -->
+                    <group string="Dokumentation der Unterweisung" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                         <notebook>
+                    <page string='Unterweisungsinhalte (insbesondere Gefahrquellen, Maßnahmen zur Arbeitssicherheit und zum Gesundheitsschutz, Erste Hilfe):'>
+                    <field name= 'inhalte'>
+                         </field>
+                             </page>
+                    </notebook>
+                    </group>
+                    
+                     <group string="Name und Unterschrift der Teilnehmer:" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <notebook>
+                            <page string="Mit meiner Unterschrift bestätige ich, dass ich an der Unterweisung teilgenommen und den Inhalt verstanden habe.">
+                            <field name= 'unterweisung_ids'>  
+                            <tree editable="bottom">
+                            <field name = "sequence" widget="handle"/>
+                            <field name="id" invisible="1"/>
+                            <field name="name_customer" />
+                            <field name="signature_customer" widget="signature"/>
+                        </tree>
+                        </field>
+                        </page>
+                        </notebook>                   
+                     </group>
+                    <table style="table-layout:fixed; font-size:16px" class="table table-borderless table-sm mt16 ml16" attrs="{'invisible': [('equipment_test_type', '!=', 'unterweisung')]}">
+                        <tr>
+                                <td scope="col"><p/>Bemerkungen:</td>
+                            </tr>
+                        <tr>
+                            <th scope="col"> <field name='note_u'/></th>
+                        </tr>
+                        <br></br>
+                        <br></br>
+                             <tr>
+                            <th scope="col"><field name= 'name_leitung' style="max-height:50px; max-width:100px; margin-bottom:0px border-bottom:1px"/></th>
+                           <th scope="col"><field name='signature_leiter' widget="signature" style="max-height:50px; max-width:100px;"/></th>
+                          </tr>
+                          <tr t-as="line">
+                                <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Name der Leitung</td>
+                                  <td scope="col"><p style="border-top:1px solid grey; width:100px;"/>Unterschrift der Leitung</td>
+                            </tr>
+                        </table>      
+                    
+                    <!-- noch nicht defnierte View -->
+<!--                     <group attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'maintenance'), ('exhaust_measuring_device', '!=', 'petrol')]}">
+                        <group>
+                            <field name="test_gas_concentration_co"/>
+                            <field name="test_gas_concentration_co2"/>
+                            <field name="test_gas_concentration_c3"/>
+                        </group>
+                        <group>
+                            <field name="value_after_adjustment_co"/>
+                            <field name="value_after_adjustment_co2"/>
+                            <field name="value_after_adjustment_c3"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
+                        <group>
+                            <field name="calibration_device"/>
+                            <field name="ks"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
+                       <label for="is_torque_measurement" string="Art der Prüfung:"/>
+                        <div>
+
+                        <field
+                            name="is_torque_measurement"
+                            style="width:1% !important;"
+                            nolabel="1"
+                        />
+                           <label for="is_torque_measurement"  style="display: inline-block;font-weight:normal;"/>
+                          <br></br>
+                           <field
+                            name="is_thermal_power"
+                            style="width:1% !important;"
+                            nolabel="1"
+                        />
+                          <span style="display: inline-block;">
+                              Rollenbremsprüfstand auf der Basis der Wirkleistungsmessung
+                          </span>
+                        <br></br>
+                           <field
+                            name="is_plate"
+                            style="width:1% !important;"
+                            nolabel="1"
+                        />
+                          <span style="display: inline-block;">
+                              Plattenbremsprüfstand
+                          </span>
+
+                        </div>
+                    </group>
+                    <separator string="Ergebnis der Stückprüfung- Messtechnische Eigenschaften"
+                               attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}"/>
+                    <br></br>
+                    <div attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
+                        <label for="small_measuring_range" string="Max. Messbereich 0 -"/>
+                        <field name="small_measuring_range" nolabel="1"
+                               style="display: inline-block;width:5%;"/>
+                        <strong style="display: inline-block;">KN pro Anzeige (kleiner
+                            Messbereich)
+                        </strong>
+                    </div>
+                    <div attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
+                        <label for="large_measuring_range" string="Max. Messbereich 0 -"/>
+                        <field name="large_measuring_range" nolabel="1"
+                               style="vertical-align: middle;display: inline-block;width:5%;"/>
+                        <strong style="vertical-align: middle;display: inline-block;">KN pro Anzeige (großer
+                            Messbereich)
+                        </strong>
+                    </div>
+                    <br></br>
+                       <div attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
+                           <strong style="margin-left:39%;">links [KN]</strong>
+                           <strong style="margin-left:17%;">rechts [KN]</strong>
+                           <strong style="margin-left:16%;">max.Fehler [%]</strong>
+                         </div>
+                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'routine_test'), ('category_id', '!=', %(equipment_bremsprufstand)d)]}">
+                        <field name="measuring_ids" nolabel="1" >
+                                <tree editable="1" create="0" delete="false">
+                                    <field name="mail_activity_id" invisible="1"/>
+                                    <field name="name" readonly="1" force_save="1"/>
+                                    <field name="left_small" string="klein"/>
+                                    <field name="left_large" string="groß"/>
+                                    <field name="right_small" string="klein"/>
+                                    <field name="right_large" string="groß"/>
+                                    <field name="max_error_small" string="klein"/>
+                                    <field name="max_error_large" string="groß"/>
+                                </tree>
+                            </field>
+                    </group> -->
+                    
+                    <!-- Noch nicht definierte View -->
+
+                    <field name="test_specification_ids" nolabel="1" attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}">
+                        <tree editable="1" create="0" delete="false">
+                            <field name="mail_activity_id" invisible="1"/>
+                            <field name="test_specification" width="20%" readonly="1" force_save="1"/>
+                            <field name="is_success" width="5%"/>
+                            <field name="is_failed" width="5%" />
+                            <field name="is_after_examination" width="5%"/>
+                            <field name="note"  width="50%"/>
+                        </tree>
+                    </field>
+<!--                     <strong attrs="{'invisible': ['|', ('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_hebebuhne)d)]}">(zutreffendes ankreuzen, wenn Nachprüfung erforderlich zusätzlich ankreuzen!)
+                        <br></br>
+                    </strong>
+                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_tore)d)]}">
+                         <label string="Art der Prüfung:" for="is_exam_regular" />
+                        <div>
+                            <field name="is_exam_regular"
+                                   style="width:1% !important;"
+                                   nolabel="1"
+                            />
+                            <label for="is_exam_regular"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="is_extraordinary"/>
+                            <label for="is_extraordinary"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="is_exam_tore_review"/>
+                            <label for="is_exam_tore_review"
+                                   style="display: inline-block;font-weight:normal;"/>
+                        </div>
+                    </group>
+                   <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_tore)d)]}">
+                         <label string="Funktions- und Sichtprüfung:" for="operation_no_defects" />
+                        <div>
+                            <field name="operation_no_defects"
+                                   style="width:1% !important;"
+                            />
+                            <label for="operation_no_defects"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="operation_review"/>
+                            <label for="operation_review"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="operation_defects_remedied"/>
+                            <label for="operation_defects_remedied"
+                                   style="display: inline-block;font-weight:normal;"/>
+                        </div>
+                    </group>
+                     <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_tore)d)]}">
+                         <label string="Mängel:" for="result_exam_no_defects" />
+                        <div>
+                            <field name="result_exam_no_defects"
+                                   style="width:1% !important;"
+                                   nolabel="1"
+                            />
+                            <label for="result_exam_no_defects"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="result_exam_defects"/>
+                            <label for="result_exam_defects"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="note_tore" attrs="{'invisible': [('result_exam_defects', '=', False)]}" nolabel="1"/>
+                        </div>
+                    </group>
+                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'uvv'), ('category_id', '!=', %(equipment_tore)d)]}">
+                        <field name="partial_exams"/>
+                    </group>
+                    <group attrs="{'invisible': ['|',('equipment_test_type', '!=', 'uvv'), ('category_id', 'not in', [%(equipment_hebebuhne)d, %(equipment_tore)d])]}">
+
+                        <label for="is_exam_result_review" string="Ergebnis der Prüfung:"/>
+                        <div>
+                            <field name="is_exam_result_review"
+                                   style="width:1% !important;"
+                                   nolabel="1"
+                            />
+                            <label for="is_exam_result_review"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="is_result_continuation_operation"/>
+                            <label for="is_result_continuation_operation"
+                                   style="display: inline-block;font-weight:normal;"/>
+                            <br></br>
+                            <field name="is_result_exam_no_defect"/>
+                            <label for="is_result_exam_no_defect"
+                                   style="display: inline-block;font-weight:normal;"/>
+                        </div>
+                    </group> -->
+                    <br/>
+                    <group string="Anmerkung">
+                    <field name="note" placeholder="Log a note..." nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button string="Finished Test And Generate Protocol" name="action_generate_protocol" type="object" class="btn-primary" attrs="{'invisible': ['|', '|', ('equipment_protocol_id', '!=', False), ('test_fail', '=', True), ('active', '=', False)]}"/>
+                        <button attrs="{'invisible': ['|',('active', '=', False), ('test_fail', '=', True)]}" string="Mark as Done" name="action_done" type="object" class="btn-primary ml16"
+                            context="{'mail_activity_quick_update': True}"/>
+                        <button string="Test Failed" name="action_activity_fail" type="object" class="btn-primary ml16" attrs="{'invisible': ['|', '|', ('test_fail', '=', True), ('test_completed', '=', True), ('active', '=', False)]}"/>
+                    </footer>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="mail_activity_view_calendar_safety_master" model="ir.ui.view">
+        <field name="name">mail.activity.calendar.safety.master</field>
+        <field name="model">mail.activity</field>
+        <field name="arch" type="xml">
+            <calendar date_start="schedule_date" date_delay="duration" color="user_id" event_limit="5">
+                <field name="user_id"/>
+                <field name="customer_id"/>
+                <field name="activity_type_id"/>
+                <field name="res_name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="safety_master_mail_activity_search_view" model="ir.ui.view">
+        <field name="name">safety.master.mail.activity.search</field>
+        <field name="model">mail.activity</field>
+        <field name="arch" type="xml">
+            <search string="Equipment Activity">
+                <field name="activity_type_id"/>
+                <filter name="filter_active" string="Equipment Activity" domain="[('test_completed', '=', False)]"/>
+            <field string="Customer" name="customer_id" filter_domain="['|',
+                    ('customer_id', 'ilike', self),('ref', 'ilike', self)]"/>
+            <field string="Equipment" name="equipment_id" filter_domain="['|',
+                    ('equipment_id', 'ilike', self),('serial_no', 'ilike', self)]"/>
+                <group  expand='0' string='Group by...'>
+                <filter string="Late and Today Activities" name="activities_late_today"
+                        domain="['|', ('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d')), ('date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Activity Type" name="activittype" context="{'group_by': 'activity_type_id'}"/>
+                    <filter string="Assigned Tasks" name="assigned_tasks" domain="[('user_id', '=', uid)]"/>
+                    <filter string='Planning' name="planning" domain="[]" context="{'group_by': 'planning'}"/>
+                    <filter string='Customer' name="customer" domain="[]" context="{'group_by': 'customer_id'}"/>
+                    <filter string='Equipment' name="equipment" domain="[]" context="{'group_by': 'equipment_id'}"/>
+                    <filter string='Category' name="category" domain="[]" context="{'group_by': 'category_id'}"/>
+                    <filter string='Deadline' name="deadline" domain="[]" context="{'group_by': 'date_deadline'}"/>
+                    <filter string='ZIP' name="zip" domain="[]" context="{'group_by': 'customer_zip'}"/>
+                    <filter string='ZIP 2' name="zip2" domain="[]" context="{'group_by': 'zip2'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    
+    
+      <!-- Anpassen der View--> 
+    <record id="planing_action_from_equipment_form" model="ir.actions.act_window">
+        <field name="name">AKTIVITÄTEN</field>
+        <field name="res_model">mail.activity</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="safety_master.safety_master_mail_activity_search_view"/>
+          <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree','view_id': ref('mail.mail_activity_view_tree')}),
+            (0, 0, {'view_mode': 'form','view_id': ref('safety_master.safety_master_mail_activity_view_form')})]"
+        />
+        <field
+            name="domain"
+        >[('equipment_id', '=', active_id)]</field>
+        <field name="context">{
+            'default_equipment_id': active_id,
+        }</field>
+    </record>
+
+    <record id="safety_master_view_planing_buttons" model="ir.ui.view">
+        <field name="name">safety.master.view.planing.buttons</field>
+        <field name="model">safety.master</field>
+        <field name="inherit_id" ref="safety_master.hr_equipment_view_form" />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button name="%(planing_action_from_equipment_form)d"
+                    class="oe_stat_button"
+                    icon="fa-cubes"
+                    type="action">
+                    <field string="Planing" name="planing_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="safety_master_mail_activity_view_graph" model="ir.ui.view">
+        <field name="name">safety.master.mail.activity.graph</field>
+        <field name="model">mail.activity</field>
+        <field name="arch" type="xml">
+            <graph string="Activity">
+                <field name="summary"/>
+            </graph>
+        </field>
+    </record>
+
+<!--    <record id="safety_master_mail_activity_view_map" model="ir.ui.view">-->
+<!--        <field name="name">safety.master.mail.activity.map</field>-->
+<!--        <field name="model">mail.activity</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--        <map res_partner="customer_id" default_order="schedule_date" routing="false">-->
+<!--&lt;!&ndash;             <marker-popup> &ndash;&gt;-->
+<!--                <field name="customer_id" string="Customer"/>-->
+<!--                <field name="customer_street" string="Street"/>-->
+<!--                <field name="customer_zip" string="ZIP"/>-->
+<!--                <field name="customer_city" string="City"/>-->
+<!--                <field name="category_id" string="Category"/>-->
+<!--                <field name="equipment_test_type_id" string="Type"/>-->
+<!--&lt;!&ndash;             </marker-popup> &ndash;&gt;-->
+<!--            </map>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+    <record id="safety_master_mail_activity_action" model="ir.actions.act_window">
+        <field name="name">Activities</field>
+        <field name="res_model">mail.activity</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('mail.mail_activity_view_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('safety_master_mail_activity_view_form')}),
+            (0, 0, {'view_mode': 'calendar', 'view_id': ref('mail_activity_view_calendar_safety_master')}),
+            (0, 0, {'view_mode': 'graph', 'view_id': ref('safety_master_mail_activity_view_graph')})]"/>
+        <field name="search_view_id" ref="safety_master_mail_activity_search_view"/>
+        <field name="domain">[('res_model', '=', 'safety.master')]</field>
+        <field name="context">{'search_default_filter_active': 1, 'search_default_assigned_tasks':1, 'search_default_activities_late_today': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_safety_master_activity_form"
+        name="Planung"
+        parent="safety_master.menu_maintenance_title"
+        action="safety_master_mail_activity_action"
+        groups="base.group_system,base.group_user"
+        sequence="1"/>
+
+
+    <record id="activity_edit_action_server" model="ir.actions.server">
+        <field name="name">Detail Planning</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_mail_activity" />
+        <field name="binding_model_id" ref="model_mail_activity" />
+        <field name="binding_view_types">list</field>
+         <field name="state">code</field>
+        <field name="code">
+            if records:
+    action = records.activity_edit()
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    
+     <menuitem
+        id="safety_master.menu_master_title"
+        name="Safety Master"
+        web_icon="safety_master,static/description/icon.png"
+        />
+
+</odoo>
