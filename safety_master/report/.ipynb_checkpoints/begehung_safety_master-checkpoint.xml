@@ -140,15 +140,15 @@
     </record>
     
     
-    <record id="wepelo_equipment_eichnachweis_protocol" model="ir.actions.report">
+    <record id="safety_master_eichnachweis_protocol" model="ir.actions.report">
             <field name="name">Begehung</field>
-            <field name="model">equipment.protocol</field>
+            <field name="model">hazard.protocol</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">wepelo_equipment.report_equipment_eichnachweis_protocol</field>
-            <field name="report_file">wepelo_equipment.report_equipment_eichnachweis_protocol</field>
+            <field name="report_name">safety_master.report_equipment_eichnachweis_protocol</field>
+            <field name="report_file">safety_master.report_equipment_eichnachweis_protocol</field>
             <field name="print_report_name">(object._get_report_filename())</field>
-            <field name="binding_model_id" ref="model_equipment_protocol"/>
-            <field name="paperformat_id" ref="wepelo_equipment.paperformat_begehung"/>
+            <field name="binding_model_id" ref="model_hazard_protocol"/>
+            <field name="paperformat_id" ref="safety_master.paperformat_begehung"/>
             <field name="binding_type">report</field>
         </record>
     

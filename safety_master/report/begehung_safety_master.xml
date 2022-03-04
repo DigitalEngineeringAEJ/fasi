@@ -147,7 +147,7 @@
             <field name="report_name">safety_master.report_equipment_eichnachweis_protocol</field>
             <field name="report_file">safety_master.report_equipment_eichnachweis_protocol</field>
             <field name="print_report_name">(object._get_report_filename())</field>
-            <field name="binding_model_id" ref="model_equipment_protocol"/>
+            <field name="binding_model_id" ref="model_hazard_protocol"/>
             <field name="paperformat_id" ref="safety_master.paperformat_begehung"/>
             <field name="binding_type">report</field>
         </record>
