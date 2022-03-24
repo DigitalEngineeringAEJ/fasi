@@ -33,4 +33,5 @@ access_folgebegehung,folgebegehung,model_folgebegehung,base.group_user,1,1,1,1
 access_gefahrstoff_verzeichnis,gefahrstoff.verzeichnis,model_gefahrstoff_verzeichnis,base.group_user,1,1,1,1
 access_unterweisung,unterweisung,model_unterweisung,base.group_user,1,1,1,1
 access_gefahrstoff_kategorie,gefahrstoff.kategorie,model_gefahrstoff_kategorie,base.group_user,1,1,1,1
-
+access_hazard_request,access_hazard_request,model_hazard_request,base.group_user,1,1,1,1
+access_hazard_team,access_hazard_team,model_hazard_team,base.group_user,1,1,1,1
