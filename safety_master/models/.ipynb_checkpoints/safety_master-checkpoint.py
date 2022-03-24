@@ -22,7 +22,7 @@ class SafetyMaster(models.Model):
 
     category_id = fields.Many2one('hazard.category', string='Equipment Category',
                                   tracking=True)
-    user_id = fields.Many2one('res.users', string='Technician', tracking=True)
+    user_id = fields.Many2one('res.users', string='Operator', tracking=True)
     name = fields.Char('Equipment Name', required=True, translate=True)
 
     owner_user_id = fields.Many2one('res.users', string='Owner', tracking=True)
@@ -52,7 +52,7 @@ class SafetyMaster(models.Model):
     location = fields.Char('Location')
     period = fields.Integer('Days between each preventive maintenance')
     maintenance_duration = fields.Float(help="Maintenance Duration in hours.")
-    equipment_count = fields.Integer(string="Equipment", compute='_compute_equipment_count')
+    equipment_count = fields.Integer(string="tools", compute='_compute_equipment_count')
     maintenance_count = fields.Integer(string="maintenance Count", compute='_compute_maintenance_count')
     alias_id = fields.Many2one(
         'mail.alias', 'Alias', ondelete='restrict', required=True,
@@ -70,12 +70,12 @@ class SafetyMaster(models.Model):
     email = fields.Char(related='customer_id.email', string='Email', readonly=True, store=True)
     mobile = fields.Char(related='customer_id.mobile', string='Mobile', readonly=True, store=True)
     zip = fields.Char(related='customer_id.zip', string='Zip', readonly=True, store=True)
-    test_equipment_device_id = fields.Many2one('hazard.equipment.device', string='Testing Device', ondelete='set null')
+    test_equipment_device_id = fields.Many2one('test.equipment.device', string='Testing Device', ondelete='set null')
     equipment_service_id = fields.Many2one('hazard.service', string='Service strain', ondelete='set null')
     city = fields.Char(related='customer_id.city', string='City', readonly=True, store=True)
     street = fields.Char(string='Street', compute="_compute_house_no")
     phone = fields.Char(related='customer_id.phone', string='Phone Number', readonly=True, store=True)
-    test_device_name = fields.Many2one('hazard.equipment.device', string='Test Gas', store=True, ondelete='set null')
+    test_device_name = fields.Many2one('test.equipment.device', string='Test Gas', store=True, ondelete='set null')
     protocol_number = fields.Integer(string="Protocol Number", compute='_compute_protocol_number')
     planing_count = fields.Integer(string="Planing", compute='_compute_planing_count')
     protocols_ids = fields.One2many('hazard.protocol', 'equipment_id')

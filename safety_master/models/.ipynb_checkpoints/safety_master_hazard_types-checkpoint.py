@@ -238,4 +238,4 @@ class GefahrenFaktor(models.Model):
     _rec_name = 'gefaehrdungsf'
     
     gefaehrdungsf = fields.Char(string='Gefährdungsfaktoren')
-    gefahrenquellen_typ_id = fields.Many2one('equipment.types', string="Gefährdungsfaktor Gruppe")
+    gefahrenquellen_typ_id = fields.Many2one('hazard.types', string="Gefährdungsfaktor Gruppe")
